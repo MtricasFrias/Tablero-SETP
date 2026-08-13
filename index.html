@@ -139,6 +139,7 @@ section.block{padding:34px 0; border-bottom:1px solid var(--line)}
 .g2{grid-template-columns:1fr 1fr}
 .g3{grid-template-columns:repeat(3,1fr)}
 .g4{grid-template-columns:repeat(4,1fr)}
+.g5{grid-template-columns:repeat(5,1fr)}
 .card{background:var(--card); border:1px solid var(--line); border-radius:18px; padding:20px; box-shadow:var(--shadow)}
 .card h4{font-size:14px; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; font-weight:700; margin-bottom:12px}
 
@@ -201,6 +202,8 @@ section.block{padding:34px 0; border-bottom:1px solid var(--line)}
 .social-tile{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px; text-align:center; box-shadow:var(--shadow)}
 .social-tile .ico{width:40px;height:40px;margin:0 auto 10px; display:grid;place-items:center; border-radius:12px; background:rgba(0,168,48,.12)}
 .social-tile .ico svg{width:22px;height:22px}
+.social-tile .ico.photo{width:72px;height:72px;border-radius:50%;overflow:hidden;background:none;border:3px solid var(--green)}
+.social-tile .ico.photo img{width:100%;height:100%;object-fit:cover}
 .social-tile .n{font-size:26px;font-weight:900;color:var(--navy)}
 .social-tile .l{font-size:12px;color:var(--muted);font-weight:600;margin-top:2px}
 
@@ -218,7 +221,7 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
 /* responsive */
 @media(max-width:900px){
   .hero-grid{grid-template-columns:1fr}
-  .g2,.g3,.g4{grid-template-columns:1fr}
+  .g2,.g3,.g4,.g5{grid-template-columns:1fr}
   .social-grid{grid-template-columns:1fr 1fr}
   .gantt-row,.gantt-months{grid-template-columns:120px 1fr}
   .hero h2{font-size:26px}
@@ -278,6 +281,7 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
         <div class="m"><div class="lbl">Longitud intervenida</div><div class="val">5.007 m</div></div>
         <div class="m"><div class="lbl">Plazo total</div><div class="val">225 días</div></div>
         <div class="m"><div class="lbl">Acta de inicio</div><div class="val">15-abr-2026</div></div>
+        <div class="m"><div class="lbl">Actas de pago radicadas</div><div class="val" style="color:var(--red)">$0 (0%)</div></div>
       </div>
       <div class="hero-meta" style="margin-top:14px;align-items:center">
         <div class="m"><div class="lbl">Contrato de obra</div><div class="val">$24.408 M</div></div>
@@ -295,7 +299,7 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
             <div class="gauge-center"><div class="pct" style="font-size:20px;color:var(--green)">100%</div></div>
           </div>
           <div style="font-size:12.5px;font-weight:800;color:var(--ink);margin-top:8px">Fase I · Diseños</div>
-          <div style="font-size:11px;color:var(--muted)">$573,8 M · Completada</div>
+          <div style="font-size:11px;color:var(--muted)">Completada</div>
         </div>
         <div style="text-align:center">
           <div class="gauge-wrap" style="width:120px;height:120px">
@@ -303,7 +307,7 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
             <div class="gauge-center"><div class="pct" style="font-size:20px;color:var(--pending)">0%</div></div>
           </div>
           <div style="font-size:12.5px;font-weight:800;color:var(--ink);margin-top:8px">Fase II · Obra</div>
-          <div style="font-size:11px;color:var(--muted)">$23.834,3 M · Por iniciar</div>
+          <div style="font-size:11px;color:var(--muted)">Por iniciar</div>
         </div>
       </div>
       <div class="gauge-legend" style="margin-top:16px">
@@ -326,8 +330,8 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
 
     <!-- Alcance en KPIs -->
     <div class="cards g4" style="margin-bottom:20px">
-      <div class="card kpi"><div class="accent" style="background:var(--navy)"></div><h4>Tramo 1 · doble calzada</h4><div class="big">Cra 5<span class="unit"> → Cl 37</span></div><div class="foot">Ambas calzadas · 3.526 m según trazado del proyecto</div></div>
-      <div class="card kpi"><div class="accent" style="background:var(--royal)"></div><h4>Tramo 2 · calzada ascendente</h4><div class="big">Cl 77<span class="unit"> → Cl 63</span></div><div class="foot">Sentido este–oeste · 1.481 m según trazado del proyecto</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--navy)"></div><h4>Tramo 1 · doble calzada</h4><div class="big">Cra 5<span class="unit"> → Cl 37</span></div><div class="foot">Tramo intervenido: 3.526 m (ambas calzadas)</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--royal)"></div><h4>Tramo 2 · calzada ascendente</h4><div class="big">Cl 77<span class="unit"> → Cl 63</span></div><div class="foot">Tramo intervenido: 1.481 m (sentido este–oeste)</div></div>
       <div class="card kpi"><div class="accent" style="background:var(--green)"></div><h4>Fase actual</h4><div class="big" style="font-size:22px">Fase II<br>Obra</div><div class="foot" style="color:var(--green);font-weight:700">✓ Fase I realizada</div></div>
       <div class="card kpi"><div class="accent" style="background:#166534"></div><h4>Plan de Manejo Ambiental</h4><div class="big" style="font-size:26px">27<span class="unit"> programas</span></div><div class="foot">6 componentes · vigente desde la firma del contrato</div></div>
     </div>
@@ -410,11 +414,12 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
       <span class="mini-pill">Valores en COP</span>
     </div>
 
-    <div class="cards g4" style="margin-bottom:20px">
-      <div class="card kpi"><div class="accent" style="background:var(--navy)"></div><h4>Contrato de obra</h4><div class="big" style="font-size:26px">$24.408<span class="unit"> M</span></div><div class="foot">13.940 SMMLV (2025)</div></div>
-      <div class="card kpi"><div class="accent" style="background:var(--gold)"></div><h4>Contrato de interventoría</h4><div class="big" style="font-size:26px">$1.570<span class="unit"> M</span></div><div class="foot">Consorcio Interambalá</div></div>
-      <div class="card kpi"><div class="accent" style="background:var(--royal)"></div><h4>Fase I · Diseños</h4><div class="big" style="font-size:26px">$573,8<span class="unit"> M</span></div><div class="foot">Pago único al aprobar</div></div>
-      <div class="card kpi"><div class="accent" style="background:var(--green)"></div><h4>Ejecutado financiero</h4><div class="big" style="font-size:26px">0<span class="unit"> %</span></div></div>
+    <div class="cards g5" style="margin-bottom:20px">
+      <div class="card kpi"><div class="accent" style="background:var(--navy)"></div><h4>Contrato de obra</h4><div class="big" style="font-size:24px">$24.408<span class="unit"> M</span></div><div class="foot">13.940 SMMLV (2025)</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--gold)"></div><h4>Contrato de interventoría</h4><div class="big" style="font-size:24px">$1.570<span class="unit"> M</span></div><div class="foot">Consorcio Interambalá</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--navy)"></div><h4>Inversión total</h4><div class="big" style="font-size:24px">$25.978<span class="unit"> M</span></div><div class="foot">Obra + interventoría</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--royal)"></div><h4>Fase I · Diseños</h4><div class="big" style="font-size:24px">$573,8<span class="unit"> M</span></div><div class="foot">Pago único al aprobar</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--green)"></div><h4>Ejecutado financiero</h4><div class="big" style="font-size:24px">0<span class="unit"> %</span></div></div>
     </div>
 
     <div class="cards g2">
@@ -536,8 +541,8 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
     </div>
 
     <div class="social-grid" style="margin-bottom:20px">
-      <div class="social-tile"><div class="ico" style="background:rgba(0,168,48,.12)"><svg viewBox="0 0 24 24" style="width:26px;height:26px"><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="8" r="3.5" fill="var(--green)"/><path d="M7.5 6.2a4.5 2.6 0 0 1 9 0" fill="var(--gold)"/><rect x="6.8" y="5.6" width="10.4" height="1.6" rx="0.8" fill="var(--gold)"/></svg></div><div class="n">10%</div><div class="l">Mano de obra regional (mín.)</div></div>
-      <div class="social-tile"><div class="ico" style="background:rgba(0,168,48,.12)"><svg viewBox="0 0 24 24" style="width:26px;height:26px"><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="8" r="3.5" fill="var(--green)"/><path d="M7.5 6.2a4.5 2.6 0 0 1 9 0" fill="var(--gold)"/><rect x="6.8" y="5.6" width="10.4" height="1.6" rx="0.8" fill="var(--gold)"/><circle cx="18.5" cy="18" r="4.2" fill="#fff" stroke="var(--green)" stroke-width="1.3"/><text x="18.5" y="20" font-size="6" text-anchor="middle" fill="var(--green)" font-weight="700">♀</text></svg></div><div class="n">5%</div><div class="l">Mujeres (de mano de obra)</div></div>
+      <div class="social-tile"><div class="ico photo"><img src="img/mano-obra-regional.jpg" alt="Mano de obra regional"></div><div class="n">10%</div><div class="l">Mano de obra regional (mín.)</div></div>
+      <div class="social-tile"><div class="ico photo"><img src="img/mujeres-mano-de-obra.jpg" alt="Mujeres de mano de obra"></div><div class="n">5%</div><div class="l">Mujeres (de mano de obra)</div></div>
       <div class="social-tile"><div class="ico" style="background:rgba(0,168,48,.12)"><svg viewBox="0 0 24 24" style="width:26px;height:26px" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="17" cy="17" r="4"/><circle cx="9" cy="5" r="1.7" fill="var(--green)" stroke="none"/><path d="M9 8v5l4 2M9 13h5l3 6"/></svg></div><div class="n">5%</div><div class="l">Población especial protección</div></div>
       <div class="social-tile"><div class="ico" style="background:rgba(0,168,48,.12)"><svg viewBox="0 0 24 24" style="width:26px;height:26px" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V10"/><path d="M12 10c0-4 3-6 6-6 0 4-2 7-6 6Z" fill="var(--green)" stroke="none"/><path d="M12 14c0-3-2.5-5-5.5-5 0 3.5 2.2 5.8 5.5 5Z" fill="var(--gold)" stroke="none"/></svg></div><div class="n">8%</div><div class="l">Jóvenes 18–28 años</div></div>
     </div>
@@ -635,10 +640,10 @@ if (document.getElementById('tramoMap')) {
       const etiqueta = f.secciones>1 ? f.frente+' · Sección '+(i+1)+' de '+f.secciones : f.frente;
       const largoBase = longitudMetros(seg);
       const largo = Math.round(f.factor ? largoBase*f.factor : largoBase).toLocaleString('es-CO');
-      const textoLongitud = f.factor ? '≈'+largo+' m' : '≈'+largo+' m de perímetro';
+      const textoLongitud = f.factor ? 'Distancia intervención: ≈'+largo+' m' : 'Perímetro: ≈'+largo+' m';
       L.polyline(seg,{color:ok?GREEN:PENDING,weight:5,opacity:.95})
         .addTo(grupo)
-        .bindPopup('<b>'+etiqueta+'</b><br>'+(ok?'✓ Ejecutado':'○ No ejecutado')+'<br>'+textoLongitud);
+        .bindPopup('<b>'+etiqueta+'</b><br>'+textoLongitud+'<br>'+(ok?'✓ Ejecutado':'○ No ejecutado'));
     });
   });
   grupo.addTo(tramoMap);
