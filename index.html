@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SETP Ibagué · Tablero de Seguimiento — Avenida Ambalá 2.0</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>/*!
  * Chart.js v4.4.1
  * https://www.chartjs.org
@@ -282,11 +284,11 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
     <div class="gauge-card">
       <div class="gauge-wrap">
         <canvas id="gaugeGlobal"></canvas>
-        <div class="gauge-center"><div class="pct" id="gaugePct">0%</div><div class="cap">Avance global</div></div>
+        <div class="gauge-center"><div class="pct" id="gaugePct" style="font-size:23px">Fase I</div><div class="cap">Completada · Diseños</div></div>
       </div>
       <div class="gauge-legend">
-        <span><i style="background:var(--green)"></i> Ejecutado</span>
-        <span><i style="background:#EAEEF7"></i> Pendiente</span>
+        <span><i style="background:var(--green)"></i> Fase I · E&D — Completada</span>
+        <span><i style="background:var(--pending)"></i> Fase II · Obra — Por iniciar</span>
       </div>
     </div>
   </div>
@@ -306,49 +308,36 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
     <div class="cards g4" style="margin-bottom:20px">
       <div class="card kpi"><div class="accent" style="background:var(--navy)"></div><h4>Tramo 1 · doble calzada</h4><div class="big">Cra 5<span class="unit"> → Cl 37</span></div><div class="foot">Ambas calzadas</div></div>
       <div class="card kpi"><div class="accent" style="background:var(--royal)"></div><h4>Tramo 2 · calzada ascendente</h4><div class="big">Cl 77<span class="unit"> → Cl 63</span></div><div class="foot">Sentido este–oeste</div></div>
-      <div class="card kpi"><div class="accent" style="background:var(--green)"></div><h4>Fase actual</h4><div class="big" style="font-size:22px">Estudios y<br>diseños</div><div class="foot">Fase I · 90 días</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--green)"></div><h4>Fase actual</h4><div class="big" style="font-size:22px">Fase II<br>Obra</div><div class="foot">Fase I (E&D) completada · por iniciar</div></div>
       <div class="card kpi"><div class="accent" style="background:#166534"></div><h4>Plan de Manejo Ambiental</h4><div class="big" style="font-size:26px">6<span class="unit"> componentes</span></div><div class="foot">27 programas · en definición</div></div>
+    </div>
+
+    <!-- Cantidades de obra: longitudes de intervención -->
+    <div style="font-size:13px;color:var(--muted);margin:-8px 0 12px">Longitudes de intervención (metros lineales) — Fuente: Formulario 1, Presupuesto Oficial y Propuesta Económica.</div>
+    <div class="cards g3" style="margin-bottom:20px">
+      <div class="card kpi"><div class="accent" style="background:var(--navy)"></div><h4>Vía a intervenir</h4><div class="big" style="font-size:26px">5.007<span class="unit"> m</span></div><div class="foot">Ítem 1.01 · Localización y replanteo</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--pending)"></div><h4>Reemplazo de tubería</h4><div class="big" style="font-size:19px">Por definir</div><div class="foot">Componente hidráulico en diseño · Fase I</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--pending)"></div><h4>Intervención de andén</h4><div class="big" style="font-size:19px">Por definir</div><div class="foot">Formulario 1 solo registra puntos de isleta y rampa</div></div>
     </div>
 
     <!-- Meta vs ejecutado -->
     <div class="cards g2">
       <div class="card">
         <h4>Avance por componente</h4>
-        <div class="progress-row"><div class="top"><span class="name">Estudios y diseños (Fase I)</span><span class="figs"><b>0%</b> / pend.</span></div><div class="bar blue"><span style="width:0%"></span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Estudios y diseños (Fase I)</span><span class="figs"><b>100%</b> completada</span></div><div class="bar blue"><span style="width:100%"></span></div></div>
         <div class="progress-row"><div class="top"><span class="name">Reposición de redes</span><span class="figs"><b>0%</b> / pend.</span></div><div class="bar"><span style="width:0%"></span></div></div>
         <div class="progress-row"><div class="top"><span class="name">Pavimentación</span><span class="figs"><b>0%</b> / pend.</span></div><div class="bar"><span style="width:0%"></span></div></div>
         <div class="progress-row"><div class="top"><span class="name">Andenes y espacio público</span><span class="figs"><b>0%</b> / pend.</span></div><div class="bar"><span style="width:0%"></span></div></div>
         <p class="map-note">Estos porcentajes se actualizarán conforme se reciban los reportes de avance de obra y sean aprobados por la interventoría.</p>
       </div>
       <div class="card">
-        <h4>Mapa de avance por tramo · representación SIG</h4>
+        <h4>Mapa de avance por tramo</h4>
         <div class="map-legend">
-          <span><i style="background:var(--green)"></i> Terminado</span>
-          <span><i style="background:var(--royal)"></i> En ejecución</span>
+          <span><i style="background:var(--green)"></i> Sección realizada</span>
           <span><i style="background:var(--pending)"></i> Pendiente</span>
         </div>
-        <div class="corridor">
-          <h5>Tramo 1 · Carrera 5 → Calle 37 (doble calzada)</h5>
-          <div class="segbar">
-            <div class="seg pending">Cra5–Cl15<span class="tip">pendiente</span></div>
-            <div class="seg pending">Cl15–Cl26<span class="tip">pendiente</span></div>
-            <div class="seg pending">Cl26–Cl37<span class="tip">pendiente</span></div>
-          </div>
-          <div class="seg-scale"><span>Cra 5</span><span>Cl 37</span></div>
-        </div>
-        <div class="corridor">
-          <h5>Tramo 2 · Calle 77 → Calle 63 (ascendente)</h5>
-          <div class="segbar">
-            <div class="seg pending">77–73<span class="tip">Cl 77–73 · pendiente</span></div>
-            <div class="seg pending">73–69<span class="tip">Cl 73–69 · pendiente</span></div>
-            <div class="seg pending">69–63<span class="tip">Cl 69–63 · pendiente</span></div>
-          </div>
-          <div class="seg-scale"><span>Cl 77</span><span>Cl 63</span></div>
-        </div>
-        <div style="border:2px dashed var(--line); border-radius:14px; padding:28px 20px; text-align:center; background:var(--paper); margin-top:14px">
-          <div style="font-weight:700; color:var(--ink); margin-bottom:4px">Plano de localización — pendiente de anexar</div>
-          <div style="font-size:13px; color:var(--muted); max-width:520px; margin:0 auto">Se incorporará la imagen satelital georreferenciada (vista aérea de ambos tramos) exportada desde QGIS, en formato JPG y alta resolución.</div>
-        </div>
+        <div id="tramoMap" style="height:380px;border-radius:14px;overflow:hidden;margin-top:10px"></div>
+        <p class="map-note">Mapa satelital interactivo (desplazable y con zoom) · Tramo 1: Carrera 5 → Calle 37 · Tramo 2: Calle 77 → Calle 63. Haz clic en un punto para ver el estado de esa sección. Ubicación referencial sobre la Av. Ambalá (Ibagué) — se ajustará con las coordenadas exactas del levantamiento topográfico/QGIS del proyecto. El avance se actualiza editando el arreglo <code>segmentosTramo</code> en el código, sin reemplazar imágenes.</p>
       </div>
     </div>
 
@@ -486,14 +475,38 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
 window.addEventListener('load', function(){
 const NAVY='#0A1F5C',ROYAL='#1D4ED8',GREEN='#00A830',GOLD='#F0A800',RED='#D62828',PENDING='#94A3B8';
 
-/* ---- Gauge global (avance físico de ejemplo) ---- */
-const AVANCE_GLOBAL = 0; // % — sin actas parciales de avance reportadas aún
+/* ---- Gauge de fases: Fase I (E&D) completada · Fase II (Obra) por iniciar ---- */
+/* Fuente: Informe Ejecutivo 05-jul-2026 (corte 26-jun-2026) + actualización verbal del Director Operativo (ago-2026): Fase I al 100%. */
+const FASE1_DIAS = 90, FASE2_DIAS = 135;
 new Chart(document.getElementById('gaugeGlobal'),{
   type:'doughnut',
-  data:{datasets:[{data:[AVANCE_GLOBAL,100-AVANCE_GLOBAL],backgroundColor:[GREEN,'#EAEEF7'],borderWidth:0}]},
+  data:{datasets:[{data:[FASE1_DIAS,FASE2_DIAS],backgroundColor:[GREEN,PENDING],borderWidth:0}]},
   options:{cutout:'78%',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false}}}
 });
-(function(){let el=document.getElementById('gaugePct'),n=0;const t=setInterval(()=>{n++;el.textContent=n+'%';if(n>=AVANCE_GLOBAL)clearInterval(t);},40);})();
+
+/* ---- Mapa satelital interactivo de tramos ---- */
+/* Coordenadas referenciales (Av. Ambalá, Ibagué) — ajustar cuando se disponga del levantamiento QGIS. */
+/* Para actualizar el avance: cambia "estado" a 'completado' o 'pendiente' en cada segmento; no requiere reemplazar imágenes. */
+const segmentosTramo = [
+  {coord:[4.4420,-75.2300], tramo:'Tramo 1 · Cra 5 → Cl 37', nombre:'Cra 5 – Cl 15', estado:'pendiente'},
+  {coord:[4.4405,-75.2295], tramo:'Tramo 1 · Cra 5 → Cl 37', nombre:'Cl 15 – Cl 26', estado:'pendiente'},
+  {coord:[4.4390,-75.2290], tramo:'Tramo 1 · Cra 5 → Cl 37', nombre:'Cl 26 – Cl 37', estado:'pendiente'},
+  {coord:[4.4370,-75.2270], tramo:'Tramo 2 · Cl 77 → Cl 63', nombre:'Cl 77 – Cl 73', estado:'pendiente'},
+  {coord:[4.4360,-75.2260], tramo:'Tramo 2 · Cl 77 → Cl 63', nombre:'Cl 73 – Cl 69', estado:'pendiente'},
+  {coord:[4.4350,-75.2250], tramo:'Tramo 2 · Cl 77 → Cl 63', nombre:'Cl 69 – Cl 63', estado:'pendiente'}
+];
+if (document.getElementById('tramoMap')) {
+  const tramoMap = L.map('tramoMap', {scrollWheelZoom:false}).setView([4.4385,-75.2280], 15);
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    attribution:'Tiles © Esri', maxZoom:19
+  }).addTo(tramoMap);
+  segmentosTramo.forEach(s=>{
+    const ok = s.estado === 'completado';
+    L.circleMarker(s.coord,{radius:9,color:'#fff',weight:2,fillColor:ok?GREEN:PENDING,fillOpacity:1})
+      .addTo(tramoMap)
+      .bindPopup('<b>'+s.tramo+'</b><br>'+s.nombre+'<br>'+(ok?'✓ Sección realizada':'○ Pendiente'));
+  });
+}
 
 /* ---- Torta: distribución del presupuesto (estimada) ---- */
 new Chart(document.getElementById('chartPie'),{
