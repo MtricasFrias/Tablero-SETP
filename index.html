@@ -329,11 +329,25 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
         <div class="progress-row"><div class="top"><span class="name">Pavimentación</span><span class="figs"><b>0%</b> / pend.</span></div><div class="bar"><span style="width:0%"></span></div></div>
         <div class="progress-row"><div class="top"><span class="name">Andenes y espacio público</span><span class="figs"><b>0%</b> / pend.</span></div><div class="bar"><span style="width:0%"></span></div></div>
         <p class="map-note">Estos porcentajes se actualizarán conforme se reciban los reportes de avance de obra y sean aprobados por la interventoría.</p>
-        <div style="margin-top:auto;padding-top:18px;display:flex;align-items:center;gap:14px">
-          <img id="brandFillImg" alt="SETP Ibagué" style="height:52px;width:auto;border-radius:8px;background:#fff;padding:4px;box-shadow:var(--shadow)">
-          <div style="font-size:12px;color:var(--muted);line-height:1.45">
-            <b style="color:var(--ink)">Compromiso institucional</b><br>
-            El Sistema Estratégico de Transporte Público de Ibagué S.A.S. impulsa la modernización de la malla vial para una movilidad más segura, incluyente y eficiente.
+        <div style="margin-top:auto;padding-top:18px;display:flex;align-items:center;gap:18px;flex-wrap:wrap">
+          <svg viewBox="0 0 220 90" style="width:180px;height:auto;flex:0 0 auto">
+            <line x1="0" y1="76" x2="220" y2="76" stroke="var(--line)" stroke-width="3"/>
+            <rect x="20" y="26" width="4" height="50" fill="var(--navy)"/>
+            <path d="M4 26 h40 l-7 -11 h-26 z" fill="var(--royal)"/>
+            <rect x="10" y="54" width="24" height="4" rx="2" fill="var(--gold)"/>
+            <g>
+              <animateTransform attributeName="transform" type="translate" values="70,0; 160,0; 70,0" dur="8s" repeatCount="indefinite" calcMode="linear"/>
+              <rect x="0" y="42" width="50" height="26" rx="6" fill="var(--green)"/>
+              <rect x="6" y="48" width="10" height="8" rx="1" fill="#fff" opacity=".92"/>
+              <rect x="20" y="48" width="10" height="8" rx="1" fill="#fff" opacity=".92"/>
+              <rect x="34" y="48" width="10" height="8" rx="1" fill="#fff" opacity=".92"/>
+              <circle cx="11" cy="70" r="5.5" fill="var(--navy)"/>
+              <circle cx="39" cy="70" r="5.5" fill="var(--navy)"/>
+            </g>
+          </svg>
+          <div style="font-size:13px;color:var(--muted);line-height:1.5;min-width:170px">
+            <b style="color:var(--ink);font-size:16px">Moviendo a Ibagué, tramo a tramo.</b><br>
+            SETP Ibagué S.A.S. — Sistema Estratégico de Transporte Público.
           </div>
         </div>
       </div>
@@ -343,8 +357,9 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
           <span><i style="background:var(--green)"></i> Sección realizada</span>
           <span><i style="background:var(--pending)"></i> Pendiente</span>
         </div>
-        <div id="tramoMap" style="position:relative;z-index:0;height:380px;border-radius:14px;overflow:hidden;margin-top:10px"></div>
-        <p class="map-note">Mapa satelital interactivo (desplazable y con zoom), trazado sobre la zona de intervención real del proyecto (KMZ). Haz clic en un tramo para ver su nombre y estado. El avance se actualiza cambiando <code>estado</code> a "completado" en el arreglo <code>tramosKML</code> del código, sin reemplazar imágenes.</p>
+        <div style="font-size:12px;color:var(--muted);margin:2px 0 10px">Tramo 1 · Cra 5 → Cl 37 &nbsp;·&nbsp; Tramo 2 · Cl 77 → Cl 63 &nbsp;·&nbsp; Glorietas</div>
+        <div id="tramoMap" style="position:relative;z-index:0;height:380px;border-radius:14px;overflow:hidden"></div>
+        <p class="map-note">Mapa satelital interactivo (desplazable y con zoom). Haz clic en un tramo para ver su nombre y estado.</p>
       </div>
     </div>
 
@@ -383,7 +398,13 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
 
     <div class="cards g2">
       <div class="card"><h4>Distribución del presupuesto · Formulario 1</h4><div class="chart-box"><canvas id="chartPie"></canvas></div></div>
-      <div class="card"><h4>Ejecución financiera · acumulada</h4><div class="chart-box"><canvas id="chartBars"></canvas></div></div>
+      <div class="card">
+        <h4>Estructura de pagos del contrato</h4>
+        <div class="progress-row"><div class="top"><span class="name">Fase I · pago único al aprobar diseños</span><span class="figs">2,4%</span></div><div class="bar blue"><span style="width:2.4%"></span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Fase II · actas parciales de obra</span><span class="figs">hasta 95%</span></div><div class="bar"><span style="width:0%"></span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Liquidación del contrato · saldo final</span><span class="figs">5%</span></div><div class="bar gold"><span style="width:0%"></span></div></div>
+        <p class="map-note">Pagado a la fecha: $0 (0%). Fuente: Informe Ejecutivo 05-jul-2026 (corte 26-jun-2026) — sin actas parciales pagadas a obra ni interventoría.</p>
+      </div>
     </div>
 
     <div class="cards g2" style="margin-top:20px">
@@ -432,10 +453,6 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
           <div class="lab">Fase II — Ejecución de obra<small>135 días · por tramos</small></div>
           <div class="gantt-track"><div class="gantt-fill f2" style="left:40%; width:60%">Obra</div><div class="today-line" style="left:53%"></div></div>
         </div>
-        <div class="gantt-row">
-          <div class="lab">Comités técnicos<small>mínimo 1 por semana</small></div>
-          <div class="gantt-track"><div class="gantt-fill f1" style="left:0%; width:100%; opacity:.35">Seguimiento continuo</div></div>
-        </div>
       </div>
       <p class="map-note">Línea "HOY" definida sobre el Acta de Inicio. Tiempo pactado: 225 días calendario.</p>
     </div>
@@ -482,13 +499,6 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
 window.addEventListener('load', function(){
 const NAVY='#0A1F5C',ROYAL='#1D4ED8',GREEN='#00A830',GOLD='#F0A800',RED='#D62828',PENDING='#94A3B8';
 
-/* ---- Reutiliza el logo oficial del SETP ya cargado en el header para la pieza institucional ---- */
-(function(){
-  const src = document.querySelector('img.logo.setp');
-  const dst = document.getElementById('brandFillImg');
-  if (src && dst) dst.src = src.src;
-})();
-
 /* ---- Gauge de fases: Fase I (E&D) completada · Fase II (Obra) por iniciar ---- */
 /* Fuente: Informe Ejecutivo 05-jul-2026 (corte 26-jun-2026) + actualización verbal del Director Operativo (ago-2026): Fase I al 100%. */
 const FASE1_DIAS = 90, FASE2_DIAS = 135;
@@ -500,38 +510,48 @@ new Chart(document.getElementById('gaugeGlobal'),{
 
 /* ---- Mapa satelital interactivo de tramos ---- */
 /* Fuente: KMZ "Zona de Intervención Contrato Rehabilitación Avenida Ambala" (levantamiento de campo del equipo SETP). */
-/* Para actualizar el avance: cambia "estado" a 'completado' en el tramo correspondiente; no requiere reemplazar imágenes. */
-const tramosKML = [
+/* Cada frente se divide en secciones para reflejar que la ejecución avanza por partes. */
+/* Para actualizar el avance: cambia el estado correspondiente en "estados" a 'completado'; no requiere reemplazar imágenes. */
+const frentesKML = [
   {
-    nombre: 'Av. Ambalá · Calle 64 a 78',
-    detalle: 'Reparcheos y afectaciones menores en la calzada de subida; la calzada de descenso fue rehabilitada recientemente.',
-    estado: 'pendiente',
+    frente: 'Tramo 1 · Cra 5 → Cl 37',
+    secciones: 3,
+    estados: ['pendiente','pendiente','pendiente'],
+    coords: [[4.446428910235756,-75.21453537933043],[4.445459294578263,-75.21686625975603],[4.445088394221887,-75.21781270481817],[4.444704115822312,-75.21941106317037],[4.444165821396041,-75.22096108943613],[4.443924742836916,-75.22169059226096],[4.44376100106638,-75.22269154174357],[4.443524785952114,-75.22392219453231],[4.443456818243616,-75.22439413730937],[4.443342328639439,-75.22502834369733],[4.443116515580366,-75.22546729087172],[4.442702886339585,-75.22599935584577],[4.441895891394469,-75.22677591556591],[4.441379609477755,-75.22713765370864],[4.440357118479628,-75.2274102605241]]
+  },
+  {
+    frente: 'Tramo 2 · Cl 77 → Cl 63',
+    secciones: 3,
+    estados: ['pendiente','pendiente','pendiente'],
     coords: [[4.447856470658379,-75.20113504389856],[4.447838970037928,-75.20011099788644],[4.447815431208872,-75.19953464940011],[4.447857949765034,-75.1989438255298],[4.447960499502986,-75.19851400060985],[4.448074705078517,-75.19826009644379],[4.448044914279982,-75.19805388205704],[4.447942707417172,-75.19794518153813],[4.447930942137583,-75.1975870664925],[4.447900719725484,-75.19678163814001],[4.447851928976363,-75.19617443831018],[4.447671486055985,-75.19523734633113],[4.447433377341119,-75.194248146441],[4.447061742950669,-75.19267935358245],[4.446873612473751,-75.19161042533102],[4.446760317588832,-75.19105847102909],[4.446743731155467,-75.1906906068464],[4.446871138980585,-75.19047316571384],[4.446826563338535,-75.19026311689669],[4.446664077880185,-75.19011464572148],[4.446384312741398,-75.19015083133679],[4.446267402891995,-75.19035933081388],[4.446276083862582,-75.19058701679701],[4.446473208051843,-75.19073141461753],[4.446709745853389,-75.19069116960804]]
   },
   {
-    nombre: 'Glorieta',
-    detalle: 'Compromisos en las losas de cimentación: ampliar caracterización y reposición de losas, con manejo de aguas de escorrentía y drenes perimetrales en la zona verde.',
-    estado: 'pendiente',
+    frente: 'Glorieta',
+    secciones: 1,
+    estados: ['pendiente'],
     coords: [[4.44800980403595,-75.19805087638483],[4.448057795739788,-75.19819219370274],[4.448056027776412,-75.19832073180967],[4.448003104001168,-75.19840745018746],[4.447899099959915,-75.19846597262162],[4.447783675160649,-75.1984875818864],[4.447631894310845,-75.19844165537894],[4.447535264615119,-75.19829420391606],[4.447522050823721,-75.19815225751381],[4.447560471742755,-75.19802635083555],[4.447729045301676,-75.19791862806647],[4.447862978829337,-75.19793846078871],[4.44800980403595,-75.19805087638483]]
-  },
-  {
-    nombre: 'Av. Ambalá · Calle 25 a 37',
-    detalle: 'Afectaciones menores tipo "piel de cocodrilo" e intervenciones de Celsia; reparcheos.',
-    estado: 'pendiente',
-    coords: [[4.446428910235756,-75.21453537933043],[4.445459294578263,-75.21686625975603],[4.445088394221887,-75.21781270481817],[4.444704115822312,-75.21941106317037],[4.444165821396041,-75.22096108943613],[4.443924742836916,-75.22169059226096],[4.44376100106638,-75.22269154174357],[4.443524785952114,-75.22392219453231],[4.443456818243616,-75.22439413730937],[4.443342328639439,-75.22502834369733],[4.443116515580366,-75.22546729087172],[4.442702886339585,-75.22599935584577],[4.441895891394469,-75.22677591556591],[4.441379609477755,-75.22713765370864],[4.440357118479628,-75.2274102605241]]
   }
 ];
+function dividirEnSecciones(coords, n){
+  if (n<=1) return [coords];
+  const paso=(coords.length-1)/n, out=[];
+  for(let i=0;i<n;i++){ out.push(coords.slice(Math.round(i*paso), Math.round((i+1)*paso)+1)); }
+  return out;
+}
 if (document.getElementById('tramoMap')) {
   const tramoMap = L.map('tramoMap', {scrollWheelZoom:false});
   L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
     attribution:'Tiles © Esri', maxZoom:19
   }).addTo(tramoMap);
   const grupo = L.featureGroup();
-  tramosKML.forEach(t=>{
-    const ok = t.estado === 'completado';
-    L.polyline(t.coords,{color:ok?GREEN:PENDING,weight:5,opacity:.95})
-      .addTo(grupo)
-      .bindPopup('<b>'+t.nombre+'</b><br>'+t.detalle+'<br><b>'+(ok?'✓ Realizado':'○ Pendiente')+'</b>');
+  frentesKML.forEach(f=>{
+    dividirEnSecciones(f.coords, f.secciones).forEach((seg,i)=>{
+      const ok = f.estados[i] === 'completado';
+      const etiqueta = f.secciones>1 ? f.frente+' · Sección '+(i+1)+' de '+f.secciones : f.frente;
+      L.polyline(seg,{color:ok?GREEN:PENDING,weight:5,opacity:.95})
+        .addTo(grupo)
+        .bindPopup('<b>'+etiqueta+'</b><br>'+(ok?'✓ Realizado':'○ Pendiente'));
+    });
   });
   grupo.addTo(tramoMap);
   tramoMap.fitBounds(grupo.getBounds(), {padding:[20,20]});
@@ -545,19 +565,6 @@ new Chart(document.getElementById('chartPie'),{
   options:{responsive:true,maintainAspectRatio:false,cutout:'55%',
     plugins:{legend:{position:'right',labels:{boxWidth:12,font:{size:11},padding:10}},
       tooltip:{callbacks:{label:c=>' '+c.label+': '+c.parsed+'%'}}}}
-});
-
-/* ---- Barras: ejecución financiera acumulada (ejemplo) ---- */
-new Chart(document.getElementById('chartBars'),{
-  type:'bar',
-  data:{labels:['Mes 1','Mes 2','Mes 3','Mes 4','Mes 5','Mes 6','Mes 7'],
-    datasets:[
-      {label:'Programado (%)',data:[8,18,30,45,62,82,100],backgroundColor:'#C7D2FE',borderRadius:6},
-      {label:'Ejecutado (%)',data:[0,null,null,null,null,null,null],backgroundColor:GREEN,borderRadius:6}
-    ]},
-  options:{responsive:true,maintainAspectRatio:false,
-    scales:{y:{beginAtZero:true,max:100,ticks:{callback:v=>v+'%'}}},
-    plugins:{legend:{position:'top',labels:{boxWidth:12,font:{size:11}}}}}
 });
 
 /* ---- Escala de meses del Gantt ---- */
