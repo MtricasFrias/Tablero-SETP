@@ -275,7 +275,7 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
       <h2>Rehabilitación de la Avenida Ambalá</h2>
       <p class="desc">Mejoramiento y rehabilitación de la malla vial del corredor Ambalá, incluyendo diagnóstico, estudios y diseños, obras complementarias y la optimización de la infraestructura para el transporte público del SETP.</p>
       <div class="hero-meta">
-        <div class="m"><div class="lbl">Longitud intervenida</div><div class="val">4.960 m</div></div>
+        <div class="m"><div class="lbl">Longitud intervenida</div><div class="val">5.007 m</div></div>
         <div class="m"><div class="lbl">Plazo total</div><div class="val">225 días</div></div>
         <div class="m"><div class="lbl">Inversión</div><div class="val">$24.408 M</div></div>
         <div class="m"><div class="lbl">Acta de inicio</div><div class="val">15-abr-2026</div></div>
@@ -284,7 +284,7 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
     <div class="gauge-card">
       <div class="gauge-wrap">
         <canvas id="gaugeGlobal"></canvas>
-        <div class="gauge-center"><div class="pct" id="gaugePct" style="font-size:23px">Fase I</div><div class="cap">Completada · Diseños</div></div>
+        <div class="gauge-center"><div class="pct" id="gaugePct" style="font-size:18px;color:var(--green)">✓ Diseños</div><div class="cap" style="letter-spacing:.04em;max-width:110px;line-height:1.3;margin-top:2px">Fase I completada</div></div>
       </div>
       <div class="gauge-legend">
         <span><i style="background:var(--green)"></i> Fase I · E&D — Completada</span>
@@ -322,13 +322,20 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
 
     <!-- Meta vs ejecutado -->
     <div class="cards g2">
-      <div class="card">
+      <div class="card" style="display:flex;flex-direction:column">
         <h4>Avance por componente</h4>
         <div class="progress-row"><div class="top"><span class="name">Estudios y diseños (Fase I)</span><span class="figs"><b>100%</b> completada</span></div><div class="bar blue"><span style="width:100%"></span></div></div>
         <div class="progress-row"><div class="top"><span class="name">Reposición de redes</span><span class="figs"><b>0%</b> / pend.</span></div><div class="bar"><span style="width:0%"></span></div></div>
         <div class="progress-row"><div class="top"><span class="name">Pavimentación</span><span class="figs"><b>0%</b> / pend.</span></div><div class="bar"><span style="width:0%"></span></div></div>
         <div class="progress-row"><div class="top"><span class="name">Andenes y espacio público</span><span class="figs"><b>0%</b> / pend.</span></div><div class="bar"><span style="width:0%"></span></div></div>
         <p class="map-note">Estos porcentajes se actualizarán conforme se reciban los reportes de avance de obra y sean aprobados por la interventoría.</p>
+        <div style="margin-top:auto;padding-top:18px;display:flex;align-items:center;gap:14px">
+          <img id="brandFillImg" alt="SETP Ibagué" style="height:52px;width:auto;border-radius:8px;background:#fff;padding:4px;box-shadow:var(--shadow)">
+          <div style="font-size:12px;color:var(--muted);line-height:1.45">
+            <b style="color:var(--ink)">Compromiso institucional</b><br>
+            El Sistema Estratégico de Transporte Público de Ibagué S.A.S. impulsa la modernización de la malla vial para una movilidad más segura, incluyente y eficiente.
+          </div>
+        </div>
       </div>
       <div class="card">
         <h4>Mapa de avance por tramo</h4>
@@ -336,8 +343,8 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
           <span><i style="background:var(--green)"></i> Sección realizada</span>
           <span><i style="background:var(--pending)"></i> Pendiente</span>
         </div>
-        <div id="tramoMap" style="height:380px;border-radius:14px;overflow:hidden;margin-top:10px"></div>
-        <p class="map-note">Mapa satelital interactivo (desplazable y con zoom) · Tramo 1: Carrera 5 → Calle 37 · Tramo 2: Calle 77 → Calle 63. Haz clic en un punto para ver el estado de esa sección. Ubicación referencial sobre la Av. Ambalá (Ibagué) — se ajustará con las coordenadas exactas del levantamiento topográfico/QGIS del proyecto. El avance se actualiza editando el arreglo <code>segmentosTramo</code> en el código, sin reemplazar imágenes.</p>
+        <div id="tramoMap" style="position:relative;z-index:0;height:380px;border-radius:14px;overflow:hidden;margin-top:10px"></div>
+        <p class="map-note">Mapa satelital interactivo (desplazable y con zoom), trazado sobre la zona de intervención real del proyecto (KMZ). Haz clic en un tramo para ver su nombre y estado. El avance se actualiza cambiando <code>estado</code> a "completado" en el arreglo <code>tramosKML</code> del código, sin reemplazar imágenes.</p>
       </div>
     </div>
 
@@ -419,11 +426,11 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
       <div class="gantt">
         <div class="gantt-row">
           <div class="lab">Fase I — Estudios y diseños<small>90 días calendario</small></div>
-          <div class="gantt-track"><div class="gantt-fill f1" style="left:0%; width:40%">Diseños</div><div class="today-line" style="left:53%"></div></div>
+          <div class="gantt-track"><div class="gantt-fill f1" style="left:0%; width:40%">Diseños ✓</div></div>
         </div>
         <div class="gantt-row">
           <div class="lab">Fase II — Ejecución de obra<small>135 días · por tramos</small></div>
-          <div class="gantt-track"><div class="gantt-fill f2" style="left:40%; width:60%">Obra</div></div>
+          <div class="gantt-track"><div class="gantt-fill f2" style="left:40%; width:60%">Obra</div><div class="today-line" style="left:53%"></div></div>
         </div>
         <div class="gantt-row">
           <div class="lab">Comités técnicos<small>mínimo 1 por semana</small></div>
@@ -475,6 +482,13 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
 window.addEventListener('load', function(){
 const NAVY='#0A1F5C',ROYAL='#1D4ED8',GREEN='#00A830',GOLD='#F0A800',RED='#D62828',PENDING='#94A3B8';
 
+/* ---- Reutiliza el logo oficial del SETP ya cargado en el header para la pieza institucional ---- */
+(function(){
+  const src = document.querySelector('img.logo.setp');
+  const dst = document.getElementById('brandFillImg');
+  if (src && dst) dst.src = src.src;
+})();
+
 /* ---- Gauge de fases: Fase I (E&D) completada · Fase II (Obra) por iniciar ---- */
 /* Fuente: Informe Ejecutivo 05-jul-2026 (corte 26-jun-2026) + actualización verbal del Director Operativo (ago-2026): Fase I al 100%. */
 const FASE1_DIAS = 90, FASE2_DIAS = 135;
@@ -485,27 +499,42 @@ new Chart(document.getElementById('gaugeGlobal'),{
 });
 
 /* ---- Mapa satelital interactivo de tramos ---- */
-/* Coordenadas referenciales (Av. Ambalá, Ibagué) — ajustar cuando se disponga del levantamiento QGIS. */
-/* Para actualizar el avance: cambia "estado" a 'completado' o 'pendiente' en cada segmento; no requiere reemplazar imágenes. */
-const segmentosTramo = [
-  {coord:[4.4420,-75.2300], tramo:'Tramo 1 · Cra 5 → Cl 37', nombre:'Cra 5 – Cl 15', estado:'pendiente'},
-  {coord:[4.4405,-75.2295], tramo:'Tramo 1 · Cra 5 → Cl 37', nombre:'Cl 15 – Cl 26', estado:'pendiente'},
-  {coord:[4.4390,-75.2290], tramo:'Tramo 1 · Cra 5 → Cl 37', nombre:'Cl 26 – Cl 37', estado:'pendiente'},
-  {coord:[4.4370,-75.2270], tramo:'Tramo 2 · Cl 77 → Cl 63', nombre:'Cl 77 – Cl 73', estado:'pendiente'},
-  {coord:[4.4360,-75.2260], tramo:'Tramo 2 · Cl 77 → Cl 63', nombre:'Cl 73 – Cl 69', estado:'pendiente'},
-  {coord:[4.4350,-75.2250], tramo:'Tramo 2 · Cl 77 → Cl 63', nombre:'Cl 69 – Cl 63', estado:'pendiente'}
+/* Fuente: KMZ "Zona de Intervención Contrato Rehabilitación Avenida Ambala" (levantamiento de campo del equipo SETP). */
+/* Para actualizar el avance: cambia "estado" a 'completado' en el tramo correspondiente; no requiere reemplazar imágenes. */
+const tramosKML = [
+  {
+    nombre: 'Av. Ambalá · Calle 64 a 78',
+    detalle: 'Reparcheos y afectaciones menores en la calzada de subida; la calzada de descenso fue rehabilitada recientemente.',
+    estado: 'pendiente',
+    coords: [[4.447856470658379,-75.20113504389856],[4.447838970037928,-75.20011099788644],[4.447815431208872,-75.19953464940011],[4.447857949765034,-75.1989438255298],[4.447960499502986,-75.19851400060985],[4.448074705078517,-75.19826009644379],[4.448044914279982,-75.19805388205704],[4.447942707417172,-75.19794518153813],[4.447930942137583,-75.1975870664925],[4.447900719725484,-75.19678163814001],[4.447851928976363,-75.19617443831018],[4.447671486055985,-75.19523734633113],[4.447433377341119,-75.194248146441],[4.447061742950669,-75.19267935358245],[4.446873612473751,-75.19161042533102],[4.446760317588832,-75.19105847102909],[4.446743731155467,-75.1906906068464],[4.446871138980585,-75.19047316571384],[4.446826563338535,-75.19026311689669],[4.446664077880185,-75.19011464572148],[4.446384312741398,-75.19015083133679],[4.446267402891995,-75.19035933081388],[4.446276083862582,-75.19058701679701],[4.446473208051843,-75.19073141461753],[4.446709745853389,-75.19069116960804]]
+  },
+  {
+    nombre: 'Glorieta',
+    detalle: 'Compromisos en las losas de cimentación: ampliar caracterización y reposición de losas, con manejo de aguas de escorrentía y drenes perimetrales en la zona verde.',
+    estado: 'pendiente',
+    coords: [[4.44800980403595,-75.19805087638483],[4.448057795739788,-75.19819219370274],[4.448056027776412,-75.19832073180967],[4.448003104001168,-75.19840745018746],[4.447899099959915,-75.19846597262162],[4.447783675160649,-75.1984875818864],[4.447631894310845,-75.19844165537894],[4.447535264615119,-75.19829420391606],[4.447522050823721,-75.19815225751381],[4.447560471742755,-75.19802635083555],[4.447729045301676,-75.19791862806647],[4.447862978829337,-75.19793846078871],[4.44800980403595,-75.19805087638483]]
+  },
+  {
+    nombre: 'Av. Ambalá · Calle 25 a 37',
+    detalle: 'Afectaciones menores tipo "piel de cocodrilo" e intervenciones de Celsia; reparcheos.',
+    estado: 'pendiente',
+    coords: [[4.446428910235756,-75.21453537933043],[4.445459294578263,-75.21686625975603],[4.445088394221887,-75.21781270481817],[4.444704115822312,-75.21941106317037],[4.444165821396041,-75.22096108943613],[4.443924742836916,-75.22169059226096],[4.44376100106638,-75.22269154174357],[4.443524785952114,-75.22392219453231],[4.443456818243616,-75.22439413730937],[4.443342328639439,-75.22502834369733],[4.443116515580366,-75.22546729087172],[4.442702886339585,-75.22599935584577],[4.441895891394469,-75.22677591556591],[4.441379609477755,-75.22713765370864],[4.440357118479628,-75.2274102605241]]
+  }
 ];
 if (document.getElementById('tramoMap')) {
-  const tramoMap = L.map('tramoMap', {scrollWheelZoom:false}).setView([4.4385,-75.2280], 15);
+  const tramoMap = L.map('tramoMap', {scrollWheelZoom:false});
   L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
     attribution:'Tiles © Esri', maxZoom:19
   }).addTo(tramoMap);
-  segmentosTramo.forEach(s=>{
-    const ok = s.estado === 'completado';
-    L.circleMarker(s.coord,{radius:9,color:'#fff',weight:2,fillColor:ok?GREEN:PENDING,fillOpacity:1})
-      .addTo(tramoMap)
-      .bindPopup('<b>'+s.tramo+'</b><br>'+s.nombre+'<br>'+(ok?'✓ Sección realizada':'○ Pendiente'));
+  const grupo = L.featureGroup();
+  tramosKML.forEach(t=>{
+    const ok = t.estado === 'completado';
+    L.polyline(t.coords,{color:ok?GREEN:PENDING,weight:5,opacity:.95})
+      .addTo(grupo)
+      .bindPopup('<b>'+t.nombre+'</b><br>'+t.detalle+'<br><b>'+(ok?'✓ Realizado':'○ Pendiente')+'</b>');
   });
+  grupo.addTo(tramoMap);
+  tramoMap.fitBounds(grupo.getBounds(), {padding:[20,20]});
 }
 
 /* ---- Torta: distribución del presupuesto (estimada) ---- */
