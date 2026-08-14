@@ -337,11 +337,10 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
 
     <!-- Cantidades de obra: longitudes y áreas de intervención -->
     <div style="font-size:13px;color:var(--muted);margin:-8px 0 12px">Cantidades de intervención — Fuente: Formulario 1, Presupuesto Oficial y Propuesta Económica. Las longitudes por tramo se calculan proporcionalmente sobre el trazado georreferenciado del proyecto, ajustadas para sumar la cantidad total contratada.</div>
-    <div class="cards g4" style="margin-bottom:20px">
+    <div class="cards g3" style="margin-bottom:20px">
       <div class="card kpi"><div class="accent" style="background:var(--navy)"></div><h4>Vía a intervenir</h4><div class="big" style="font-size:26px">5.007<span class="unit"> m</span></div><div class="foot">Longitud total de localización y replanteo</div></div>
       <div class="card kpi"><div class="accent" style="background:var(--royal)"></div><h4>Área a intervenir</h4><div class="big" style="font-size:26px">43.939<span class="unit"> m²</span></div><div class="foot">Área total de calzada a conformar en ambos tramos</div></div>
       <div class="card kpi"><div class="accent" style="background:var(--royal)"></div><h4>Reemplazo de tubería</h4><div class="big" style="font-size:26px">≈1.504<span class="unit"> m</span></div><div class="foot">Componente hidráulico · Fase I</div></div>
-      <div class="card kpi"><div class="accent" style="background:var(--royal)"></div><h4>Intervención de andén</h4><div class="big" style="font-size:26px">≈50<span class="unit"> m</span></div><div class="foot">Isletas, rampas y espacio público</div></div>
     </div>
 
     <!-- Meta vs ejecutado -->
@@ -451,28 +450,6 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
             <b style="color:var(--ink);font-size:16px">Transparencia en cada pago.</b><br>
             Cada desembolso se verifica y queda trazado con interventoría.
           </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="cards" style="margin-top:20px">
-      <div class="card">
-        <h4>Fuente de financiación</h4>
-        <div style="display:flex;gap:24px;align-items:center;flex-wrap:wrap;margin-top:6px">
-          <div style="flex:1;min-width:220px">
-            <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:14px">
-              <span style="width:14px;height:14px;border-radius:4px;background:var(--royal);display:inline-block"></span>
-              <span style="font-weight:800;color:var(--ink);font-size:22px">$15.847 M</span>
-              <span style="color:var(--muted);font-size:13px">Nación · 61%</span>
-            </div>
-            <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:14px">
-              <span style="width:14px;height:14px;border-radius:4px;background:var(--gold);display:inline-block"></span>
-              <span style="font-weight:800;color:var(--ink);font-size:22px">$10.132 M</span>
-              <span style="color:var(--muted);font-size:13px">Municipio de Ibagué · 39%</span>
-            </div>
-            <p class="map-note" style="margin-top:6px">Inversión total del proyecto (obra + interventoría): $25.978 M.</p>
-          </div>
-          <div class="chart-box" style="flex:1;min-width:220px;height:150px"><canvas id="chartFinanciacion"></canvas></div>
         </div>
       </div>
     </div>
@@ -660,17 +637,7 @@ new Chart(document.getElementById('chartPie'),{
       tooltip:{callbacks:{label:c=>' '+c.label+': '+c.parsed+'%'}}}}
 });
 
-/* ---- Barra horizontal: fuente de financiación (Nación / Municipio) ---- */
-/* Base: inversión total del proyecto $25.978,4 M (obra + interventoría). */
-new Chart(document.getElementById('chartFinanciacion'),{
-  type:'bar',
-  data:{labels:['Nación','Municipio'],
-    datasets:[{data:[15847,10132],backgroundColor:[ROYAL,GOLD],borderRadius:8,barThickness:34}]},
-  options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
-    scales:{x:{ticks:{callback:v=>'$'+v.toLocaleString('es-CO')}},y:{grid:{display:false}}},
-    plugins:{legend:{display:false},
-      tooltip:{callbacks:{label:c=>' $'+c.parsed.x.toLocaleString('es-CO')+' M'}}}}
-});
+/* ---- Fuente de financiación (Nación / Municipio): pendiente de cifras validadas, gráfico retirado temporalmente ---- */
 
 /* ---- Escala de meses del Gantt ---- */
 (function(){
