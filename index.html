@@ -325,13 +325,12 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
       <div class="block-num"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M3 18h18M5 18l2-9h10l2 9"/></svg></div>
       <div><h3>Infraestructura</h3><div class="tag">Alcance físico · tramos intervenidos · avance por sector</div></div>
       <div class="spacer"></div>
-      <span class="mini-pill">Fuente: SECOP II · Anexo Técnico — Contrato de Obra N.° 042 de 2026</span>
     </div>
 
     <!-- Alcance en KPIs -->
     <div class="cards g4" style="margin-bottom:20px">
-      <div class="card kpi"><div class="accent" style="background:var(--navy)"></div><h4>Tramo 1 · doble calzada</h4><div class="big">Cra 5<span class="unit"> → Cl 37</span></div><div class="foot">Tramo intervenido: 3.526 m (ambas calzadas)</div></div>
-      <div class="card kpi"><div class="accent" style="background:var(--royal)"></div><h4>Tramo 2 · calzada ascendente</h4><div class="big">Cl 77<span class="unit"> → Cl 63</span></div><div class="foot">Tramo intervenido: 1.481 m (sentido este–oeste)</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--navy)"></div><h4>Tramo 1 · doble calzada</h4><div class="big">Cra 5 → Cl 37</div><div class="foot">Tramo intervenido: 3.526 m (ambas calzadas)</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--royal)"></div><h4>Tramo 2 · calzada ascendente</h4><div class="big">Cl 77 → Cl 63</div><div class="foot">Tramo intervenido: 1.481 m (sentido este–oeste)</div></div>
       <div class="card kpi"><div class="accent" style="background:var(--green)"></div><h4>Fase actual</h4><div class="big" style="font-size:22px">Fase II<br>Obra</div><div class="foot" style="color:var(--green);font-weight:700">✓ Fase I realizada</div></div>
       <div class="card kpi"><div class="accent" style="background:#166534"></div><h4>Plan de Manejo Ambiental</h4><div class="big" style="font-size:26px">27<span class="unit"> programas</span></div><div class="foot">6 componentes · vigente desde la firma del contrato</div></div>
     </div>
@@ -522,7 +521,8 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
         </div>
         <div class="gantt-row">
           <div class="lab">Fase II — Ejecución de obra<small>135 días · por tramos</small></div>
-          <div class="gantt-track"><div class="gantt-fill f2" style="left:40%; width:60%">Obra</div><div class="today-line" style="left:53%"></div></div>
+          <!-- Línea "HOY" retirada a pedido: la obra física aún no ha iniciado. Reinstalar <div class="today-line" style="left:X%"></div> cuando arranque la ejecución de obra. -->
+          <div class="gantt-track"><div class="gantt-fill f2" style="left:40%; width:60%">Obra</div></div>
         </div>
       </div>
       <p class="map-note">Tiempo pactado: 225 días calendario.</p>
@@ -674,7 +674,7 @@ new Chart(document.getElementById('chartFinanciacion'),{
 
 /* ---- Escala de meses del Gantt ---- */
 (function(){
-  const meses=['Abr','May','Jun','Jul','Ago','Sep','Oct','Nov'];
+  const meses=['Mes 1','Mes 2','Mes 3','Mes 4','Mes 5','Mes 6','Mes 7','Mes 8'];
   document.getElementById('ganttScale').innerHTML=meses.map(m=>'<span>'+m+'</span>').join('');
 })();
 });
