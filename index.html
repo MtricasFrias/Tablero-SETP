@@ -250,7 +250,11 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
 <!-- ============ TABS ============ -->
 <nav class="tabs">
   <div class="tabs-inner">
-    <button class="tab active" data-page="page-ambala">
+    <button class="tab active" data-page="page-cra5">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18h18M5 18l2-9h10l2 9M9 9V6h6v3"/></svg>
+      Carrera Quinta <span class="badge">Terminado</span>
+    </button>
+    <button class="tab" data-page="page-ambala">
       <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18h18M5 18l2-9h10l2 9M9 9V6h6v3"/></svg>
       Av. Ambalá <span class="badge">En obra</span>
     </button>
@@ -269,7 +273,155 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
   </div>
 </nav>
 
-<div id="page-ambala" class="page active">
+<!-- ============ PÁGINA: CARRERA QUINTA ============ -->
+<div id="page-cra5" class="page active">
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-left">
+      <div class="eyebrow">
+        <span class="chip code">Contrato de Obra N° 046 · 2025</span>
+        <span class="chip" style="background:rgba(0,168,48,.12); color:var(--green)">● Terminado</span>
+      </div>
+      <h2>Rehabilitación de la Malla Vial de la Carrera Quinta</h2>
+      <p class="desc">Mejoramiento y rehabilitación de la malla vial de la Carrera Quinta desde la Calle 10 hasta la Calle 58, para la optimización de la infraestructura vial del SETP de Ibagué S.A.S., la cual incluye obras complementarias, diagnóstico y estudios y diseños.</p>
+      <div class="hero-meta">
+        <div class="m"><div class="lbl">Longitud intervenida</div><div class="val">10.160 m</div></div>
+        <div class="m"><div class="lbl">Plazo total ejecutado</div><div class="val">315 días</div></div>
+        <div class="m"><div class="lbl">Acta de inicio</div><div class="val">10-abr-2025</div></div>
+        <div class="m"><div class="lbl">Valor del contrato</div><div class="val">$35.399,9 M</div></div>
+        <div class="m"><div class="lbl">Actas de pago radicadas</div><div class="val" style="color:var(--green)">$35.399,9 M (100%)</div></div>
+      </div>
+    </div>
+    <div class="gauge-card">
+      <div class="gauge-wrap">
+        <canvas id="gaugeCra5"></canvas>
+        <div class="gauge-center"><div class="pct" style="font-size:32px;color:var(--green)">100%</div><div class="cap">Ejecución física y financiera</div></div>
+      </div>
+      <div class="gauge-legend">
+        <span><i style="background:var(--green)"></i> Ejecutado</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BLOQUE 1: ALCANCE TÉCNICO ============ -->
+<section class="block">
+  <div class="wrap">
+    <div class="block-head">
+      <div class="block-num"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M3 18h18M5 18l2-9h10l2 9M9 9V6h6v3"/></svg></div>
+      <div><h3>Alcance técnico</h3><div class="tag">Corredor · actividades de obra · obras complementarias</div></div>
+      <div class="spacer"></div>
+    </div>
+
+    <div class="cards g3" style="margin-bottom:20px">
+      <div class="card kpi"><div class="accent" style="background:var(--navy)"></div><h4>Corredor intervenido</h4><div class="big" style="font-size:22px">Cl 10 → Cl 58</div><div class="foot">Ambos sentidos · 10.160 m de localización y replanteo</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--royal)"></div><h4>Fresado de pavimento</h4><div class="big" style="font-size:24px">78.020<span class="unit"> m²</span></div><div class="foot">Espesor 15 cm, incluye transporte</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--gold)"></div><h4>Bordillo en concreto</h4><div class="big" style="font-size:24px">5.628<span class="unit"> m</span></div><div class="foot">Vaciado in situ</div></div>
+    </div>
+
+    <div class="cards g2">
+      <div class="card">
+        <h4>Actividades principales de obra</h4>
+        <div class="progress-row"><div class="top"><span class="name">Excavación y movimiento de tierras</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Pavimentación (fresado, mezclas MDC-19/25/10, geomalla, riegos)</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Obras complementarias (andenes, isletas, rampas, sumideros)</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Señalización vial (demarcación y tachas reflectivas)</span></div></div>
+        <p class="map-note">El objeto del contrato incluyó también rampas de accesibilidad universal y ciclobandas unidireccionales al costado derecho de las calzadas.</p>
+      </div>
+      <div class="card">
+        <h4>Ítems de obra no prevista</h4>
+        <div class="progress-row"><div class="top"><span class="name">Cambio de asfalto AC-30</span><span class="figs">Ecopetrol descontinuó el AC 60-70</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Reciclaje de estructura existente</span><span class="figs">Tramo Cl 10 – Cl 20, hallazgo geotécnico</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Geomalla de fibra de vidrio</span><span class="figs">Mitigación de fisuras reflejadas</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Mezcla modificada con polímeros (PG 76H-22)</span><span class="figs">Mejor comportamiento en tráfico pesado</span></div></div>
+        <p class="map-note">Se aprobaron precios unitarios para 8 ítems adicionales de obra no prevista, necesarios por hallazgos técnicos durante la ejecución. Esto no representó una adición de valor al contrato: el Acta de Terminación confirma que no hubo adiciones presupuestales, solo la prórroga de plazo indicada arriba.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BLOQUE 2: DINERO ============ -->
+<section class="block">
+  <div class="wrap">
+    <div class="block-head">
+      <div class="block-num"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+      <div><h3>Recursos financieros</h3><div class="tag">Inversión · distribución del presupuesto · garantías</div></div>
+      <div class="spacer"></div>
+      <span class="mini-pill">Valores en COP</span>
+    </div>
+
+    <div class="cards g3" style="margin-bottom:20px">
+      <div class="card kpi"><div class="accent" style="background:var(--navy)"></div><h4>Valor del contrato</h4><div class="big" style="font-size:26px">$35.399,9<span class="unit"> M</span></div><div class="foot">Contrato de Obra N.° 046</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--royal)"></div><h4>Adiciones al contrato</h4><div class="big" style="font-size:26px">$0</div><div class="foot">Sin adiciones de valor</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--green)"></div><h4>Ejecutado financiero</h4><div class="big" style="font-size:26px">100<span class="unit"> %</span></div><div class="foot">Según Acta de Terminación</div></div>
+    </div>
+
+    <div class="cards g2">
+      <div class="card">
+        <h4>Distribución del presupuesto</h4>
+        <div class="chart-box"><canvas id="chartPieCra5"></canvas></div>
+        <p class="map-note"><b style="color:var(--ink)">AIU:</b> Administración, Imprevistos y Utilidad (30,7%). <b style="color:var(--ink)">PMT:</b> Plan de Manejo de Tránsito.</p>
+      </div>
+      <div class="card">
+        <h4>Datos del contrato</h4>
+        <div class="progress-row"><div class="top"><span class="name">Contratista</span><span class="figs">Consorcio Vías JCSR · NIT 901.904.020-6</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Representante legal</span><span class="figs">Juan Camilo Silva Rodríguez</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Interventor</span><span class="figs">Consorcio Vías La Quinta</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Representante legal interventor</span><span class="figs">Liseth Maryori Nieves Herrera</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Supervisor</span><span class="figs">Ximena Alexandra García Castillo</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Entidad contratante</span><span class="figs">SETP Ibagué S.A.S.</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Fecha del contrato</span><span class="figs">19-feb-2025</span></div></div>
+      </div>
+    </div>
+
+    <div class="cards g2" style="margin-top:20px">
+      <div class="card">
+        <h4>Presupuesto</h4>
+        <div class="progress-row"><div class="top"><span class="name">CDP</span><span class="figs">CD5-86 · 14-feb-2025</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Registro presupuestal</span><span class="figs">RP4-86 · 6-mar-2025</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Proceso SECOP II</span><span class="figs">SETP-LOP-174-2024</span></div></div>
+      </div>
+      <div class="card">
+        <h4>Garantías</h4>
+        <div class="progress-row"><div class="top"><span class="name">Cumplimiento, salarios, estabilidad y calidad</span><span class="figs">$33.629,9 M · Seguros Mundial</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Responsabilidad civil extracontractual</span><span class="figs">$1.770,0 M · Seguros Mundial</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BLOQUE 3: COMPONENTE SOCIAL ============ -->
+<section class="block" style="border-bottom:none">
+  <div class="wrap">
+    <div class="block-head">
+      <div class="block-num"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M17 5.5a3 3 0 0 1 0 6M21.5 20a6.5 6.5 0 0 0-4-6"/></svg></div>
+      <div><h3>Componente social</h3><div class="tag">Obligación contractual · vinculación de personal</div></div>
+      <div class="spacer"></div>
+    </div>
+
+    <div class="cards g2">
+      <div class="card">
+        <h4>Vinculación de personal</h4>
+        <div class="progress-row"><div class="top"><span class="name">Mujeres cabeza de familia y/o víctimas del conflicto armado</span><span class="figs"><b>100%</b> · meta 5% mínimo</span></div><div class="bar blue"><span style="width:100%"></span></div></div>
+        <p class="map-note">Obligación contractual: mínimo 5% del personal contratado fueran mujeres cabeza de familia y/o víctimas del conflicto armado. Se marca en 100% porque el contrato fue ejecutado y terminado en su totalidad, condición para la suscripción del Acta de Terminación.</p>
+      </div>
+      <div class="card">
+        <h4>Estado del contrato</h4>
+        <div class="progress-row"><div class="top"><span class="name">Plazo inicial</span><span class="figs">255 días calendario</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Prórroga N.° 1</span><span class="figs">60 días calendario</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Fecha de terminación</span><span class="figs">18-feb-2026</span></div></div>
+        <p class="map-note">Acta de Terminación de Obra suscrita el 18-feb-2026, con ejecución física y de recursos del 100%.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+<!-- ============ FIN PÁGINA CARRERA QUINTA ============ -->
+
+<div id="page-ambala" class="page">
 <!-- ============ HERO ============ -->
 <section class="hero">
   <div class="wrap hero-grid">
@@ -836,6 +988,25 @@ new Chart(document.getElementById('chartPie'),{
 });
 
 /* ---- Fuente de financiación (Nación / Municipio): pendiente de cifras validadas, gráfico retirado temporalmente ---- */
+
+/* ==== Carrera Quinta ==== */
+if (document.getElementById('gaugeCra5')) {
+  new Chart(document.getElementById('gaugeCra5'),{
+    type:'doughnut',
+    data:{datasets:[{data:[100,0],backgroundColor:[GREEN,'#EAEEF7'],borderWidth:0}]},
+    options:{cutout:'78%',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false}}}
+  });
+}
+if (document.getElementById('chartPieCra5')) {
+  new Chart(document.getElementById('chartPieCra5'),{
+    type:'doughnut',
+    data:{labels:['Pavimentación','AIU','Preliminares','Obras complementarias y señalización','Ambiental + PMT + Diseños'],
+      datasets:[{data:[64.3,22.5,5.0,4.0,4.2],backgroundColor:[NAVY,ROYAL,GOLD,GREEN,PENDING],borderWidth:2,borderColor:'#fff'}]},
+    options:{responsive:true,maintainAspectRatio:false,cutout:'55%',
+      plugins:{legend:{position:'right',labels:{boxWidth:12,font:{size:11},padding:10}},
+        tooltip:{callbacks:{label:c=>' '+c.label+': '+c.parsed+'%'}}}}
+  });
+}
 
 /* ==== Semaforización Fase I ==== */
 if (document.getElementById('gaugeSemaforos')) {
