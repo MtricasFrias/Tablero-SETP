@@ -306,12 +306,12 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
   </div>
 </section>
 
-<!-- ============ BLOQUE 1: ALCANCE TÉCNICO ============ -->
+<!-- ============ BLOQUE 1: INFRAESTRUCTURA ============ -->
 <section class="block">
   <div class="wrap">
     <div class="block-head">
       <div class="block-num"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M3 18h18M5 18l2-9h10l2 9M9 9V6h6v3"/></svg></div>
-      <div><h3>Alcance técnico</h3><div class="tag">Corredor · actividades de obra · obras complementarias</div></div>
+      <div><h3>Infraestructura</h3><div class="tag">Alcance físico · tramos intervenidos · avance por sector</div></div>
       <div class="spacer"></div>
     </div>
 
@@ -341,13 +341,43 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
     </div>
 
     <div class="cards g2" style="margin-top:20px">
-      <div class="card">
+      <div class="card" style="display:flex;flex-direction:column">
         <h4>Avance por componente</h4>
         <div class="progress-row"><div class="top"><span class="name">Excavación y movimiento de tierras</span><span class="figs"><b>100%</b> terminado</span></div><div class="bar blue"><span style="width:100%"></span></div></div>
         <div class="progress-row"><div class="top"><span class="name">Pavimentación</span><span class="figs"><b>100%</b> terminado</span></div><div class="bar blue"><span style="width:100%"></span></div></div>
         <div class="progress-row"><div class="top"><span class="name">Obras complementarias</span><span class="figs"><b>100%</b> terminado</span></div><div class="bar blue"><span style="width:100%"></span></div></div>
         <div class="progress-row"><div class="top"><span class="name">Señalización vial</span><span class="figs"><b>100%</b> terminado</span></div><div class="bar blue"><span style="width:100%"></span></div></div>
         <p class="map-note">Todos los componentes fueron validados y recibidos a satisfacción por la interventoría, según consta en el Acta de Terminación de Obra.</p>
+        <div style="margin-top:auto;padding-top:18px;display:flex;align-items:center;gap:18px;flex-wrap:wrap">
+          <svg viewBox="0 0 120 120" style="width:70px;height:auto;flex:0 0 auto;overflow:visible">
+            <rect x="56" y="70" width="8" height="45" fill="#8a5a34"/>
+            <circle cx="60" cy="55" r="34" fill="#F6C9DA"/>
+            <circle cx="42" cy="45" r="20" fill="#F2A9C4"/>
+            <circle cx="78" cy="45" r="20" fill="#F2A9C4"/>
+            <circle cx="60" cy="30" r="18" fill="#FADCE8"/>
+            <g>
+              <circle cx="30" cy="60" r="2.4" fill="#F2A9C4">
+                <animate attributeName="cy" values="60;115" dur="4s" repeatCount="indefinite"/>
+                <animate attributeName="cx" values="30;22" dur="4s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="1;1;0" dur="4s" repeatCount="indefinite"/>
+              </circle>
+              <circle cx="60" cy="20" r="2.2" fill="#F6C9DA">
+                <animate attributeName="cy" values="20;110" dur="5s" begin="1s" repeatCount="indefinite"/>
+                <animate attributeName="cx" values="60;70" dur="5s" begin="1s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="1;1;0" dur="5s" begin="1s" repeatCount="indefinite"/>
+              </circle>
+              <circle cx="90" cy="55" r="2.4" fill="#F2A9C4">
+                <animate attributeName="cy" values="55;112" dur="4.5s" begin="2s" repeatCount="indefinite"/>
+                <animate attributeName="cx" values="90;98" dur="4.5s" begin="2s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="1;1;0" dur="4.5s" begin="2s" repeatCount="indefinite"/>
+              </circle>
+            </g>
+          </svg>
+          <div style="font-size:13px;color:var(--muted);line-height:1.5;min-width:170px">
+            <b style="color:var(--ink);font-size:16px">Obra entregada, ciudad conectada.</b><br>
+            La Carrera Quinta vuelve a lucir su malla vial y sus ocobos.
+          </div>
+        </div>
       </div>
       <div class="card">
         <h4>Mapa de avance por tramo</h4>
@@ -355,9 +385,30 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
           <span><i style="background:var(--green)"></i> Ejecutado</span>
         </div>
         <div id="tramoMapCra5" style="position:relative;z-index:0;height:380px;border-radius:14px;overflow:hidden;margin-top:10px"></div>
-        <p class="map-note">Mapa satelital interactivo (desplazable y con zoom). Haz clic en un tramo para ver su nombre y estado. Ubicación referencial sobre la Carrera 5 (Ibagué) entre Calle 10 y Calle 58, dividida en secciones de acuerdo con la longitud total contratada.</p>
+        <p class="map-note">Mapa satelital interactivo (desplazable y con zoom). Haz clic en un tramo para ver su nombre y estado. Trazado sobre la Carrera 5 (Ibagué) entre Calle 10 y Calle 58, con base en cartografía abierta (OpenStreetMap) y puntos de referencia del proyecto (Cortolima, SENA), dividido en secciones proporcionales a la longitud total contratada.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ============ BLOQUE: PLAN DE MANEJO AMBIENTAL ============ -->
+<section class="block">
+  <div class="wrap">
+    <div class="block-head">
+      <div class="block-num"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 2v20M12 6c-4 0-6 2-6 6s2 6 6 6M12 6c4 0 6 2 6 6s-2 6-6 6"/></svg></div>
+      <div><h3>Plan de Manejo Ambiental</h3><div class="tag">Programas por componente · Guía Ambiental UMUS</div></div>
+      <div class="spacer"></div>
+    </div>
+    <p style="font-size:13px;color:var(--muted);margin:-4px 0 16px">Estructura definida conforme a la Guía Ambiental para la Construcción de Infraestructura del Ministerio de Transporte (UMUS), la misma que aplica a los demás proyectos del SETP. El contratista seleccionó y desarrolló los programas aplicables durante la ejecución del contrato.</p>
+    <div class="cards g3">
+      <div class="card kpi"><div class="accent" style="background:var(--navy)"></div><h4>A · Gestión socioambiental</h4><div class="big">3<span class="unit"> programas</span></div><div class="foot">Gestión socioambiental, PIPMA, Plan de Seguimiento</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--royal)"></div><h4>B · Gestión social en obra</h4><div class="big">6<span class="unit"> programas</span></div><div class="foot">Divulgación, restitución de bienes, atención ciudadana, pedagogía, mano de obra local, equidad de género</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--gold)"></div><h4>C · Manejo silvicultural y paisajismo</h4><div class="big">4<span class="unit"> programas</span></div><div class="foot">Poda/eliminación y reubicación de árboles, compensación forestal, protección de árboles de permanencia</div></div>
+      <div class="card kpi"><div class="accent" style="background:#166534"></div><h4>D · Gestión ambiental en construcción</h4><div class="big">11<span class="unit"> programas</span></div><div class="foot">Residuos, materiales, campamentos, maquinaria, aguas, excavaciones, emisiones y ruido, redes, patrimonio cultural</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--royal)"></div><h4>E · Seguridad y salud en el trabajo</h4><div class="big">2<span class="unit"> programas</span></div><div class="foot">SST y plan de emergencias y contingencias</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--navy)"></div><h4>F · Señalización y manejo de tránsito</h4><div class="big">1<span class="unit"> programa</span></div><div class="foot">Señalización y manejo de tránsito en obra</div></div>
+    </div>
+    <p class="map-note">Total: 27 programas en 6 componentes. Incluyó además $487,4 M en obras de mitigación y compensación ambiental, dentro del presupuesto oficial del proyecto.</p>
   </div>
 </section>
 
@@ -413,27 +464,6 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
   </div>
 </section>
 
-<!-- ============ BLOQUE: PLAN DE MANEJO AMBIENTAL ============ -->
-<section class="block">
-  <div class="wrap">
-    <div class="block-head">
-      <div class="block-num"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 2v20M12 6c-4 0-6 2-6 6s2 6 6 6M12 6c4 0 6 2 6 6s-2 6-6 6"/></svg></div>
-      <div><h3>Plan de Manejo Ambiental</h3><div class="tag">Programas por componente · Guía Ambiental UMUS</div></div>
-      <div class="spacer"></div>
-    </div>
-    <p style="font-size:13px;color:var(--muted);margin:-4px 0 16px">Estructura definida conforme a la Guía Ambiental para la Construcción de Infraestructura del Ministerio de Transporte (UMUS), la misma que aplica a los demás proyectos del SETP. El contratista seleccionó y desarrolló los programas aplicables durante la ejecución del contrato.</p>
-    <div class="cards g3">
-      <div class="card kpi"><div class="accent" style="background:var(--navy)"></div><h4>A · Gestión socioambiental</h4><div class="big">3<span class="unit"> programas</span></div><div class="foot">Gestión socioambiental, PIPMA, Plan de Seguimiento</div></div>
-      <div class="card kpi"><div class="accent" style="background:var(--royal)"></div><h4>B · Gestión social en obra</h4><div class="big">6<span class="unit"> programas</span></div><div class="foot">Divulgación, restitución de bienes, atención ciudadana, pedagogía, mano de obra local, equidad de género</div></div>
-      <div class="card kpi"><div class="accent" style="background:var(--gold)"></div><h4>C · Manejo silvicultural y paisajismo</h4><div class="big">4<span class="unit"> programas</span></div><div class="foot">Poda/eliminación y reubicación de árboles, compensación forestal, protección de árboles de permanencia</div></div>
-      <div class="card kpi"><div class="accent" style="background:#166534"></div><h4>D · Gestión ambiental en construcción</h4><div class="big">11<span class="unit"> programas</span></div><div class="foot">Residuos, materiales, campamentos, maquinaria, aguas, excavaciones, emisiones y ruido, redes, patrimonio cultural</div></div>
-      <div class="card kpi"><div class="accent" style="background:var(--royal)"></div><h4>E · Seguridad y salud en el trabajo</h4><div class="big">2<span class="unit"> programas</span></div><div class="foot">SST y plan de emergencias y contingencias</div></div>
-      <div class="card kpi"><div class="accent" style="background:var(--navy)"></div><h4>F · Señalización y manejo de tránsito</h4><div class="big">1<span class="unit"> programa</span></div><div class="foot">Señalización y manejo de tránsito en obra</div></div>
-    </div>
-    <p class="map-note">Total: 27 programas en 6 componentes. Incluyó además $487,4 M en obras de mitigación y compensación ambiental, dentro del presupuesto oficial del proyecto.</p>
-  </div>
-</section>
-
 <!-- ============ BLOQUE: CRONOGRAMA ============ -->
 <section class="block">
   <div class="wrap">
@@ -461,7 +491,7 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
 </section>
 
 <!-- ============ BLOQUE 3: COMPONENTE SOCIAL ============ -->
-<section class="block" style="border-bottom:none">
+<section class="block">
   <div class="wrap">
     <div class="block-head">
       <div class="block-num"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M17 5.5a3 3 0 0 1 0 6M21.5 20a6.5 6.5 0 0 0-4-6"/></svg></div>
@@ -482,10 +512,30 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
         <p class="map-note">Obligación contractual: mínimo 5% del personal contratado fueran mujeres cabeza de familia y/o víctimas del conflicto armado. Se marca en 100% porque el contrato fue ejecutado y terminado en su totalidad, condición para la suscripción del Acta de Terminación.</p>
       </div>
       <div class="card">
-        <h4>Importancia del corredor</h4>
-        <div class="progress-row"><div class="top"><span class="name">Corredor de Transporte Público Colectivo</span><span class="figs">El más importante de Ibagué</span></div></div>
+        <h4>Gestión con la comunidad</h4>
         <div class="progress-row"><div class="top"><span class="name">Promoción de empleo local</span><span class="figs">Obligación contractual del contratista</span></div></div>
-        <p class="map-note">Según los Estudios Previos, la Carrera Quinta es el corredor más relevante del Transporte Público Colectivo de Ibagué, por lo que su rehabilitación beneficia de forma directa la movilidad de la ciudad. El contratista tuvo la obligación de identificar e implementar oportunidades de empleo local durante la ejecución de la obra.</p>
+        <div class="progress-row"><div class="top"><span class="name">Trabajo nocturno programado</span><span class="figs">Para reducir el impacto en la movilidad diurna</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Reciclaje de materiales de la vía existente</span><span class="figs">Reduce escombros y reutiliza recursos</span></div></div>
+        <p class="map-note">El contratista informó de manera anticipada a la comunidad sobre los frentes de trabajo y los horarios nocturnos de algunas actividades, y empleó maquinaria que recicla el material de la vía existente para reducir residuos de construcción.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BLOQUE: IMPORTANCIA DEL CORREDOR ============ -->
+<section class="block" style="border-bottom:none">
+  <div class="wrap">
+    <div class="block-head">
+      <div class="block-num"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 21s7-6.7 7-12a7 7 0 1 0-14 0c0 5.3 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
+      <div><h3>Importancia del corredor</h3><div class="tag">Historia · identidad · movilidad de Ibagué</div></div>
+      <div class="spacer"></div>
+    </div>
+    <div class="card" style="display:flex;gap:24px;flex-wrap:wrap;align-items:center">
+      <img src="img/ocobos-ibague.jpg" alt="Ocobos floreciendo en Ibagué" style="width:340px;max-width:100%;border-radius:14px;object-fit:cover;flex:0 0 auto">
+      <div style="flex:1;min-width:260px">
+        <p style="font-size:14.5px;line-height:1.7;color:var(--ink);margin:0 0 10px">La Carrera Quinta —cuyo nombre oficial es <b>Avenida Campo Serrano</b>, en honor al expresidente José María Campo Serrano— es el eje vial más importante de Ibagué y, según los Estudios Previos del proyecto, el corredor más relevante para el Transporte Público Colectivo de la ciudad.</p>
+        <p style="font-size:14.5px;line-height:1.7;color:var(--ink);margin:0 0 10px">Es también el hogar de una de las postales más reconocidas del Tolima: sus <b>ocobos</b> (Tabebuia rosea), sembrados desde 1940 y declarados símbolo de Ibagué en el año 2000, que florecen dos veces al año pintando de rosa la vía.</p>
+        <p style="font-size:13px;color:var(--muted);margin:0">Foto: ocobos en flor en Ibagué — Edgar Jiménez (CC BY-SA 2.0), vía Wikimedia Commons.</p>
       </div>
     </div>
   </div>
@@ -1092,7 +1142,7 @@ const frentesCra5 = [
     secciones: 4,
     factor: null,
     estados: ['completado','completado','completado','completado'],
-    coords: [[4.4247,-75.2043],[4.4265,-75.2050],[4.4290,-75.2058],[4.4308,-75.2065],[4.4326,-75.2072],[4.4344,-75.2080],[4.4362,-75.2088],[4.4384,-75.2098],[4.4406,-75.2108],[4.4428,-75.2118],[4.4454,-75.2130]]
+    coords: [[4.4504,-75.2469],[4.4489,-75.2454],[4.4481,-75.2447],[4.4474,-75.2430],[4.4463,-75.2417],[4.4405,-75.2280],[4.4353,-75.2068],[4.4337,-75.2106],[4.4332,-75.2113],[4.4323,-75.2118],[4.4308,-75.2069],[4.4293,-75.2020]]
   }
 ];
 if (document.getElementById('tramoMapCra5')) {
