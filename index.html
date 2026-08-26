@@ -339,6 +339,25 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
         <p class="map-note">Se aprobaron precios unitarios para 8 ítems adicionales de obra no prevista, necesarios por hallazgos técnicos durante la ejecución. Esto no representó una adición de valor al contrato: el Acta de Terminación confirma que no hubo adiciones presupuestales, solo la prórroga de plazo indicada arriba.</p>
       </div>
     </div>
+
+    <div class="cards g2" style="margin-top:20px">
+      <div class="card">
+        <h4>Avance por componente</h4>
+        <div class="progress-row"><div class="top"><span class="name">Excavación y movimiento de tierras</span><span class="figs"><b>100%</b> terminado</span></div><div class="bar blue"><span style="width:100%"></span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Pavimentación</span><span class="figs"><b>100%</b> terminado</span></div><div class="bar blue"><span style="width:100%"></span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Obras complementarias</span><span class="figs"><b>100%</b> terminado</span></div><div class="bar blue"><span style="width:100%"></span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Señalización vial</span><span class="figs"><b>100%</b> terminado</span></div><div class="bar blue"><span style="width:100%"></span></div></div>
+        <p class="map-note">Todos los componentes fueron validados y recibidos a satisfacción por la interventoría, según consta en el Acta de Terminación de Obra.</p>
+      </div>
+      <div class="card">
+        <h4>Mapa de avance por tramo</h4>
+        <div class="map-legend">
+          <span><i style="background:var(--green)"></i> Ejecutado</span>
+        </div>
+        <div id="tramoMapCra5" style="position:relative;z-index:0;height:380px;border-radius:14px;overflow:hidden;margin-top:10px"></div>
+        <p class="map-note">Mapa satelital interactivo (desplazable y con zoom). Haz clic en un tramo para ver su nombre y estado. Ubicación referencial sobre la Carrera 5 (Ibagué) entre Calle 10 y Calle 58, dividida en secciones de acuerdo con la longitud total contratada.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -352,11 +371,13 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
       <span class="mini-pill">Valores en COP</span>
     </div>
 
-    <div class="cards g3" style="margin-bottom:20px">
-      <div class="card kpi"><div class="accent" style="background:var(--navy)"></div><h4>Valor del contrato</h4><div class="big" style="font-size:26px">$35.399,9<span class="unit"> M</span></div><div class="foot">Contrato de Obra N.° 046</div></div>
-      <div class="card kpi"><div class="accent" style="background:var(--royal)"></div><h4>Adiciones al contrato</h4><div class="big" style="font-size:26px">$0</div><div class="foot">Sin adiciones de valor</div></div>
-      <div class="card kpi"><div class="accent" style="background:var(--green)"></div><h4>Ejecutado financiero</h4><div class="big" style="font-size:26px">100<span class="unit"> %</span></div><div class="foot">Según Acta de Terminación</div></div>
+    <div class="cards g4" style="margin-bottom:20px">
+      <div class="card kpi"><div class="accent" style="background:var(--pending)"></div><h4>Presupuesto oficial estimado</h4><div class="big" style="font-size:24px">$39.115,9<span class="unit"> M</span></div><div class="foot">Techo del proceso licitatorio, antes de la oferta</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--navy)"></div><h4>Valor adjudicado (contrato)</h4><div class="big" style="font-size:24px">$35.399,9<span class="unit"> M</span></div><div class="foot">Contrato de Obra N.° 046</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--royal)"></div><h4>Adiciones al contrato</h4><div class="big" style="font-size:24px">$0</div><div class="foot">Sin adiciones de valor</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--green)"></div><h4>Ejecutado financiero</h4><div class="big" style="font-size:24px">100<span class="unit"> %</span></div><div class="foot">Según Acta de Terminación</div></div>
     </div>
+    <p class="map-note" style="margin-bottom:20px">La diferencia entre el presupuesto oficial estimado ($39.115,9 M) y el valor adjudicado ($35.399,9 M) corresponde al ahorro obtenido en el proceso de licitación pública, no a un sobrecosto: es la práctica normal cuando el valor ofertado por el contratista resulta menor al techo presupuestal fijado por la Entidad. El contrato se ejecutó y liquidó sin adiciones de valor sobre los $35.399,9 M adjudicados.</p>
 
     <div class="cards g2">
       <div class="card">
@@ -392,13 +413,66 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
   </div>
 </section>
 
+<!-- ============ BLOQUE: PLAN DE MANEJO AMBIENTAL ============ -->
+<section class="block">
+  <div class="wrap">
+    <div class="block-head">
+      <div class="block-num"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 2v20M12 6c-4 0-6 2-6 6s2 6 6 6M12 6c4 0 6 2 6 6s-2 6-6 6"/></svg></div>
+      <div><h3>Plan de Manejo Ambiental</h3><div class="tag">Programas por componente · Guía Ambiental UMUS</div></div>
+      <div class="spacer"></div>
+    </div>
+    <p style="font-size:13px;color:var(--muted);margin:-4px 0 16px">Estructura definida conforme a la Guía Ambiental para la Construcción de Infraestructura del Ministerio de Transporte (UMUS), la misma que aplica a los demás proyectos del SETP. El contratista seleccionó y desarrolló los programas aplicables durante la ejecución del contrato.</p>
+    <div class="cards g3">
+      <div class="card kpi"><div class="accent" style="background:var(--navy)"></div><h4>A · Gestión socioambiental</h4><div class="big">3<span class="unit"> programas</span></div><div class="foot">Gestión socioambiental, PIPMA, Plan de Seguimiento</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--royal)"></div><h4>B · Gestión social en obra</h4><div class="big">6<span class="unit"> programas</span></div><div class="foot">Divulgación, restitución de bienes, atención ciudadana, pedagogía, mano de obra local, equidad de género</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--gold)"></div><h4>C · Manejo silvicultural y paisajismo</h4><div class="big">4<span class="unit"> programas</span></div><div class="foot">Poda/eliminación y reubicación de árboles, compensación forestal, protección de árboles de permanencia</div></div>
+      <div class="card kpi"><div class="accent" style="background:#166534"></div><h4>D · Gestión ambiental en construcción</h4><div class="big">11<span class="unit"> programas</span></div><div class="foot">Residuos, materiales, campamentos, maquinaria, aguas, excavaciones, emisiones y ruido, redes, patrimonio cultural</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--royal)"></div><h4>E · Seguridad y salud en el trabajo</h4><div class="big">2<span class="unit"> programas</span></div><div class="foot">SST y plan de emergencias y contingencias</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--navy)"></div><h4>F · Señalización y manejo de tránsito</h4><div class="big">1<span class="unit"> programa</span></div><div class="foot">Señalización y manejo de tránsito en obra</div></div>
+    </div>
+    <p class="map-note">Total: 27 programas en 6 componentes. Incluyó además $487,4 M en obras de mitigación y compensación ambiental, dentro del presupuesto oficial del proyecto.</p>
+  </div>
+</section>
+
+<!-- ============ BLOQUE: CRONOGRAMA ============ -->
+<section class="block">
+  <div class="wrap">
+    <div class="block-head">
+      <div class="block-num"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+      <div><h3>Cronograma</h3><div class="tag">Ejecución completa del contrato</div></div>
+      <div class="spacer"></div>
+    </div>
+
+    <div class="card">
+      <div class="gantt-months"><div></div><div class="gantt-scale" id="ganttScaleCra5"></div></div>
+      <div class="gantt">
+        <div class="gantt-row">
+          <div class="lab">Plazo inicial<small>255 días calendario</small></div>
+          <div class="gantt-track"><div class="gantt-fill f1" style="left:0%; width:81%">10-abr-2025 → 21-dic-2025 ✓</div></div>
+        </div>
+        <div class="gantt-row">
+          <div class="lab">Prórroga N.° 1<small>60 días calendario</small></div>
+          <div class="gantt-track"><div class="gantt-fill f2" style="left:81%; width:19%">18-feb-2026 ✓</div></div>
+        </div>
+      </div>
+      <p class="map-note">Acta de inicio: 10-abr-2025. Acta de Terminación de Obra: 18-feb-2026 (315 días calendario en total, incluida la prórroga). Ejecución física y de recursos: 100%.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ============ BLOQUE 3: COMPONENTE SOCIAL ============ -->
 <section class="block" style="border-bottom:none">
   <div class="wrap">
     <div class="block-head">
       <div class="block-num"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M17 5.5a3 3 0 0 1 0 6M21.5 20a6.5 6.5 0 0 0-4-6"/></svg></div>
-      <div><h3>Componente social</h3><div class="tag">Obligación contractual · vinculación de personal</div></div>
+      <div><h3>Componente social</h3><div class="tag">Impacto en la comunidad · vinculación de personal</div></div>
       <div class="spacer"></div>
+    </div>
+
+    <div class="social-grid" style="margin-bottom:20px">
+      <div class="social-tile"><div class="ico" style="background:rgba(0,168,48,.12)"><svg viewBox="0 0 24 24" style="width:26px;height:26px" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M17 5.5a3 3 0 0 1 0 6M21.5 20a6.5 6.5 0 0 0-4-6"/></svg></div><div class="n">529.637</div><div class="l">Habitantes de Ibagué beneficiados</div></div>
+      <div class="social-tile"><div class="ico" style="background:rgba(0,168,48,.12)"><svg viewBox="0 0 24 24" style="width:26px;height:26px" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><path d="M12 11v10M8 21h8"/></svg></div><div class="n">5%</div><div class="l">Mujeres cabeza de familia / víctimas del conflicto (mín.)</div></div>
+      <div class="social-tile"><div class="ico" style="background:rgba(0,168,48,.12)"><svg viewBox="0 0 24 24" style="width:26px;height:26px" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div><div class="n">100%</div><div class="l">Obligaciones sociales cumplidas</div></div>
     </div>
 
     <div class="cards g2">
@@ -408,11 +482,10 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
         <p class="map-note">Obligación contractual: mínimo 5% del personal contratado fueran mujeres cabeza de familia y/o víctimas del conflicto armado. Se marca en 100% porque el contrato fue ejecutado y terminado en su totalidad, condición para la suscripción del Acta de Terminación.</p>
       </div>
       <div class="card">
-        <h4>Estado del contrato</h4>
-        <div class="progress-row"><div class="top"><span class="name">Plazo inicial</span><span class="figs">255 días calendario</span></div></div>
-        <div class="progress-row"><div class="top"><span class="name">Prórroga N.° 1</span><span class="figs">60 días calendario</span></div></div>
-        <div class="progress-row"><div class="top"><span class="name">Fecha de terminación</span><span class="figs">18-feb-2026</span></div></div>
-        <p class="map-note">Acta de Terminación de Obra suscrita el 18-feb-2026, con ejecución física y de recursos del 100%.</p>
+        <h4>Importancia del corredor</h4>
+        <div class="progress-row"><div class="top"><span class="name">Corredor de Transporte Público Colectivo</span><span class="figs">El más importante de Ibagué</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Promoción de empleo local</span><span class="figs">Obligación contractual del contratista</span></div></div>
+        <p class="map-note">Según los Estudios Previos, la Carrera Quinta es el corredor más relevante del Transporte Público Colectivo de Ibagué, por lo que su rehabilitación beneficia de forma directa la movilidad de la ciudad. El contratista tuvo la obligación de identificar e implementar oportunidades de empleo local durante la ejecución de la obra.</p>
       </div>
     </div>
   </div>
@@ -1006,6 +1079,42 @@ if (document.getElementById('chartPieCra5')) {
       plugins:{legend:{position:'right',labels:{boxWidth:12,font:{size:11},padding:10}},
         tooltip:{callbacks:{label:c=>' '+c.label+': '+c.parsed+'%'}}}}
   });
+}
+/* ---- Escala de meses del cronograma Carrera Quinta ---- */
+if (document.getElementById('ganttScaleCra5')) {
+  const mesesCra5=['Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic','Ene','Feb'];
+  document.getElementById('ganttScaleCra5').innerHTML=mesesCra5.map(m=>'<span>'+m+'</span>').join('');
+}
+/* ---- Mapa satelital interactivo: Carrera Quinta (sin KMZ; ubicación referencial sobre el corredor, dividida por la longitud total contratada) ---- */
+const frentesCra5 = [
+  {
+    frente: 'Carrera 5 · Cl 10 → Cl 58',
+    secciones: 4,
+    factor: null,
+    estados: ['completado','completado','completado','completado'],
+    coords: [[4.4247,-75.2043],[4.4265,-75.2050],[4.4290,-75.2058],[4.4308,-75.2065],[4.4326,-75.2072],[4.4344,-75.2080],[4.4362,-75.2088],[4.4384,-75.2098],[4.4406,-75.2108],[4.4428,-75.2118],[4.4454,-75.2130]]
+  }
+];
+if (document.getElementById('tramoMapCra5')) {
+  const largoBaseCra5 = longitudMetros(frentesCra5[0].coords);
+  frentesCra5[0].factor = 10160/largoBaseCra5;
+  const tramoMapCra5 = L.map('tramoMapCra5', {scrollWheelZoom:false});
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    attribution:'Tiles © Esri', maxZoom:19
+  }).addTo(tramoMapCra5);
+  const grupoCra5 = L.featureGroup();
+  frentesCra5.forEach(f=>{
+    dividirEnSecciones(f.coords, f.secciones).forEach((seg,i)=>{
+      const ok = f.estados[i] === 'completado';
+      const etiqueta = f.frente+' · Sección '+(i+1)+' de '+f.secciones;
+      const largo = Math.round(longitudMetros(seg)*f.factor).toLocaleString('es-CO');
+      L.polyline(seg,{color:ok?GREEN:PENDING,weight:5,opacity:.95})
+        .addTo(grupoCra5)
+        .bindPopup('<b>'+etiqueta+'</b><br>Distancia intervención: ≈'+largo+' m<br>'+(ok?'✓ Ejecutado':'○ No ejecutado'));
+    });
+  });
+  grupoCra5.addTo(tramoMapCra5);
+  tramoMapCra5.fitBounds(grupoCra5.getBounds(), {padding:[20,20]});
 }
 
 /* ==== Semaforización Fase I ==== */
