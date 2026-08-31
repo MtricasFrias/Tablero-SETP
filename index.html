@@ -1292,8 +1292,6 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
       <div class="card kpi"><div class="accent" style="background:var(--royal)"></div><h4>Contrato de interventoría</h4><div class="big" style="font-size:22px">$1.119,9<span class="unit"> M</span></div><div class="foot">N.° 038 · 2024 · Velnec S.A.</div></div>
       <div class="card kpi"><div class="accent" style="background:var(--green)"></div><h4>Avance financiero</h4><div class="big" style="font-size:22px">95<span class="unit"> %</span></div><div class="foot">Sobre el contrato de obra</div></div>
     </div>
-    <p class="map-note" style="margin-bottom:20px">La diferencia entre el presupuesto oficial estimado ($9.119,0 M) y el valor adjudicado del contrato de obra ($8.221,6 M) corresponde al ahorro obtenido en el proceso de licitación pública, no a un sobrecosto.</p>
-    <p class="map-note" style="margin-bottom:20px">Aparte del contrato de obra, hay un contrato de interventoría independiente por $1.119,9 M. Sumando los dos ($8.221,6 M + $1.119,9 M), la inversión total del proyecto es de $9.341,4 M.</p>
 
     <div class="cards g2">
       <div class="card">
@@ -1479,6 +1477,7 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
 <script>
 window.addEventListener('load', function(){
 const NAVY='#0A1F5C',ROYAL='#1D4ED8',GREEN='#00A830',GOLD='#F0A800',RED='#D62828',PENDING='#94A3B8';
+const leafletMaps=[]; // mapas Leaflet creados en pestañas ocultas necesitan invalidateSize() al mostrarse
 
 /* ---- Navegación entre pestañas de proyectos ---- */
 document.querySelectorAll('.tab[data-page]').forEach(btn=>{
@@ -1486,7 +1485,13 @@ document.querySelectorAll('.tab[data-page]').forEach(btn=>{
     document.querySelectorAll('.tab[data-page]').forEach(b=>b.classList.remove('active'));
     document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
     btn.classList.add('active');
-    document.getElementById(btn.dataset.page).classList.add('active');
+    const page = document.getElementById(btn.dataset.page);
+    page.classList.add('active');
+    setTimeout(()=>{
+      leafletMaps.forEach(m=>{
+        if (page.contains(m.getContainer())) { m.invalidateSize(); if (m._boundsToFit) m.fitBounds(m._boundsToFit, {padding:[20,20]}); }
+      });
+    }, 50);
   });
 });
 
@@ -1567,7 +1572,9 @@ if (document.getElementById('tramoMap')) {
     });
   });
   grupo.addTo(tramoMap);
-  tramoMap.fitBounds(grupo.getBounds(), {padding:[20,20]});
+  tramoMap._boundsToFit = grupo.getBounds();
+  tramoMap.fitBounds(tramoMap._boundsToFit, {padding:[20,20]});
+  leafletMaps.push(tramoMap);
 }
 
 /* ---- Torta: distribución del presupuesto (estimada) ---- */
@@ -1634,7 +1641,9 @@ if (document.getElementById('tramoMapCra5')) {
     });
   });
   grupoCra5.addTo(tramoMapCra5);
-  tramoMapCra5.fitBounds(grupoCra5.getBounds(), {padding:[20,20]});
+  tramoMapCra5._boundsToFit = grupoCra5.getBounds();
+  tramoMapCra5.fitBounds(tramoMapCra5._boundsToFit, {padding:[20,20]});
+  leafletMaps.push(tramoMapCra5);
 }
 
 /* ==== Semaforización Fase I ==== */
@@ -1707,7 +1716,9 @@ if (document.getElementById('mapaParaderos')) {
       .bindPopup('<b>Paradero '+id+'</b>');
   });
   capaPuntos.addTo(mapaParaderos);
+  mapaParaderos._boundsToFit = bounds;
   mapaParaderos.fitBounds(bounds, {padding:[20,20]});
+  leafletMaps.push(mapaParaderos);
 }
 /* ---- Mini-gauges: cuotas de vinculación laboral (Paraderos) ---- */
 [['gaugeVmo1',50,NAVY],['gaugeVmo2',10,ROYAL],['gaugeVmo3',5,GOLD],['gaugeVmo4',10,GREEN],['gaugeVmo5',40,NAVY]].forEach(([id,val,color])=>{
