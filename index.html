@@ -264,13 +264,13 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
       <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="2" width="8" height="20" rx="3"/><circle cx="12" cy="6.5" r="1.4" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/><circle cx="12" cy="17.5" r="1.4" fill="currentColor" stroke="none"/></svg>
       Semaforización Fase I <span class="badge">En obra</span>
     </button>
+    <button class="tab" data-page="page-paraderos">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6.7 7-12a7 7 0 1 0-14 0c0 5.3 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+      Paraderos Tipo III <span class="badge">Terminado</span>
+    </button>
     <button class="tab locked" title="Pendiente de información">
       <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5m16 14V5M4 12h16M8 5v14M16 5v14"/></svg>
       Av. Ferrocarril <span class="badge">Diseños</span>
-    </button>
-    <button class="tab locked" title="Pendiente de información">
-      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6.7 7-12a7 7 0 1 0-14 0c0 5.3 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
-      Paraderos <span class="badge">1.150</span>
     </button>
   </div>
 </nav>
@@ -1054,6 +1054,270 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
 </div>
 <!-- ============ FIN PÁGINA SEMAFORIZACIÓN FASE I ============ -->
 
+<!-- ============ PÁGINA: PARADEROS TIPO III ============ -->
+<div id="page-paraderos" class="page">
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-left">
+      <div class="eyebrow">
+        <span class="chip code">Contrato de Obra N° 037 · 2025</span>
+        <span class="chip" style="background:rgba(0,168,48,.12); color:var(--green)">● Terminado — en liquidación</span>
+      </div>
+      <h2>Suministro e Instalación de Paraderos Tipo III</h2>
+      <p class="desc">Suministro e instalación de 1.150 señales verticales tipo banderín (paraderos tipo III) del Sistema Estratégico de Transporte Público de Ibagué, en corredores principales y barrios de la ciudad, incluidas obras de mejoramiento de andenes.</p>
+      <div class="hero-meta">
+        <div class="m"><div class="lbl">Paraderos instalados</div><div class="val">1.150 / 1.150</div></div>
+        <div class="m"><div class="lbl">Acta de inicio</div><div class="val">7-may-2025</div></div>
+        <div class="m"><div class="lbl">Plazo ejecutado</div><div class="val">299 días</div></div>
+        <div class="m"><div class="lbl">Valor del contrato</div><div class="val">$8.221,6 M</div></div>
+        <div class="m"><div class="lbl">Actas de pago radicadas</div><div class="val" style="color:var(--green)">≈$7.810,5 M (95%)</div></div>
+      </div>
+    </div>
+    <div class="gauge-card">
+      <div class="gauge-wrap">
+        <canvas id="gaugeParaderos"></canvas>
+        <div class="gauge-center"><div class="pct" style="font-size:26px;color:var(--green)">Terminado</div><div class="cap">100% físico · 95% financiero</div></div>
+      </div>
+      <div class="gauge-legend">
+        <span><i style="background:var(--green)"></i> Ejecutado</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BLOQUE 1: ALCANCE TÉCNICO ============ -->
+<section class="block">
+  <div class="wrap">
+    <div class="block-head">
+      <div class="block-num"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 21s7-6.7 7-12a7 7 0 1 0-14 0c0 5.3 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
+      <div><h3>Alcance técnico</h3><div class="tag">Señal vertical tipo banderín · andenes · accesibilidad</div></div>
+      <div class="spacer"></div>
+    </div>
+
+    <div class="cards g3" style="margin-bottom:20px">
+      <div class="card kpi"><div class="accent" style="background:var(--navy)"></div><h4>Señales suministradas</h4><div class="big" style="font-size:24px">1.150<span class="unit"> / 1.150</span></div><div class="foot">100% · cumplimiento de cantidades contractuales</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--royal)"></div><h4>Señales instaladas en sitio</h4><div class="big" style="font-size:24px">1.106<span class="unit"> / 1.150</span></div><div class="foot">96% · las 44 restantes fueron suministradas</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--gold)"></div><h4>Andenes (cantidad contratada)</h4><div class="big" style="font-size:24px">8.940<span class="unit"> m²</span></div><div class="foot">Concreto 3000 PSI · espesor 10 cm</div></div>
+    </div>
+
+    <div class="cards g2">
+      <div class="card" style="display:flex;flex-direction:column">
+        <h4>Avance por componente</h4>
+        <div class="progress-row"><div class="top"><span class="name">Fabricación y suministro de señalización</span><span class="figs"><b>100%</b> · 1.150/1.150</span></div><div class="bar blue"><span style="width:100%"></span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Instalación en sitio</span><span class="figs"><b>96%</b> · 1.106/1.150</span></div><div class="bar"><span style="width:96%"></span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Obras civiles de andenes y bordillos</span><span class="figs"><b>100%</b> cumplimiento contractual</span></div><div class="bar blue"><span style="width:100%"></span></div></div>
+        <p class="map-note">Proyecto en proceso de liquidación, con 100% de ejecución según las actividades, cantidades y obligaciones contempladas en el contrato.</p>
+        <div style="margin-top:auto;padding-top:18px;display:flex;align-items:center;gap:18px;flex-wrap:wrap">
+          <svg viewBox="0 0 160 110" style="width:130px;height:auto;flex:0 0 auto;overflow:visible">
+            <line x1="0" y1="96" x2="160" y2="96" stroke="var(--line)" stroke-width="3"/>
+            <rect x="72" y="30" width="6" height="66" fill="#9aa3af"/>
+            <rect x="52" y="10" width="46" height="26" rx="2" fill="var(--navy)"/>
+            <rect x="56" y="14" width="38" height="8" rx="1" fill="var(--gold)"/>
+            <rect x="56" y="24" width="24" height="4" rx="1" fill="rgba(255,255,255,.5)"/>
+            <g>
+              <animateTransform attributeName="transform" type="translate" values="-140,0; 200,0" dur="5s" repeatCount="indefinite" calcMode="linear"/>
+              <rect x="0" y="72" width="30" height="16" rx="3" fill="var(--red)"/>
+              <rect x="4" y="64" width="16" height="10" rx="2" fill="#8a1414"/>
+              <circle cx="6" cy="90" r="5" fill="#2b2b2b"/>
+              <circle cx="24" cy="90" r="5" fill="#2b2b2b"/>
+            </g>
+            <circle cx="72" cy="96" r="2.4" fill="var(--green)">
+              <animate attributeName="opacity" values="0;1;0" dur="2.4s" repeatCount="indefinite"/>
+            </circle>
+          </svg>
+          <div style="font-size:13px;color:var(--muted);line-height:1.5;min-width:150px">
+            <b style="color:var(--ink);font-size:16px">De la fábrica al andén.</b><br>
+            1.150 puntos de parada organizados en toda la ciudad.
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h4>Tipologías de señal instaladas</h4>
+        <div class="progress-row"><div class="top"><span class="name">Tipo 1 · de 1 a 5 rutas</span><span class="figs">889 unidades · marco 120 cm</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Tipo 2 · de 6 a 14 rutas</span><span class="figs">261 unidades · marco 150 cm</span></div></div>
+        <p class="map-note">Estructura tubular galvanizada Ø3" cal.14 sobre pedestal en concreto (0,60×0,60×0,50 m), lámina retrorreflectiva tipo IV o superior (vida útil certificada ≥10 años), información de rutas actualizable en vinilo con protección antigrafiti, y módulo braille a 120 cm del piso. Vida útil del conjunto: 15 años como mínimo.</p>
+        <p class="map-note" style="margin-top:10px"><b style="color:var(--ink)">Cobertura:</b> las 13 comunas de Ibagué. <b style="color:var(--ink)">Corredores priorizados:</b> Av. Ambalá, Carrera Quinta, Av. Ferrocarril, Av. Guabinal, Av. Mirolindo y Av. Pedro Tafur.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BLOQUE: MANTENIMIENTO Y GARANTÍA ============ -->
+<section class="block">
+  <div class="wrap">
+    <div class="block-head">
+      <div class="block-num"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M14.7 6.3a4 4 0 0 1-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 1 5.4-5.4l-2.8 2.8-2-2z"/></svg></div>
+      <div><h3>Mantenimiento y garantía</h3><div class="tag">Seguimiento posterior a la instalación · garantía de estabilidad 5 años</div></div>
+      <div class="spacer"></div>
+    </div>
+    <div class="cards g4" style="margin-bottom:20px">
+      <div class="card kpi"><div class="accent" style="background:var(--navy)"></div><h4>Paraderos con mantenimiento</h4><div class="big" style="font-size:22px">940<span class="unit"> / 1.150</span></div><div class="foot">Arreglos y recuperación de estructura</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--royal)"></div><h4>Refuerzo de soldaduras</h4><div class="big" style="font-size:22px">33</div><div class="foot">Estructuras con trabajos de mayor profundidad</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--gold)"></div><h4>Afectaciones por golpes/daños</h4><div class="big" style="font-size:22px">18</div><div class="foot">En seguimiento y evaluación</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--red)"></div><h4>Sustracción reportada</h4><div class="big" style="font-size:22px">1</div><div class="foot">Registrada como condición externa a la obra</div></div>
+    </div>
+    <p class="map-note">Entre el 28 de mayo y el 18 de agosto de 2026 se ejecutaron labores de mejoramiento, mantenimiento y recuperación sobre los paraderos Tipo III instalados: protección de elementos metálicos frente a la humedad (tratamiento de juntas, uniones, soldaduras y puntos de fijación para reducir oxidación y corrosión), nivelación y adecuación de apoyos y bases, extracción de agua acumulada, y limpieza general de estructuras. El contratista responde por la estabilidad de la obra durante 5 años contados desde el acta de recibo final.</p>
+  </div>
+</section>
+
+<!-- ============ BLOQUE: PLAN DE MANEJO AMBIENTAL Y DE TRÁNSITO ============ -->
+<section class="block">
+  <div class="wrap">
+    <div class="block-head">
+      <div class="block-num"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 2v20M12 6c-4 0-6 2-6 6s2 6 6 6M12 6c4 0 6 2 6 6s-2 6-6 6"/></svg></div>
+      <div><h3>Plan de Manejo Ambiental y de Tránsito</h3><div class="tag">Programas por componente · PMA + PMT</div></div>
+      <div class="spacer"></div>
+    </div>
+    <p style="font-size:13px;color:var(--muted);margin:-4px 0 16px">Estructura definida para este proyecto conforme a la Guía Ambiental para la Construcción de Infraestructura del Ministerio de Transporte. Al ser una obra de señalización puntual (sin remoción de cobertura vegetal ni afectación a arbolado), no aplica el componente de manejo silvicultural que sí tienen otros proyectos del SETP.</p>
+    <div class="cards g3">
+      <div class="card kpi"><div class="accent" style="background:var(--navy)"></div><h4>A · Gestión socioambiental</h4><div class="big">3<span class="unit"> programas</span></div><div class="foot">Gestión socioambiental, PIPMA, seguimiento</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--royal)"></div><h4>B · Gestión social en obra</h4><div class="big">6<span class="unit"> programas</span></div><div class="foot">Divulgación, restitución de bienes, atención ciudadana, pedagogía ambiental, mano de obra, equidad de género</div></div>
+      <div class="card kpi"><div class="accent" style="background:#166534"></div><h4>D · Gestión ambiental en construcción</h4><div class="big">5<span class="unit"> programas</span></div><div class="foot">Demoliciones/escombros, materiales, maquinaria, aseo y estructuras, emisiones y ruido</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--royal)"></div><h4>E · Seguridad y salud en el trabajo</h4><div class="big">2<span class="unit"> programas</span></div><div class="foot">SST y plan de emergencias y contingencias</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--navy)"></div><h4>F · Señalización y accesos viales</h4><div class="big">1<span class="unit"> programa</span></div><div class="foot">Señalización y manejo de accesos en obra</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--gold)"></div><h4>Plan de Manejo de Tránsito</h4><div class="big" style="font-size:20px">Categoría I</div><div class="foot">Interferencias mínimas · sin cierres totales ni desvíos</div></div>
+    </div>
+    <p class="map-note">Total: 17 programas en 5 componentes. En la matriz de impactos, el efecto positivo más alto identificado fue el cambio en las dinámicas de uso del transporte público (muy importante); los impactos negativos más relevantes correspondieron al manejo y disposición de residuos de demolición y de residuos peligrosos, mitigados mediante gestión de escombros en escombrera autorizada por Cortolima.</p>
+    <p class="map-note" style="margin-top:10px">El PMT clasificó la obra como Categoría I (interferencias mínimas, área de influencia de 100 m), con horario de trabajo de 7:00 a.m. a 5:00 p.m. y velocidad restringida a 30 km/h en la zona de obra.</p>
+  </div>
+</section>
+
+<!-- ============ BLOQUE: RECURSOS FINANCIEROS ============ -->
+<section class="block">
+  <div class="wrap">
+    <div class="block-head">
+      <div class="block-num"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+      <div><h3>Recursos financieros</h3><div class="tag">Inversión · distribución del presupuesto · garantías</div></div>
+      <div class="spacer"></div>
+      <span class="mini-pill">Valores en COP</span>
+    </div>
+
+    <div class="cards g3" style="margin-bottom:20px">
+      <div class="card kpi"><div class="accent" style="background:var(--pending)"></div><h4>Presupuesto oficial estimado</h4><div class="big" style="font-size:24px">$9.119,0<span class="unit"> M</span></div><div class="foot">Techo del proceso licitatorio, antes de la oferta</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--navy)"></div><h4>Valor adjudicado (contrato de obra)</h4><div class="big" style="font-size:24px">$8.221,6<span class="unit"> M</span></div><div class="foot">Contrato de Obra N.° 037 · sin adiciones</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--green)"></div><h4>Avance financiero</h4><div class="big" style="font-size:24px">95<span class="unit"> %</span></div><div class="foot">Sobre el valor del contrato de obra</div></div>
+    </div>
+    <p class="map-note" style="margin-bottom:20px">La diferencia entre el presupuesto oficial estimado ($9.119,0 M) y el valor adjudicado ($8.221,6 M) corresponde al ahorro obtenido en el proceso de licitación pública, no a un sobrecosto. Adicionalmente, el contrato de interventoría (N.° 038 · 2024, Velnec S.A.) tiene un valor de $1.119,9 M, para un valor total de proyecto (obra + interventoría) de $9.341,4 M.</p>
+
+    <div class="cards g2">
+      <div class="card">
+        <h4>Distribución del presupuesto (obra)</h4>
+        <div class="chart-box"><canvas id="chartPieParaderos"></canvas></div>
+        <p class="map-note">Componente de obra pública (demolición, andenes, bordillos y cimentación) sin IVA, según lo dispuesto en el artículo 100 de la Ley 21 de 1992. Componente de señalización, con IVA incluido.</p>
+      </div>
+      <div class="card">
+        <h4>Datos del contrato</h4>
+        <div class="progress-row"><div class="top"><span class="name">Contratista</span><span class="figs">Consorcio Paraderos 25 · NIT 901.904.171-1</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Representante legal</span><span class="figs">Juan Carlos Ramírez Ospina</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Interventor</span><span class="figs">Velnec S.A. · Contrato N.° 038 · 2024</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Supervisor</span><span class="figs">Freddy Mauricio Peralta Delgado · Director Operativo</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Ordenador del gasto</span><span class="figs">Aquileo Medina Arteaga</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Entidad contratante</span><span class="figs">SETP Ibagué S.A.S.</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Fecha del contrato</span><span class="figs">13-feb-2025</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Proceso SECOP II</span><span class="figs">SETP-LOP-172-2024</span></div></div>
+      </div>
+    </div>
+
+    <div class="cards g2" style="margin-top:20px">
+      <div class="card">
+        <h4>Forma de pago</h4>
+        <div class="progress-row"><div class="top"><span class="name">Pagos parciales mensuales por avance de obra</span><span class="figs">Tope: 95% del valor del contrato</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Pago final</span><span class="figs">5% restante, contra liquidación</span></div></div>
+        <p class="map-note">Este contrato no contempló pago de anticipo. Estampillas descontadas del primer pago: 1,5% Pro-Cultura + 2% Pro-Bienestar del Adulto Mayor + 0,5% Pro-Universidad del Tolima (antes de IVA).</p>
+      </div>
+      <div class="card">
+        <h4>Garantías</h4>
+        <div class="progress-row"><div class="top"><span class="name">Cumplimiento general</span><span class="figs">20% del valor del contrato</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Salarios y prestaciones sociales</span><span class="figs">5% del valor del contrato</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Estabilidad y calidad de la obra</span><span class="figs">20% · vigencia 5 años</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Calidad del servicio y de los bienes</span><span class="figs">20% cada una · vigencia 2 y 5 años</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Responsabilidad civil extracontractual</span><span class="figs">5% · vigencia del contrato</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BLOQUE: CRONOGRAMA ============ -->
+<section class="block">
+  <div class="wrap">
+    <div class="block-head">
+      <div class="block-num"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+      <div><h3>Cronograma</h3><div class="tag">Ejecución completa del contrato</div></div>
+      <div class="spacer"></div>
+    </div>
+
+    <div class="card">
+      <div class="gantt-months"><div></div><div class="gantt-scale" id="ganttScaleParaderos"></div></div>
+      <div class="gantt">
+        <div class="gantt-row">
+          <div class="lab">Preconstrucción<small>máx. 15 días calendario</small></div>
+          <div class="gantt-track"><div class="gantt-fill f2" style="left:0%; width:5%">✓</div></div>
+        </div>
+        <div class="gantt-row">
+          <div class="lab">Construcción y entrega<small>7-may-2025 → 28-feb-2026</small></div>
+          <div class="gantt-track"><div class="gantt-fill f1" style="left:5%; width:95%">299 días calendario ✓</div></div>
+        </div>
+      </div>
+      <p class="map-note">Plazo contractual inicial: 210 días calendario. El proyecto finalizó el 28 de febrero de 2026 (299 días desde el acta de inicio), dando cumplimiento a las actividades, cantidades y obligaciones contempladas, y se encuentra actualmente en proceso de liquidación.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BLOQUE: VINCULACIÓN DE MANO DE OBRA ============ -->
+<section class="block">
+  <div class="wrap">
+    <div class="block-head">
+      <div class="block-num"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M17 5.5a3 3 0 0 1 0 6M21.5 20a6.5 6.5 0 0 0-4-6"/></svg></div>
+      <div><h3>Vinculación de mano de obra y gestión social</h3><div class="tag">Empleo local · equidad de género · atención al usuario</div></div>
+      <div class="spacer"></div>
+      <span class="mini-pill">Obligaciones contractuales</span>
+    </div>
+    <div class="cards g2">
+      <div class="card">
+        <h4>Cuotas mínimas de vinculación laboral</h4>
+        <div class="progress-row"><div class="top"><span class="name">Mano de obra no calificada de la región</span><span class="figs">Mínimo 50%</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Mujeres (del total de mano de obra)</span><span class="figs">Mínimo 10%</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Madres cabeza de hogar del área de influencia</span><span class="figs">Mínimo 5% de las mujeres vinculadas</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Reserva de puestos para mujeres y grupos minoritarios</span><span class="figs">10% (incluye comunidad LGBTIQ+)</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Personal colombiano</span><span class="figs">Mínimo 40%</span></div></div>
+        <p class="map-note">El incumplimiento de las cuotas de mano de obra local o de vinculación de mujeres causa multas de 3 SMMLV por cada día de incumplimiento.</p>
+      </div>
+      <div class="card">
+        <h4>Gestión con la comunidad</h4>
+        <div class="progress-row"><div class="top"><span class="name">Actas de vecindad</span><span class="figs">Levantadas antes de intervenir cada punto</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Servicio de Atención al Usuario (SAU)</span><span class="figs">Disponible durante toda la obra</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Atención de PQRS</span><span class="figs">Dentro de los términos de la Ley 1755 de 2015</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Capacitación y sensibilización</span><span class="figs">Cultura ciudadana, seguridad vial y prevención de acoso callejero</span></div></div>
+        <p class="map-note">Cumplimiento del Decreto 392 de 2018 en materia de vinculación de personas con discapacidad, e igualdad salarial entre hombres y mujeres en un mismo cargo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BLOQUE: IMPORTANCIA DE LOS PARADEROS ============ -->
+<section class="block" style="border-bottom:none">
+  <div class="wrap">
+    <div class="block-head">
+      <div class="block-num"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 21s7-6.7 7-12a7 7 0 1 0-14 0c0 5.3 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
+      <div><h3>Importancia de los paraderos</h3><div class="tag">Ascenso y descenso ordenado · accesibilidad · flujo vehicular</div></div>
+      <div class="spacer"></div>
+    </div>
+    <div class="card">
+      <img src="img/paradero-tipo3-instalado.jpg" alt="Paradero Tipo III instalado en Carrera 5 con Calle 33, Ibagué" style="width:100%;max-height:360px;object-fit:cover;border-radius:14px;margin-bottom:18px">
+      <div style="display:flex;gap:24px;flex-wrap:wrap">
+        <p style="flex:1;min-width:260px;font-size:14.5px;line-height:1.7;color:var(--ink);margin:0">Antes de este proyecto, el Sistema Público Colectivo de Ibagué carecía de puntos de parada ordenados: los usuarios abordaban y descendían en cualquier lugar de la vía, generando maniobras inseguras y afectando el flujo vehicular. Los 1.150 paraderos Tipo III definen puntos fijos de ascenso y descenso, adaptados a las condiciones de personas con movilidad reducida o discapacidad, en los corredores por donde transita el sistema.</p>
+        <p style="flex:1;min-width:260px;font-size:14.5px;line-height:1.7;color:var(--ink);margin:0">Según el estudio de referencia del proyecto (Findeter, 2018), organizar las paradas de esta manera reduce en 78% los tiempos de espera de los usuarios, aumenta en 71% la velocidad de los corredores y reduce en 21% la longitud de las colas de buses en vía, en beneficio de cerca de 541.000 habitantes y 225.000 viajes diarios en la ciudad.</p>
+      </div>
+      <p style="font-size:12px;color:var(--muted);margin:14px 0 0">Foto: paradero Tipo III instalado en Carrera 5 con Calle 33, Ibagué — registro fotográfico oficial, Dirección Operativa SETP Ibagué S.A.S.</p>
+    </div>
+  </div>
+</section>
+
+</div>
+<!-- ============ FIN PÁGINA PARADEROS TIPO III ============ -->
+
 <!-- ============ FOOTER ============ -->
 <footer>
   <div class="wrap foot-inner">
@@ -1250,6 +1514,29 @@ if (document.getElementById('chartPieSemaforos')) {
   const meses=['Mes 1','Mes 2','Mes 3','Mes 4','Mes 5','Mes 6','Mes 7','Mes 8'];
   document.getElementById('ganttScale').innerHTML=meses.map(m=>'<span>'+m+'</span>').join('');
 })();
+
+/* ==== Paraderos Tipo III ==== */
+if (document.getElementById('gaugeParaderos')) {
+  new Chart(document.getElementById('gaugeParaderos'),{
+    type:'doughnut',
+    data:{datasets:[{data:[100,0],backgroundColor:[GREEN,'#EAEEF7'],borderWidth:0}]},
+    options:{cutout:'78%',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false}}}
+  });
+}
+if (document.getElementById('chartPieParaderos')) {
+  new Chart(document.getElementById('chartPieParaderos'),{
+    type:'doughnut',
+    data:{labels:['Fabricación e instalación de señalización','Obra pública (andenes, bordillos y cimentación)'],
+      datasets:[{data:[56.8,43.2],backgroundColor:[ROYAL,NAVY],borderWidth:2,borderColor:'#fff'}]},
+    options:{responsive:true,maintainAspectRatio:false,cutout:'55%',
+      plugins:{legend:{position:'right',labels:{boxWidth:12,font:{size:11},padding:10}},
+        tooltip:{callbacks:{label:c=>' '+c.label+': '+c.parsed+'%'}}}}
+  });
+}
+if (document.getElementById('ganttScaleParaderos')) {
+  const mesesParaderos=['May','Jun','Jul','Ago','Sep','Oct','Nov','Dic','Ene','Feb'];
+  document.getElementById('ganttScaleParaderos').innerHTML=mesesParaderos.map(m=>'<span>'+m+'</span>').join('');
+}
 });
 </script>
 </body>
