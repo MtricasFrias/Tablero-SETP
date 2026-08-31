@@ -297,11 +297,25 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
       </div>
     </div>
     <div class="gauge-card">
-      <div class="gauge-wrap">
-        <canvas id="gaugeCra5"></canvas>
-        <div class="gauge-center"><div class="pct" style="font-size:32px;color:var(--green)">100%</div><div class="cap">Ejecución física y financiera</div></div>
+      <div style="display:flex;gap:20px;justify-content:center">
+        <div style="text-align:center">
+          <div class="gauge-wrap" style="width:120px;height:120px">
+            <canvas id="gaugeCra5Fisico"></canvas>
+            <div class="gauge-center"><div class="pct" style="font-size:20px;color:var(--green)">100%</div></div>
+          </div>
+          <div style="font-size:12.5px;font-weight:800;color:var(--ink);margin-top:8px">Físico</div>
+          <div style="font-size:11px;color:var(--muted)">Completado</div>
+        </div>
+        <div style="text-align:center">
+          <div class="gauge-wrap" style="width:120px;height:120px">
+            <canvas id="gaugeCra5Financiero"></canvas>
+            <div class="gauge-center"><div class="pct" style="font-size:20px;color:var(--green)">100%</div></div>
+          </div>
+          <div style="font-size:12.5px;font-weight:800;color:var(--ink);margin-top:8px">Financiero</div>
+          <div style="font-size:11px;color:var(--muted)">Completado</div>
+        </div>
       </div>
-      <div class="gauge-legend">
+      <div class="gauge-legend" style="margin-top:16px">
         <span><i style="background:var(--green)"></i> Ejecutado</span>
       </div>
     </div>
@@ -878,11 +892,25 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
       <p class="map-note" style="max-width:640px">El 36% corresponde a las 34 intersecciones de esta Fase I frente al total de la red semafórica de la ciudad de Ibagué (no solo las rutas del SETP). Las dos fases restantes cubrirán el 64% de intersecciones faltante.</p>
     </div>
     <div class="gauge-card">
-      <div class="gauge-wrap">
-        <canvas id="gaugeSemaforos"></canvas>
-        <div class="gauge-center"><div class="pct" style="font-size:22px;color:var(--green)">En Obra</div><div class="cap">88,8% avance físico</div></div>
+      <div style="display:flex;gap:20px;justify-content:center">
+        <div style="text-align:center">
+          <div class="gauge-wrap" style="width:120px;height:120px">
+            <canvas id="gaugeSemaforosFisico"></canvas>
+            <div class="gauge-center"><div class="pct" style="font-size:20px;color:var(--green)">88,8%</div></div>
+          </div>
+          <div style="font-size:12.5px;font-weight:800;color:var(--ink);margin-top:8px">Físico</div>
+          <div style="font-size:11px;color:var(--muted)">En obra</div>
+        </div>
+        <div style="text-align:center">
+          <div class="gauge-wrap" style="width:120px;height:120px">
+            <canvas id="gaugeSemaforosFinanciero"></canvas>
+            <div class="gauge-center"><div class="pct" style="font-size:20px;color:var(--red)">0%</div></div>
+          </div>
+          <div style="font-size:12.5px;font-weight:800;color:var(--ink);margin-top:8px">Financiero</div>
+          <div style="font-size:11px;color:var(--muted)">Sin pagos radicados</div>
+        </div>
       </div>
-      <div class="gauge-legend">
+      <div class="gauge-legend" style="margin-top:16px">
         <span><i style="background:var(--green)"></i> Ejecutado</span>
         <span><i style="background:var(--pending)"></i> Pendiente</span>
       </div>
@@ -1051,12 +1079,28 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
       <div class="spacer"></div>
     </div>
     <div class="card">
-      <img src="img/semaforo-interseccion.jpg" alt="Intersección urbana con semáforos digitales de conteo, señal peatonal y tráfico vehicular" style="width:100%;max-height:360px;object-fit:cover;border-radius:14px;margin-bottom:18px">
-      <div style="display:flex;gap:24px;flex-wrap:wrap">
-        <p style="flex:1;min-width:260px;font-size:14.5px;line-height:1.7;color:var(--ink);margin:0">Los sistemas de semaforización inteligente usan sensores y controladores que miden el tráfico en tiempo real y ajustan los tiempos de los semáforos según el flujo vehicular y peatonal, en lugar de tiempos fijos preestablecidos. Al coordinar semáforos contiguos se generan "olas verdes" que permiten recorrer varias cuadras sin detenerse, reduciendo tiempos de viaje y consumo de combustible.</p>
-        <p style="flex:1;min-width:260px;font-size:14.5px;line-height:1.7;color:var(--ink);margin:0">Diversos estudios internacionales de implementación de semaforización inteligente reportan reducciones de hasta el 30–50% en accidentes con víctimas en las intersecciones intervenidas, además de menores tiempos de viaje y una operación más eficiente de las vías. Modernizar la red semafórica de Ibagué busca ese mismo objetivo: intersecciones más seguras y una ciudad que se mueve mejor.</p>
+      <div style="display:flex;gap:28px;flex-wrap:wrap;align-items:stretch">
+        <div style="flex:0 0 280px;max-width:100%">
+          <img src="img/semaforo-real-ibague.jpg" alt="Semáforo con conteo regresivo y señal peatonal en Ibagué" style="width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:14px;display:block">
+          <p style="font-size:11.5px;color:var(--muted);margin:8px 0 0;line-height:1.4">Foto: semáforo con conteo regresivo y señal peatonal, Ibagué.</p>
+        </div>
+        <div style="flex:1;min-width:260px;display:flex;flex-direction:column;justify-content:center;gap:16px">
+          <p style="font-size:14.5px;line-height:1.7;color:var(--ink);margin:0">Los sistemas de semaforización inteligente usan sensores y controladores que miden el tráfico en tiempo real y ajustan los tiempos de los semáforos según el flujo vehicular y peatonal, en lugar de tiempos fijos preestablecidos. Al coordinar semáforos contiguos se generan "olas verdes" que permiten recorrer varias cuadras sin detenerse, reduciendo tiempos de viaje y consumo de combustible.</p>
+          <p style="font-size:14.5px;line-height:1.7;color:var(--ink);margin:0">Diversos estudios internacionales de implementación de semaforización inteligente reportan reducciones de hasta el 30–50% en accidentes con víctimas en las intersecciones intervenidas, además de menores tiempos de viaje y una operación más eficiente de las vías. Modernizar la red semafórica de Ibagué busca ese mismo objetivo: intersecciones más seguras y una ciudad que se mueve mejor.</p>
+          <div style="display:flex;align-items:center;gap:16px;padding-top:6px">
+            <svg viewBox="0 0 100 60" style="width:80px;height:auto;flex:0 0 auto">
+              <circle cx="18" cy="30" r="9" fill="var(--green)"><animate attributeName="opacity" values="1;.25;1" dur="2.4s" begin="0s" repeatCount="indefinite"/></circle>
+              <circle cx="50" cy="30" r="9" fill="var(--green)"><animate attributeName="opacity" values="1;.25;1" dur="2.4s" begin=".3s" repeatCount="indefinite"/></circle>
+              <circle cx="82" cy="30" r="9" fill="var(--green)"><animate attributeName="opacity" values="1;.25;1" dur="2.4s" begin=".6s" repeatCount="indefinite"/></circle>
+              <path d="M4 30h14M32 30h14M64 30h14" stroke="var(--line)" stroke-width="2" stroke-dasharray="2 3"/>
+            </svg>
+            <div style="font-size:13px;color:var(--muted);line-height:1.5">
+              <b style="color:var(--ink);font-size:15px">Coordinados, no aislados.</b><br>
+              Una ola verde conecta la ciudad, semáforo a semáforo.
+            </div>
+          </div>
+        </div>
       </div>
-      <p style="font-size:12px;color:var(--muted);margin:14px 0 0">Foto ilustrativa: intersección urbana con semáforos digitales — dominio público (CC0), vía Wikimedia Commons.</p>
     </div>
   </div>
 </section>
@@ -1590,13 +1634,14 @@ new Chart(document.getElementById('chartPie'),{
 /* ---- Fuente de financiación (Nación / Municipio): pendiente de cifras validadas, gráfico retirado temporalmente ---- */
 
 /* ==== Carrera Quinta ==== */
-if (document.getElementById('gaugeCra5')) {
-  new Chart(document.getElementById('gaugeCra5'),{
+['gaugeCra5Fisico','gaugeCra5Financiero'].forEach(id=>{
+  const el = document.getElementById(id);
+  if (el) new Chart(el,{
     type:'doughnut',
     data:{datasets:[{data:[100,0],backgroundColor:[GREEN,'#EAEEF7'],borderWidth:0}]},
     options:{cutout:'78%',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false}}}
   });
-}
+});
 if (document.getElementById('chartPieCra5')) {
   new Chart(document.getElementById('chartPieCra5'),{
     type:'doughnut',
@@ -1619,7 +1664,7 @@ const frentesCra5 = [
     secciones: 4,
     factor: null,
     estados: ['completado','completado','completado','completado'],
-    coords: [[4.4504,-75.2469],[4.4489,-75.2454],[4.4481,-75.2447],[4.4474,-75.2430],[4.4463,-75.2417],[4.4405,-75.2280],[4.4353,-75.2068],[4.4337,-75.2106],[4.4332,-75.2113],[4.4323,-75.2118],[4.4308,-75.2069],[4.4293,-75.2020]]
+    coords: [[4.446151,-75.241425],[4.446141,-75.241431],[4.446083,-75.241471],[4.445588,-75.241808],[4.445326,-75.241372],[4.445079,-75.240955],[4.44448,-75.240022],[4.443919,-75.239189],[4.443482,-75.238453],[4.443206,-75.237949],[4.443053,-75.237657],[4.442984,-75.237551],[4.442906,-75.237422],[4.442816,-75.237273],[4.442466,-75.236694],[4.442021,-75.235885],[4.442,-75.235848],[4.441552,-75.234881],[4.441183,-75.234103],[4.441146,-75.23402],[4.440856,-75.233378],[4.44048,-75.233063],[4.440292,-75.232902],[4.439689,-75.232209],[4.438992,-75.231399],[4.438377,-75.230539],[4.438169,-75.230246],[4.437782,-75.229698],[4.437146,-75.2288],[4.436888,-75.228433],[4.436877,-75.228387],[4.436787,-75.228246],[4.43676,-75.228204],[4.436743,-75.227873],[4.436736,-75.227729],[4.436723,-75.227081],[4.436711,-75.226616],[4.43668,-75.226253],[4.43662,-75.225045],[4.436617,-75.22498],[4.436584,-75.224237],[4.436576,-75.223656],[4.436567,-75.223087],[4.436546,-75.222816],[4.436531,-75.222567],[4.436512,-75.222386],[4.436425,-75.222004],[4.43632,-75.221715],[4.436151,-75.221388],[4.435799,-75.220834],[4.435487,-75.220353],[4.435226,-75.219943],[4.435102,-75.219656],[4.434937,-75.219066],[4.434922,-75.218978],[4.434898,-75.218723],[4.43485,-75.218193],[4.434763,-75.217658],[4.434751,-75.21758],[4.43471,-75.217293],[4.434681,-75.216982],[4.434633,-75.216578],[4.434582,-75.216147],[4.434555,-75.215928],[4.434534,-75.21572],[4.434481,-75.215343],[4.434432,-75.214898],[4.43436,-75.214527],[4.434283,-75.214231],[4.434134,-75.213773],[4.43395,-75.213346],[4.43394,-75.21332],[4.433936,-75.213311],[4.43385,-75.213168],[4.433539,-75.212718],[4.433292,-75.212389],[4.433202,-75.212279],[4.433125,-75.212187],[4.433005,-75.212063],[4.432483,-75.211373],[4.432032,-75.210839],[4.431837,-75.210686],[4.431746,-75.210603],[4.43156,-75.210336],[4.431506,-75.210285],[4.431421,-75.210196],[4.431344,-75.210118],[4.430919,-75.209808],[4.430709,-75.209654],[4.430566,-75.209453],[4.430422,-75.209249],[4.430263,-75.209007],[4.429384,-75.207673],[4.429192,-75.207366],[4.429148,-75.207297],[4.429003,-75.207069],[4.42894,-75.206965],[4.428857,-75.206829],[4.42873,-75.206618],[4.428642,-75.206469],[4.428538,-75.206259],[4.42844,-75.206068],[4.428333,-75.205815],[4.428242,-75.205544],[4.428166,-75.205232],[4.428082,-75.204845],[4.427934,-75.204161],[4.427849,-75.20365],[4.42781,-75.203363],[4.427794,-75.203154],[4.427808,-75.202154],[4.427807,-75.202043],[4.427895,-75.202042],[4.428278,-75.202038],[4.428347,-75.202037],[4.4286,-75.202034]]
   }
 ];
 if (document.getElementById('tramoMapCra5')) {
@@ -1647,10 +1692,17 @@ if (document.getElementById('tramoMapCra5')) {
 }
 
 /* ==== Semaforización Fase I ==== */
-if (document.getElementById('gaugeSemaforos')) {
-  new Chart(document.getElementById('gaugeSemaforos'),{
+if (document.getElementById('gaugeSemaforosFisico')) {
+  new Chart(document.getElementById('gaugeSemaforosFisico'),{
     type:'doughnut',
     data:{datasets:[{data:[88.84,11.16],backgroundColor:[GREEN,'#EAEEF7'],borderWidth:0}]},
+    options:{cutout:'78%',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false}}}
+  });
+}
+if (document.getElementById('gaugeSemaforosFinanciero')) {
+  new Chart(document.getElementById('gaugeSemaforosFinanciero'),{
+    type:'doughnut',
+    data:{datasets:[{data:[0,100],backgroundColor:[RED,'#EAEEF7'],borderWidth:0}]},
     options:{cutout:'78%',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false}}}
   });
 }
