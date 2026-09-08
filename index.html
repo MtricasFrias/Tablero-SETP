@@ -594,7 +594,7 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
         <div class="m"><div class="lbl">Longitud intervenida</div><div class="val">5.007 m</div></div>
         <div class="m"><div class="lbl">Acta de inicio</div><div class="val">15-abr-2026</div></div>
         <div class="m"><div class="lbl">Finalización estimada</div><div class="val">26-nov-2026</div></div>
-        <div class="m"><div class="lbl">Actas de pago radicadas</div><div class="val" style="color:var(--red)">$0 (0%)</div></div>
+        <div class="m"><div class="lbl">Ejecución financiera</div><div class="val" style="color:var(--pending)">$0 (0%)</div></div>
       </div>
       <div class="hero-meta" style="margin-top:14px;align-items:center">
         <div class="m"><div class="lbl">Contrato de obra</div><div class="val">$24.408 M</div></div>
@@ -611,7 +611,7 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
             <canvas id="gaugeFase1"></canvas>
             <div class="gauge-center"><div class="pct" style="font-size:20px;color:var(--green)">100%</div></div>
           </div>
-          <div style="font-size:12.5px;font-weight:800;color:var(--ink);margin-top:8px">Fase I · Diseños</div>
+          <div style="font-size:12.5px;font-weight:800;color:var(--ink);margin-top:8px">Fase I · EyD</div>
           <div style="font-size:11px;color:var(--muted)">Completada</div>
         </div>
         <div style="text-align:center">
@@ -653,9 +653,9 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
     <div class="cards g3" style="margin-bottom:20px">
       <div class="card kpi"><div class="accent" style="background:var(--navy)"></div><h4>Vía a intervenir</h4><div class="big" style="font-size:26px">5.007<span class="unit"> m</span></div><div class="foot">Longitud total de localización y replanteo</div></div>
       <div class="card kpi"><div class="accent" style="background:var(--royal)"></div><h4>Área a intervenir</h4><div class="big" style="font-size:26px">43.939<span class="unit"> m²</span></div><div class="foot">Área total de calzada a conformar en ambos tramos</div></div>
-      <div class="card kpi"><div class="accent" style="background:var(--royal)"></div><h4>Reposición de redes (estudio)</h4><div class="big" style="font-size:26px">≈1.447<span class="unit"> m</span></div><div class="foot">8 tramos de alcantarillado · Fase I</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--royal)"></div><h4>Reposición de redes (estudio)</h4><div class="big" style="font-size:26px">≈2.100<span class="unit"> m</span></div><div class="foot">8 tramos de alcantarillado · Fase I</div></div>
     </div>
-    <p class="map-note" style="margin-bottom:20px">Durante las inspecciones de sumideros y puntos de captación de aguas lluvias realizadas en la Fase I, en trabajo conjunto con IBAL (Empresa de Acueducto y Alcantarillado de Ibagué), se identificaron afectaciones importantes en la batea de las tuberías del corredor —asociadas a procesos erosivos y desplazamientos de algunos tramos—, que representan un riesgo para la estabilidad y el comportamiento del pavimento. Se elabora un presupuesto adicional para la reposición de las redes comprometidas, con un valor estimado de $3.449,99 M sobre los 8 tramos identificados.</p>
+    <p class="map-note" style="margin-bottom:20px">Durante las inspecciones de sumideros y puntos de captación de aguas lluvias realizadas en la Fase I, en trabajo conjunto con IBAL (Empresa Ibaguereña de Acueducto y Alcantarillado — IBAL S.A. E.S.P. Oficial), se identificaron afectaciones importantes en la batea de las tuberías del corredor —asociadas a procesos erosivos y desplazamientos de algunos tramos—, que representan un riesgo para la estabilidad y el comportamiento del pavimento. Se elabora un presupuesto adicional para la reposición de las redes comprometidas, con un valor estimado de $3.449,99 M sobre los 8 tramos identificados.</p>
 
     <!-- Meta vs ejecutado -->
     <div class="cards g2">
@@ -738,7 +738,7 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
       <div class="card">
         <h4>Distribución del presupuesto</h4>
         <div class="chart-box"><canvas id="chartPie"></canvas></div>
-        <p class="map-note"><b style="color:var(--ink)">AIU:</b> Administración, Imprevistos y Utilidad del contratista. &nbsp;·&nbsp; <b style="color:var(--ink)">PMT:</b> Plan de Manejo de Tránsito durante la obra.</p>
+        <p class="map-note"><b style="color:var(--ink)">PMT:</b> Plan de Manejo de Tránsito durante la obra. &nbsp;·&nbsp; <b style="color:var(--ink)">Ambiental:</b> incluye el Plan de Manejo Ambiental (PMA).</p>
       </div>
       <div class="card" style="display:flex;flex-direction:column">
         <h4>Estructura de pagos del contrato</h4>
@@ -857,8 +857,8 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
     <div class="card">
       <img src="img/glorieta-ambala.jpg" alt="Glorieta de la Avenida Ambalá, Ibagué" style="width:100%;max-height:360px;object-fit:cover;border-radius:14px;margin-bottom:18px">
       <div style="display:flex;gap:24px;flex-wrap:wrap">
-        <p style="flex:1;min-width:260px;font-size:14.5px;line-height:1.7;color:var(--ink);margin:0">La Avenida Ambalá es uno de los corredores viales más extensos y transitados de Ibagué: conecta barrios del norte y el sector de El Salado con el centro de la ciudad, articulando zonas residenciales, comerciales e institucionales a lo largo de su trazado.</p>
-        <p style="flex:1;min-width:260px;font-size:14.5px;line-height:1.7;color:var(--ink);margin:0">Su ampliación en 1991, entre el puente de Progal y San Carlos, redujo el tiempo de viaje entre El Salado y el centro de 16 a cerca de 10–12 minutos. Hoy, la rehabilitación de su infraestructura y redes busca modernizar ese mismo corredor para sostener la movilidad de la ciudad en las próximas décadas.</p>
+        <p style="flex:1;min-width:260px;font-size:14.5px;line-height:1.7;color:var(--ink);margin:0">El Sistema Estratégico de Transporte Público (SETP) de Ibagué se apoya en los corredores viales más importantes de la ciudad para conectar barrios y sectores con el centro. La Avenida Ambalá es uno de esos corredores estructurantes: conecta barrios del norte y el sector de El Salado con el centro de la ciudad, articulando zonas residenciales, comerciales e institucionales a lo largo de su trazado.</p>
+        <p style="flex:1;min-width:260px;font-size:14.5px;line-height:1.7;color:var(--ink);margin:0">Su ampliación en 1991, entre el puente de Progal y San Carlos, redujo el tiempo de viaje entre El Salado y el centro de 16 a cerca de 10–12 minutos. Hoy, rehabilitar su infraestructura y redes para el SETP busca modernizar ese mismo corredor y sostener la movilidad de la ciudad en las próximas décadas.</p>
       </div>
       <p style="font-size:12px;color:var(--muted);margin:14px 0 0">Foto: glorieta de la Avenida Ambalá, Ibagué.</p>
     </div>
@@ -886,8 +886,14 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
         <div class="m"><div class="lbl">Intersecciones</div><div class="val">34</div></div>
         <div class="m"><div class="lbl">Acta de inicio</div><div class="val">20-feb-2025</div></div>
         <div class="m"><div class="lbl">Finalización estimada</div><div class="val">29-sep-2026</div></div>
-        <div class="m"><div class="lbl">Valor del contrato</div><div class="val">$8.946,6 M</div></div>
-        <div class="m"><div class="lbl">Actas de pago radicadas</div><div class="val" style="color:var(--red)">$0 (0%)</div></div>
+        <div class="m"><div class="lbl">Ejecución financiera</div><div class="val" style="color:var(--pending)">$0 (0%)</div></div>
+      </div>
+      <div class="hero-meta" style="margin-top:14px;align-items:center">
+        <div class="m"><div class="lbl">Contrato de obra</div><div class="val">$8.946,6 M</div></div>
+        <div style="font-size:22px;font-weight:800;color:var(--muted);align-self:center">+</div>
+        <div class="m"><div class="lbl">Contrato de interventoría</div><div class="val">$832,1 M</div></div>
+        <div style="font-size:22px;font-weight:800;color:var(--muted);align-self:center">=</div>
+        <div class="m"><div class="lbl">Valor del proyecto</div><div class="val" style="color:var(--navy)">$9.778,7 M</div></div>
       </div>
       <p class="map-note" style="max-width:640px">El 36% corresponde a las 34 intersecciones de esta Fase I frente al total de la red semafórica de la ciudad de Ibagué (no solo las rutas del SETP). Las dos fases restantes cubrirán el 64% de intersecciones faltante.</p>
     </div>
@@ -904,7 +910,7 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
         <div style="text-align:center">
           <div class="gauge-wrap" style="width:120px;height:120px">
             <canvas id="gaugeSemaforosFinanciero"></canvas>
-            <div class="gauge-center"><div class="pct" style="font-size:20px;color:var(--red)">0%</div></div>
+            <div class="gauge-center"><div class="pct" style="font-size:20px;color:var(--pending)">0%</div></div>
           </div>
           <div style="font-size:12.5px;font-weight:800;color:var(--ink);margin-top:8px">Financiero</div>
           <div style="font-size:11px;color:var(--muted)">Sin pagos radicados</div>
@@ -1000,12 +1006,13 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
       <span class="mini-pill">Valores en COP</span>
     </div>
 
-    <div class="cards g3" style="margin-bottom:20px">
-      <div class="card kpi"><div class="accent" style="background:var(--navy)"></div><h4>Valor del contrato (obra)</h4><div class="big" style="font-size:26px">$8.946,6<span class="unit"> M</span></div><div class="foot">Contrato de Obra N.° 117</div></div>
-      <div class="card kpi"><div class="accent" style="background:var(--gold)"></div><h4>Desembolsado a la fecha</h4><div class="big" style="font-size:26px">$0</div><div class="foot">Sin actas de pago radicadas</div></div>
-      <div class="card kpi"><div class="accent" style="background:var(--green)"></div><h4>Ejecutado financiero</h4><div class="big" style="font-size:26px">0<span class="unit"> %</span></div><div class="foot">Sin actas de pago radicadas</div></div>
+    <div class="cards g5" style="margin-bottom:20px">
+      <div class="card kpi"><div class="accent" style="background:var(--navy)"></div><h4>Contrato de obra</h4><div class="big" style="font-size:24px">$8.946,6<span class="unit"> M</span></div><div class="foot">Contrato de Obra N.° 117</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--gold)"></div><h4>Contrato de interventoría</h4><div class="big" style="font-size:24px">$832,1<span class="unit"> M</span></div><div class="foot">Consorcio Inter Semafóricas Ibagué · N.° 188 · 2024</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--navy)"></div><h4>Valor del proyecto</h4><div class="big" style="font-size:24px">$9.778,7<span class="unit"> M</span></div><div class="foot">Obra + interventoría</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--royal)"></div><h4>Desembolsado a la fecha</h4><div class="big" style="font-size:24px">$0</div><div class="foot">Sin actas de pago radicadas</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--green)"></div><h4>Ejecutado financiero</h4><div class="big" style="font-size:24px">0<span class="unit"> %</span></div><div class="foot">Sin actas de pago radicadas</div></div>
     </div>
-    <p class="map-note" style="margin-bottom:20px">El contrato de interventoría (N.° 188 · 2024, Consorcio Inter Semafóricas Ibagué) tiene un valor de $832,1 M, para un valor total de proyecto (obra + interventoría) de $9.778,7 M.</p>
 
     <div class="cards g2">
       <div class="card">
@@ -1620,11 +1627,11 @@ if (document.getElementById('tramoMap')) {
   leafletMaps.push(tramoMap);
 }
 
-/* ---- Torta: distribución del presupuesto (estimada) ---- */
+/* ---- Torta: distribución del presupuesto (estimada, sin AIU a pedido del cliente 08-sep-2026; excluido AIU y reescalado a 100% el resto) ---- */
 new Chart(document.getElementById('chartPie'),{
   type:'doughnut',
-  data:{labels:['Estructura de pavimento','AIU','Diseños','Ambiental + PMT','Preliminares, andenes y señalización'],
-    datasets:[{data:[68.8,21.9,2.6,2.5,4.2],backgroundColor:[NAVY,ROYAL,GOLD,GREEN,PENDING],borderWidth:2,borderColor:'#fff'}]},
+  data:{labels:['Estructura de pavimento','Diseños','Ambiental + PMT','Preliminares, andenes y señalización'],
+    datasets:[{data:[88.1,3.3,3.2,5.4],backgroundColor:[NAVY,GOLD,GREEN,PENDING],borderWidth:2,borderColor:'#fff'}]},
   options:{responsive:true,maintainAspectRatio:false,cutout:'55%',
     plugins:{legend:{position:'right',labels:{boxWidth:12,font:{size:11},padding:10}},
       tooltip:{callbacks:{label:c=>' '+c.label+': '+c.parsed+'%'}}}}
@@ -1701,7 +1708,7 @@ if (document.getElementById('gaugeSemaforosFisico')) {
 if (document.getElementById('gaugeSemaforosFinanciero')) {
   new Chart(document.getElementById('gaugeSemaforosFinanciero'),{
     type:'doughnut',
-    data:{datasets:[{data:[0,100],backgroundColor:[RED,'#EAEEF7'],borderWidth:0}]},
+    data:{datasets:[{data:[0,100],backgroundColor:[GREEN,PENDING],borderWidth:0}]},
     options:{cutout:'78%',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false}}}
   });
 }
