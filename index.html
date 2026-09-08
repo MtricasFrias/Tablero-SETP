@@ -344,7 +344,7 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
         <div class="progress-row"><div class="top"><span class="name">Pavimentación (fresado, mezclas MDC-19/25/10, geomalla, riegos)</span></div></div>
         <div class="progress-row"><div class="top"><span class="name">Obras complementarias (andenes, isletas, rampas, sumideros)</span></div></div>
         <div class="progress-row"><div class="top"><span class="name">Señalización vial (demarcación y tachas reflectivas)</span></div></div>
-        <p class="map-note">El objeto del contrato incluyó también rampas de accesibilidad universal y ciclobandas unidireccionales al costado derecho de las calzadas.</p>
+        <p class="map-note" style="background:transparent;border-left:none;padding-left:0">El objeto del contrato incluyó también rampas de accesibilidad universal y ciclobandas unidireccionales al costado derecho de las calzadas.</p>
         <div style="margin-top:auto;padding-top:18px;display:flex;align-items:center;gap:18px;flex-wrap:wrap">
           <svg viewBox="0 0 220 100" style="width:170px;height:auto;flex:0 0 auto;overflow:visible">
             <line x1="0" y1="82" x2="220" y2="82" stroke="var(--line)" stroke-width="3"/>
@@ -376,7 +376,7 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
         <div class="progress-row"><div class="top"><span class="name">Reciclaje de estructura existente</span><span class="figs">Tramo Cl 10 – Cl 20, hallazgo geotécnico</span></div></div>
         <div class="progress-row"><div class="top"><span class="name">Geomalla de fibra de vidrio</span><span class="figs">Mitigación de fisuras reflejadas</span></div></div>
         <div class="progress-row"><div class="top"><span class="name">Mezcla modificada con polímeros (PG 76H-22)</span><span class="figs">Mejor comportamiento en tráfico pesado</span></div></div>
-        <p class="map-note">Se aprobaron precios unitarios para 8 ítems adicionales de obra no prevista, necesarios por hallazgos técnicos durante la ejecución. Esto no representó una adición de valor al contrato: el Acta de Terminación confirma que no hubo adiciones presupuestales, solo la prórroga de plazo indicada arriba.</p>
+        <p class="map-note" style="background:transparent;border-left:none;padding-left:0">Se aprobaron precios unitarios para 8 ítems adicionales de obra no prevista, necesarios por hallazgos técnicos durante la ejecución. Esto no representó una adición de valor al contrato: el Acta de Terminación confirma que no hubo adiciones presupuestales, solo la prórroga de plazo indicada arriba.</p>
       </div>
     </div>
 
@@ -726,11 +726,12 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
       <span class="mini-pill">Valores en COP</span>
     </div>
 
-    <div class="cards g5" style="margin-bottom:20px">
+    <div class="cards g5" style="margin-bottom:20px;grid-template-columns:repeat(3,1fr)">
       <div class="card kpi"><div class="accent" style="background:var(--navy)"></div><h4>Contrato de obra</h4><div class="big" style="font-size:24px">$24.408<span class="unit"> M</span></div><div class="foot">13.940 SMMLV (2025)</div></div>
       <div class="card kpi"><div class="accent" style="background:var(--gold)"></div><h4>Contrato de interventoría</h4><div class="big" style="font-size:24px">$1.570<span class="unit"> M</span></div><div class="foot">Consorcio Interambalá</div></div>
       <div class="card kpi"><div class="accent" style="background:var(--navy)"></div><h4>Inversión total</h4><div class="big" style="font-size:24px">$25.978<span class="unit"> M</span></div><div class="foot">Obra + interventoría</div></div>
-      <div class="card kpi"><div class="accent" style="background:var(--royal)"></div><h4>Fase I · Diseños</h4><div class="big" style="font-size:24px">$573,8<span class="unit"> M</span></div><div class="foot">Pago único al aprobar</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--royal)"></div><h4>Fase I · EyD (obra)</h4><div class="big" style="font-size:24px">$573,8<span class="unit"> M</span></div><div class="foot">Pago único al aprobar</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--red)"></div><h4>Fase I · EyD (interventoría)</h4><div class="big" style="font-size:24px;color:var(--red)">$0<span class="unit"> M</span></div><div class="foot" style="color:var(--red);font-weight:700">⚠ Falta cargar el valor real</div></div>
       <div class="card kpi"><div class="accent" style="background:var(--green)"></div><h4>Ejecutado financiero</h4><div class="big" style="font-size:24px">0<span class="unit"> %</span></div></div>
     </div>
 
@@ -986,12 +987,13 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
     </div>
 
     <!-- Cantidades de obra civil: subterranización -->
-    <div style="font-size:13px;color:var(--muted);margin:20px 0 12px">Cantidades de obra civil (subterranización)</div>
+    <div style="font-size:13px;color:var(--muted);margin:20px 0 4px">Cantidades de obra civil (subterranización)</div>
+    <p class="map-note" style="border-left-color:var(--red);margin:0 0 12px">⚠ <b style="color:var(--red)">En revisión:</b> estas cantidades no se han podido verificar contra el reporte de origen. No confirmar como definitivas hasta que se validen.</p>
     <div class="cards g4">
-      <div class="card kpi"><div class="accent" style="background:var(--navy)"></div><h4>Tubería eléctrica 3"</h4><div class="big" style="font-size:22px">8.843<span class="unit"> m</span></div><div class="foot">PVC TDP</div></div>
-      <div class="card kpi"><div class="accent" style="background:var(--royal)"></div><h4>Canalización dirigida</h4><div class="big" style="font-size:22px">3.442<span class="unit"> m</span></div><div class="foot">PVC TDP 3" · perforación dirigida</div></div>
-      <div class="card kpi"><div class="accent" style="background:var(--gold)"></div><h4>Cajas de inspección</h4><div class="big" style="font-size:22px">295<span class="unit"> und</span></div><div class="foot">90x90x80 cm, con tapa antivandálica</div></div>
-      <div class="card kpi"><div class="accent" style="background:var(--green)"></div><h4>Andén reconstruido</h4><div class="big" style="font-size:22px">2.478<span class="unit"> m²</span></div><div class="foot">Concreto 3000 PSI · Espesor=10cm</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--red)"></div><h4>Tubería eléctrica 3"</h4><div class="big" style="font-size:22px">8.843<span class="unit"> m</span></div><div class="foot" style="color:var(--red)">PVC TDP · en revisión</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--red)"></div><h4>Canalización dirigida</h4><div class="big" style="font-size:22px">3.442<span class="unit"> m</span></div><div class="foot" style="color:var(--red)">PVC TDP 3" · en revisión</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--red)"></div><h4>Cajas de inspección</h4><div class="big" style="font-size:22px">295<span class="unit"> und</span></div><div class="foot" style="color:var(--red)">90x90x80 cm · en revisión</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--red)"></div><h4>Andén reconstruido</h4><div class="big" style="font-size:22px">2.478<span class="unit"> m²</span></div><div class="foot" style="color:var(--red)">Concreto 3000 PSI · en revisión</div></div>
     </div>
   </div>
 </section>
@@ -1018,7 +1020,7 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
       <div class="card">
         <h4>Distribución del presupuesto</h4>
         <div class="chart-box"><canvas id="chartPieSemaforos"></canvas></div>
-        <p class="map-note"><b style="color:var(--ink)">PMT:</b> Plan de Manejo de Tránsito. <b style="color:var(--ink)">PMA:</b> Plan de Manejo Ambiental.</p>
+        <p class="map-note" style="border-left-color:var(--red)">⚠ <b style="color:var(--red)">En revisión:</b> estos porcentajes no se han podido verificar contra el reporte de origen. <b style="color:var(--ink)">PMT:</b> Plan de Manejo de Tránsito. <b style="color:var(--ink)">PMA:</b> Plan de Manejo Ambiental.</p>
       </div>
       <div class="card" style="display:flex;flex-direction:column">
         <h4>Forma de pago</h4>
