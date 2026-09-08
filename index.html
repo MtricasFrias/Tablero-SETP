@@ -300,6 +300,14 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
       <div style="display:flex;gap:16px;justify-content:center">
         <div style="text-align:center">
           <div class="gauge-wrap" style="width:100px;height:100px">
+            <canvas id="gaugeCra5EyD"></canvas>
+            <div class="gauge-center"><div class="pct" style="font-size:16px;color:var(--muted)">S/D</div></div>
+          </div>
+          <div style="font-size:12px;font-weight:800;color:var(--ink);margin-top:8px">EyD</div>
+          <div style="font-size:10.5px;color:var(--muted)">Dato pendiente</div>
+        </div>
+        <div style="text-align:center">
+          <div class="gauge-wrap" style="width:100px;height:100px">
             <canvas id="gaugeCra5Fisico"></canvas>
             <div class="gauge-center"><div class="pct" style="font-size:18px;color:var(--green)">100%</div></div>
           </div>
@@ -910,6 +918,14 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
       <div style="display:flex;gap:16px;justify-content:center">
         <div style="text-align:center">
           <div class="gauge-wrap" style="width:100px;height:100px">
+            <canvas id="gaugeSemaforosEyD"></canvas>
+            <div class="gauge-center"><div class="pct" style="font-size:16px;color:var(--muted)">S/D</div></div>
+          </div>
+          <div style="font-size:12px;font-weight:800;color:var(--ink);margin-top:8px">EyD</div>
+          <div style="font-size:10.5px;color:var(--muted)">Dato pendiente</div>
+        </div>
+        <div style="text-align:center">
+          <div class="gauge-wrap" style="width:100px;height:100px">
             <canvas id="gaugeSemaforosFisico"></canvas>
             <div class="gauge-center"><div class="pct" style="font-size:18px;color:var(--green)">92,9%</div></div>
           </div>
@@ -1153,6 +1169,14 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
     </div>
     <div class="gauge-card">
       <div style="display:flex;gap:16px;justify-content:center">
+        <div style="text-align:center">
+          <div class="gauge-wrap" style="width:100px;height:100px">
+            <canvas id="gaugeParaderosEyD"></canvas>
+            <div class="gauge-center"><div class="pct" style="font-size:16px;color:var(--muted)">S/D</div></div>
+          </div>
+          <div style="font-size:12px;font-weight:800;color:var(--ink);margin-top:8px">EyD</div>
+          <div style="font-size:10.5px;color:var(--muted)">Dato pendiente</div>
+        </div>
         <div style="text-align:center">
           <div class="gauge-wrap" style="width:100px;height:100px">
             <canvas id="gaugeParaderosFisico"></canvas>
@@ -1654,6 +1678,14 @@ new Chart(document.getElementById('chartPie'),{
 /* ---- Fuente de financiación (Nación / Municipio): pendiente de cifras validadas, gráfico retirado temporalmente ---- */
 
 /* ==== Carrera Quinta ==== */
+['gaugeCra5EyD','gaugeSemaforosEyD','gaugeParaderosEyD'].forEach(id=>{
+  const el = document.getElementById(id);
+  if (el) new Chart(el,{
+    type:'doughnut',
+    data:{datasets:[{data:[1],backgroundColor:['#CBD2DE'],borderWidth:0}]},
+    options:{cutout:'78%',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false}}}
+  });
+});
 ['gaugeCra5Fisico','gaugeCra5Financiero'].forEach(id=>{
   const el = document.getElementById(id);
   if (el) new Chart(el,{
