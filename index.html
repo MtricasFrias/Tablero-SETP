@@ -301,10 +301,10 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
         <div style="text-align:center">
           <div class="gauge-wrap" style="width:100px;height:100px">
             <canvas id="gaugeCra5EyD"></canvas>
-            <div class="gauge-center"><div class="pct" style="font-size:16px;color:var(--muted)">S/D</div></div>
+            <div class="gauge-center"><div class="pct" style="font-size:18px;color:var(--green)">100%</div></div>
           </div>
           <div style="font-size:12px;font-weight:800;color:var(--ink);margin-top:8px">EyD</div>
-          <div style="font-size:10.5px;color:var(--muted)">Dato pendiente</div>
+          <div style="font-size:10.5px;color:var(--muted)">Completada</div>
         </div>
         <div style="text-align:center">
           <div class="gauge-wrap" style="width:100px;height:100px">
@@ -919,10 +919,10 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
         <div style="text-align:center">
           <div class="gauge-wrap" style="width:100px;height:100px">
             <canvas id="gaugeSemaforosEyD"></canvas>
-            <div class="gauge-center"><div class="pct" style="font-size:16px;color:var(--muted)">S/D</div></div>
+            <div class="gauge-center"><div class="pct" style="font-size:18px;color:var(--green)">100%</div></div>
           </div>
           <div style="font-size:12px;font-weight:800;color:var(--ink);margin-top:8px">EyD</div>
-          <div style="font-size:10.5px;color:var(--muted)">Dato pendiente</div>
+          <div style="font-size:10.5px;color:var(--muted)">Completada</div>
         </div>
         <div style="text-align:center">
           <div class="gauge-wrap" style="width:100px;height:100px">
@@ -1172,10 +1172,10 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
         <div style="text-align:center">
           <div class="gauge-wrap" style="width:100px;height:100px">
             <canvas id="gaugeParaderosEyD"></canvas>
-            <div class="gauge-center"><div class="pct" style="font-size:16px;color:var(--muted)">S/D</div></div>
+            <div class="gauge-center"><div class="pct" style="font-size:18px;color:var(--green)">100%</div></div>
           </div>
           <div style="font-size:12px;font-weight:800;color:var(--ink);margin-top:8px">EyD</div>
-          <div style="font-size:10.5px;color:var(--muted)">Dato pendiente</div>
+          <div style="font-size:10.5px;color:var(--muted)">Completada</div>
         </div>
         <div style="text-align:center">
           <div class="gauge-wrap" style="width:100px;height:100px">
@@ -1682,7 +1682,7 @@ new Chart(document.getElementById('chartPie'),{
   const el = document.getElementById(id);
   if (el) new Chart(el,{
     type:'doughnut',
-    data:{datasets:[{data:[1],backgroundColor:['#CBD2DE'],borderWidth:0}]},
+    data:{datasets:[{data:[100,0],backgroundColor:[GREEN,'#EAEEF7'],borderWidth:0}]},
     options:{cutout:'78%',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false}}}
   });
 });
