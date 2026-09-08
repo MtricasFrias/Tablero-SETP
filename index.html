@@ -605,27 +605,35 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
       </div>
     </div>
     <div class="gauge-card">
-      <div style="display:flex;gap:20px;justify-content:center">
+      <div style="display:flex;gap:16px;justify-content:center">
         <div style="text-align:center">
-          <div class="gauge-wrap" style="width:120px;height:120px">
-            <canvas id="gaugeFase1"></canvas>
-            <div class="gauge-center"><div class="pct" style="font-size:20px;color:var(--green)">100%</div></div>
+          <div class="gauge-wrap" style="width:100px;height:100px">
+            <canvas id="gaugeAmbalaEyD"></canvas>
+            <div class="gauge-center"><div class="pct" style="font-size:18px;color:var(--green)">100%</div></div>
           </div>
-          <div style="font-size:12.5px;font-weight:800;color:var(--ink);margin-top:8px">Fase I · EyD</div>
-          <div style="font-size:11px;color:var(--muted)">Completada</div>
+          <div style="font-size:12px;font-weight:800;color:var(--ink);margin-top:8px">EyD</div>
+          <div style="font-size:10.5px;color:var(--muted)">Completada</div>
         </div>
         <div style="text-align:center">
-          <div class="gauge-wrap" style="width:120px;height:120px">
-            <canvas id="gaugeFase2"></canvas>
-            <div class="gauge-center"><div class="pct" style="font-size:20px;color:var(--pending)">0%</div></div>
+          <div class="gauge-wrap" style="width:100px;height:100px">
+            <canvas id="gaugeAmbalaFisico"></canvas>
+            <div class="gauge-center"><div class="pct" style="font-size:18px;color:var(--pending)">0%</div></div>
           </div>
-          <div style="font-size:12.5px;font-weight:800;color:var(--ink);margin-top:8px">Fase II · Obra</div>
-          <div style="font-size:11px;color:var(--muted)">Por iniciar</div>
+          <div style="font-size:12px;font-weight:800;color:var(--ink);margin-top:8px">Físico</div>
+          <div style="font-size:10.5px;color:var(--muted)">Por iniciar</div>
+        </div>
+        <div style="text-align:center">
+          <div class="gauge-wrap" style="width:100px;height:100px">
+            <canvas id="gaugeAmbalaFinanciero"></canvas>
+            <div class="gauge-center"><div class="pct" style="font-size:18px;color:var(--pending)">0%</div></div>
+          </div>
+          <div style="font-size:12px;font-weight:800;color:var(--ink);margin-top:8px">Financiero</div>
+          <div style="font-size:10.5px;color:var(--muted)">Sin pagos radicados</div>
         </div>
       </div>
       <div class="gauge-legend" style="margin-top:16px">
-        <span><i style="background:var(--green)"></i> Completada</span>
-        <span><i style="background:var(--pending)"></i> Por iniciar</span>
+        <span><i style="background:var(--green)"></i> Ejecutado</span>
+        <span><i style="background:var(--pending)"></i> Pendiente</span>
       </div>
     </div>
   </div>
@@ -1150,7 +1158,7 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
             <canvas id="gaugeParaderosFisico"></canvas>
             <div class="gauge-center"><div class="pct" style="font-size:20px;color:var(--green)">100%</div></div>
           </div>
-          <div style="font-size:12.5px;font-weight:800;color:var(--ink);margin-top:8px">Montaje físico</div>
+          <div style="font-size:12.5px;font-weight:800;color:var(--ink);margin-top:8px">Físico</div>
           <div style="font-size:11px;color:var(--muted)">Completado</div>
         </div>
         <div style="text-align:center">
@@ -1550,15 +1558,19 @@ document.querySelectorAll('.tab[data-page]').forEach(btn=>{
 /* ---- Gauges de fases: Fase I (E&D) completada · Fase II (Obra) por iniciar ---- */
 /* Fuente: Informe Ejecutivo 05-jul-2026 (corte 26-jun-2026) + actualización verbal del Director Operativo (ago-2026): Fase I al 100%. */
 /* Valores: Fase I $573,8 M (minuta); Fase II = valor obra - Fase I = $23.834,3 M. */
-new Chart(document.getElementById('gaugeFase1'),{
-  type:'doughnut',
-  data:{datasets:[{data:[100,0],backgroundColor:[GREEN,'#EAEEF7'],borderWidth:0}]},
-  options:{cutout:'72%',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false}}}
+['gaugeAmbalaEyD'].forEach(id=>{
+  new Chart(document.getElementById(id),{
+    type:'doughnut',
+    data:{datasets:[{data:[100,0],backgroundColor:[GREEN,'#EAEEF7'],borderWidth:0}]},
+    options:{cutout:'72%',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false}}}
+  });
 });
-new Chart(document.getElementById('gaugeFase2'),{
-  type:'doughnut',
-  data:{datasets:[{data:[0,100],backgroundColor:[GREEN,PENDING],borderWidth:0}]},
-  options:{cutout:'72%',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false}}}
+['gaugeAmbalaFisico','gaugeAmbalaFinanciero'].forEach(id=>{
+  new Chart(document.getElementById(id),{
+    type:'doughnut',
+    data:{datasets:[{data:[0,100],backgroundColor:[GREEN,PENDING],borderWidth:0}]},
+    options:{cutout:'72%',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false}}}
+  });
 });
 
 /* ---- Mapa satelital interactivo de tramos ---- */
