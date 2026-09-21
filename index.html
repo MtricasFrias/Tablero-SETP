@@ -184,6 +184,27 @@ section.block{padding:34px 0; border-bottom:1px solid var(--line)}
 .seg:hover .tip{opacity:1}
 .seg-scale{display:flex; justify-content:space-between; font-size:11px; color:var(--muted); font-weight:600}
 .map-note{font-size:12px; color:var(--muted); margin-top:14px; padding:12px 14px; background:var(--paper); border-radius:10px; border-left:3px solid var(--gold)}
+/* Ítem con su causa conectada por una línea (Ítems de obra no prevista) */
+.link-item{position:relative; padding:0 0 16px 30px}
+.link-item.last{padding-bottom:4px}
+.link-item::before{content:""; position:absolute; left:8px; top:20px; bottom:-2px; width:2px; background:linear-gradient(var(--gold),rgba(240,168,0,.15))}
+.link-item.last::before{display:none}
+.link-item .dot{position:absolute; left:0; top:3px; width:18px; height:18px; border-radius:50%; background:var(--gold); box-shadow:0 0 0 0 rgba(240,168,0,.5); animation:linkPulse 2.6s ease-out infinite}
+.link-item:nth-of-type(2) .dot{animation-delay:.5s}
+.link-item:nth-of-type(3) .dot{animation-delay:1s}
+.link-item:nth-of-type(4) .dot{animation-delay:1.5s}
+.link-item .nm{font-weight:700; color:var(--ink); font-size:14px}
+.link-item .why{font-size:12.5px; color:var(--muted); margin-top:3px; line-height:1.45}
+.link-item .why::before{content:"↳ "; color:var(--gold); font-weight:800}
+@keyframes linkPulse{0%{box-shadow:0 0 0 0 rgba(240,168,0,.55)}70%{box-shadow:0 0 0 9px rgba(240,168,0,0)}100%{box-shadow:0 0 0 0 rgba(240,168,0,0)}}
+/* Destacado: reciclaje de la estructura existente */
+.feature-recycle{display:flex; gap:14px; align-items:center; margin:10px 0 4px; padding:14px 16px; border-radius:14px; background:linear-gradient(135deg,rgba(0,168,48,.10),rgba(240,168,0,.12)); border:1px solid rgba(0,168,48,.25)}
+.feature-recycle svg{flex:0 0 46px; width:46px; height:46px}
+.feature-recycle .spin{transform-origin:23px 23px; animation:recycleSpin 7s linear infinite}
+.feature-recycle b{color:var(--ink); font-size:14.5px}
+.feature-recycle small{display:block; color:var(--muted); font-size:12px; line-height:1.45; margin-top:2px}
+@keyframes recycleSpin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.link-item .dot,.feature-recycle .spin{animation:none}}
 
 /* Gantt */
 .gantt{margin-top:8px}
@@ -286,15 +307,22 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
         <span class="chip code">Contrato de Obra N° 046 · 2025</span>
         <span class="chip" style="background:rgba(0,168,48,.12); color:var(--green)">● Terminado</span>
       </div>
-      <h2>Rehabilitación de la Malla Vial de la Carrera Quinta</h2>
+      <h2>Rehabilitación de la Malla Vial de la Carrera Quinta — Fase II</h2>
       <p class="desc">Mejoramiento y rehabilitación de la malla vial de la Carrera Quinta desde la Calle 10 hasta la Calle 58, para la optimización de la infraestructura vial del SETP de Ibagué S.A.S., la cual incluye obras complementarias, diagnóstico y estudios y diseños.</p>
       <div class="hero-meta">
         <div class="m"><div class="lbl">Longitud intervenida</div><div class="val">10.160 m</div></div>
         <div class="m"><div class="lbl">Acta de inicio</div><div class="val">10-abr-2025</div></div>
         <div class="m"><div class="lbl">Fecha de finalización</div><div class="val">18-feb-2026</div></div>
-        <div class="m"><div class="lbl">Valor del contrato</div><div class="val">$35.399,9 M</div></div>
-        <div class="m"><div class="lbl">Actas de pago radicadas</div><div class="val" style="color:var(--green)">$35.399,9 M (100%)</div></div>
+        <div class="m"><div class="lbl">Ejecución financiera</div><div class="val" style="color:var(--green)">$35.399,9 M (100%)</div></div>
       </div>
+      <div class="hero-meta" style="margin-top:14px;align-items:center">
+        <div class="m"><div class="lbl">Contrato de obra</div><div class="val">$35.399,9 M</div></div>
+        <div style="font-size:22px;font-weight:800;color:var(--muted);align-self:center">+</div>
+        <div class="m"><div class="lbl">Contrato de interventoría</div><div class="val" style="color:var(--red)">$0 M</div></div>
+        <div style="font-size:22px;font-weight:800;color:var(--muted);align-self:center">=</div>
+        <div class="m"><div class="lbl">Valor del proyecto</div><div class="val" style="color:var(--red)">≥ $35.399,9 M*</div></div>
+      </div>
+      <p class="map-note" style="max-width:640px;border-left-color:var(--red)">⚠ <b style="color:var(--red)">* Falta cargar el valor del contrato de interventoría</b> para calcular el valor total del proyecto (obra + interventoría).</p>
     </div>
     <div class="gauge-card">
       <div style="display:flex;gap:16px;justify-content:center">
@@ -341,7 +369,7 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
 
     <div class="cards g3" style="margin-bottom:20px">
       <div class="card kpi"><div class="accent" style="background:var(--navy)"></div><h4>Corredor intervenido</h4><div class="big" style="font-size:22px">Cl 10 → Cl 58</div><div class="foot">Ambos sentidos · 10.160 m de localización y replanteo</div></div>
-      <div class="card kpi"><div class="accent" style="background:var(--royal)"></div><h4>Fresado de pavimento</h4><div class="big" style="font-size:24px">78.020<span class="unit"> m²</span></div><div class="foot">Espesor 15 cm, incluye transporte</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--royal)"></div><h4>Fresado de pavimento</h4><div class="big" style="font-size:24px">78.020<span class="unit"> m²</span></div><div class="foot">Espesor 15 cm</div></div>
       <div class="card kpi"><div class="accent" style="background:var(--gold)"></div><h4>Bordillo en concreto</h4><div class="big" style="font-size:24px">5.628<span class="unit"> m</span></div><div class="foot">Vaciado in situ</div></div>
     </div>
 
@@ -352,7 +380,18 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
         <div class="progress-row"><div class="top"><span class="name">Pavimentación (fresado, mezclas MDC-19/25/10, geomalla, riegos)</span></div></div>
         <div class="progress-row"><div class="top"><span class="name">Obras complementarias (andenes, isletas, rampas, sumideros)</span></div></div>
         <div class="progress-row"><div class="top"><span class="name">Señalización vial (demarcación y tachas reflectivas)</span></div></div>
-        <p class="map-note" style="background:transparent;border-left:none;padding-left:0">El objeto del contrato incluyó también rampas de accesibilidad universal y ciclobandas unidireccionales al costado derecho de las calzadas.</p>
+        <div class="feature-recycle">
+          <svg viewBox="0 0 46 46" aria-hidden="true">
+            <circle cx="23" cy="23" r="21" fill="rgba(0,168,48,.14)"/>
+            <g class="spin" fill="none" stroke="#00A830" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M23 9 a14 14 0 0 1 12.1 7"/><path d="M35.1 16 l0.4 -5.6 M35.1 16 l-5.4 -1.4"/>
+              <path d="M37 26 a14 14 0 0 1 -12 10"/><path d="M25 36 l-4.2 3.8 M25 36 l-1.6 -5.4"/>
+              <path d="M13 32 a14 14 0 0 1 -1.2 -14"/><path d="M11.8 18 l-3.6 -4.2 M11.8 18 l5.6 -0.4"/>
+            </g>
+          </svg>
+          <div><b>Reciclaje de la estructura existente</b><small>El material de la vía existente se recicló con maquinaria especializada, reduciendo residuos de construcción: una innovación ingenieril novedosa en Ibagué. Aplicada en el tramo Cl 10 – Cl 20.</small></div>
+        </div>
+        <p class="map-note" style="background:transparent;border-left:none;padding-left:0">El objeto del contrato incluyó también rampas de accesibilidad universal.</p>
         <div style="margin-top:auto;padding-top:18px;display:flex;align-items:center;gap:18px;flex-wrap:wrap">
           <svg viewBox="0 0 220 100" style="width:170px;height:auto;flex:0 0 auto;overflow:visible">
             <line x1="0" y1="82" x2="220" y2="82" stroke="var(--line)" stroke-width="3"/>
@@ -378,13 +417,33 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
           </div>
         </div>
       </div>
-      <div class="card">
+      <div class="card" style="display:flex;flex-direction:column">
         <h4>Ítems de obra no prevista</h4>
-        <div class="progress-row"><div class="top"><span class="name">Cambio de asfalto AC-30</span><span class="figs">Ecopetrol descontinuó el AC 60-70</span></div></div>
-        <div class="progress-row"><div class="top"><span class="name">Reciclaje de estructura existente</span><span class="figs">Tramo Cl 10 – Cl 20, hallazgo geotécnico</span></div></div>
-        <div class="progress-row"><div class="top"><span class="name">Geomalla de fibra de vidrio</span><span class="figs">Mitigación de fisuras reflejadas</span></div></div>
-        <div class="progress-row"><div class="top"><span class="name">Mezcla modificada con polímeros (PG 76H-22)</span><span class="figs">Mejor comportamiento en tráfico pesado</span></div></div>
-        <p class="map-note" style="background:transparent;border-left:none;padding-left:0">Se aprobaron precios unitarios para 8 ítems adicionales de obra no prevista, necesarios por hallazgos técnicos durante la ejecución. Esto no representó una adición de valor al contrato: el Acta de Terminación confirma que no hubo adiciones presupuestales, solo la prórroga de plazo indicada arriba.</p>
+        <div class="link-item"><span class="dot"></span><div class="nm">Cambio de asfalto AC-30</div><div class="why">Porque Ecopetrol descontinuó el AC 60-70</div></div>
+        <div class="link-item"><span class="dot"></span><div class="nm">Reciclaje de estructura existente</div><div class="why">Aplicado en el tramo Cl 10 – Cl 20</div></div>
+        <div class="link-item"><span class="dot"></span><div class="nm">Geomalla de fibra de vidrio</div><div class="why">Para mitigar fisuras reflejadas</div></div>
+        <div class="link-item last"><span class="dot"></span><div class="nm">Mezcla modificada con polímeros (PG 76H-22)</div><div class="why">Para un mejor comportamiento en tráfico pesado</div></div>
+        <p class="map-note" style="background:transparent;border-left:none;padding-left:0">Se aprobaron precios unitarios para 8 ítems adicionales de obra no prevista, sin adición de valor al contrato: solo hubo prórroga de plazo.</p>
+        <div style="margin-top:auto;padding-top:14px;display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+          <svg viewBox="0 0 150 80" style="width:130px;height:auto;flex:0 0 auto;overflow:visible" aria-hidden="true">
+            <path d="M8 60 L46 60" stroke="var(--line)" stroke-width="3" stroke-linecap="round"/>
+            <path d="M104 60 L142 60" stroke="var(--line)" stroke-width="3" stroke-linecap="round"/>
+            <g>
+              <path d="M75 12 L104 60 L46 60 Z" fill="var(--gold)"/>
+              <rect x="72.5" y="28" width="5" height="17" rx="2" fill="#fff"/><circle cx="75" cy="51" r="2.8" fill="#fff"/>
+              <animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;.35;.45;.9;1" dur="5s" repeatCount="indefinite"/>
+            </g>
+            <g opacity="0">
+              <circle cx="75" cy="38" r="24" fill="var(--green)"/>
+              <path d="M64 38 L72 46 L87 30" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+              <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.35;.45;.9;1" dur="5s" repeatCount="indefinite"/>
+            </g>
+          </svg>
+          <div style="font-size:13px;color:var(--muted);line-height:1.5;min-width:150px">
+            <b style="color:var(--ink);font-size:16px">Del imprevisto a la solución.</b><br>
+            Cada ajuste técnico se resolvió sin cambiar el valor del contrato.
+          </div>
+        </div>
       </div>
     </div>
 
@@ -471,12 +530,14 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
       <span class="mini-pill">Valores en COP</span>
     </div>
 
-    <div class="cards g3" style="margin-bottom:20px">
+    <div class="cards g5" style="margin-bottom:20px">
       <div class="card kpi"><div class="accent" style="background:var(--pending)"></div><h4>Presupuesto oficial estimado</h4><div class="big" style="font-size:24px">$39.115,9<span class="unit"> M</span></div><div class="foot">Techo del proceso licitatorio, antes de la oferta</div></div>
-      <div class="card kpi"><div class="accent" style="background:var(--navy)"></div><h4>Valor adjudicado (contrato)</h4><div class="big" style="font-size:24px">$35.399,9<span class="unit"> M</span></div><div class="foot">Contrato de Obra N.° 046 · sin adiciones</div></div>
-      <div class="card kpi"><div class="accent" style="background:var(--green)"></div><h4>Ejecutado financiero</h4><div class="big" style="font-size:24px">100<span class="unit"> %</span></div><div class="foot">Según Acta de Terminación</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--navy)"></div><h4>Contrato de obra</h4><div class="big" style="font-size:24px">$35.399,9<span class="unit"> M</span></div><div class="foot">N.° 046 · sin adiciones de valor</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--red)"></div><h4>Contrato de interventoría</h4><div class="big" style="font-size:24px;color:var(--red)">$0<span class="unit"> M</span></div><div class="foot" style="color:var(--red);font-weight:700">⚠ Falta cargar el valor real</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--red)"></div><h4>Valor del proyecto</h4><div class="big" style="font-size:24px;color:var(--red)">≥ $35.399,9<span class="unit"> M</span></div><div class="foot" style="color:var(--red);font-weight:700">⚠ Falta sumar interventoría</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--green)"></div><h4>Ejecución financiera</h4><div class="big" style="font-size:24px">100<span class="unit"> %</span></div><div class="foot">Según Acta de Terminación</div></div>
     </div>
-    <p class="map-note" style="margin-bottom:20px">La diferencia entre el presupuesto oficial estimado ($39.115,9 M) y el valor adjudicado ($35.399,9 M) corresponde al ahorro obtenido en el proceso de licitación pública, no a un sobrecosto: es la práctica normal cuando el valor ofertado por el contratista resulta menor al techo presupuestal fijado por la Entidad. El contrato se ejecutó y liquidó sin adiciones de valor sobre los $35.399,9 M adjudicados.</p>
+    <p class="map-note" style="margin-bottom:20px">El presupuesto oficial estimado ($39.115,9 M) fue el techo del proceso licitatorio; el contrato de obra se adjudicó por $35.399,9 M y se ejecutó y liquidó sin adiciones de valor. El valor del proyecto se completa sumando el contrato de interventoría.</p>
 
     <div class="cards g2">
       <div class="card">
@@ -893,7 +954,7 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
   <div class="wrap hero-grid">
     <div class="hero-left">
       <div class="eyebrow">
-        <span class="chip code">Contrato de Obra N° 117 · 2025</span>
+        <span class="chip code">Contrato de Obra N° 117 · 2024</span>
         <span class="chip obra">● En ejecución</span>
       </div>
       <h2>Modernización de la Red Semafórica de Ibagué — Fase I</h2>
@@ -927,7 +988,7 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
         <div style="text-align:center">
           <div class="gauge-wrap" style="width:100px;height:100px">
             <canvas id="gaugeSemaforosFisico"></canvas>
-            <div class="gauge-center"><div class="pct" style="font-size:18px;color:var(--green)">92,9%</div></div>
+            <div class="gauge-center"><div class="pct" style="font-size:18px;color:var(--green)">93,0%</div></div>
           </div>
           <div style="font-size:12px;font-weight:800;color:var(--ink);margin-top:8px">Físico</div>
           <div style="font-size:10.5px;color:var(--muted)">En obra</div>
@@ -959,25 +1020,27 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
     </div>
 
     <div class="cards g3" style="margin-bottom:20px">
-      <div class="card kpi"><div class="accent" style="background:var(--navy)"></div><h4>Semáforos</h4><div class="big" style="font-size:24px">598<span class="unit"> / 603</span></div><div class="foot">Instalados / proyectados</div><div style="font-size:11px;color:var(--muted);margin-top:6px">Incluye semáforos vehiculares, peatonales y para bicicletas.</div></div>
-      <div class="card kpi"><div class="accent" style="background:var(--royal)"></div><h4>Cámaras de tráfico</h4><div class="big" style="font-size:24px">25<span class="unit"> / 26</span></div><div class="foot">Instaladas / proyectadas</div><div style="font-size:11px;color:var(--muted);margin-top:6px">Cámaras de detección de tráfico semiactuado (vehículos y peatones).</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--navy)"></div><h4>Semáforos</h4><div class="big" style="font-size:24px">603<span class="unit"> / 603</span></div><div class="foot">Instalados / proyectados</div><div style="font-size:11px;color:var(--muted);margin-top:6px">Incluye semáforos vehiculares, peatonales y para bicicletas.</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--royal)"></div><h4>Cámaras de tráfico</h4><div class="big" style="font-size:24px">26<span class="unit"> / 26</span></div><div class="foot">Instaladas / proyectadas</div><div style="font-size:11px;color:var(--muted);margin-top:6px">Cámaras de detección de tráfico semiactuado (vehículos y peatones).</div></div>
       <div class="card kpi"><div class="accent" style="background:var(--gold)"></div><h4>Controladores</h4><div class="big" style="font-size:24px">28<span class="unit"> / 28</span></div><div class="foot">Instalados / proyectados</div></div>
     </div>
 
-    <!-- Estado del corredor -->
+    <!-- Estado de las intersecciones (Presentación de gerencia 21-sep-2026) -->
     <div class="cards g3" style="margin-bottom:20px">
-      <div class="card kpi"><div class="accent" style="background:var(--green)"></div><h4>Av. Ferrocarril</h4><div class="big" style="font-size:20px">Mobiliario 100%</div><div class="foot">Instalación completa del corredor</div></div>
-      <div class="card kpi"><div class="accent" style="background:var(--gold)"></div><h4>Programación de señales</h4><div class="big" style="font-size:20px">En curso</div><div class="foot">Configuración e integración del sistema</div></div>
-      <div class="card kpi"><div class="accent" style="background:var(--pending)"></div><h4>Puesta en servicio</h4><div class="big" style="font-size:20px">Pendiente</div><div class="foot">Tras finalizar pruebas operativas</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--green)"></div><h4>Intersecciones en funcionamiento</h4><div class="big" style="font-size:24px">30<span class="unit"> / 34</span></div><div class="foot">Con puesta en servicio y seguimiento · 28 controladores manejan las 34 intersecciones</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--gold)"></div><h4>Pendientes de puesta en servicio</h4><div class="big" style="font-size:24px">4</div><div class="foot">Cra 5 con Cl 42 · Cra 6 con Cl 42 · Cra 4 (Sector Estadio) con Cl 42 · Av. Ambalá con Cl 67</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--royal)"></div><h4>Dispositivo sonoro</h4><div class="big" style="font-size:24px">242<span class="unit"> / 260</span></div><div class="foot">93% instalado · 18 por instalar</div></div>
     </div>
 
     <div class="cards g2">
       <div class="card" style="display:flex;flex-direction:column">
         <h4>Avance por componente</h4>
-        <div class="progress-row"><div class="top"><span class="name">Semáforos instalados</span><span class="figs"><b>99%</b> · 598/603</span></div><div class="bar blue"><span style="width:99%"></span></div></div>
-        <div class="progress-row"><div class="top"><span class="name">Cámaras de tráfico instaladas</span><span class="figs"><b>96%</b> · 25/26</span></div><div class="bar"><span style="width:96%"></span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Semáforos instalados</span><span class="figs"><b>100%</b> · 603/603</span></div><div class="bar blue"><span style="width:100%"></span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Cámaras de tráfico instaladas</span><span class="figs"><b>100%</b> · 26/26</span></div><div class="bar"><span style="width:100%"></span></div></div>
         <div class="progress-row"><div class="top"><span class="name">Controladores instalados</span><span class="figs"><b>100%</b> · 28/28</span></div><div class="bar gold"><span style="width:100%"></span></div></div>
-        <p class="map-note">Avance físico acumulado: 92,94%, frente al 90,92% reprogramado (desviación positiva de 2,02 puntos porcentuales). El avance financiero (pagos radicados) se mantiene en 0%. Datos del corte 4 de septiembre de 2026.</p>
+        <div class="progress-row"><div class="top"><span class="name">Postes instalados</span><span class="figs"><b>100%</b> · 254/254</span></div><div class="bar blue"><span style="width:100%"></span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Dispositivo sonoro</span><span class="figs"><b>93%</b> · 242/260</span></div><div class="bar"><span style="width:93%"></span></div></div>
+        <p class="map-note">Avance físico acumulado: 92,97%, frente al 92,26% programado (desviación positiva de 0,71 puntos porcentuales). El avance financiero (pagos radicados) se mantiene en 0%. Fuente: Presentación de gerencia del 21 de septiembre de 2026.</p>
         <div style="margin-top:auto;padding-top:18px;display:flex;align-items:center;gap:18px;flex-wrap:wrap">
           <svg viewBox="0 0 100 140" style="width:60px;height:auto;flex:0 0 auto">
             <rect x="46" y="40" width="8" height="90" fill="#C9CDD3"/>
@@ -1157,7 +1220,7 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
         <div class="m"><div class="lbl">Paraderos instalados</div><div class="val">1.150 / 1.150</div></div>
         <div class="m"><div class="lbl">Acta de inicio</div><div class="val">7-may-2025</div></div>
         <div class="m"><div class="lbl">Fecha de finalización</div><div class="val">28-feb-2026</div></div>
-        <div class="m"><div class="lbl">Actas de pago radicadas</div><div class="val" style="color:var(--green)">≈$7.810,5 M (95%)</div></div>
+        <div class="m"><div class="lbl">Ejecución financiera</div><div class="val" style="color:var(--green)">≈$7.810,5 M (95%)</div></div>
       </div>
       <div class="hero-meta" style="margin-top:14px;align-items:center">
         <div class="m"><div class="lbl">Contrato de obra</div><div class="val">$8.221,6 M</div></div>
@@ -1747,7 +1810,7 @@ if (document.getElementById('tramoMapCra5')) {
 if (document.getElementById('gaugeSemaforosFisico')) {
   new Chart(document.getElementById('gaugeSemaforosFisico'),{
     type:'doughnut',
-    data:{datasets:[{data:[92.94,7.06],backgroundColor:[GREEN,'#EAEEF7'],borderWidth:0}]},
+    data:{datasets:[{data:[92.97,7.03],backgroundColor:[GREEN,'#EAEEF7'],borderWidth:0}]},
     options:{cutout:'78%',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false}}}
   });
 }
