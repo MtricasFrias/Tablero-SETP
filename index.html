@@ -538,6 +538,7 @@ body.on-home.night .foot-note{color:#B9C4E6}
   .topbar .brand .kicker{font-size:9.5px; letter-spacing:.12em}
   .topbar .brand .sub{display:none}
   body.on-home .topbar .logo,body.on-home .topbar .logo.setp,body.on-home.night .topbar .logo{height:56px}
+  body.on-home .foot-go{display:none}
   .scene-wrap{display:flex; flex-direction:column}
   .daynight{position:static; align-items:flex-end; padding:12px 16px 0}
 
@@ -552,6 +553,18 @@ body.on-home.night .foot-note{color:#B9C4E6}
   .pane-cap h3{font-size:22px}
   .sign .s-b{font-size:10px; padding:3px 9px}
 }
+/* teléfonos: la página solo se ve en vertical (en horizontal se pide girar el teléfono) */
+.rotate-lock{display:none}
+body.on-home{touch-action:pan-y pinch-zoom}
+@media (orientation:landscape) and (max-height:520px) and (pointer:coarse){
+  html,body{overflow:hidden!important; height:100%}
+  .rotate-lock{display:flex; position:fixed; inset:0; z-index:99999; flex-direction:column; align-items:center; justify-content:center; gap:14px; padding:24px; text-align:center; color:#0A1F5C;
+    background:radial-gradient(600px 300px at 20% 10%,rgba(29,78,216,.12),transparent 60%),linear-gradient(160deg,#FFF3CF,#FFE3A3)}
+  .rotate-lock svg{width:92px; height:92px; color:#0A1F5C; animation:rotHint 2.6s ease-in-out infinite}
+  .rotate-lock b{font-size:22px; font-weight:800}
+  .rotate-lock span{font-size:14px; color:#3C4A6B; max-width:30ch; line-height:1.45}
+}
+@keyframes rotHint{0%,15%{transform:rotate(90deg)}55%,100%{transform:rotate(0)}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -2255,6 +2268,8 @@ body.on-home.night .foot-note{color:#B9C4E6}
   const warp=document.getElementById('homeWarp'), warpName=document.getElementById('homeWarpName');
   const spots=[...home.querySelectorAll('.spot')], catBtns=[...home.querySelectorAll('.cat-btn')];
   const mq=window.matchMedia('(max-width:700px)');
+  /* Teléfonos: se intenta fijar la orientación vertical (solo algunos navegadores lo permiten, p. ej. instalada como app); si no, el aviso "Gira tu teléfono" cubre la vista horizontal */
+  try{ if(screen.orientation&&screen.orientation.lock&&window.matchMedia('(pointer:coarse)').matches&&mq.matches) screen.orientation.lock('portrait').catch(()=>{}); }catch(e){}
   const svgA='<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">';
   const IC={
     vias:svgA+'<path d="M23 8h18l17 48H6z"/><path d="M32 15v7M32 30v9M32 47v7"/></svg>',
@@ -2694,5 +2709,6 @@ if (document.getElementById('mapaParaderos')) {
 });
 });
 </script>
+<div class="rotate-lock" role="alert" aria-live="polite"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="19" y="6" width="26" height="52" rx="6"/><path d="M28 12h8"/><circle cx="32" cy="51" r="1.8" fill="currentColor"/></svg><b>Gira tu teléfono</b><span>El tablero del SETP se ve en vertical.</span></div>
 </body>
 </html>
