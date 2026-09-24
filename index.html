@@ -306,7 +306,7 @@ footer{padding:0; background:linear-gradient(0deg,rgba(255,255,255,.97),rgba(255
 .foot-go button:hover{transform:translateY(-2px); box-shadow:0 8px 18px rgba(10,31,92,.16); background:#fff}
 .foot-go svg{width:16px; height:16px; color:var(--spc)}
 /* entrada: sin pestañas de proyectos, encabezado centrado */
-body.on-home{--pg:#F6F9FF; background:#F6F9FF; transition:background 1.4s ease; display:flex; flex-direction:column; min-height:100vh}
+body.on-home{--pg:#F6F9FF; background:#F6F9FF; transition:background 1.2s ease; display:flex; flex-direction:column; min-height:100vh}
 body.on-home footer{margin-top:auto}
 body.on-home.night{--pg:#0B1640; background:#0B1640}
 body.on-home .tabs{display:none}
@@ -337,7 +337,7 @@ body.on-home.night .foot-note{color:#B9C4E6}
 .scene{position:relative; width:100%; aspect-ratio:1440/730; user-select:none; overflow:hidden; contain:layout paint}
 .sky{position:absolute; inset:0}
 .sky-day{background:linear-gradient(180deg,#FFE3A3 0%,#FFF1CF 12%,#F4F7FF 34%,#E6EEFF 66%,#F7FAFF 100%)}
-.sky-night{opacity:0; transition:opacity 1.8s ease; background:linear-gradient(180deg,#0A1435 0%,#14245A 36%,#2B3A85 72%,#5A5FA8 100%)}
+.sky-night{opacity:0; transition:opacity 1.2s ease; background:linear-gradient(180deg,#0A1435 0%,#14245A 36%,#2B3A85 72%,#5A5FA8 100%)}
 .home[data-mode="night"] .sky-night{opacity:1}
 .cam{position:absolute; inset:0; transform-origin:0 0; transition:transform .95s cubic-bezier(.65,0,.35,1)}
 .layer{position:absolute; inset:0; width:100%; height:100%; display:block}
@@ -351,15 +351,15 @@ body.on-home.night .home-logo .logo-day{display:none}
 .home-logo{position:absolute; z-index:5; top:3.2%; display:flex; align-items:center}
 .home-logo-l{left:2.4%}
 .home-logo-r{right:2.6%}
-.home-logo img{display:block; height:clamp(56px,6.4vw,86px); width:auto; mix-blend-mode:multiply; transition:transform .35s cubic-bezier(.34,1.4,.64,1)}
+.home-logo img{display:block; height:clamp(56px,6.4vw,86px); width:auto; transition:transform .35s cubic-bezier(.34,1.4,.64,1)}
 .home-logo-r img{height:clamp(50px,5.4vw,72px)}
 .home-logo img:hover{transform:translateY(-2px) scale(1.06)}
-body.on-home.night .home-logo img{mix-blend-mode:normal}
 body.on-home.night .home-logo-r img{filter:drop-shadow(0 0 1.4px rgba(255,255,255,.95)) drop-shadow(0 0 9px rgba(255,255,255,.35))}
-.scene-copy{position:absolute; left:0; right:0; top:3.4%; z-index:3; text-align:center; padding:0 clamp(70px,11vw,190px); transition:opacity .6s, transform .9s}
+.scene-copy{position:absolute; left:0; right:0; top:2.8%; z-index:3; text-align:center; padding:0 clamp(70px,11vw,190px); transition:opacity .6s, transform .9s}
 .scene-copy .kicker{font-size:12px; letter-spacing:.26em; text-transform:uppercase; color:#8A5A00; font-weight:800; transition:color 1.2s}
-.scene-copy h2{font-size:clamp(24px,3.7vw,46px); font-weight:800; margin:6px 0 8px; color:var(--navy); transition:color 1.2s}
-.scene-copy p{font-size:clamp(13px,1.25vw,16px); color:#3C4A6B; line-height:1.6; max-width:720px; margin:0 auto; transition:color 1.2s}
+.scene-copy h2{font-size:clamp(24px,3.2vw,46px); font-weight:800; margin:6px 0 8px; color:var(--navy); transition:color 1.2s}
+.scene-copy p{font-size:clamp(13px,1.11vw,16px); color:#3C4A6B; line-height:1.55; max-width:720px; margin:0 auto; transition:color 1.2s}
+@media(min-width:701px) and (max-width:1000px){.scene-copy .kicker{display:none}}
 .home:not([data-open=""]) .scene-copy{opacity:0; transform:translateY(-16px); pointer-events:none}
 .home[data-mode="night"] .scene-copy .kicker{color:#FFD466}
 .home[data-mode="night"] .scene-copy h2{color:#fff}
@@ -382,29 +382,31 @@ body.on-home.night .home-logo-r img{filter:drop-shadow(0 0 1.4px rgba(255,255,25
 .home[data-mode="night"] .spot-tag{background:rgba(18,30,86,.96); color:#fff}
 .home[data-mode="night"] .spot-tag small{color:#AEBBE8}
 /* --- día / noche en la escena --- */
-.stars{opacity:0; transition:opacity 1.8s ease}
+.stars{opacity:0; transition:opacity 1.2s ease}
 .home[data-mode="night"] .stars{opacity:1}
 .star{animation:twinkle 3.6s ease-in-out infinite; animation-delay:var(--d,0s)}
 @keyframes twinkle{0%,100%{opacity:.3}50%{opacity:1}}
-.celes{transition:transform 2.2s cubic-bezier(.65,0,.35,1), opacity 1.6s ease}
+.celes{transition:transform 1.6s cubic-bezier(.65,0,.35,1), opacity 1.2s ease}
 .celes.moon{transform:translate(-150px,450px); opacity:0}
 .home[data-mode="night"] .celes.sun{transform:translate(170px,450px); opacity:0}
 .home[data-mode="night"] .celes.moon{transform:none; opacity:1}
 .sun-rays{transform-box:fill-box; transform-origin:center; animation:sunSpin 70s linear infinite}
 @keyframes sunSpin{to{transform:rotate(360deg)}}
-.cloud{animation:cloudDrift var(--dur,120s) linear infinite; animation-delay:var(--dl,0s); transition:fill 1.6s, opacity 1.6s}
+.cloud{animation:cloudDrift var(--dur,120s) linear infinite; animation-delay:var(--dl,0s); transition:opacity 1.2s}
 @keyframes cloudDrift{from{transform:translateX(-520px)}to{transform:translateX(1800px)}}
-.home[data-mode="night"] .cloud{fill:#7E8CCB; opacity:.3}
-.hz{transition:stop-color 1.6s}
-.home[data-mode="night"] .hz{stop-color:#5A61B4}
-.day-crew{transition:opacity 1.2s ease}
+.home[data-mode="night"] .cloud{opacity:.18}
+.haze{transition:opacity 1.2s ease}
+.home[data-mode="night"] .haze{opacity:0}
+.day-crew{transition:opacity 1s ease}
 .home[data-mode="night"] .day-crew{opacity:0}
 .home[data-mode="night"] .roller-in,.home[data-mode="night"] .roller-body,.home[data-mode="night"] .drum-spin{animation-play-state:paused}
 /* capas de la escena: fondo estático, primer plano animado y noche (estática + animada) */
-#bgSvg,#fgSvg,#busSvg{transition:filter 1.8s ease}
+/* cada capa vive en su propia textura de GPU: el cambio día/noche solo mezcla (filtro/opacidad) y no vuelve a pintar el dibujo */
+#skySvg{will-change:opacity}
+#bgSvg,#fgSvg,#busSvg{will-change:filter; transition:filter 1.2s ease}
 .home[data-mode="night"] #bgSvg,.home[data-mode="night"] #fgSvg,.home[data-mode="night"] #busSvg{filter:brightness(.52) saturate(.78)}
-#nsSvg,#nfSvg{opacity:0; visibility:hidden; pointer-events:none; transition:opacity 1.6s ease, visibility 0s 1.6s}
-.home[data-mode="night"] #nsSvg,.home[data-mode="night"] #nfSvg{opacity:1; visibility:visible; transition:opacity 1.6s ease, visibility 0s}
+#nsSvg,#nfSvg{will-change:opacity; opacity:0; visibility:hidden; pointer-events:none; transition:opacity 1.2s ease, visibility 0s 1.2s}
+.home[data-mode="night"] #nsSvg,.home[data-mode="night"] #nfSvg{opacity:1; visibility:visible; transition:opacity 1.2s ease, visibility 0s}
 .home:not([data-mode="night"]) #nsSvg *,.home:not([data-mode="night"]) #nfSvg *:not(.bus-move),.home:not([data-mode="night"]) .star{animation-play-state:paused}
 .home[data-mode="night"] .day-crew *{animation-play-state:paused}
 .home.zooming .layer *{animation-play-state:paused!important}
@@ -478,8 +480,8 @@ body.on-home.night .home-logo-r img{filter:drop-shadow(0 0 1.4px rgba(255,255,25
 .dn-end.moon{left:14px; color:#7B86B8}
 .dn-end.sun{right:14px; color:#FFB300}
 .home[data-mode="night"] .dn-end.moon{color:#F5F1D8}
-.dn-knob{position:absolute; z-index:2; top:5px; left:calc(5px + var(--kx) * (100% - 50px)); width:40px; height:40px; border-radius:50%; display:grid; place-items:center; background:#fff;
-  box-shadow:0 4px 12px rgba(10,31,92,.3); transition:left .75s cubic-bezier(.34,1.4,.64,1), background .6s}
+.dn-knob{position:absolute; z-index:2; top:5px; left:5px; transform:translateX(calc(var(--kx) * 62px)); width:40px; height:40px; border-radius:50%; display:grid; place-items:center; background:#fff;
+  box-shadow:0 4px 12px rgba(10,31,92,.3); transition:transform .75s cubic-bezier(.34,1.4,.64,1), background .6s}
 .dn-switch.drag .dn-knob{transition:none}
 .dn-knob svg{position:absolute; width:26px; height:26px; transition:opacity .5s, transform .9s cubic-bezier(.34,1.4,.64,1)}
 .dn-knob .k-sun{color:#F0A800; opacity:1}
@@ -653,7 +655,7 @@ body.on-home{touch-action:pan-y pinch-zoom}
   <div class="scene-copy">
     <div class="kicker">Recorrido por el SETP · TransMusical te mueve</div>
     <h2>Moviendo a Ibagué, proyecto a proyecto</h2>
-    <p>Un recorrido por cada uno de los proyectos ejecutados y por ejecutar a cargo del SETP. Toca el paradero, el semáforo o la vía para acercarte.</p>
+    <p>Toca el paradero, el semáforo o la vía para acercarte a cada proyecto.</p>
   </div>
   <div class="scene" id="scene">
     <!-- Cielo (CSS, sin repintado) -->
@@ -701,7 +703,7 @@ body.on-home{touch-action:pan-y pinch-zoom}
         </g>
         <path filter="url(#fB3)" fill="#A8D5B5" opacity=".7" d="M-40 500V436L100 404 200 442 330 408 450 452 580 424 700 462 830 428 960 466 1090 432 1220 470 1330 442 1480 462V500Z"/>
         <g id="skyline" filter="url(#fB2)"></g>
-        <rect y="360" width="1440" height="200" fill="url(#hazeG)"/>
+        <rect class="haze" y="360" width="1440" height="200" fill="url(#hazeG)"/>
         <g filter="url(#fB1)">
           <g transform="translate(70 548)"><rect x="-7" y="-96" width="14" height="96" fill="#8A5A34"/><circle cx="0" cy="-150" r="56" fill="#F6C9DA"/><circle cx="-40" cy="-128" r="38" fill="#F2A9C4"/><circle cx="42" cy="-130" r="40" fill="#F2A9C4"/><circle cx="6" cy="-192" r="36" fill="#FADCE8"/></g>
           <g transform="translate(560 548)"><rect x="-7" y="-96" width="14" height="96" fill="#8A5A34"/><circle cx="0" cy="-150" r="56" fill="#F6C9DA"/><circle cx="-40" cy="-128" r="38" fill="#F2A9C4"/><circle cx="42" cy="-130" r="40" fill="#F2A9C4"/><circle cx="6" cy="-192" r="36" fill="#FADCE8"/></g>
