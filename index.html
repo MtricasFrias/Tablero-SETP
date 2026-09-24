@@ -342,7 +342,21 @@ body.on-home.night .foot-note{color:#B9C4E6}
 .cam{position:absolute; inset:0; transform-origin:0 0; transition:transform .95s cubic-bezier(.65,0,.35,1)}
 .layer{position:absolute; inset:0; width:100%; height:100%; display:block}
 .scene-fade{position:absolute; inset:0; z-index:1; pointer-events:none; background:linear-gradient(180deg,var(--pg,#F6F9FF) 0,transparent 8%,transparent 91%,var(--pg,#F6F9FF) 100%),linear-gradient(90deg,var(--pg,#F6F9FF) 0,transparent 5%,transparent 95%,var(--pg,#F6F9FF) 100%)}
-.scene-copy{position:absolute; left:0; right:0; top:3.4%; z-index:3; text-align:center; padding:0 20px; transition:opacity .6s, transform .9s}
+/* entrada: sin encabezado superior; los logos acompañan el título a los costados */
+body.on-home .topbar{display:none}
+body.on-home #page-inicio{flex:1 1 auto; display:flex; flex-direction:column; justify-content:center}
+.home-logo .logo-night{display:none}
+body.on-home.night .home-logo .logo-night{display:block}
+body.on-home.night .home-logo .logo-day{display:none}
+.home-logo{position:absolute; z-index:5; top:3.2%; display:flex; align-items:center}
+.home-logo-l{left:2.4%}
+.home-logo-r{right:2.6%}
+.home-logo img{display:block; height:clamp(56px,6.4vw,86px); width:auto; mix-blend-mode:multiply; transition:transform .35s cubic-bezier(.34,1.4,.64,1)}
+.home-logo-r img{height:clamp(50px,5.4vw,72px)}
+.home-logo img:hover{transform:translateY(-2px) scale(1.06)}
+body.on-home.night .home-logo img{mix-blend-mode:normal}
+body.on-home.night .home-logo-r img{filter:drop-shadow(0 0 1.4px rgba(255,255,255,.95)) drop-shadow(0 0 9px rgba(255,255,255,.35))}
+.scene-copy{position:absolute; left:0; right:0; top:3.4%; z-index:3; text-align:center; padding:0 clamp(70px,11vw,190px); transition:opacity .6s, transform .9s}
 .scene-copy .kicker{font-size:12px; letter-spacing:.26em; text-transform:uppercase; color:#8A5A00; font-weight:800; transition:color 1.2s}
 .scene-copy h2{font-size:clamp(24px,3.7vw,46px); font-weight:800; margin:6px 0 8px; color:var(--navy); transition:color 1.2s}
 .scene-copy p{font-size:clamp(13px,1.25vw,16px); color:#3C4A6B; line-height:1.6; max-width:720px; margin:0 auto; transition:color 1.2s}
@@ -387,11 +401,11 @@ body.on-home.night .foot-note{color:#B9C4E6}
 .home[data-mode="night"] .day-crew{opacity:0}
 .home[data-mode="night"] .roller-in,.home[data-mode="night"] .roller-body,.home[data-mode="night"] .drum-spin{animation-play-state:paused}
 /* capas de la escena: fondo estático, primer plano animado y noche (estática + animada) */
-#bgSvg,#fgSvg{transition:filter 1.8s ease}
-.home[data-mode="night"] #bgSvg,.home[data-mode="night"] #fgSvg{filter:brightness(.52) saturate(.78)}
+#bgSvg,#fgSvg,#busSvg{transition:filter 1.8s ease}
+.home[data-mode="night"] #bgSvg,.home[data-mode="night"] #fgSvg,.home[data-mode="night"] #busSvg{filter:brightness(.52) saturate(.78)}
 #nsSvg,#nfSvg{opacity:0; visibility:hidden; pointer-events:none; transition:opacity 1.6s ease, visibility 0s 1.6s}
 .home[data-mode="night"] #nsSvg,.home[data-mode="night"] #nfSvg{opacity:1; visibility:visible; transition:opacity 1.6s ease, visibility 0s}
-.home:not([data-mode="night"]) #nsSvg *,.home:not([data-mode="night"]) #nfSvg *,.home:not([data-mode="night"]) .star{animation-play-state:paused}
+.home:not([data-mode="night"]) #nsSvg *,.home:not([data-mode="night"]) #nfSvg *:not(.bus-move),.home:not([data-mode="night"]) .star{animation-play-state:paused}
 .home[data-mode="night"] .day-crew *{animation-play-state:paused}
 .home.zooming .layer *{animation-play-state:paused!important}
 /* --- animaciones de la escena --- */
@@ -451,7 +465,7 @@ body.on-home.night .foot-note{color:#B9C4E6}
 .pacer{animation:pace 7s ease-in-out infinite alternate}
 @keyframes pace{from{transform:translateX(-26px)}to{transform:translateX(30px)}}
 /* interruptor sol / luna */
-.daynight{position:absolute; z-index:6; right:2.8%; top:3.6%; display:flex; flex-direction:column; align-items:flex-end; gap:12px}
+.daynight{position:absolute; z-index:6; right:2.6%; top:calc(3.2% + 92px); display:flex; flex-direction:column; align-items:flex-end; gap:12px}
 .dn-switch{--kx:1; position:relative; width:112px; height:50px; border:0; padding:0; border-radius:999px; cursor:grab; background:none; touch-action:none; -webkit-tap-highlight-color:transparent}
 .dn-switch:focus-visible{outline:3px solid var(--navy); outline-offset:4px}
 .dn-track{position:absolute; inset:0; border-radius:999px; overflow:hidden; box-shadow:inset 0 2px 8px rgba(10,31,92,.25), 0 8px 22px rgba(10,31,92,.18)}
@@ -540,7 +554,12 @@ body.on-home.night .foot-note{color:#B9C4E6}
   body.on-home .topbar .logo,body.on-home .topbar .logo.setp,body.on-home.night .topbar .logo{height:56px}
   body.on-home .foot-go{display:none}
   .scene-wrap{display:flex; flex-direction:column}
-  .daynight{position:static; align-items:flex-end; padding:12px 16px 0}
+  .daynight{position:static; align-items:flex-end; padding:72px 16px 0}
+  .home-logo{top:12px}
+  .home-logo-l{left:14px}
+  .home-logo-r{right:14px}
+  .home-logo img{height:52px}
+  .home-logo-r img{height:46px}
 
   .scene-copy{position:static; padding:14px 18px 10px}
   .home:not([data-open=""]) .scene-copy{opacity:1; transform:none; pointer-events:auto}
@@ -617,6 +636,8 @@ body.on-home{touch-action:pan-y pinch-zoom}
 <div id="page-inicio" class="page active">
 <section class="home" id="home" data-open="" data-mode="day">
  <div class="scene-wrap">
+  <div class="home-logo home-logo-l"><img class="logo-day nocut" src="img/setp-logo-color.png" alt="TransMusical SETP"><img class="logo-night nocut" src="img/setp-logo-blanco.png" alt="" aria-hidden="true"></div>
+  <div class="home-logo home-logo-r"><img id="homeAlc" alt="Alcaldía de Ibagué"></div>
   <div class="daynight" id="dayNight">
     <button type="button" class="dn-switch" id="dnSwitch" role="switch" aria-checked="false" aria-label="Modo noche. Mueve el sol o la luna para cambiar entre día y noche.">
       <span class="dn-track"></span>
@@ -736,7 +757,6 @@ body.on-home{touch-action:pan-y pinch-zoom}
         <use href="#sCone" x="926" y="594" width="28" height="46"/><use href="#sCone" x="1270" y="594" width="28" height="46"/>
         <!-- césped -->
         <rect y="706" width="1440" height="74" fill="#C6E3BC"/>
-        <rect y="706" width="1440" height="6" fill="#B6BDCF"/>
       </svg>
 
       <svg class="layer" id="fgSvg" viewBox="0 0 1440 730" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
@@ -786,22 +806,6 @@ body.on-home{touch-action:pan-y pinch-zoom}
             <path d="M9 -44L22 -6" stroke="#8A5A34" stroke-width="3.5" stroke-linecap="round"/><path d="M18 -6h11" stroke="#3A404F" stroke-width="5" stroke-linecap="round"/>
           </g></g></g>
         </g>
-        <!-- BUS del SETP en el carril cercano -->
-        <g transform="translate(0 700)"><g class="bus-move">
-          <ellipse cx="135" cy="5" rx="142" ry="8" fill="rgba(10,20,50,.2)"/>
-          <rect x="0" y="-108" width="270" height="92" rx="18" fill="#fff"/>
-          <path d="M0 -50H270V-34a18 18 0 0 1-18 18H18A18 18 0 0 1 0 -34Z" fill="#00A830"/>
-          <rect y="-56" width="270" height="6" fill="#F0A800"/>
-          <rect x="14" y="-98" width="34" height="34" rx="5" fill="#2B3A55"/><rect x="56" y="-98" width="34" height="34" rx="5" fill="#2B3A55"/><rect x="98" y="-98" width="34" height="34" rx="5" fill="#2B3A55"/><rect x="140" y="-98" width="34" height="34" rx="5" fill="#2B3A55"/>
-          <rect x="188" y="-100" width="40" height="66" rx="4" fill="#2B3A55"/><path d="M208 -100V-34" stroke="#fff" stroke-width="3"/>
-          <path d="M236 -98h22q6 0 6 6v34h-28z" fill="#2B3A55"/>
-          <text x="16" y="-27" font-size="15" font-weight="800" fill="#fff" letter-spacing="2" font-family="Segoe UI,Arial,sans-serif">TRANSMUSICAL</text>
-          <rect x="40" y="-120" width="120" height="12" rx="6" fill="#D9DEEA"/>
-          <rect x="264" y="-42" width="8" height="14" rx="3" fill="#FFE08A"/><rect x="-2" y="-42" width="6" height="14" rx="3" fill="#D62828"/>
-          <circle cx="58" cy="-14" r="23" fill="#1E2433"/><circle cx="212" cy="-14" r="23" fill="#1E2433"/>
-          <g class="wheel"><circle cx="58" cy="-14" r="17" fill="#3A4152"/><circle cx="58" cy="-14" r="7" fill="#C7CEDD"/><path d="M58 -30V2M42 -14H74" stroke="#8B94A8" stroke-width="3"/></g>
-          <g class="wheel"><circle cx="212" cy="-14" r="17" fill="#3A4152"/><circle cx="212" cy="-14" r="7" fill="#C7CEDD"/><path d="M212 -30V2M196 -14H228" stroke="#8B94A8" stroke-width="3"/></g>
-        </g></g>
         <!-- pétalos de ocobo -->
         <use class="oco-fall" href="#sOco" x="200" y="0" width="26" height="26" style="--dur:24s;--dl:-3s"/>
         <use class="oco-fall" href="#sOco" x="640" y="0" width="22" height="22" style="--dur:28s;--dl:-14s"/>
@@ -835,6 +839,26 @@ body.on-home{touch-action:pan-y pinch-zoom}
           <rect x="10" y="-44" width="15" height="11" rx="2" fill="#1E2433"/><rect x="12" y="-42" width="11" height="7" rx="1" fill="#6EC1FF"/>
         </g>
         <use href="#sCone" x="736" y="594" width="28" height="46"/><use href="#sCone" x="908" y="594" width="28" height="46"/>
+      </svg>
+
+      <!-- BUS: capa propia por encima de la noche estática (camión, conos) para que siempre pase por delante -->
+      <svg class="layer" id="busSvg" viewBox="0 0 1440 730" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+        <!-- BUS del SETP en el carril cercano -->
+        <g transform="translate(0 700)"><g class="bus-move">
+          <ellipse cx="135" cy="5" rx="142" ry="8" fill="rgba(10,20,50,.2)"/>
+          <rect x="0" y="-108" width="270" height="92" rx="18" fill="#fff"/>
+          <path d="M0 -50H270V-34a18 18 0 0 1-18 18H18A18 18 0 0 1 0 -34Z" fill="#00A830"/>
+          <rect y="-56" width="270" height="6" fill="#F0A800"/>
+          <rect x="14" y="-98" width="34" height="34" rx="5" fill="#2B3A55"/><rect x="56" y="-98" width="34" height="34" rx="5" fill="#2B3A55"/><rect x="98" y="-98" width="34" height="34" rx="5" fill="#2B3A55"/><rect x="140" y="-98" width="34" height="34" rx="5" fill="#2B3A55"/>
+          <rect x="188" y="-100" width="40" height="66" rx="4" fill="#2B3A55"/><path d="M208 -100V-34" stroke="#fff" stroke-width="3"/>
+          <path d="M236 -98h22q6 0 6 6v34h-28z" fill="#2B3A55"/>
+          <text x="16" y="-27" font-size="15" font-weight="800" fill="#fff" letter-spacing="2" font-family="Segoe UI,Arial,sans-serif">TRANSMUSICAL</text>
+          <rect x="40" y="-120" width="120" height="12" rx="6" fill="#D9DEEA"/>
+          <rect x="264" y="-42" width="8" height="14" rx="3" fill="#FFE08A"/><rect x="-2" y="-42" width="6" height="14" rx="3" fill="#D62828"/>
+          <circle cx="58" cy="-14" r="23" fill="#1E2433"/><circle cx="212" cy="-14" r="23" fill="#1E2433"/>
+          <g class="wheel"><circle cx="58" cy="-14" r="17" fill="#3A4152"/><circle cx="58" cy="-14" r="7" fill="#C7CEDD"/><path d="M58 -30V2M42 -14H74" stroke="#8B94A8" stroke-width="3"/></g>
+          <g class="wheel"><circle cx="212" cy="-14" r="17" fill="#3A4152"/><circle cx="212" cy="-14" r="7" fill="#C7CEDD"/><path d="M212 -30V2M196 -14H228" stroke="#8B94A8" stroke-width="3"/></g>
+        </g></g>
       </svg>
 
       <!-- NOCHE (animada): semáforo, luces del bus, baliza, canasta con técnico, cuadrilla y conos intermitentes -->
@@ -2256,7 +2280,9 @@ body.on-home{touch-action:pan-y pinch-zoom}
       img.dataset.cut='1'; img.src=o.toDataURL('image/png');
     }catch(e){}
   }
-  document.querySelectorAll('.topbar .logo:not(.nocut), footer .logos img:not(.nocut)').forEach(img=>{
+  const hAlc=document.getElementById('homeAlc'), tAlc=document.querySelector('.topbar .logo.alc');
+  if(hAlc&&tAlc) hAlc.src=tAlc.getAttribute('src'); /* mismo escudo de la Alcaldía para la entrada */
+  document.querySelectorAll('.topbar .logo:not(.nocut), footer .logos img:not(.nocut), #homeAlc').forEach(img=>{
     if(img.complete&&img.naturalWidth) cutout(img); else img.addEventListener('load',()=>cutout(img),{once:true});
   });
 })();
@@ -2375,7 +2401,14 @@ body.on-home{touch-action:pan-y pinch-zoom}
   let saved=null, tipTimer=0;
   try{ saved=localStorage.getItem('setp-modo'); }catch(e){}
   if(saved!=='day'&&saved!=='night') saved=null;
+  /* las luces del bus nocturno viven en otra capa: se alinean con el bus real al cambiar de modo */
+  function syncBus(){
+    const a=document.getAnimations().filter(x=>x.animationName==='busRoute');
+    const fg=a.find(x=>x.effect&&x.effect.target&&x.effect.target.closest('#busSvg')), nf=a.find(x=>x.effect&&x.effect.target&&x.effect.target.closest('#nfSvg'));
+    if(fg&&nf&&fg.currentTime!=null) nf.currentTime=fg.currentTime;
+  }
   function setMode(m){
+    syncBus();
     home.dataset.mode=m; document.body.classList.toggle('night',m==='night');
     sw.setAttribute('aria-checked',m==='night'?'true':'false'); sw.style.setProperty('--kx',m==='night'?0:1);
   }
