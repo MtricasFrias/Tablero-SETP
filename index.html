@@ -270,6 +270,29 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
 .tab.active{color:var(--navy); border-bottom-color:var(--gold)}
 .tab .badge{background:#EEF2FB; color:#4A5878}
 .tab.locked:hover{color:#5A6785}
+/* navegación por categoría: solo los proyectos del tipo en el que estás + migas de pan + cambio rápido de tipo */
+.tab[data-cat]{display:none}
+body[data-cat="vias"] .tab[data-cat="vias"],body[data-cat="semaforos"] .tab[data-cat="semaforos"],body[data-cat="paraderos"] .tab[data-cat="paraderos"]{display:flex}
+.tab.crumb{--spc:#1D4ED8; gap:8px; padding-left:4px; color:var(--navy); font-weight:800}
+.tab.crumb::before{content:"›"; color:#B9C1D6; font-size:22px; font-weight:400; margin-right:4px}
+.tab.crumb .cchip{display:inline-flex; align-items:center; gap:7px; border:1.5px solid var(--spc); border-radius:999px; padding:5px 13px 5px 9px; background:#fff; transition:transform .2s, box-shadow .2s}
+.tab.crumb:hover .cchip{transform:translateY(-1px); box-shadow:0 6px 14px rgba(10,31,92,.14)}
+.tab.crumb .cchip svg{width:17px; height:17px; color:var(--spc)}
+.tab .lock{width:14px; height:14px; opacity:.75; flex:0 0 auto}
+.tabs-sp{flex:1 1 auto; min-width:12px}
+.cat-switch{display:none; align-items:center; gap:6px; padding:0 4px 0 10px; flex:0 0 auto}
+body[data-cat] .cat-switch{display:flex}
+.cat-switch>span{font-size:11.5px; font-weight:800; color:var(--muted); margin-right:2px; white-space:nowrap}
+.cat-switch button{--spc:#1D4ED8; display:inline-flex; align-items:center; justify-content:center; border:1.5px solid transparent; background:#EEF2FB; color:var(--navy); width:34px; height:34px; padding:0; border-radius:999px; cursor:pointer; transition:background .2s, border-color .2s, transform .2s}
+.cat-switch button:hover{background:#fff; border-color:var(--spc); transform:translateY(-1px)}
+.cat-switch svg{width:18px; height:18px; color:var(--spc)}
+.tabs .tab{padding:13px 12px}
+body[data-cat="vias"] .cat-switch [data-go="vias"],body[data-cat="semaforos"] .cat-switch [data-go="semaforos"],body[data-cat="paraderos"] .cat-switch [data-go="paraderos"]{background:var(--spc); color:#fff; border-color:var(--spc)}
+body[data-cat="vias"] .cat-switch [data-go="vias"] svg,body[data-cat="semaforos"] .cat-switch [data-go="semaforos"] svg,body[data-cat="paraderos"] .cat-switch [data-go="paraderos"] svg{color:#fff}
+@media(max-width:900px){.cat-switch{display:none!important}}
+.pane.dense{gap:10px; top:11%}
+.pane.dense #signList{gap:9px!important}
+.pane.dense .sign{padding:10px 14px; gap:11px}
 footer{padding:0; background:linear-gradient(0deg,rgba(255,255,255,.97),rgba(255,247,228,.92)); color:var(--muted); border-top:1px solid rgba(240,168,0,.28); box-shadow:0 -14px 36px rgba(240,168,0,.10); transition:background .8s, color .8s}
 .foot-inner{display:flex; justify-content:space-between; align-items:center; gap:14px 22px; flex-wrap:wrap; padding:12px 0 14px}
 .foot-inner .logos{display:flex; gap:16px; align-items:center}
@@ -283,9 +306,9 @@ footer{padding:0; background:linear-gradient(0deg,rgba(255,255,255,.97),rgba(255
 .foot-go button:hover{transform:translateY(-2px); box-shadow:0 8px 18px rgba(10,31,92,.16); background:#fff}
 .foot-go svg{width:16px; height:16px; color:var(--spc)}
 /* entrada: sin pestañas de proyectos, encabezado centrado */
-body.on-home{background:#F6F9FF; transition:background 1.4s ease; display:flex; flex-direction:column; min-height:100vh}
+body.on-home{--pg:#F6F9FF; background:#F6F9FF; transition:background 1.4s ease; display:flex; flex-direction:column; min-height:100vh}
 body.on-home footer{margin-top:auto}
-body.on-home.night{background:#0B1640}
+body.on-home.night{--pg:#0B1640; background:#0B1640}
 body.on-home .tabs{display:none}
 body.on-home .topbar-inner{padding:10px 0 9px}
 body.on-home .topbar .logo{height:58px}
@@ -311,13 +334,14 @@ body.on-home.night .foot-note{color:#B9C4E6}
 /* ---------- INICIO: la calle del SETP (paradero · semáforo · vía), difuminada, día y noche ---------- */
 .home{position:relative; overflow:hidden; color:var(--ink)}
 .scene-wrap{position:relative; width:100%; max-width:1800px; margin:0 auto}
-.scene{position:relative; width:100%; aspect-ratio:1440/730; user-select:none;
-  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 8%,#000 91%,transparent 100%),linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%);
-  -webkit-mask-composite:source-in;
-  mask-image:linear-gradient(180deg,transparent 0,#000 8%,#000 91%,transparent 100%),linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%);
-  mask-composite:intersect}
-.scene-svg{position:absolute; inset:0; width:100%; height:100%; display:block}
-#cam{transform-origin:0 0; transition:transform 1.5s cubic-bezier(.65,0,.35,1)}
+.scene{position:relative; width:100%; aspect-ratio:1440/730; user-select:none; overflow:hidden; contain:layout paint}
+.sky{position:absolute; inset:0}
+.sky-day{background:linear-gradient(180deg,#FFE3A3 0%,#FFF1CF 12%,#F4F7FF 34%,#E6EEFF 66%,#F7FAFF 100%)}
+.sky-night{opacity:0; transition:opacity 1.8s ease; background:linear-gradient(180deg,#0A1435 0%,#14245A 36%,#2B3A85 72%,#5A5FA8 100%)}
+.home[data-mode="night"] .sky-night{opacity:1}
+.cam{position:absolute; inset:0; transform-origin:0 0; transition:transform .95s cubic-bezier(.65,0,.35,1)}
+.layer{position:absolute; inset:0; width:100%; height:100%; display:block}
+.scene-fade{position:absolute; inset:0; z-index:1; pointer-events:none; background:linear-gradient(180deg,var(--pg,#F6F9FF) 0,transparent 8%,transparent 91%,var(--pg,#F6F9FF) 100%),linear-gradient(90deg,var(--pg,#F6F9FF) 0,transparent 5%,transparent 95%,var(--pg,#F6F9FF) 100%)}
 .scene-copy{position:absolute; left:0; right:0; top:3.4%; z-index:3; text-align:center; padding:0 20px; transition:opacity .6s, transform .9s}
 .scene-copy .kicker{font-size:12px; letter-spacing:.26em; text-transform:uppercase; color:#8A5A00; font-weight:800; transition:color 1.2s}
 .scene-copy h2{font-size:clamp(24px,3.7vw,46px); font-weight:800; margin:6px 0 8px; color:var(--navy); transition:color 1.2s}
@@ -344,8 +368,6 @@ body.on-home.night .foot-note{color:#B9C4E6}
 .home[data-mode="night"] .spot-tag{background:rgba(18,30,86,.96); color:#fff}
 .home[data-mode="night"] .spot-tag small{color:#AEBBE8}
 /* --- día / noche en la escena --- */
-.sky-night{opacity:0; transition:opacity 1.8s ease}
-.home[data-mode="night"] .sky-night{opacity:1}
 .stars{opacity:0; transition:opacity 1.8s ease}
 .home[data-mode="night"] .stars{opacity:1}
 .star{animation:twinkle 3.6s ease-in-out infinite; animation-delay:var(--d,0s)}
@@ -359,17 +381,19 @@ body.on-home.night .foot-note{color:#B9C4E6}
 .cloud{animation:cloudDrift var(--dur,120s) linear infinite; animation-delay:var(--dl,0s); transition:fill 1.6s, opacity 1.6s}
 @keyframes cloudDrift{from{transform:translateX(-520px)}to{transform:translateX(1800px)}}
 .home[data-mode="night"] .cloud{fill:#7E8CCB; opacity:.3}
-.world{transition:filter 1.8s ease}
-.home[data-mode="night"] .world{filter:brightness(.5) saturate(.78)}
-.night-blue{opacity:0; transition:opacity 1.8s ease; pointer-events:none}
-.home[data-mode="night"] .night-blue{opacity:.3}
-.nl{opacity:0; transition:opacity 1.6s ease; pointer-events:none}
-.home[data-mode="night"] .nl{opacity:1}
 .hz{transition:stop-color 1.6s}
 .home[data-mode="night"] .hz{stop-color:#5A61B4}
 .day-crew{transition:opacity 1.2s ease}
 .home[data-mode="night"] .day-crew{opacity:0}
 .home[data-mode="night"] .roller-in,.home[data-mode="night"] .roller-body,.home[data-mode="night"] .drum-spin{animation-play-state:paused}
+/* capas de la escena: fondo estático, primer plano animado y noche (estática + animada) */
+#bgSvg,#fgSvg{transition:filter 1.8s ease}
+.home[data-mode="night"] #bgSvg,.home[data-mode="night"] #fgSvg{filter:brightness(.52) saturate(.78)}
+#nsSvg,#nfSvg{opacity:0; visibility:hidden; pointer-events:none; transition:opacity 1.6s ease, visibility 0s 1.6s}
+.home[data-mode="night"] #nsSvg,.home[data-mode="night"] #nfSvg{opacity:1; visibility:visible; transition:opacity 1.6s ease, visibility 0s}
+.home:not([data-mode="night"]) #nsSvg *,.home:not([data-mode="night"]) #nfSvg *,.home:not([data-mode="night"]) .star{animation-play-state:paused}
+.home[data-mode="night"] .day-crew *{animation-play-state:paused}
+.home.zooming .layer *{animation-play-state:paused!important}
 /* --- animaciones de la escena --- */
 .bus-move{animation:busRoute 28s linear infinite}
 @keyframes busRoute{
@@ -460,7 +484,7 @@ body.on-home.night .foot-note{color:#B9C4E6}
 .pane{position:absolute; z-index:4; top:15%; width:42%; display:flex; flex-direction:column; gap:14px; pointer-events:none}
 .pane[data-side="right"]{right:4.5%}
 .pane[data-side="left"]{left:4.5%}
-.pane-cap{opacity:0; transform:translateY(-12px); transition:opacity .5s .55s, transform .6s .55s}
+.pane-cap{opacity:0; transform:translateY(-12px); transition:opacity .4s .2s, transform .5s .2s}
 .pane-cap h3{font-size:clamp(20px,2.6vw,32px); font-weight:800; color:var(--navy); letter-spacing:-.01em; transition:color 1.2s}
 .pane-cap p{font-size:clamp(12.5px,1.1vw,15px); color:#3C4A6B; margin-top:2px; transition:color 1.2s}
 .home[data-mode="night"] .pane-cap h3{color:#fff}
@@ -469,7 +493,7 @@ body.on-home.night .foot-note{color:#B9C4E6}
 .sign{--sg:#1D4ED8; --sf:#fff; position:relative; display:flex; align-items:center; gap:14px; text-align:left; border:0; cursor:pointer; padding:14px 18px; border-radius:16px;
   color:var(--sf); background:var(--sg); box-shadow:0 14px 30px rgba(10,31,92,.28), inset 0 0 0 3px rgba(255,255,255,.92);
   transform-origin:50% 0; transform:translateY(-50px) rotate(-2.5deg) scale(.92); opacity:0; pointer-events:none;
-  transition:transform .75s cubic-bezier(.34,1.56,.64,1) var(--dl,0s), opacity .4s var(--dl,0s), box-shadow .25s; -webkit-tap-highlight-color:transparent}
+  transition:transform .55s cubic-bezier(.34,1.56,.64,1) var(--dl,0s), opacity .3s var(--dl,0s), box-shadow .25s; -webkit-tap-highlight-color:transparent}
 .pane.show .sign{transform:none; opacity:1; pointer-events:auto}
 .pane.show .sign:hover{transform:translateY(-4px) scale(1.03); box-shadow:0 20px 38px rgba(10,31,92,.34), inset 0 0 0 3px #fff; transition-delay:0s}
 .sign:focus-visible{outline:3px solid var(--navy); outline-offset:4px}
@@ -485,7 +509,7 @@ body.on-home.night .foot-note{color:#B9C4E6}
 .sign-paraderos .s-b{color:#8A5A00}
 .sign.locked{--sg:#8E9AB4; cursor:not-allowed}
 .scene-back{align-self:flex-start; border:2px solid var(--navy); background:#fff; color:var(--navy); font-weight:800; font-size:13.5px; padding:8px 18px; border-radius:999px; cursor:pointer; box-shadow:0 6px 16px rgba(10,31,92,.16);
-  opacity:0; transform:translateY(-8px); transition:opacity .5s .9s, transform .5s .9s, background .2s; pointer-events:none}
+  opacity:0; transform:translateY(-8px); transition:opacity .4s .5s, transform .4s .5s, background .2s; pointer-events:none}
 .pane.show .scene-back{opacity:1; transform:none; pointer-events:auto}
 .scene-back:hover{background:#EEF2FB}
 .home[data-mode="night"] .scene-back{background:#121E56; color:#fff; border-color:#8FA0E0}
@@ -496,11 +520,11 @@ body.on-home.night .foot-note{color:#B9C4E6}
 }
 .warp{position:fixed; inset:0; z-index:400; pointer-events:none; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; color:#fff; text-align:center;
   background:radial-gradient(circle at var(--x,50%) var(--y,50%),var(--wc,#1D4ED8) 0%,#001233 75%);
-  clip-path:circle(0px at var(--x,50%) var(--y,50%)); opacity:1; transition:clip-path .85s cubic-bezier(.65,0,.35,1), opacity .55s ease}
+  clip-path:circle(0px at var(--x,50%) var(--y,50%)); opacity:1; transition:clip-path .6s cubic-bezier(.65,0,.35,1), opacity .4s ease}
 .warp.go{clip-path:circle(150vmax at var(--x,50%) var(--y,50%)); pointer-events:auto}
 .warp.go.out{opacity:0}
-.warp .w-k{font-size:12px; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); font-weight:800; opacity:0; transition:opacity .4s .4s}
-.warp .w-n{font-size:clamp(26px,5vw,44px); font-weight:800; opacity:0; transform:translateY(12px); transition:opacity .4s .45s, transform .5s .45s}
+.warp .w-k{font-size:12px; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); font-weight:800; opacity:0; transition:opacity .3s .25s}
+.warp .w-n{font-size:clamp(26px,5vw,44px); font-weight:800; opacity:0; transform:translateY(12px); transition:opacity .3s .3s, transform .4s .3s}
 .warp.go .w-k,.warp.go .w-n{opacity:1; transform:none}
 .cat-btn{--spc:#1D4ED8; display:flex; flex-direction:column; align-items:center; gap:3px; padding:12px 6px; border-radius:16px; border:2px solid var(--spc); background:#fff; color:var(--navy); font-weight:800; font-size:13px; cursor:pointer; box-shadow:0 6px 16px rgba(10,31,92,.12); -webkit-tap-highlight-color:transparent}
 .cat-btn svg{width:30px; height:30px; color:var(--spc)}
@@ -548,32 +572,31 @@ body.on-home.night .foot-note{color:#B9C4E6}
 </header>
 
 <!-- ============ TABS ============ -->
-<nav class="tabs">
+<nav class="tabs" aria-label="Proyectos">
   <div class="tabs-inner">
-    <button class="tab active" data-page="page-inicio">
-      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11.5 12 4l9 7.5M5.5 10v10h13V10M10 20v-5h4v5"/></svg>
+    <button class="tab tab-home active" data-page="page-inicio" title="Volver a la calle del SETP">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5M5.5 10v10h13V10M10 20v-5h4v5"/></svg>
       Inicio
     </button>
-    <button class="tab" data-page="page-cra5">
-      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18h18M5 18l2-9h10l2 9M9 9V6h6v3"/></svg>
-      Carrera Quinta <span class="badge">Terminado</span>
-    </button>
-    <button class="tab" data-page="page-paraderos">
-      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6.7 7-12a7 7 0 1 0-14 0c0 5.3 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
-      Paraderos Tipo III <span class="badge">En liquidación</span>
-    </button>
-    <button class="tab" data-page="page-ambala">
-      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18h18M5 18l2-9h10l2 9M9 9V6h6v3"/></svg>
-      Av. Ambalá <span class="badge">En obra</span>
-    </button>
-    <button class="tab" data-page="page-semaforos">
-      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="2" width="8" height="20" rx="3"/><circle cx="12" cy="6.5" r="1.4" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/><circle cx="12" cy="17.5" r="1.4" fill="currentColor" stroke="none"/></svg>
-      Semaforización Fase I <span class="badge">En obra</span>
-    </button>
-    <button class="tab locked" title="Pendiente de información">
-      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5m16 14V5M4 12h16M8 5v14M16 5v14"/></svg>
-      Av. Ferrocarril <span class="badge">Diseños</span>
-    </button>
+    <button class="tab crumb" data-cat="vias" data-go="vias" style="--spc:#1D4ED8" title="Ver todos los proyectos de Vías"><span class="cchip"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 3h7L20 21H4z"/><path d="M12 6.5v3M12 12v3M12 17.5v2"/></svg> Vías</span></button>
+    <button class="tab crumb" data-cat="semaforos" data-go="semaforos" style="--spc:#00913A" title="Ver todos los proyectos de Semáforos"><span class="cchip"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="20" rx="3"/><circle cx="12" cy="7" r="1.2" fill="currentColor"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/><circle cx="12" cy="17" r="1.2" fill="currentColor"/></svg> Semáforos</span></button>
+    <button class="tab crumb" data-cat="paraderos" data-go="paraderos" style="--spc:#D98F00" title="Ver todos los proyectos de Paraderos"><span class="cchip"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.7 7-12a7 7 0 1 0-14 0c0 5.3 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg> Paraderos</span></button>
+    <button class="tab locked" data-cat="vias" title="Etapa de diseños · por incluir en el tablero"><svg class="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg> Av. Ferrocarril</button>
+    <button class="tab locked" data-cat="vias" title="Carrera Quinta Fase I · por incluir en el tablero"><svg class="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg> Cra 5 · Fase I</button>
+    <button class="tab" data-cat="vias" data-page="page-cra5"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 3h7L20 21H4z"/><path d="M12 6.5v3M12 12v3M12 17.5v2"/></svg> Cra 5 · Fase II <span class="badge">Terminado</span></button>
+    <button class="tab" data-cat="vias" data-page="page-ambala"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 3h7L20 21H4z"/><path d="M12 6.5v3M12 12v3M12 17.5v2"/></svg> Av. Ambalá · Fase III <span class="badge">En obra</span></button>
+    <button class="tab" data-cat="semaforos" data-page="page-semaforos"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="20" rx="3"/><circle cx="12" cy="7" r="1.2" fill="currentColor"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/><circle cx="12" cy="17" r="1.2" fill="currentColor"/></svg> Semaforización · Fase I <span class="badge">En obra</span></button>
+    <button class="tab locked" data-cat="semaforos" title="Semaforización Fase II · por incluir en el tablero"><svg class="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg> Fase II</button>
+    <button class="tab locked" data-cat="semaforos" title="Semaforización Fase III · por incluir en el tablero"><svg class="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg> Fase III</button>
+    <button class="tab locked" data-cat="paraderos" title="Paraderos Tipo I · por incluir en el tablero"><svg class="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg> Tipo I</button>
+    <button class="tab locked" data-cat="paraderos" title="Paraderos Tipo II · por incluir en el tablero"><svg class="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg> Tipo II</button>
+    <button class="tab" data-cat="paraderos" data-page="page-paraderos"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.7 7-12a7 7 0 1 0-14 0c0 5.3 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg> Tipo III <span class="badge">En liquidación</span></button>
+    <span class="tabs-sp"></span>
+    <div class="cat-switch" role="group" aria-label="Cambiar de tipo de proyecto">
+      <button type="button" data-go="vias" title="Cambiar a Vías" aria-label="Cambiar a Vías" style="--spc:#1D4ED8"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 3h7L20 21H4z"/><path d="M12 6.5v3M12 12v3M12 17.5v2"/></svg></button>
+      <button type="button" data-go="semaforos" title="Cambiar a Semáforos" aria-label="Cambiar a Semáforos" style="--spc:#00913A"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="20" rx="3"/><circle cx="12" cy="7" r="1.2" fill="currentColor"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/><circle cx="12" cy="17" r="1.2" fill="currentColor"/></svg></button>
+      <button type="button" data-go="paraderos" title="Cambiar a Paraderos" aria-label="Cambiar a Paraderos" style="--spc:#D98F00"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.7 7-12a7 7 0 1 0-14 0c0 5.3 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></button>
+    </div>
   </div>
 </nav>
 
@@ -599,247 +622,254 @@ body.on-home.night .foot-note{color:#B9C4E6}
     <p>Un recorrido por cada uno de los proyectos ejecutados y por ejecutar a cargo del SETP. Toca el paradero, el semáforo o la vía para acercarte.</p>
   </div>
   <div class="scene" id="scene">
-    <svg class="scene-svg" id="sceneSvg" viewBox="0 0 1440 730" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
-      <defs>
-        <linearGradient id="skyG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE3A3"/><stop offset=".12" stop-color="#FFF1CF"/><stop offset=".34" stop-color="#F4F7FF"/><stop offset=".66" stop-color="#E6EEFF"/><stop offset="1" stop-color="#F7FAFF"/></linearGradient>
-        <linearGradient id="skyNightG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0A1435"/><stop offset=".36" stop-color="#14245A"/><stop offset=".72" stop-color="#2B3A85"/><stop offset="1" stop-color="#5A5FA8"/></linearGradient>
-        <linearGradient id="roadG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4E566D"/><stop offset="1" stop-color="#3B4257"/></linearGradient>
-        <linearGradient id="hazeG" x1="0" y1="0" x2="0" y2="1"><stop class="hz" offset="0" stop-color="#fff" stop-opacity="0"/><stop class="hz" offset=".6" stop-color="#fff" stop-opacity=".62"/><stop class="hz" offset="1" stop-color="#fff" stop-opacity=".2"/></linearGradient>
-        <radialGradient id="sunG" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#FFE9A0"/><stop offset="1" stop-color="#FFB92E"/></radialGradient>
-        <radialGradient id="moonG" cx=".4" cy=".35" r=".75"><stop offset="0" stop-color="#FFFCEB"/><stop offset="1" stop-color="#E5DDB4"/></radialGradient>
-        <radialGradient id="moonGlow"><stop offset="0" stop-color="#FFF6CC" stop-opacity=".55"/><stop offset="1" stop-color="#FFF6CC" stop-opacity="0"/></radialGradient>
-        <linearGradient id="lampCone" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE9A6" stop-opacity=".55"/><stop offset="1" stop-color="#FFE9A6" stop-opacity="0"/></linearGradient>
-        <linearGradient id="beamG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FFF3C0" stop-opacity=".7"/><stop offset="1" stop-color="#FFF3C0" stop-opacity="0"/></linearGradient>
-        <radialGradient id="floodG"><stop offset="0" stop-color="#FFF6CC" stop-opacity=".6"/><stop offset="1" stop-color="#FFF6CC" stop-opacity="0"/></radialGradient>
-        <filter id="fB1" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="1"/></filter>
-        <filter id="fB2" x="-5%" y="-10%" width="110%" height="120%"><feGaussianBlur stdDeviation="2.2"/></filter>
-        <filter id="fB3" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3.4"/></filter>
-        <filter id="fB4" x="-5%" y="-10%" width="110%" height="120%"><feGaussianBlur stdDeviation="4.5"/></filter>
-        <symbol id="sOco" viewBox="-20 -20 40 40">
-          <g fill="#F2A9C4"><ellipse cx="0" cy="-10" rx="6.5" ry="10"/><ellipse cx="0" cy="-10" rx="6.5" ry="10" transform="rotate(72)"/><ellipse cx="0" cy="-10" rx="6.5" ry="10" transform="rotate(144)"/><ellipse cx="0" cy="-10" rx="6.5" ry="10" transform="rotate(216)"/><ellipse cx="0" cy="-10" rx="6.5" ry="10" transform="rotate(288)"/></g>
-          <circle r="3.2" fill="#F0A800"/>
-        </symbol>
-        <symbol id="sCone" viewBox="-14 -40 28 46"><path d="M-12 4h24v-6h-24z" fill="#3A404F"/><path d="M-10 -2 -5 -38h10l5 36z" fill="#F26A1B"/><path d="M-7.8 -18h15.6l-1.3 -9h-13z" fill="#fff"/></symbol>
-      </defs>
-      <rect width="1440" height="780" fill="url(#skyG)"/>
-      <rect class="sky-night" width="1440" height="780" fill="url(#skyNightG)"/>
-      <g id="cam">
+    <!-- Cielo (CSS, sin repintado) -->
+    <div class="sky sky-day"></div>
+    <div class="sky sky-night"></div>
+    <!-- La cámara mueve todas las capas a la vez por GPU. Capas: cielo · fondo estático · primer plano animado · noche estática · noche animada -->
+    <div class="cam" id="cam">
+      <svg class="layer" id="skySvg" viewBox="0 0 1440 730" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
         <g class="stars" id="stars"></g>
-        <!-- sol (derecha) y luna (izquierda): se mueven con el interruptor -->
         <g transform="translate(1160 170)"><g class="celes sun"><circle class="sun-rays" r="78" fill="none" stroke="#FFB92E" stroke-width="20" stroke-dasharray="7 38" opacity=".45"/><circle r="54" fill="url(#sunG)"/></g></g>
         <g transform="translate(290 170)"><g class="celes moon"><circle r="104" fill="url(#moonGlow)"/><circle r="46" fill="url(#moonG)"/><circle cx="-14" cy="-10" r="9" fill="#D9D1A4" opacity=".45"/><circle cx="16" cy="12" r="12" fill="#D9D1A4" opacity=".4"/><circle cx="-8" cy="24" r="6" fill="#D9D1A4" opacity=".4"/></g></g>
         <g class="cloud" style="--dur:110s;--dl:-30s" fill="#fff" opacity=".8"><ellipse cx="220" cy="130" rx="80" ry="24"/><ellipse cx="272" cy="112" rx="54" ry="28"/><ellipse cx="176" cy="118" rx="46" ry="22"/></g>
         <g class="cloud" style="--dur:150s;--dl:-95s" fill="#fff" opacity=".65"><ellipse cx="560" cy="250" rx="70" ry="20"/><ellipse cx="604" cy="236" rx="44" ry="22"/></g>
         <g class="cloud" style="--dur:130s;--dl:-60s" fill="#fff" opacity=".7"><ellipse cx="900" cy="96" rx="76" ry="22"/><ellipse cx="946" cy="80" rx="48" ry="24"/></g>
+      </svg>
 
-        <g class="world">
-          <!-- cordillera y Nevado del Tolima, desenfocados -->
-          <g filter="url(#fB4)">
-            <path fill="#C6D6F2" d="M-40 500V400L120 350 230 395 340 330 450 380 560 335 680 395 800 345 900 385 980 290 1060 205 1130 270 1190 250 1260 330 1350 300 1480 350V500Z"/>
-            <path fill="#fff" fill-opacity=".9" d="M1060 205 1022 262 1046 250 1064 274 1090 250 1118 264 1130 270Z"/>
-          </g>
-          <path filter="url(#fB3)" fill="#A8D5B5" opacity=".7" d="M-40 500V436L100 404 200 442 330 408 450 452 580 424 700 462 830 428 960 466 1090 432 1220 470 1330 442 1480 462V500Z"/>
-          <g id="skyline" filter="url(#fB2)"></g>
-          <rect y="360" width="1440" height="200" fill="url(#hazeG)"/>
-          <!-- ocobos -->
-          <g filter="url(#fB1)">
-            <g transform="translate(70 548)"><rect x="-7" y="-96" width="14" height="96" fill="#8A5A34"/><circle cx="0" cy="-150" r="56" fill="#F6C9DA"/><circle cx="-40" cy="-128" r="38" fill="#F2A9C4"/><circle cx="42" cy="-130" r="40" fill="#F2A9C4"/><circle cx="6" cy="-192" r="36" fill="#FADCE8"/></g>
-            <g transform="translate(560 548)"><rect x="-7" y="-96" width="14" height="96" fill="#8A5A34"/><circle cx="0" cy="-150" r="56" fill="#F6C9DA"/><circle cx="-40" cy="-128" r="38" fill="#F2A9C4"/><circle cx="42" cy="-130" r="40" fill="#F2A9C4"/><circle cx="6" cy="-192" r="36" fill="#FADCE8"/></g>
-            <g transform="translate(1400 548)"><rect x="-7" y="-96" width="14" height="96" fill="#8A5A34"/><circle cx="0" cy="-150" r="56" fill="#F6C9DA"/><circle cx="-40" cy="-128" r="38" fill="#F2A9C4"/><circle cx="42" cy="-130" r="40" fill="#F2A9C4"/><circle cx="6" cy="-192" r="36" fill="#FADCE8"/></g>
-          </g>
-          <!-- acera, bordillo y calzada -->
-          <rect y="498" width="1440" height="58" fill="#E3E6EF"/>
-          <path d="M0 498H1440" stroke="#D3D8E6" stroke-width="3"/>
-          <g stroke="#D3D8E6" stroke-width="2"><path d="M60 498v50M180 498v50M300 498v50M420 498v50M540 498v50M660 498v50M780 498v50M900 498v50M1020 498v50M1140 498v50M1260 498v50M1380 498v50"/></g>
-          <rect y="548" width="1440" height="8" fill="#C9CEDD"/>
-          <rect x="110" y="548" width="360" height="8" fill="#F0A800" opacity=".9"/>
-          <rect y="556" width="1440" height="150" fill="url(#roadG)"/>
-          <line x1="0" y1="631" x2="1440" y2="631" stroke="#fff" stroke-width="5" stroke-dasharray="46 40" opacity=".7"/>
-          <g fill="#fff" opacity=".78"><rect x="566" y="566" width="94" height="10" rx="2"/><rect x="566" y="590" width="94" height="10" rx="2"/><rect x="566" y="614" width="94" height="10" rx="2"/><rect x="566" y="638" width="94" height="10" rx="2"/><rect x="566" y="662" width="94" height="10" rx="2"/><rect x="566" y="686" width="94" height="10" rx="2"/></g>
-          <!-- luminarias -->
-          <g transform="translate(470 548)"><rect x="-4" y="-170" width="8" height="170" rx="3" fill="#6B7590"/><path d="M0 -168Q0 -186 22 -186L46 -186" stroke="#6B7590" stroke-width="6" fill="none" stroke-linecap="round"/><rect x="38" y="-191" width="32" height="10" rx="5" fill="#465066"/><ellipse class="lamp-glow" cx="54" cy="-172" rx="26" ry="10" fill="#FFE08A"/></g>
-          <g transform="translate(1390 548)"><rect x="-4" y="-170" width="8" height="170" rx="3" fill="#6B7590"/><path d="M0 -168Q0 -186 -22 -186L-46 -186" stroke="#6B7590" stroke-width="6" fill="none" stroke-linecap="round"/><rect x="-70" y="-191" width="32" height="10" rx="5" fill="#465066"/><ellipse class="lamp-glow" cx="-54" cy="-172" rx="26" ry="10" fill="#FFE08A" style="animation-delay:-1.5s"/></g>
-          <!-- PARADERO (banderín) -->
-          <g transform="translate(270 548)">
-            <ellipse cx="0" cy="3" rx="36" ry="7" fill="rgba(10,31,92,.16)" filter="url(#fB1)"/>
-            <rect x="-5" y="-214" width="10" height="214" rx="3" fill="#7E8AA3"/>
-            <rect x="-18" y="-9" width="36" height="9" rx="3" fill="#5B667D"/>
-            <g transform="translate(-58 -240)">
-              <rect width="116" height="148" rx="12" fill="#fff" stroke="#0A1F5C" stroke-width="5"/>
-              <path d="M0 12a12 12 0 0 1 12-12h92a12 12 0 0 1 12 12v30H0z" fill="#0A1F5C"/>
-              <rect x="34" y="10" width="48" height="24" rx="5" fill="#fff"/>
-              <rect x="39" y="15" width="10" height="9" fill="#0A1F5C"/><rect x="53" y="15" width="10" height="9" fill="#0A1F5C"/><rect x="67" y="15" width="10" height="9" fill="#0A1F5C"/>
-              <circle cx="46" cy="36" r="4.5" fill="#fff"/><circle cx="70" cy="36" r="4.5" fill="#fff"/>
-              <rect x="14" y="56" width="88" height="16" rx="8" fill="#D62828"/>
-              <rect x="14" y="78" width="88" height="16" rx="8" fill="#00A830"/>
-              <rect x="14" y="100" width="88" height="16" rx="8" fill="#F0A800"/>
-              <rect x="14" y="124" width="56" height="10" rx="5" fill="#1D4ED8"/>
-            </g>
-          </g>
-          <g class="person" transform="translate(338 546)"><rect x="-9" y="-46" width="18" height="30" rx="8" fill="#D62828"/><rect x="-8" y="-18" width="7" height="18" rx="3" fill="#33415C"/><rect x="1" y="-18" width="7" height="18" rx="3" fill="#33415C"/><circle cy="-56" r="9" fill="#F1C7A3"/><path d="M-9 -58a9 9 0 0 1 18 0z" fill="#3B2A20"/></g>
-          <g class="person p2" transform="translate(372 546)"><rect x="-9" y="-46" width="18" height="30" rx="8" fill="#00A830"/><rect x="-8" y="-18" width="7" height="18" rx="3" fill="#33415C"/><rect x="1" y="-18" width="7" height="18" rx="3" fill="#33415C"/><circle cy="-56" r="9" fill="#E2AC85"/><path d="M-9 -58a9 9 0 0 1 18 0z" fill="#1F1B24"/></g>
-          <g class="person p3" transform="translate(402 546)"><rect x="-8" y="-38" width="16" height="24" rx="7" fill="#F0A800"/><rect x="-7" y="-15" width="6" height="15" rx="3" fill="#33415C"/><rect x="1" y="-15" width="6" height="15" rx="3" fill="#33415C"/><circle cy="-46" r="8" fill="#F1C7A3"/><path d="M-8 -48a8 8 0 0 1 16 0z" fill="#5A3B22"/></g>
-          <!-- señal de obra + conos en la acera -->
-          <g transform="translate(880 548)"><rect x="-3" y="-72" width="6" height="72" fill="#7E8AA3"/><g transform="translate(0 -98) rotate(45)"><rect x="-27" y="-27" width="54" height="54" rx="6" fill="#F26A1B" stroke="#fff" stroke-width="3"/></g><path d="M-9 -110h18l-4 24h-10z" fill="#fff"/></g>
-          <use href="#sCone" x="916" y="508" width="28" height="46"/><use href="#sCone" x="1336" y="508" width="28" height="46"/>
-          <!-- SEMÁFORO + cámara + controlador -->
-          <g transform="translate(730 548)">
-            <ellipse cx="0" cy="3" rx="30" ry="6" fill="rgba(10,31,92,.16)" filter="url(#fB1)"/>
-            <rect x="-7" y="-290" width="14" height="290" rx="4" fill="#5B667D"/>
-            <rect x="-17" y="-10" width="34" height="10" rx="3" fill="#465066"/>
-            <rect x="4" y="-262" width="172" height="9" rx="4" fill="#5B667D"/>
-            <g transform="translate(-27 -292)">
-              <rect width="54" height="124" rx="17" fill="#252932"/>
-              <circle cx="27" cy="30" r="15" fill="#3A0000"/><circle cx="27" cy="30" r="15" fill="#FF3B30" class="tl-r"/>
-              <circle cx="27" cy="62" r="15" fill="#3A2A00"/><circle cx="27" cy="62" r="15" fill="#FFC400" class="tl-y"/>
-              <circle cx="27" cy="94" r="15" fill="#00341A"/><circle cx="27" cy="94" r="15" fill="#00E676" class="tl-g"/>
-            </g>
-            <g transform="translate(132 -253)">
-              <rect x="-22" width="44" height="100" rx="14" fill="#252932"/>
-              <circle cx="0" cy="24" r="12" fill="#3A0000"/><circle cx="0" cy="24" r="12" fill="#FF3B30" class="tl-r"/>
-              <circle cx="0" cy="50" r="12" fill="#3A2A00"/><circle cx="0" cy="50" r="12" fill="#FFC400" class="tl-y"/>
-              <circle cx="0" cy="76" r="12" fill="#00341A"/><circle cx="0" cy="76" r="12" fill="#00E676" class="tl-g"/>
-            </g>
-            <g transform="translate(58 -282)"><rect width="30" height="14" rx="4" fill="#1E2433"/><circle cx="25" cy="7" r="4.5" fill="#6EC1FF"/></g>
-            <rect x="9" y="-130" width="20" height="30" rx="5" fill="#FFC531"/><circle cx="19" cy="-118" r="4" fill="#0A1F5C"/>
-            <rect x="22" y="-60" width="40" height="60" rx="4" fill="#9AA3B8"/><rect x="27" y="-54" width="30" height="48" rx="2" fill="none" stroke="#6B7590" stroke-width="2"/><circle cx="52" cy="-30" r="2.6" fill="#465066"/><circle cx="34" cy="-48" r="2.6" fill="#00E676" class="tl-g"/>
-          </g>
-          <!-- VÍA en rehabilitación (frente de día): asfalto nuevo, rodillo, conos -->
-          <rect x="958" y="566" width="306" height="64" rx="10" fill="#232838"/>
-          <g fill="#3A4157" opacity=".8"><circle cx="990" cy="586" r="2.5"/><circle cx="1030" cy="606" r="2"/><circle cx="1072" cy="580" r="2.6"/><circle cx="1110" cy="612" r="2"/><circle cx="1148" cy="590" r="2.4"/><circle cx="1188" cy="614" r="2"/><circle cx="1226" cy="584" r="2.6"/><circle cx="1010" cy="620" r="2"/><circle cx="1250" cy="604" r="2"/></g>
-          <g fill="#fff"><ellipse class="steam" style="--d:0s" cx="1010" cy="572" rx="14" ry="6" opacity=".5"/><ellipse class="steam" style="--d:1.2s" cx="1100" cy="574" rx="14" ry="6" opacity=".5"/><ellipse class="steam" style="--d:2.4s" cx="1190" cy="572" rx="14" ry="6" opacity=".5"/></g>
-          <g class="roller-in"><g class="roller-body"><g transform="translate(1040 630)">
-            <rect x="48" y="-58" width="132" height="32" rx="8" fill="#F26A1B"/>
-            <rect x="48" y="-40" width="132" height="6" fill="#FFD34D"/>
-            <rect x="98" y="-108" width="68" height="52" rx="8" fill="#F26A1B"/>
-            <rect x="106" y="-100" width="52" height="34" rx="5" fill="#BFE3FF"/>
-            <circle cx="132" cy="-86" r="8" fill="#F1C7A3"/><path d="M124 -88a8 8 0 0 1 16 0z" fill="#FFD34D"/>
-            <rect x="94" y="-114" width="76" height="8" rx="4" fill="#3A404F"/>
-            <rect x="144" y="-128" width="6" height="16" fill="#3A404F"/>
-            <rect x="6" y="-56" width="54" height="10" rx="4" fill="#565E70"/>
-            <circle cx="28" cy="-30" r="30" fill="#7B8496"/><circle cx="28" cy="-30" r="30" fill="none" stroke="#5A6272" stroke-width="4"/>
-            <g class="drum-spin"><path d="M28 -58V-2M0 -30H56M8 -50 48 -10M48 -50 8 -10" stroke="#A4ACBD" stroke-width="3"/></g>
-            <circle cx="152" cy="-27" r="27" fill="#2A2F3D"/><circle cx="152" cy="-27" r="12" fill="#C9D0DE"/>
-          </g></g></g>
-          <use href="#sCone" x="926" y="594" width="28" height="46"/><use href="#sCone" x="1270" y="594" width="28" height="46"/>
-          <!-- cuadrillas de DÍA: obrero rastrillando y obreros que van pasando por la acera -->
-          <g class="day-crew">
-            <g transform="translate(1310 646)">
-              <rect x="-9" y="-50" width="18" height="32" rx="8" fill="#F26A1B"/><rect x="-9" y="-36" width="18" height="5" fill="#FFF3B0"/>
-              <rect x="-8" y="-20" width="7" height="20" rx="3" fill="#33415C"/><rect x="1" y="-20" width="7" height="20" rx="3" fill="#33415C"/>
-              <circle cy="-60" r="9" fill="#E2AC85"/><path d="M-10 -62a10 10 0 0 1 20 0z" fill="#FFD34D"/>
-              <g class="rake"><path d="M0 -40L-44 -6" stroke="#8A5A34" stroke-width="4" stroke-linecap="round"/><path d="M-56 -6h22" stroke="#3A404F" stroke-width="5" stroke-linecap="round"/></g>
-            </g>
-            <g class="walker" style="--dur:46s;--dl:-9s"><g transform="translate(0 546)"><g class="bob">
-              <rect class="leg" x="-8" y="-18" width="7" height="18" rx="3" fill="#33415C"/><rect class="leg b" x="1" y="-18" width="7" height="18" rx="3" fill="#33415C"/>
-              <rect x="-9" y="-46" width="18" height="30" rx="8" fill="#F26A1B"/><rect x="-9" y="-33" width="18" height="4" fill="#FFF3B0"/>
-              <circle cy="-56" r="9" fill="#E2AC85"/><path d="M-10 -58a10 10 0 0 1 20 0z" fill="#FFD34D"/>
-              <use href="#sCone" x="10" y="-50" width="16" height="26"/>
-            </g></g></g>
-            <g class="walker rev" style="--dur:58s;--dl:-31s"><g transform="translate(0 546) scale(-1 1)"><g class="bob">
-              <rect class="leg" x="-8" y="-18" width="7" height="18" rx="3" fill="#33415C"/><rect class="leg b" x="1" y="-18" width="7" height="18" rx="3" fill="#33415C"/>
-              <rect x="-9" y="-46" width="18" height="30" rx="8" fill="#F26A1B"/><rect x="-9" y="-33" width="18" height="4" fill="#FFF3B0"/>
-              <circle cy="-56" r="9" fill="#F1C7A3"/><path d="M-10 -58a10 10 0 0 1 20 0z" fill="#FFD34D"/>
-              <path d="M9 -44L22 -6" stroke="#8A5A34" stroke-width="3.5" stroke-linecap="round"/><path d="M18 -6h11" stroke="#3A404F" stroke-width="5" stroke-linecap="round"/>
-            </g></g></g>
-          </g>
-          <!-- BUS del SETP en el carril cercano -->
-          <g transform="translate(0 700)"><g class="bus-move">
-            <ellipse cx="135" cy="5" rx="142" ry="8" fill="rgba(10,20,50,.28)" filter="url(#fB1)"/>
-            <rect x="0" y="-108" width="270" height="92" rx="18" fill="#fff"/>
-            <path d="M0 -50H270V-34a18 18 0 0 1-18 18H18A18 18 0 0 1 0 -34Z" fill="#00A830"/>
-            <rect y="-56" width="270" height="6" fill="#F0A800"/>
-            <rect x="14" y="-98" width="34" height="34" rx="5" fill="#2B3A55"/><rect x="56" y="-98" width="34" height="34" rx="5" fill="#2B3A55"/><rect x="98" y="-98" width="34" height="34" rx="5" fill="#2B3A55"/><rect x="140" y="-98" width="34" height="34" rx="5" fill="#2B3A55"/>
-            <rect x="188" y="-100" width="40" height="66" rx="4" fill="#2B3A55"/><path d="M208 -100V-34" stroke="#fff" stroke-width="3"/>
-            <path d="M236 -98h22q6 0 6 6v34h-28z" fill="#2B3A55"/>
-            <text x="16" y="-27" font-size="15" font-weight="800" fill="#fff" letter-spacing="2" font-family="Segoe UI,Arial,sans-serif">TRANSMUSICAL</text>
-            <rect x="40" y="-120" width="120" height="12" rx="6" fill="#D9DEEA"/>
-            <rect x="264" y="-42" width="8" height="14" rx="3" fill="#FFE08A"/><rect x="-2" y="-42" width="6" height="14" rx="3" fill="#D62828"/>
-            <circle cx="58" cy="-14" r="23" fill="#1E2433"/><circle cx="212" cy="-14" r="23" fill="#1E2433"/>
-            <g class="wheel"><circle cx="58" cy="-14" r="17" fill="#3A4152"/><circle cx="58" cy="-14" r="7" fill="#C7CEDD"/><path d="M58 -30V2M42 -14H74" stroke="#8B94A8" stroke-width="3"/></g>
-            <g class="wheel"><circle cx="212" cy="-14" r="17" fill="#3A4152"/><circle cx="212" cy="-14" r="7" fill="#C7CEDD"/><path d="M212 -30V2M196 -14H228" stroke="#8B94A8" stroke-width="3"/></g>
-          </g></g>
-          <!-- primer plano -->
-          <rect y="706" width="1440" height="74" fill="#C6E3BC"/>
-          <rect y="706" width="1440" height="6" fill="#B6BDCF"/>
-          <use class="oco-fall" href="#sOco" x="200" y="0" width="26" height="26" style="--dur:24s;--dl:-3s"/>
-          <use class="oco-fall" href="#sOco" x="640" y="0" width="22" height="22" style="--dur:28s;--dl:-14s"/>
-          <use class="oco-fall" href="#sOco" x="880" y="0" width="30" height="30" style="--dur:23s;--dl:-8s"/>
-          <use class="oco-fall" href="#sOco" x="1130" y="0" width="24" height="24" style="--dur:26s;--dl:-18s"/>
-          <use class="oco-fall" href="#sOco" x="1330" y="0" width="28" height="28" style="--dur:25s;--dl:-5s"/>
-          <use class="oco-fall" href="#sOco" x="60" y="0" width="20" height="20" style="--dur:30s;--dl:-21s"/>
+      <svg class="layer" id="bgSvg" viewBox="0 0 1440 730" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+        <defs>
+          <linearGradient id="roadG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4E566D"/><stop offset="1" stop-color="#3B4257"/></linearGradient>
+          <linearGradient id="hazeG" x1="0" y1="0" x2="0" y2="1"><stop class="hz" offset="0" stop-color="#fff" stop-opacity="0"/><stop class="hz" offset=".6" stop-color="#fff" stop-opacity=".62"/><stop class="hz" offset="1" stop-color="#fff" stop-opacity=".2"/></linearGradient>
+          <radialGradient id="sunG" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#FFE9A0"/><stop offset="1" stop-color="#FFB92E"/></radialGradient>
+          <radialGradient id="moonG" cx=".4" cy=".35" r=".75"><stop offset="0" stop-color="#FFFCEB"/><stop offset="1" stop-color="#E5DDB4"/></radialGradient>
+          <radialGradient id="moonGlow"><stop offset="0" stop-color="#FFF6CC" stop-opacity=".55"/><stop offset="1" stop-color="#FFF6CC" stop-opacity="0"/></radialGradient>
+          <linearGradient id="lampCone" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE9A6" stop-opacity=".55"/><stop offset="1" stop-color="#FFE9A6" stop-opacity="0"/></linearGradient>
+          <linearGradient id="beamG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FFF3C0" stop-opacity=".7"/><stop offset="1" stop-color="#FFF3C0" stop-opacity="0"/></linearGradient>
+          <radialGradient id="floodG"><stop offset="0" stop-color="#FFF6CC" stop-opacity=".6"/><stop offset="1" stop-color="#FFF6CC" stop-opacity="0"/></radialGradient>
+          <radialGradient id="gRed"><stop offset="0" stop-color="#FF3B30" stop-opacity=".8"/><stop offset="1" stop-color="#FF3B30" stop-opacity="0"/></radialGradient>
+          <radialGradient id="gYel"><stop offset="0" stop-color="#FFC400" stop-opacity=".8"/><stop offset="1" stop-color="#FFC400" stop-opacity="0"/></radialGradient>
+          <radialGradient id="gGrn"><stop offset="0" stop-color="#00E676" stop-opacity=".8"/><stop offset="1" stop-color="#00E676" stop-opacity="0"/></radialGradient>
+          <radialGradient id="gAmb"><stop offset="0" stop-color="#FFB000" stop-opacity=".85"/><stop offset="1" stop-color="#FFB000" stop-opacity="0"/></radialGradient>
+          <filter id="fB1" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="1"/></filter>
+          <filter id="fB2" x="-5%" y="-10%" width="110%" height="120%"><feGaussianBlur stdDeviation="2.2"/></filter>
+          <filter id="fB3" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3.4"/></filter>
+          <filter id="fB4" x="-5%" y="-10%" width="110%" height="120%"><feGaussianBlur stdDeviation="4.5"/></filter>
+          <symbol id="sOco" viewBox="-20 -20 40 40">
+            <g fill="#F2A9C4"><ellipse cx="0" cy="-10" rx="6.5" ry="10"/><ellipse cx="0" cy="-10" rx="6.5" ry="10" transform="rotate(72)"/><ellipse cx="0" cy="-10" rx="6.5" ry="10" transform="rotate(144)"/><ellipse cx="0" cy="-10" rx="6.5" ry="10" transform="rotate(216)"/><ellipse cx="0" cy="-10" rx="6.5" ry="10" transform="rotate(288)"/></g>
+            <circle r="3.2" fill="#F0A800"/>
+          </symbol>
+          <symbol id="sCone" viewBox="-14 -40 28 46"><path d="M-12 4h24v-6h-24z" fill="#3A404F"/><path d="M-10 -2 -5 -38h10l5 36z" fill="#F26A1B"/><path d="M-7.8 -18h15.6l-1.3 -9h-13z" fill="#fff"/></symbol>
+        </defs>
+        <!-- cordillera y Nevado del Tolima, desenfocados (se rasteriza una sola vez) -->
+        <g filter="url(#fB4)">
+          <path fill="#C6D6F2" d="M-40 500V400L120 350 230 395 340 330 450 380 560 335 680 395 800 345 900 385 980 290 1060 205 1130 270 1190 250 1260 330 1350 300 1480 350V500Z"/>
+          <path fill="#fff" fill-opacity=".9" d="M1060 205 1022 262 1046 250 1064 274 1090 250 1118 264 1130 270Z"/>
         </g>
-
-        <!-- ===== NOCHE: tono azul + luces + otro frente de trabajo ===== -->
-        <rect class="night-blue" width="1440" height="780" fill="#16246B"/>
-        <g class="nl">
-          <g id="nightWin" fill="#FFE9A6" filter="url(#fB1)"></g>
-          <path d="M510 382h28L619 548H429Z" fill="url(#lampCone)"/><ellipse cx="524" cy="548" rx="104" ry="13" fill="#FFE9A6" opacity=".3"/><circle cx="524" cy="376" r="20" fill="#FFE9A6" opacity=".85" filter="url(#fB2)"/>
-          <path d="M1322 382h28L1431 548H1241Z" fill="url(#lampCone)"/><ellipse cx="1336" cy="548" rx="104" ry="13" fill="#FFE9A6" opacity=".3"/><circle cx="1336" cy="376" r="20" fill="#FFE9A6" opacity=".85" filter="url(#fB2)"/>
-          <!-- semáforo encendido -->
-          <g filter="url(#fB4)" opacity=".6"><circle cx="730" cy="286" r="26" fill="#FF3B30" class="tl-r"/><circle cx="730" cy="318" r="26" fill="#FFC400" class="tl-y"/><circle cx="730" cy="350" r="26" fill="#00E676" class="tl-g"/><circle cx="862" cy="319" r="22" fill="#FF3B30" class="tl-r"/><circle cx="862" cy="345" r="22" fill="#FFC400" class="tl-y"/><circle cx="862" cy="371" r="22" fill="#00E676" class="tl-g"/></g>
-          <circle cx="730" cy="286" r="15" fill="#FF3B30" class="tl-r"/><circle cx="730" cy="318" r="15" fill="#FFC400" class="tl-y"/><circle cx="730" cy="350" r="15" fill="#00E676" class="tl-g"/>
-          <circle cx="862" cy="319" r="12" fill="#FF3B30" class="tl-r"/><circle cx="862" cy="345" r="12" fill="#FFC400" class="tl-y"/><circle cx="862" cy="371" r="12" fill="#00E676" class="tl-g"/>
-          <!-- bus con luces -->
-          <g transform="translate(0 700)"><g class="bus-move">
-            <path d="M272 -42V-28L500 6V-74Z" fill="url(#beamG)"/>
-            <g fill="#FFE9A6" opacity=".92"><rect x="14" y="-98" width="34" height="34" rx="5"/><rect x="56" y="-98" width="34" height="34" rx="5"/><rect x="98" y="-98" width="34" height="34" rx="5"/><rect x="140" y="-98" width="34" height="34" rx="5"/><rect x="188" y="-100" width="40" height="66" rx="4"/><path d="M236 -98h22q6 0 6 6v34h-28z"/></g>
-            <path d="M208 -100V-34" stroke="#fff" stroke-width="3"/>
-            <rect x="264" y="-42" width="8" height="14" rx="3" fill="#FFF6C8"/><circle cx="2" cy="-35" r="11" fill="#D62828" opacity=".65" filter="url(#fB2)"/>
-          </g></g>
-          <!-- FRENTE NOCTURNO (semaforización): torre de luz, camión con canasta elevadora, cuadrilla -->
-          <path d="M938 394H964L960 640H716Z" fill="url(#lampCone)" opacity=".85"/>
-          <ellipse cx="850" cy="608" rx="176" ry="36" fill="url(#floodG)"/>
-          <rect x="948" y="396" width="8" height="158" fill="#8A93AA"/>
-          <rect x="928" y="380" width="48" height="18" rx="4" fill="#2F364B"/><rect x="932" y="384" width="40" height="10" rx="2" fill="#FFF6C8"/>
-          <circle cx="952" cy="389" r="28" fill="#FFF6C8" opacity=".55" filter="url(#fB3)"/>
-          <ellipse cx="838" cy="634" rx="84" ry="6" fill="#000" opacity=".28"/>
-          <rect x="770" y="592" width="42" height="38" rx="6" fill="#F4F6FA"/><rect x="776" y="598" width="30" height="16" rx="3" fill="#BFE3FF"/>
-          <rect x="812" y="594" width="94" height="36" rx="5" fill="#F4F6FA"/><rect x="812" y="614" width="94" height="7" fill="#F26A1B"/>
-          <circle cx="792" cy="632" r="13" fill="#1E2433"/><circle cx="792" cy="632" r="5" fill="#C7CEDD"/><circle cx="884" cy="632" r="13" fill="#1E2433"/><circle cx="884" cy="632" r="5" fill="#C7CEDD"/>
-          <path d="M850 594L836 500L818 372" stroke="#F26A1B" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="836" cy="500" r="6" fill="#3A404F"/><circle cx="850" cy="594" r="6" fill="#3A404F"/>
-          <g class="bucket">
-            <path d="M824 342L846 332" stroke="#F26A1B" stroke-width="5" stroke-linecap="round"/>
-            <rect x="810" y="334" width="14" height="18" rx="5" fill="#F26A1B"/><rect x="810" y="342" width="14" height="3" fill="#FFF3B0"/>
-            <circle cx="817" cy="326" r="7" fill="#E2AC85"/><path d="M810 325a7 7 0 0 1 14 0z" fill="#FFD34D"/>
-            <rect x="802" y="352" width="30" height="24" rx="4" fill="#F4F6FA" stroke="#F26A1B" stroke-width="3"/>
+        <path filter="url(#fB3)" fill="#A8D5B5" opacity=".7" d="M-40 500V436L100 404 200 442 330 408 450 452 580 424 700 462 830 428 960 466 1090 432 1220 470 1330 442 1480 462V500Z"/>
+        <g id="skyline" filter="url(#fB2)"></g>
+        <rect y="360" width="1440" height="200" fill="url(#hazeG)"/>
+        <g filter="url(#fB1)">
+          <g transform="translate(70 548)"><rect x="-7" y="-96" width="14" height="96" fill="#8A5A34"/><circle cx="0" cy="-150" r="56" fill="#F6C9DA"/><circle cx="-40" cy="-128" r="38" fill="#F2A9C4"/><circle cx="42" cy="-130" r="40" fill="#F2A9C4"/><circle cx="6" cy="-192" r="36" fill="#FADCE8"/></g>
+          <g transform="translate(560 548)"><rect x="-7" y="-96" width="14" height="96" fill="#8A5A34"/><circle cx="0" cy="-150" r="56" fill="#F6C9DA"/><circle cx="-40" cy="-128" r="38" fill="#F2A9C4"/><circle cx="42" cy="-130" r="40" fill="#F2A9C4"/><circle cx="6" cy="-192" r="36" fill="#FADCE8"/></g>
+          <g transform="translate(1400 548)"><rect x="-7" y="-96" width="14" height="96" fill="#8A5A34"/><circle cx="0" cy="-150" r="56" fill="#F6C9DA"/><circle cx="-40" cy="-128" r="38" fill="#F2A9C4"/><circle cx="42" cy="-130" r="40" fill="#F2A9C4"/><circle cx="6" cy="-192" r="36" fill="#FADCE8"/></g>
+        </g>
+        <!-- acera, bordillo y calzada -->
+        <rect y="498" width="1440" height="58" fill="#E3E6EF"/>
+        <path d="M0 498H1440" stroke="#D3D8E6" stroke-width="3"/>
+        <g stroke="#D3D8E6" stroke-width="2"><path d="M60 498v50M180 498v50M300 498v50M420 498v50M540 498v50M660 498v50M780 498v50M900 498v50M1020 498v50M1140 498v50M1260 498v50M1380 498v50"/></g>
+        <rect y="548" width="1440" height="8" fill="#C9CEDD"/>
+        <rect x="110" y="548" width="360" height="8" fill="#F0A800" opacity=".9"/>
+        <rect y="556" width="1440" height="150" fill="url(#roadG)"/>
+        <line x1="0" y1="631" x2="1440" y2="631" stroke="#fff" stroke-width="5" stroke-dasharray="46 40" opacity=".7"/>
+        <g fill="#fff" opacity=".78"><rect x="566" y="566" width="94" height="10" rx="2"/><rect x="566" y="590" width="94" height="10" rx="2"/><rect x="566" y="614" width="94" height="10" rx="2"/><rect x="566" y="638" width="94" height="10" rx="2"/><rect x="566" y="662" width="94" height="10" rx="2"/><rect x="566" y="686" width="94" height="10" rx="2"/></g>
+        <!-- luminarias (postes) -->
+        <g transform="translate(470 548)"><rect x="-4" y="-170" width="8" height="170" rx="3" fill="#6B7590"/><path d="M0 -168Q0 -186 22 -186L46 -186" stroke="#6B7590" stroke-width="6" fill="none" stroke-linecap="round"/><rect x="38" y="-191" width="32" height="10" rx="5" fill="#465066"/></g>
+        <g transform="translate(1390 548)"><rect x="-4" y="-170" width="8" height="170" rx="3" fill="#6B7590"/><path d="M0 -168Q0 -186 -22 -186L-46 -186" stroke="#6B7590" stroke-width="6" fill="none" stroke-linecap="round"/><rect x="-70" y="-191" width="32" height="10" rx="5" fill="#465066"/></g>
+        <!-- PARADERO (banderín) -->
+        <g transform="translate(270 548)">
+          <ellipse cx="0" cy="3" rx="36" ry="7" fill="rgba(10,31,92,.16)" filter="url(#fB1)"/>
+          <rect x="-5" y="-214" width="10" height="214" rx="3" fill="#7E8AA3"/>
+          <rect x="-18" y="-9" width="36" height="9" rx="3" fill="#5B667D"/>
+          <g transform="translate(-58 -240)">
+            <rect width="116" height="148" rx="12" fill="#fff" stroke="#0A1F5C" stroke-width="5"/>
+            <path d="M0 12a12 12 0 0 1 12-12h92a12 12 0 0 1 12 12v30H0z" fill="#0A1F5C"/>
+            <rect x="34" y="10" width="48" height="24" rx="5" fill="#fff"/>
+            <rect x="39" y="15" width="10" height="9" fill="#0A1F5C"/><rect x="53" y="15" width="10" height="9" fill="#0A1F5C"/><rect x="67" y="15" width="10" height="9" fill="#0A1F5C"/>
+            <circle cx="46" cy="36" r="4.5" fill="#fff"/><circle cx="70" cy="36" r="4.5" fill="#fff"/>
+            <rect x="14" y="56" width="88" height="16" rx="8" fill="#D62828"/>
+            <rect x="14" y="78" width="88" height="16" rx="8" fill="#00A830"/>
+            <rect x="14" y="100" width="88" height="16" rx="8" fill="#F0A800"/>
+            <rect x="14" y="124" width="56" height="10" rx="5" fill="#1D4ED8"/>
           </g>
-          <circle cx="790" cy="584" r="6" fill="#FFB000" class="beacon"/><circle cx="790" cy="584" r="18" fill="#FFB000" opacity=".55" filter="url(#fB3)" class="beacon"/>
-          <g transform="translate(812 548)">
+        </g>
+        <!-- señal de obra + conos -->
+        <g transform="translate(880 548)"><rect x="-3" y="-72" width="6" height="72" fill="#7E8AA3"/><g transform="translate(0 -98) rotate(45)"><rect x="-27" y="-27" width="54" height="54" rx="6" fill="#F26A1B" stroke="#fff" stroke-width="3"/></g><path d="M-9 -110h18l-4 24h-10z" fill="#fff"/></g>
+        <use href="#sCone" x="916" y="508" width="28" height="46"/><use href="#sCone" x="1336" y="508" width="28" height="46"/>
+        <!-- SEMÁFORO (estructura) + cámara + controlador -->
+        <g transform="translate(730 548)">
+          <ellipse cx="0" cy="3" rx="30" ry="6" fill="rgba(10,31,92,.16)" filter="url(#fB1)"/>
+          <rect x="-7" y="-290" width="14" height="290" rx="4" fill="#5B667D"/>
+          <rect x="-17" y="-10" width="34" height="10" rx="3" fill="#465066"/>
+          <rect x="4" y="-262" width="172" height="9" rx="4" fill="#5B667D"/>
+          <g transform="translate(-27 -292)"><rect width="54" height="124" rx="17" fill="#252932"/><circle cx="27" cy="30" r="15" fill="#3A0000"/><circle cx="27" cy="62" r="15" fill="#3A2A00"/><circle cx="27" cy="94" r="15" fill="#00341A"/></g>
+          <g transform="translate(132 -253)"><rect x="-22" width="44" height="100" rx="14" fill="#252932"/><circle cx="0" cy="24" r="12" fill="#3A0000"/><circle cx="0" cy="50" r="12" fill="#3A2A00"/><circle cx="0" cy="76" r="12" fill="#00341A"/></g>
+          <g transform="translate(58 -282)"><rect width="30" height="14" rx="4" fill="#1E2433"/><circle cx="25" cy="7" r="4.5" fill="#6EC1FF"/></g>
+          <rect x="9" y="-130" width="20" height="30" rx="5" fill="#FFC531"/><circle cx="19" cy="-118" r="4" fill="#0A1F5C"/>
+          <rect x="22" y="-60" width="40" height="60" rx="4" fill="#9AA3B8"/><rect x="27" y="-54" width="30" height="48" rx="2" fill="none" stroke="#6B7590" stroke-width="2"/><circle cx="52" cy="-30" r="2.6" fill="#465066"/><circle cx="34" cy="-48" r="2.6" fill="#063"/>
+        </g>
+        <!-- VÍA en rehabilitación: asfalto nuevo y conos -->
+        <rect x="958" y="566" width="306" height="64" rx="10" fill="#232838"/>
+        <g fill="#3A4157" opacity=".8"><circle cx="990" cy="586" r="2.5"/><circle cx="1030" cy="606" r="2"/><circle cx="1072" cy="580" r="2.6"/><circle cx="1110" cy="612" r="2"/><circle cx="1148" cy="590" r="2.4"/><circle cx="1188" cy="614" r="2"/><circle cx="1226" cy="584" r="2.6"/><circle cx="1010" cy="620" r="2"/><circle cx="1250" cy="604" r="2"/></g>
+        <use href="#sCone" x="926" y="594" width="28" height="46"/><use href="#sCone" x="1270" y="594" width="28" height="46"/>
+        <!-- césped -->
+        <rect y="706" width="1440" height="74" fill="#C6E3BC"/>
+        <rect y="706" width="1440" height="6" fill="#B6BDCF"/>
+      </svg>
+
+      <svg class="layer" id="fgSvg" viewBox="0 0 1440 730" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+        <ellipse class="lamp-glow" cx="524" cy="376" rx="26" ry="10" fill="#FFE08A"/>
+        <ellipse class="lamp-glow" cx="1336" cy="376" rx="26" ry="10" fill="#FFE08A" style="animation-delay:-1.5s"/>
+        <!-- semáforo encendido (ciclo) -->
+        <circle cx="730" cy="286" r="15" fill="#FF3B30" class="tl-r"/><circle cx="730" cy="318" r="15" fill="#FFC400" class="tl-y"/><circle cx="730" cy="350" r="15" fill="#00E676" class="tl-g"/>
+        <circle cx="862" cy="319" r="12" fill="#FF3B30" class="tl-r"/><circle cx="862" cy="345" r="12" fill="#FFC400" class="tl-y"/><circle cx="862" cy="371" r="12" fill="#00E676" class="tl-g"/>
+        <circle cx="764" cy="500" r="2.6" fill="#00E676" class="tl-g"/>
+        <!-- pasajeros del paradero -->
+        <g class="person" transform="translate(338 546)"><rect x="-9" y="-46" width="18" height="30" rx="8" fill="#D62828"/><rect x="-8" y="-18" width="7" height="18" rx="3" fill="#33415C"/><rect x="1" y="-18" width="7" height="18" rx="3" fill="#33415C"/><circle cy="-56" r="9" fill="#F1C7A3"/><path d="M-9 -58a9 9 0 0 1 18 0z" fill="#3B2A20"/></g>
+        <g class="person p2" transform="translate(372 546)"><rect x="-9" y="-46" width="18" height="30" rx="8" fill="#00A830"/><rect x="-8" y="-18" width="7" height="18" rx="3" fill="#33415C"/><rect x="1" y="-18" width="7" height="18" rx="3" fill="#33415C"/><circle cy="-56" r="9" fill="#E2AC85"/><path d="M-9 -58a9 9 0 0 1 18 0z" fill="#1F1B24"/></g>
+        <g class="person p3" transform="translate(402 546)"><rect x="-8" y="-38" width="16" height="24" rx="7" fill="#F0A800"/><rect x="-7" y="-15" width="6" height="15" rx="3" fill="#33415C"/><rect x="1" y="-15" width="6" height="15" rx="3" fill="#33415C"/><circle cy="-46" r="8" fill="#F1C7A3"/><path d="M-8 -48a8 8 0 0 1 16 0z" fill="#5A3B22"/></g>
+        <!-- vapor del asfalto + rodillo compactador -->
+        <g fill="#fff"><ellipse class="steam" style="--d:0s" cx="1010" cy="572" rx="14" ry="6" opacity=".5"/><ellipse class="steam" style="--d:1.2s" cx="1100" cy="574" rx="14" ry="6" opacity=".5"/><ellipse class="steam" style="--d:2.4s" cx="1190" cy="572" rx="14" ry="6" opacity=".5"/></g>
+        <g class="roller-in"><g class="roller-body"><g transform="translate(1040 630)">
+          <rect x="48" y="-58" width="132" height="32" rx="8" fill="#F26A1B"/>
+          <rect x="48" y="-40" width="132" height="6" fill="#FFD34D"/>
+          <rect x="98" y="-108" width="68" height="52" rx="8" fill="#F26A1B"/>
+          <rect x="106" y="-100" width="52" height="34" rx="5" fill="#BFE3FF"/>
+          <circle cx="132" cy="-86" r="8" fill="#F1C7A3"/><path d="M124 -88a8 8 0 0 1 16 0z" fill="#FFD34D"/>
+          <rect x="94" y="-114" width="76" height="8" rx="4" fill="#3A404F"/>
+          <rect x="144" y="-128" width="6" height="16" fill="#3A404F"/>
+          <rect x="6" y="-56" width="54" height="10" rx="4" fill="#565E70"/>
+          <circle cx="28" cy="-30" r="30" fill="#7B8496"/><circle cx="28" cy="-30" r="30" fill="none" stroke="#5A6272" stroke-width="4"/>
+          <g class="drum-spin"><path d="M28 -58V-2M0 -30H56M8 -50 48 -10M48 -50 8 -10" stroke="#A4ACBD" stroke-width="3"/></g>
+          <circle cx="152" cy="-27" r="27" fill="#2A2F3D"/><circle cx="152" cy="-27" r="12" fill="#C9D0DE"/>
+        </g></g></g>
+        <!-- cuadrillas de DÍA -->
+        <g class="day-crew">
+          <g transform="translate(1310 646)">
+            <rect x="-9" y="-50" width="18" height="32" rx="8" fill="#F26A1B"/><rect x="-9" y="-36" width="18" height="5" fill="#FFF3B0"/>
             <rect x="-8" y="-20" width="7" height="20" rx="3" fill="#33415C"/><rect x="1" y="-20" width="7" height="20" rx="3" fill="#33415C"/>
-            <rect x="-9" y="-50" width="18" height="32" rx="8" fill="#F26A1B"/><rect x="-9" y="-36" width="18" height="5" fill="#FFF3B0"/>
             <circle cy="-60" r="9" fill="#E2AC85"/><path d="M-10 -62a10 10 0 0 1 20 0z" fill="#FFD34D"/>
-            <rect x="10" y="-44" width="15" height="11" rx="2" fill="#1E2433"/><rect x="12" y="-42" width="11" height="7" rx="1" fill="#6EC1FF"/>
+            <g class="rake"><path d="M0 -40L-44 -6" stroke="#8A5A34" stroke-width="4" stroke-linecap="round"/><path d="M-56 -6h22" stroke="#3A404F" stroke-width="5" stroke-linecap="round"/></g>
           </g>
-          <g class="pacer"><g transform="translate(676 548)">
-            <rect class="leg" x="-8" y="-20" width="7" height="20" rx="3" fill="#33415C"/><rect class="leg b" x="1" y="-20" width="7" height="20" rx="3" fill="#33415C"/>
-            <rect x="-9" y="-50" width="18" height="32" rx="8" fill="#F26A1B"/><rect x="-9" y="-36" width="18" height="5" fill="#FFF3B0"/>
-            <circle cy="-60" r="9" fill="#F1C7A3"/><path d="M-10 -62a10 10 0 0 1 20 0z" fill="#FFD34D"/>
-          </g></g>
-          <use href="#sCone" x="736" y="594" width="28" height="46"/><use href="#sCone" x="908" y="594" width="28" height="46"/>
-          <circle class="blink" cx="750" cy="600" r="4" fill="#FFB000"/><circle class="blink" cx="922" cy="600" r="4" fill="#FFB000"/>
-          <circle class="blink" cx="940" cy="598" r="4" fill="#FFB000" style="animation-delay:-.6s"/><circle class="blink" cx="1284" cy="598" r="4" fill="#FFB000" style="animation-delay:-.6s"/>
+          <g class="walker" style="--dur:46s;--dl:-9s"><g transform="translate(0 546)"><g class="bob">
+            <rect class="leg" x="-8" y="-18" width="7" height="18" rx="3" fill="#33415C"/><rect class="leg b" x="1" y="-18" width="7" height="18" rx="3" fill="#33415C"/>
+            <rect x="-9" y="-46" width="18" height="30" rx="8" fill="#F26A1B"/><rect x="-9" y="-33" width="18" height="4" fill="#FFF3B0"/>
+            <circle cy="-56" r="9" fill="#E2AC85"/><path d="M-10 -58a10 10 0 0 1 20 0z" fill="#FFD34D"/>
+            <use href="#sCone" x="10" y="-50" width="16" height="26"/>
+          </g></g></g>
+          <g class="walker rev" style="--dur:58s;--dl:-31s"><g transform="translate(0 546) scale(-1 1)"><g class="bob">
+            <rect class="leg" x="-8" y="-18" width="7" height="18" rx="3" fill="#33415C"/><rect class="leg b" x="1" y="-18" width="7" height="18" rx="3" fill="#33415C"/>
+            <rect x="-9" y="-46" width="18" height="30" rx="8" fill="#F26A1B"/><rect x="-9" y="-33" width="18" height="4" fill="#FFF3B0"/>
+            <circle cy="-56" r="9" fill="#F1C7A3"/><path d="M-10 -58a10 10 0 0 1 20 0z" fill="#FFD34D"/>
+            <path d="M9 -44L22 -6" stroke="#8A5A34" stroke-width="3.5" stroke-linecap="round"/><path d="M18 -6h11" stroke="#3A404F" stroke-width="5" stroke-linecap="round"/>
+          </g></g></g>
         </g>
-      </g>
-    </svg>
-    <button type="button" class="spot" data-cat="paraderos" style="--spc:#D98F00;left:13.2%;top:43.8%;width:16.7%;height:32.3%" aria-label="Paraderos: 1 proyecto. Toca para acercarte.">
+        <!-- BUS del SETP en el carril cercano -->
+        <g transform="translate(0 700)"><g class="bus-move">
+          <ellipse cx="135" cy="5" rx="142" ry="8" fill="rgba(10,20,50,.2)"/>
+          <rect x="0" y="-108" width="270" height="92" rx="18" fill="#fff"/>
+          <path d="M0 -50H270V-34a18 18 0 0 1-18 18H18A18 18 0 0 1 0 -34Z" fill="#00A830"/>
+          <rect y="-56" width="270" height="6" fill="#F0A800"/>
+          <rect x="14" y="-98" width="34" height="34" rx="5" fill="#2B3A55"/><rect x="56" y="-98" width="34" height="34" rx="5" fill="#2B3A55"/><rect x="98" y="-98" width="34" height="34" rx="5" fill="#2B3A55"/><rect x="140" y="-98" width="34" height="34" rx="5" fill="#2B3A55"/>
+          <rect x="188" y="-100" width="40" height="66" rx="4" fill="#2B3A55"/><path d="M208 -100V-34" stroke="#fff" stroke-width="3"/>
+          <path d="M236 -98h22q6 0 6 6v34h-28z" fill="#2B3A55"/>
+          <text x="16" y="-27" font-size="15" font-weight="800" fill="#fff" letter-spacing="2" font-family="Segoe UI,Arial,sans-serif">TRANSMUSICAL</text>
+          <rect x="40" y="-120" width="120" height="12" rx="6" fill="#D9DEEA"/>
+          <rect x="264" y="-42" width="8" height="14" rx="3" fill="#FFE08A"/><rect x="-2" y="-42" width="6" height="14" rx="3" fill="#D62828"/>
+          <circle cx="58" cy="-14" r="23" fill="#1E2433"/><circle cx="212" cy="-14" r="23" fill="#1E2433"/>
+          <g class="wheel"><circle cx="58" cy="-14" r="17" fill="#3A4152"/><circle cx="58" cy="-14" r="7" fill="#C7CEDD"/><path d="M58 -30V2M42 -14H74" stroke="#8B94A8" stroke-width="3"/></g>
+          <g class="wheel"><circle cx="212" cy="-14" r="17" fill="#3A4152"/><circle cx="212" cy="-14" r="7" fill="#C7CEDD"/><path d="M212 -30V2M196 -14H228" stroke="#8B94A8" stroke-width="3"/></g>
+        </g></g>
+        <!-- pétalos de ocobo -->
+        <use class="oco-fall" href="#sOco" x="200" y="0" width="26" height="26" style="--dur:24s;--dl:-3s"/>
+        <use class="oco-fall" href="#sOco" x="640" y="0" width="22" height="22" style="--dur:28s;--dl:-14s"/>
+        <use class="oco-fall" href="#sOco" x="880" y="0" width="30" height="30" style="--dur:23s;--dl:-8s"/>
+        <use class="oco-fall" href="#sOco" x="1130" y="0" width="24" height="24" style="--dur:26s;--dl:-18s"/>
+        <use class="oco-fall" href="#sOco" x="1330" y="0" width="28" height="28" style="--dur:25s;--dl:-5s"/>
+        <use class="oco-fall" href="#sOco" x="60" y="0" width="20" height="20" style="--dur:30s;--dl:-21s"/>
+      </svg>
+
+      <!-- NOCHE (estática): tono azul, ventanas, luminarias, torre de luz y camión con canasta -->
+      <svg class="layer" id="nsSvg" viewBox="0 0 1440 730" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+        <rect width="1440" height="730" fill="#16246B" opacity=".3"/>
+        <g id="nightWin" fill="#FFE9A6" filter="url(#fB1)"></g>
+        <path d="M510 382h28L619 548H429Z" fill="url(#lampCone)"/><ellipse cx="524" cy="548" rx="104" ry="13" fill="#FFE9A6" opacity=".3"/><circle cx="524" cy="376" r="20" fill="#FFE9A6" opacity=".85" filter="url(#fB2)"/>
+        <path d="M1322 382h28L1431 548H1241Z" fill="url(#lampCone)"/><ellipse cx="1336" cy="548" rx="104" ry="13" fill="#FFE9A6" opacity=".3"/><circle cx="1336" cy="376" r="20" fill="#FFE9A6" opacity=".85" filter="url(#fB2)"/>
+        <path d="M938 394H964L960 640H716Z" fill="url(#lampCone)" opacity=".85"/>
+        <ellipse cx="850" cy="608" rx="176" ry="36" fill="url(#floodG)"/>
+        <rect x="948" y="396" width="8" height="158" fill="#8A93AA"/>
+        <rect x="928" y="380" width="48" height="18" rx="4" fill="#2F364B"/><rect x="932" y="384" width="40" height="10" rx="2" fill="#FFF6C8"/>
+        <circle cx="952" cy="389" r="28" fill="#FFF6C8" opacity=".55" filter="url(#fB3)"/>
+        <ellipse cx="838" cy="634" rx="84" ry="6" fill="#000" opacity=".28"/>
+        <rect x="770" y="592" width="42" height="38" rx="6" fill="#F4F6FA"/><rect x="776" y="598" width="30" height="16" rx="3" fill="#BFE3FF"/>
+        <rect x="812" y="594" width="94" height="36" rx="5" fill="#F4F6FA"/><rect x="812" y="614" width="94" height="7" fill="#F26A1B"/>
+        <circle cx="792" cy="632" r="13" fill="#1E2433"/><circle cx="792" cy="632" r="5" fill="#C7CEDD"/><circle cx="884" cy="632" r="13" fill="#1E2433"/><circle cx="884" cy="632" r="5" fill="#C7CEDD"/>
+        <path d="M850 594L836 500L818 372" stroke="#F26A1B" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="836" cy="500" r="6" fill="#3A404F"/><circle cx="850" cy="594" r="6" fill="#3A404F"/>
+        <g transform="translate(812 548)">
+          <rect x="-8" y="-20" width="7" height="20" rx="3" fill="#33415C"/><rect x="1" y="-20" width="7" height="20" rx="3" fill="#33415C"/>
+          <rect x="-9" y="-50" width="18" height="32" rx="8" fill="#F26A1B"/><rect x="-9" y="-36" width="18" height="5" fill="#FFF3B0"/>
+          <circle cy="-60" r="9" fill="#E2AC85"/><path d="M-10 -62a10 10 0 0 1 20 0z" fill="#FFD34D"/>
+          <rect x="10" y="-44" width="15" height="11" rx="2" fill="#1E2433"/><rect x="12" y="-42" width="11" height="7" rx="1" fill="#6EC1FF"/>
+        </g>
+        <use href="#sCone" x="736" y="594" width="28" height="46"/><use href="#sCone" x="908" y="594" width="28" height="46"/>
+      </svg>
+
+      <!-- NOCHE (animada): semáforo, luces del bus, baliza, canasta con técnico, cuadrilla y conos intermitentes -->
+      <svg class="layer" id="nfSvg" viewBox="0 0 1440 730" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+        <circle cx="730" cy="286" r="30" fill="url(#gRed)" class="tl-r"/><circle cx="730" cy="318" r="30" fill="url(#gYel)" class="tl-y"/><circle cx="730" cy="350" r="30" fill="url(#gGrn)" class="tl-g"/>
+        <circle cx="862" cy="319" r="25" fill="url(#gRed)" class="tl-r"/><circle cx="862" cy="345" r="25" fill="url(#gYel)" class="tl-y"/><circle cx="862" cy="371" r="25" fill="url(#gGrn)" class="tl-g"/>
+        <circle cx="730" cy="286" r="15" fill="#FF3B30" class="tl-r"/><circle cx="730" cy="318" r="15" fill="#FFC400" class="tl-y"/><circle cx="730" cy="350" r="15" fill="#00E676" class="tl-g"/>
+        <circle cx="862" cy="319" r="12" fill="#FF3B30" class="tl-r"/><circle cx="862" cy="345" r="12" fill="#FFC400" class="tl-y"/><circle cx="862" cy="371" r="12" fill="#00E676" class="tl-g"/>
+        <g transform="translate(0 700)"><g class="bus-move">
+          <path d="M272 -42V-28L500 6V-74Z" fill="url(#beamG)"/>
+          <g fill="#FFE9A6" opacity=".92"><rect x="14" y="-98" width="34" height="34" rx="5"/><rect x="56" y="-98" width="34" height="34" rx="5"/><rect x="98" y="-98" width="34" height="34" rx="5"/><rect x="140" y="-98" width="34" height="34" rx="5"/><rect x="188" y="-100" width="40" height="66" rx="4"/><path d="M236 -98h22q6 0 6 6v34h-28z"/></g>
+          <path d="M208 -100V-34" stroke="#fff" stroke-width="3"/>
+          <rect x="264" y="-42" width="8" height="14" rx="3" fill="#FFF6C8"/><circle cx="2" cy="-35" r="16" fill="url(#gRed)"/>
+        </g></g>
+        <circle cx="790" cy="584" r="6" fill="#FFB000" class="beacon"/><circle cx="790" cy="584" r="22" fill="url(#gAmb)" class="beacon"/>
+        <g class="bucket">
+          <path d="M824 342L846 332" stroke="#F26A1B" stroke-width="5" stroke-linecap="round"/>
+          <rect x="810" y="334" width="14" height="18" rx="5" fill="#F26A1B"/><rect x="810" y="342" width="14" height="3" fill="#FFF3B0"/>
+          <circle cx="817" cy="326" r="7" fill="#E2AC85"/><path d="M810 325a7 7 0 0 1 14 0z" fill="#FFD34D"/>
+          <rect x="802" y="352" width="30" height="24" rx="4" fill="#F4F6FA" stroke="#F26A1B" stroke-width="3"/>
+        </g>
+        <g class="pacer"><g transform="translate(676 548)">
+          <rect class="leg" x="-8" y="-20" width="7" height="20" rx="3" fill="#33415C"/><rect class="leg b" x="1" y="-20" width="7" height="20" rx="3" fill="#33415C"/>
+          <rect x="-9" y="-50" width="18" height="32" rx="8" fill="#F26A1B"/><rect x="-9" y="-36" width="18" height="5" fill="#FFF3B0"/>
+          <circle cy="-60" r="9" fill="#F1C7A3"/><path d="M-10 -62a10 10 0 0 1 20 0z" fill="#FFD34D"/>
+        </g></g>
+        <circle class="blink" cx="750" cy="600" r="4" fill="#FFB000"/><circle class="blink" cx="922" cy="600" r="4" fill="#FFB000"/>
+        <circle class="blink" cx="940" cy="598" r="4" fill="#FFB000" style="animation-delay:-.6s"/><circle class="blink" cx="1284" cy="598" r="4" fill="#FFB000" style="animation-delay:-.6s"/>
+      </svg>
+    </div>
+    <div class="scene-fade"></div>
+    <button type="button" class="spot" data-cat="paraderos" style="--spc:#D98F00;left:13.2%;top:43.8%;width:16.7%;height:32.3%" aria-label="Paraderos: 3 proyectos. Toca para acercarte.">
       <span class="spot-ring"></span><span class="spot-ring r2"></span>
-      <span class="spot-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.7 7-12a7 7 0 1 0-14 0c0 5.3 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>Paraderos <small>· 1 proyecto</small></span>
+      <span class="spot-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.7 7-12a7 7 0 1 0-14 0c0 5.3 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>Paraderos <small>· 3 proyectos</small></span>
     </button>
-    <button type="button" class="spot" data-cat="semaforos" style="--spc:#00913A;left:47.9%;top:34.2%;width:14.6%;height:41.9%" aria-label="Semáforos: 1 proyecto. Toca para acercarte.">
+    <button type="button" class="spot" data-cat="semaforos" style="--spc:#00913A;left:47.9%;top:34.2%;width:14.6%;height:41.9%" aria-label="Semáforos: 3 proyectos. Toca para acercarte.">
       <span class="spot-ring"></span><span class="spot-ring r2"></span>
-      <span class="spot-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="20" rx="3"/><circle cx="12" cy="7" r="1.2" fill="currentColor"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/><circle cx="12" cy="17" r="1.2" fill="currentColor"/></svg>Semáforos <small>· 1 proyecto</small></span>
+      <span class="spot-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="20" rx="3"/><circle cx="12" cy="7" r="1.2" fill="currentColor"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/><circle cx="12" cy="17" r="1.2" fill="currentColor"/></svg>Semáforos <small>· 3 proyectos</small></span>
     </button>
-    <button type="button" class="spot" data-cat="vias" style="--spc:#1D4ED8;left:64.9%;top:71.2%;width:27.4%;height:18.5%" aria-label="Vías: 3 proyectos. Toca para acercarte.">
+    <button type="button" class="spot" data-cat="vias" style="--spc:#1D4ED8;left:64.9%;top:71.2%;width:27.4%;height:18.5%" aria-label="Vías: 4 proyectos. Toca para acercarte.">
       <span class="spot-ring"></span><span class="spot-ring r2"></span>
-      <span class="spot-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 3h7L20 21H4z"/><path d="M12 6.5v3M12 12v3M12 17.5v2"/></svg>Vías <small>· 3 proyectos</small></span>
+      <span class="spot-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 3h7L20 21H4z"/><path d="M12 6.5v3M12 12v3M12 17.5v2"/></svg>Vías <small>· 4 proyectos</small></span>
     </button>
   </div>
   <div class="cat-bar" id="catBar">
-    <button type="button" class="cat-btn" data-cat="paraderos" style="--spc:#D98F00" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.7 7-12a7 7 0 1 0-14 0c0 5.3 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>Paraderos<small>1 proyecto</small></button>
-    <button type="button" class="cat-btn" data-cat="semaforos" style="--spc:#00913A" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="20" rx="3"/><circle cx="12" cy="7" r="1.2" fill="currentColor"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/><circle cx="12" cy="17" r="1.2" fill="currentColor"/></svg>Semáforos<small>1 proyecto</small></button>
-    <button type="button" class="cat-btn" data-cat="vias" style="--spc:#1D4ED8" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 3h7L20 21H4z"/><path d="M12 6.5v3M12 12v3M12 17.5v2"/></svg>Vías<small>3 proyectos</small></button>
+    <button type="button" class="cat-btn" data-cat="paraderos" style="--spc:#D98F00" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.7 7-12a7 7 0 1 0-14 0c0 5.3 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>Paraderos<small>3 proyectos</small></button>
+    <button type="button" class="cat-btn" data-cat="semaforos" style="--spc:#00913A" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="20" rx="3"/><circle cx="12" cy="7" r="1.2" fill="currentColor"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/><circle cx="12" cy="17" r="1.2" fill="currentColor"/></svg>Semáforos<small>3 proyectos</small></button>
+    <button type="button" class="cat-btn" data-cat="vias" style="--spc:#1D4ED8" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 3h7L20 21H4z"/><path d="M12 6.5v3M12 12v3M12 17.5v2"/></svg>Vías<small>4 proyectos</small></button>
   </div>
   <div class="pane" id="pane" data-side="right" aria-live="polite">
     <div class="pane-cap"><h3 id="paneT"></h3><p id="paneS"></p></div>
@@ -2219,7 +2249,7 @@ body.on-home.night .foot-note{color:#B9C4E6}
 })();
 (function(){
   const home=document.getElementById('home'); if(!home) return;
-  const svg=document.getElementById('sceneSvg'), cam=document.getElementById('cam');
+  const cam=document.getElementById('cam'), scene=document.getElementById('scene'), layers=[...document.querySelectorAll('#cam .layer')];
   const pane=document.getElementById('pane'), paneT=document.getElementById('paneT'), paneS=document.getElementById('paneS');
   const list=document.getElementById('signList'), back=document.getElementById('sceneBack');
   const warp=document.getElementById('homeWarp'), warpName=document.getElementById('homeWarpName');
@@ -2235,20 +2265,28 @@ body.on-home.night .foot-note{color:#B9C4E6}
     'Terminado':svgA+'<circle cx="32" cy="32" r="24"/><path d="M20 33l8 8 17-19"/></svg>',
     'En obra':svgA+'<path d="M32 8l15 46H17z"/><path d="M26 27h12M22 40h20M10 56h44"/></svg>',
     'En liquidación':svgA+'<rect x="15" y="7" width="34" height="50" rx="5"/><path d="M23 20h18M23 30h18M23 40h9"/></svg>',
-    'Próximamente':svgA+'<rect x="14" y="28" width="36" height="28" rx="6"/><path d="M22 28v-7a10 10 0 0 1 20 0v7"/></svg>'
+    'Por incluir':svgA+'<rect x="14" y="28" width="36" height="28" rx="6"/><path d="M22 28v-7a10 10 0 0 1 20 0v7"/></svg>'
   };
-  /* Cámara: cada categoría enfoca su elemento de la escena (coordenadas del SVG 1440×780) */
+  /* Cámara: cada categoría enfoca su elemento de la escena. Valores en unidades del dibujo (1440×730); page:null = proyecto "apagado" */
   const CATS={
-    vias:{name:'Vías',sub:'Rehabilitación de la malla vial',pc:'#1D4ED8',side:'left',cam:'translate(-864px,-468px) scale(1.6)',projects:[
-      {page:'page-cra5',name:'Carrera Quinta',phase:'Fase II',badge:'Terminado'},
-      {page:'page-ambala',name:'Av. Ambalá',phase:'Fase III',badge:'En obra'},
-      {page:null,name:'Av. Ferrocarril',phase:'Etapa de diseños',badge:'Próximamente'}]},
-    semaforos:{name:'Semáforos',sub:'Modernización de la red semafórica',pc:'#00913A',side:'right',cam:'translate(-1000px,-470px) scale(2)',projects:[
-      {page:'page-semaforos',name:'Semaforización',phase:'Fase I',badge:'En obra'}]},
-    paraderos:{name:'Paraderos',sub:'Suministro e instalación de paraderos',pc:'#D98F00',side:'right',cam:'translate(-210px,-524px) scale(2.1)',projects:[
-      {page:'page-paraderos',name:'Paraderos Tipo III',phase:'1.150 señales instaladas',badge:'En liquidación'}]}
+    vias:{name:'Vías',sub:'Rehabilitación de la malla vial',pc:'#1D4ED8',side:'left',cam:{tx:-864,ty:-468,k:1.6},projects:[
+      {page:null,name:'Av. Ferrocarril',phase:'Etapa de diseños',badge:'Por incluir'},
+      {page:null,name:'Carrera Quinta',phase:'Fase I',badge:'Por incluir'},
+      {page:'page-cra5',name:'Carrera Quinta',phase:'Fase II · Cl 10 a Cl 58',badge:'Terminado'},
+      {page:'page-ambala',name:'Av. Ambalá',phase:'Fase III',badge:'En obra'}]},
+    semaforos:{name:'Semáforos',sub:'Modernización de la red semafórica',pc:'#00913A',side:'right',cam:{tx:-1000,ty:-470,k:2},projects:[
+      {page:'page-semaforos',name:'Semaforización',phase:'Fase I',badge:'En obra'},
+      {page:null,name:'Semaforización',phase:'Fase II',badge:'Por incluir'},
+      {page:null,name:'Semaforización',phase:'Fase III',badge:'Por incluir'}]},
+    paraderos:{name:'Paraderos',sub:'Suministro e instalación de paraderos',pc:'#D98F00',side:'right',cam:{tx:-210,ty:-524,k:2.1},projects:[
+      {page:null,name:'Paraderos Tipo I',phase:'Cubierto, con informador electrónico',badge:'Por incluir'},
+      {page:null,name:'Paraderos Tipo II',phase:'Cubierto, con mobiliario y bandera',badge:'Por incluir'},
+      {page:'page-paraderos',name:'Paraderos Tipo III',phase:'Bandera informativa · 1.150 señales',badge:'En liquidación'}]}
   };
-  let cur='',busy=false;
+  let cur='',busy=false,zoomT=0;
+  /* La cámara es una transformación CSS del contenedor (compuesta por GPU): unidades del dibujo → píxeles */
+  const camCss=c=>{ const s=scene.clientWidth/1440; return 'translate('+(c.tx*s).toFixed(1)+'px,'+(c.ty*s).toFixed(1)+'px) scale('+c.k+')'; };
+  function flagZoom(){ home.classList.add('zooming'); clearTimeout(zoomT); zoomT=setTimeout(()=>home.classList.remove('zooming'),1050); }
 
   /* Ciudad de fondo y estrellas (semilla fija: siempre es la misma ciudad y el mismo cielo) */
   (function(){
@@ -2270,8 +2308,8 @@ body.on-home.night .foot-note{color:#B9C4E6}
     const st=document.getElementById('stars');
     if(st){
       let h='';
-      for(let i=0;i<120;i++){
-        const r=(.7+rnd()*1.5).toFixed(1), tw=rnd()<.35;
+      for(let i=0;i<100;i++){
+        const r=(.7+rnd()*1.5).toFixed(1), tw=rnd()<.14;
         h+='<circle cx="'+(rnd()*1440).toFixed(0)+'" cy="'+(rnd()*350).toFixed(0)+'" r="'+r+'" fill="#fff"'+(tw?' class="star" style="--d:'+(-rnd()*4).toFixed(1)+'s"':' opacity=".75"')+'/>';
       }
       st.innerHTML=h;
@@ -2279,32 +2317,34 @@ body.on-home.night .foot-note{color:#B9C4E6}
   })();
 
   function applyMode(){
-    svg.setAttribute('preserveAspectRatio',mq.matches?'xMidYMax slice':'xMidYMid meet');
-    cam.style.transform=(!mq.matches&&cur)?CATS[cur].cam:'';
+    layers.forEach(l=>l.setAttribute('preserveAspectRatio',mq.matches?'xMidYMax slice':'xMidYMid meet'));
+    cam.style.transform=(!mq.matches&&cur)?camCss(CATS[cur].cam):'';
     if(cur) pane.dataset.side=mq.matches?'':CATS[cur].side;
   }
+  let rzT=0; window.addEventListener('resize',()=>{ clearTimeout(rzT); rzT=setTimeout(()=>{ cam.style.transition='none'; applyMode(); void cam.offsetWidth; cam.style.transition=''; },120); });
   function openCat(id){
     const c=CATS[id]; if(!c) return;
     cur=id; home.dataset.open=id;
     paneT.textContent=c.name; paneS.textContent=c.sub;
     pane.dataset.side=mq.matches?'':c.side;
     pane.classList.remove('show'); list.innerHTML='';
+    pane.classList.toggle('dense',c.projects.length>3);
     c.projects.forEach((p,i)=>{
       const b=document.createElement('button');
       b.type='button'; b.className='sign sign-'+id+(p.page?'':' locked');
-      b.style.setProperty('--dl',(0.75+i*0.17)+'s');
+      b.style.setProperty('--dl',(0.3+i*0.09)+'s');
       b.innerHTML='<span class="s-ic">'+(ST[p.badge]||IC[id])+'</span><span class="s-t"><span class="s-n">'+p.name+'</span><span class="s-f">'+p.phase+'</span></span><span class="s-b">'+p.badge+'</span>';
       if(p.page){ b.setAttribute('aria-label','Ir a '+p.name+' ('+p.phase+', '+p.badge+')'); b.addEventListener('click',()=>goTo(p.page,p.name,c.pc,b)); }
-      else { b.setAttribute('aria-disabled','true'); b.title='Pendiente de información'; }
+      else { b.setAttribute('aria-disabled','true'); b.title='Aún no está en el tablero'; }
       list.appendChild(b);
     });
-    if(!mq.matches) cam.style.transform=c.cam;
+    if(!mq.matches){ flagZoom(); cam.style.transform=camCss(c.cam); }
     void pane.offsetWidth; pane.classList.add('show');
     catBtns.forEach(b=>b.setAttribute('aria-pressed',b.dataset.cat===id?'true':'false'));
     if(mq.matches) setTimeout(()=>pane.scrollIntoView({behavior:'smooth',block:'nearest'}),80);
   }
   function closeCat(){
-    cur=''; home.dataset.open=''; cam.style.transform=''; pane.classList.remove('show');
+    cur=''; home.dataset.open=''; if(!mq.matches) flagZoom(); cam.style.transform=''; pane.classList.remove('show');
     catBtns.forEach(b=>b.setAttribute('aria-pressed','false'));
   }
   spots.forEach(s=>s.addEventListener('click',()=>openCat(s.dataset.cat)));
@@ -2354,15 +2394,15 @@ body.on-home.night .foot-note{color:#B9C4E6}
   sw.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); choose(home.dataset.mode==='night'?'day':'night'); } else if(e.key==='ArrowLeft'){ choose('night'); } else if(e.key==='ArrowRight'){ choose('day'); } });
 
   /* Pie de página: la franja de obra sube al inicio y los accesos llevan a la calle con el zoom ya abierto */
-  document.querySelectorAll('.foot-go [data-go]').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>{
     const id=b.dataset.go;
     document.querySelector('.tab[data-page="page-inicio"]').click();
     window.scrollTo({top:0,left:0,behavior:'instant'});
-    setTimeout(()=>openCat(id),480);
+    setTimeout(()=>openCat(id),300);
   }));
 
   /* Pestañas: en la entrada no se muestran; dentro de un proyecto sí. "Inicio" vuelve a la calle. */
-  document.querySelectorAll('.tab[data-page]').forEach(t=>t.addEventListener('click',()=>document.body.classList.toggle('on-home',t.dataset.page==='page-inicio')));
+  document.querySelectorAll('.tab[data-page]').forEach(t=>t.addEventListener('click',()=>{ document.body.classList.toggle('on-home',t.dataset.page==='page-inicio'); if(t.dataset.cat) document.body.dataset.cat=t.dataset.cat; else delete document.body.dataset.cat; }));
   document.querySelector('.tab[data-page="page-inicio"]').addEventListener('click',()=>setTimeout(closeCat,60));
 
   /* Transición: un círculo de color crece desde el letrero y abre el proyecto */
@@ -2375,8 +2415,8 @@ body.on-home.night .foot-note{color:#B9C4E6}
     warp.style.setProperty('--x',(r.left+r.width/2)+'px'); warp.style.setProperty('--y',(r.top+r.height/2)+'px');
     warp.style.setProperty('--wc',color); warpName.textContent=name;
     warp.classList.remove('out'); warp.classList.add('go');
-    setTimeout(()=>{ tab.click(); window.scrollTo({top:0,left:0,behavior:'instant'}); warp.classList.add('out'); },950);
-    setTimeout(()=>{ warp.style.transition='none'; warp.classList.remove('go','out'); void warp.offsetWidth; warp.style.transition=''; busy=false; },1600);
+    setTimeout(()=>{ tab.click(); window.scrollTo({top:0,left:0,behavior:'instant'}); warp.classList.add('out'); },650);
+    setTimeout(()=>{ warp.style.transition='none'; warp.classList.remove('go','out'); void warp.offsetWidth; warp.style.transition=''; busy=false; },1150);
   }
 })();
 </script>
