@@ -251,6 +251,111 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
   .gantt-row,.gantt-months{grid-template-columns:120px 1fr}
   .hero h2{font-size:26px}
 }
+/* ---------- INICIO: recorrido por el SETP (categorías → proyectos) ---------- */
+.home{position:relative; overflow:hidden; color:var(--ink); padding:44px 0 0;
+  background:radial-gradient(900px 520px at 8% 0%, rgba(29,78,216,.11), transparent 62%),
+             radial-gradient(760px 520px at 94% 18%, rgba(0,168,48,.10), transparent 62%),
+             radial-gradient(760px 440px at 50% 100%, rgba(240,168,0,.16), transparent 66%),
+             linear-gradient(180deg,#F8FAFE 0%,#EDF2FB 100%)}
+.home::before{content:""; position:absolute; inset:0; pointer-events:none;
+  background-image:repeating-linear-gradient(0deg,transparent 0 30px,rgba(10,31,92,.045) 30px 31px)}
+.home .wrap{position:relative}
+.home-intro{text-align:center; max-width:780px; margin:0 auto}
+.home-intro .kicker{font-size:12px; letter-spacing:.26em; text-transform:uppercase; color:#B87700; font-weight:800}
+.home-intro h2{font-size:clamp(28px,4.4vw,46px); font-weight:800; margin:10px 0 12px; color:var(--navy)}
+.home-intro p{font-size:16px; color:var(--muted); line-height:1.7}
+.home-caption{display:flex; justify-content:center; align-items:center; gap:14px; flex-wrap:wrap; min-height:38px; margin-top:22px; font-weight:700; color:var(--navy); font-size:15px; text-align:center}
+.home-back{border:1px solid rgba(10,31,92,.22); background:#fff; color:var(--navy); font-weight:700; font-size:13px; padding:7px 15px; border-radius:999px; cursor:pointer; transition:.2s; box-shadow:0 4px 12px rgba(10,31,92,.08)}
+.home-back:hover{background:#EEF2FB}
+.home-stage{position:relative; height:580px; max-width:1100px; margin:0 auto}
+.home-link{position:absolute; left:0; top:0; height:3px; border-radius:3px; transform-origin:0 50%; transform:rotate(var(--a)) scaleX(0);
+  background:repeating-linear-gradient(90deg,var(--gold) 0 9px,transparent 9px 18px); opacity:.85;
+  transition:transform .7s ease var(--dl,0s); animation:homeDash 1.1s linear infinite; pointer-events:none}
+.home-link.show{transform:rotate(var(--a)) scaleX(1)}
+@keyframes homeDash{to{background-position:18px 0}}
+.hub{position:absolute; left:0; top:0; border:0; background:none; padding:0; cursor:pointer; color:#fff; z-index:2;
+  transform:translate(-50%,-50%) scale(var(--s,1));
+  transition:left .95s cubic-bezier(.22,.9,.24,1), top .95s cubic-bezier(.22,.9,.24,1), transform .95s cubic-bezier(.22,.9,.24,1), opacity .6s, width .95s, height .95s;
+  -webkit-tap-highlight-color:transparent}
+.hub:hover{transform:translate(-50%,-50%) scale(calc(var(--s,1)*1.06))}
+.hub:focus-visible{outline:3px solid var(--gold); outline-offset:6px; border-radius:50%}
+.hub::before,.hub::after{content:""; position:absolute; inset:-2px; border-radius:50%; border:2px solid var(--c1); opacity:0; animation:homeHalo 3.6s ease-out infinite; pointer-events:none}
+.hub::after{animation-delay:1.8s}
+@keyframes homeHalo{0%{transform:scale(.96); opacity:.55}100%{transform:scale(1.5); opacity:0}}
+.hub-body{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; text-align:center;
+  background:radial-gradient(circle at 30% 24%,var(--c1),var(--c2) 78%);
+  box-shadow:0 24px 48px rgba(10,31,92,.26), inset 0 -12px 30px rgba(0,0,0,.16), inset 0 10px 26px rgba(255,255,255,.24);
+  border-radius:58% 42% 55% 45% / 48% 58% 42% 52%;
+  animation:homeBlob 9s ease-in-out infinite, homeFloat 6s ease-in-out infinite; animation-delay:var(--bd,0s)}
+@keyframes homeBlob{0%,100%{border-radius:58% 42% 55% 45% / 48% 58% 42% 52%}33%{border-radius:44% 56% 42% 58% / 56% 44% 60% 40%}66%{border-radius:52% 48% 62% 38% / 42% 60% 40% 58%}}
+@keyframes homeFloat{0%,100%{translate:0 0}50%{translate:0 -10px}}
+.hub svg{width:34%; height:auto; overflow:visible}
+.hub .hub-t{font-size:clamp(19px,2.1vw,26px); font-weight:800; letter-spacing:-.01em}
+.hub .hub-s{font-size:12.5px; font-weight:600; opacity:.92; max-width:82%; line-height:1.3}
+.hub.dim{opacity:.55}
+.hub.dim .hub-s{display:none}
+.hub.dim:hover{opacity:.95}
+.proj{position:absolute; left:0; top:0; border:0; cursor:pointer; background:#fff; color:var(--ink); border-radius:50%; z-index:3;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; padding:12px; text-align:center;
+  box-shadow:0 14px 34px rgba(10,31,92,.22), 0 0 0 5px var(--pc);
+  transform:translate(-50%,-50%) scale(0); opacity:0; pointer-events:none;
+  transition:left .8s cubic-bezier(.22,.9,.24,1) var(--dl,0s), top .8s cubic-bezier(.22,.9,.24,1) var(--dl,0s), transform .75s cubic-bezier(.34,1.56,.64,1) var(--dl,0s), opacity .4s var(--dl,0s);
+  -webkit-tap-highlight-color:transparent}
+.proj.show{transform:translate(-50%,-50%) scale(1); opacity:1; pointer-events:auto}
+.proj.show:hover{transform:translate(-50%,-50%) scale(1.09); transition-delay:0s}
+.proj:focus-visible{outline:3px solid var(--gold); outline-offset:6px}
+.proj svg{width:28px; height:28px; flex:0 0 auto; color:var(--pc)}
+.proj .p-n{font-weight:800; font-size:14.5px; line-height:1.15}
+.proj .p-f{font-size:11.5px; color:var(--muted); font-weight:600; line-height:1.2}
+.proj .p-b{margin-top:2px; font-size:10.5px; font-weight:800; padding:2px 10px; border-radius:999px; background:var(--pc); color:#fff}
+.proj.locked{cursor:not-allowed; background:rgba(255,255,255,.7); color:var(--muted); box-shadow:0 0 0 3px rgba(10,31,92,.14), 0 8px 20px rgba(10,31,92,.08); backdrop-filter:blur(3px)}
+.proj.locked svg{color:var(--muted)}
+.proj.locked .p-f{color:#7A87A5}
+.proj.locked .p-b{background:#A7B2CB}
+.home-road{display:block; width:100%; height:64px; margin-top:6px; position:relative}
+/* marca de agua animada */
+.home-wm{position:absolute; inset:0; pointer-events:none; overflow:hidden; z-index:0}
+.wm-lines{position:absolute; inset:0; width:100%; height:100%; opacity:.4}
+.wm-flow{stroke-dasharray:14 22; animation:wmFlow 9s linear infinite}
+@keyframes wmFlow{to{stroke-dashoffset:-360}}
+.wm-orbit{position:absolute; left:50%; top:57%; width:min(640px,92vw); aspect-ratio:1; translate:-50% -50%}
+.wm-orbit svg{position:absolute; inset:0; width:100%; height:100%; overflow:visible}
+.wm-spin{transform-origin:300px 300px; animation:wmSpin 46s linear infinite}
+@keyframes wmSpin{to{transform:rotate(360deg)}}
+.wm-logo{position:absolute; left:50%; top:50%; width:60%; height:auto; translate:-50% -50%; opacity:.11; mix-blend-mode:multiply;
+  border-radius:50%; animation:wmBreath 8s ease-in-out infinite alternate; transition:opacity .9s}
+@keyframes wmBreath{from{scale:.96}to{scale:1.05}}
+.home:not([data-open=""]) .wm-logo{opacity:.05}
+.wm-scene{position:absolute; left:50%; top:57%; width:min(660px,94vw); aspect-ratio:640/420; translate:-50% -50%; opacity:0; scale:.9;
+  transition:opacity 1s ease, scale 1.2s cubic-bezier(.22,.9,.24,1)}
+.wm-scene svg{width:100%; height:100%}
+.home[data-open="vias"] .wm-vias,.home[data-open="semaforos"] .wm-semaforos,.home[data-open="paraderos"] .wm-paraderos{opacity:.17; scale:1}
+.wm-dash{animation:wmDashMove 2.2s linear infinite}
+@keyframes wmDashMove{to{stroke-dashoffset:-96}}
+.wm-l{opacity:.25; animation:wmBlink 6s ease-in-out infinite}
+.wm-l2{animation-delay:2s}
+.wm-l3{animation-delay:4s}
+@keyframes wmBlink{0%,8%{opacity:.25}14%,30%{opacity:1}38%,100%{opacity:.25}}
+.wm-bus{animation:wmDrive 15s linear infinite}
+@keyframes wmDrive{from{transform:translateX(-260px)}to{transform:translateX(720px)}}
+.warp{position:fixed; inset:0; z-index:400; pointer-events:none; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; color:#fff; text-align:center;
+  background:radial-gradient(circle at var(--x,50%) var(--y,50%),var(--wc,#1D4ED8) 0%,#001233 75%);
+  clip-path:circle(0px at var(--x,50%) var(--y,50%)); opacity:1; transition:clip-path .85s cubic-bezier(.65,0,.35,1), opacity .55s ease}
+.warp.go{clip-path:circle(150vmax at var(--x,50%) var(--y,50%)); pointer-events:auto}
+.warp.go.out{opacity:0}
+.warp .w-k{font-size:12px; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); font-weight:800; opacity:0; transition:opacity .4s .4s}
+.warp .w-n{font-size:clamp(26px,5vw,44px); font-weight:800; opacity:0; transform:translateY(12px); transition:opacity .4s .45s, transform .5s .45s}
+.warp.go .w-k,.warp.go .w-n{opacity:1; transform:none}
+@media(max-width:700px){
+  .home{padding-top:30px}
+  .home-stage{height:640px}
+  .home-intro p{font-size:15px}
+  .proj{padding:8px; gap:2px}
+  .proj svg{display:none}
+  .proj .p-n{font-size:13px}
+  .proj .p-f{font-size:11px}
+  .proj .p-b{font-size:10px; padding:2px 8px}
+}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -273,7 +378,11 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
 <!-- ============ TABS ============ -->
 <nav class="tabs">
   <div class="tabs-inner">
-    <button class="tab active" data-page="page-cra5">
+    <button class="tab active" data-page="page-inicio">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11.5 12 4l9 7.5M5.5 10v10h13V10M10 20v-5h4v5"/></svg>
+      Inicio
+    </button>
+    <button class="tab" data-page="page-cra5">
       <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18h18M5 18l2-9h10l2 9M9 9V6h6v3"/></svg>
       Carrera Quinta <span class="badge">Terminado</span>
     </button>
@@ -296,8 +405,89 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
   </div>
 </nav>
 
+<!-- ============ PÁGINA: INICIO (recorrido por el SETP) ============ -->
+<div id="page-inicio" class="page active">
+<section class="home" id="home" data-open="">
+  <!-- Marca de agua animada con identidad SETP: emblema en órbita + líneas de marca + escena por categoría -->
+  <div class="home-wm" aria-hidden="true">
+    <svg class="wm-lines" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice">
+      <g fill="none" stroke-linecap="round" stroke-width="2.4">
+        <path class="wm-flow" d="M1260 40 C990 120 770 140 480 245 S150 330 -60 420" stroke="#D62828"/>
+        <path class="wm-flow" style="animation-delay:-2.2s" d="M1260 74 C1000 152 790 172 510 268 S170 356 -60 454" stroke="#00A830"/>
+        <path class="wm-flow" style="animation-delay:-4.4s" d="M1260 108 C1010 184 810 204 540 291 S190 382 -60 488" stroke="#F0A800"/>
+      </g>
+    </svg>
+    <div class="wm-orbit">
+      <svg viewBox="0 0 600 600">
+        <circle cx="300" cy="300" r="282" fill="none" stroke="#0A1F5C" stroke-opacity=".16" stroke-width="2" stroke-dasharray="4 14" stroke-linecap="round"/>
+        <g class="wm-spin">
+          <circle cx="300" cy="18" r="11" fill="#D62828"/>
+          <circle cx="544.2" cy="441" r="11" fill="#F0A800"/>
+          <circle cx="55.8" cy="441" r="11" fill="#00A830"/>
+        </g>
+      </svg>
+      <img class="wm-logo" alt="">
+    </div>
+    <div class="wm-scene wm-vias">
+      <svg viewBox="0 0 640 420" fill="none" stroke="#1D4ED8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M262 14 L14 410 M378 14 L626 410"/>
+        <path class="wm-dash" d="M320 18 L320 412" stroke-dasharray="26 22"/>
+        <path d="M120 250 C210 200 260 190 320 190 S430 200 520 250" stroke="#F0A800" stroke-opacity=".7"/>
+      </svg>
+    </div>
+    <div class="wm-scene wm-semaforos">
+      <svg viewBox="0 0 640 420" fill="none" stroke="#0A1F5C" stroke-width="5" stroke-linecap="round">
+        <rect x="248" y="10" width="144" height="372" rx="58"/>
+        <path d="M320 382v34"/>
+        <circle class="wm-l wm-l1" cx="320" cy="90" r="36" fill="#D62828" stroke="none"/>
+        <circle class="wm-l wm-l2" cx="320" cy="196" r="36" fill="#F0A800" stroke="none"/>
+        <circle class="wm-l wm-l3" cx="320" cy="302" r="36" fill="#00A830" stroke="none"/>
+      </svg>
+    </div>
+    <div class="wm-scene wm-paraderos">
+      <svg viewBox="0 0 640 420" fill="none" stroke="#D98F00" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M150 116V410"/>
+        <rect x="70" y="20" width="160" height="100" rx="14"/>
+        <path d="M96 52h108M96 78h72"/>
+        <path d="M20 410h600"/>
+        <g class="wm-bus">
+          <rect x="0" y="292" width="200" height="86" rx="18"/>
+          <rect x="16" y="308" width="30" height="24" rx="4"/><rect x="58" y="308" width="30" height="24" rx="4"/><rect x="100" y="308" width="30" height="24" rx="4"/>
+          <rect x="146" y="304" width="38" height="46" rx="6"/>
+          <circle cx="46" cy="392" r="17" fill="#EDF2FB"/><circle cx="154" cy="392" r="17" fill="#EDF2FB"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="home-intro">
+      <div class="kicker">Recorrido por el SETP · TransMusical te mueve</div>
+      <h2>Moviendo a Ibagué, proyecto a proyecto</h2>
+      <p>El Sistema Estratégico de Transporte Público transforma la movilidad de la ciudad con vías rehabilitadas, semáforos modernos y paraderos para todos. Te invitamos a un recorrido por cada uno de los proyectos ejecutados y por ejecutar a cargo del SETP.</p>
+    </div>
+    <div class="home-caption"><span id="homeCaption">Elige por dónde quieres empezar</span><button class="home-back" id="homeBack" type="button" hidden>← Todas las categorías</button></div>
+    <div class="home-stage" id="homeStage"></div>
+  </div>
+  <svg class="home-road" viewBox="0 0 1200 64" preserveAspectRatio="xMinYMax slice" aria-hidden="true">
+    <line x1="0" y1="52" x2="1200" y2="52" stroke="rgba(10,31,92,.28)" stroke-width="3" stroke-dasharray="16 12"/>
+    <g>
+      <animateTransform attributeName="transform" type="translate" values="-160,0; 1300,0" dur="18s" repeatCount="indefinite"/>
+      <rect x="0" y="16" width="104" height="34" rx="9" fill="#00A830"/>
+      <rect x="10" y="22" width="16" height="12" rx="2" fill="#fff" opacity=".92"/>
+      <rect x="32" y="22" width="16" height="12" rx="2" fill="#fff" opacity=".92"/>
+      <rect x="54" y="22" width="16" height="12" rx="2" fill="#fff" opacity=".92"/>
+      <rect x="80" y="20" width="18" height="20" rx="3" fill="#fff" opacity=".92"/>
+      <rect x="0" y="40" width="104" height="4" fill="#F0A800"/>
+      <circle cx="24" cy="52" r="8" fill="#0A1F5C" stroke="#fff" stroke-width="2"/>
+      <circle cx="82" cy="52" r="8" fill="#0A1F5C" stroke="#fff" stroke-width="2"/>
+    </g>
+  </svg>
+</section>
+</div>
+<div class="warp" id="homeWarp" aria-hidden="true"><div class="w-k">SETP · Ibagué</div><div class="w-n" id="homeWarpName"></div></div>
+
 <!-- ============ PÁGINA: CARRERA QUINTA ============ -->
-<div id="page-cra5" class="page active">
+<div id="page-cra5" class="page">
 
 <!-- ============ HERO ============ -->
 <section class="hero">
@@ -1621,6 +1811,141 @@ footer{background:var(--navy-deep); color:#B9C4E6; padding:26px 0; font-size:13p
   </div>
 </footer>
 
+<script>
+/* ==== INICIO: categorías (Vías · Semáforos · Paraderos) → proyectos, con zoom ==== */
+(function(){
+  const stage=document.getElementById('homeStage');
+  if(!stage) return;
+  const caption=document.getElementById('homeCaption'), back=document.getElementById('homeBack'), home=document.getElementById('home');
+  const wmLogo=home.querySelector('.wm-logo'), hdrLogo=document.querySelector('.logo.setp');
+  if(wmLogo&&hdrLogo) wmLogo.src=hdrLogo.src; /* mismo emblema del SETP de la cabecera, sin duplicar el archivo */
+  const warp=document.getElementById('homeWarp'), warpName=document.getElementById('homeWarpName');
+  const svgA='<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">';
+  const IC={
+    vias:svgA+'<path d="M23 8h18l17 48H6z" fill="rgba(255,255,255,.14)"/><path d="M32 15v7M32 30v9M32 47v7"/></svg>',
+    semaforos:svgA+'<rect x="19" y="5" width="26" height="54" rx="10" fill="rgba(255,255,255,.14)"/><circle cx="32" cy="19" r="4.5" fill="currentColor" stroke="none"/><circle cx="32" cy="32" r="4.5" fill="currentColor" stroke="none"/><circle cx="32" cy="45" r="4.5" fill="currentColor" stroke="none"/></svg>',
+    paraderos:svgA+'<path d="M32 59S51 40 51 25a19 19 0 1 0-38 0c0 15 19 34 19 34z" fill="rgba(255,255,255,.14)"/><circle cx="32" cy="25" r="7"/></svg>'
+  };
+  const ST={ /* ícono por estado del proyecto */
+    'Terminado':svgA+'<circle cx="32" cy="32" r="24" fill="rgba(0,168,48,.12)"/><path d="M20 33l8 8 17-19"/></svg>',
+    'En obra':svgA+'<path d="M32 8l15 46H17z" fill="rgba(240,168,0,.18)"/><path d="M26 27h12M22 40h20M10 56h44"/></svg>',
+    'En liquidación':svgA+'<rect x="15" y="7" width="34" height="50" rx="5" fill="rgba(240,168,0,.14)"/><path d="M23 20h18M23 30h18M23 40h9"/></svg>',
+    'Próximamente':svgA+'<rect x="14" y="28" width="36" height="28" rx="6" fill="rgba(255,255,255,.14)"/><path d="M22 28v-7a10 10 0 0 1 20 0v7"/></svg>'
+  };
+  const cats=[
+    {id:'vias',name:'Vías',sub:'Rehabilitación de la malla vial',c1:'#5B86FF',c2:'#0A1F5C',pc:'#1D4ED8',projects:[
+      {page:'page-cra5',name:'Carrera Quinta',phase:'Fase II',badge:'Terminado'},
+      {page:'page-ambala',name:'Av. Ambalá',phase:'Fase III',badge:'En obra'},
+      {page:null,name:'Av. Ferrocarril',phase:'Etapa de diseños',badge:'Próximamente'}]},
+    {id:'semaforos',name:'Semáforos',sub:'Modernización de la red semafórica',c1:'#2FD95F',c2:'#00701F',pc:'#00A830',projects:[
+      {page:'page-semaforos',name:'Semaforización',phase:'Fase I',badge:'En obra'}]},
+    {id:'paraderos',name:'Paraderos',sub:'Suministro e instalación de paraderos',c1:'#FFC93C',c2:'#B87700',pc:'#D98F00',projects:[
+      {page:'page-paraderos',name:'Paraderos Tipo III',phase:'1.150 señales',badge:'En liquidación'}]}
+  ];
+  const hubs=[],projs=[],links=[];
+  let open=-1,busy=false;
+  cats.forEach((c,ci)=>{
+    const n=c.projects.length;
+    const h=document.createElement('button');
+    h.type='button'; h.className='hub';
+    h.style.setProperty('--c1',c.c1); h.style.setProperty('--c2',c.c2); h.style.setProperty('--bd',(-ci*3)+'s');
+    h.setAttribute('aria-expanded','false');
+    h.setAttribute('aria-label',c.name+': '+c.sub+', '+n+(n>1?' proyectos':' proyecto'));
+    h.innerHTML='<span class="hub-body">'+IC[c.id]+'<span class="hub-t">'+c.name+'</span><span class="hub-s">'+c.sub+' · '+n+(n>1?' proyectos':' proyecto')+'</span></span>';
+    h.style.left='50%'; h.style.top='50%'; h.style.setProperty('--s',0);
+    h.addEventListener('click',()=>{ open===ci ? setOpen(-1) : setOpen(ci); });
+    hubs.push(h);
+    c.projects.forEach((p,pi)=>{
+      const b=document.createElement('button');
+      b.type='button'; b.className='proj'+(p.page?'':' locked');
+      b.style.setProperty('--pc',c.pc);
+      b.tabIndex=-1;
+      b.innerHTML=(ST[p.badge]||IC[c.id])+'<span class="p-n">'+p.name+'</span><span class="p-f">'+p.phase+'</span><span class="p-b">'+p.badge+'</span>';
+      if(p.page){
+        b.setAttribute('aria-label','Ir a '+p.name+' ('+p.phase+', '+p.badge+')');
+        b.addEventListener('click',()=>goTo(p.page,p.name,c.pc,b));
+      } else {
+        b.setAttribute('aria-disabled','true'); b.title='Pendiente de información';
+      }
+      const l=document.createElement('div'); l.className='home-link';
+      links.push(l); projs.push({el:b,cat:ci,idx:pi,n:n});
+    });
+  });
+  links.forEach(l=>stage.appendChild(l));
+  hubs.forEach(h=>stage.appendChild(h));
+  projs.forEach(p=>stage.appendChild(p.el));
+
+  function offsets(n,mobile,kx){
+    if(mobile){
+      const a={1:[[0,190]],2:[[-64,190],[64,190]],3:[[-112,190],[0,190],[112,190]]}[n];
+      return a.map(o=>[o[0]*kx,o[1]]);
+    }
+    const a={1:[[330,0]],2:[[-330,0],[330,0]],3:[[-345,-45],[345,-45],[0,232]]}[n];
+    return a.map(o=>[o[0]*kx,o[1]]);
+  }
+  function layout(){
+    const W=stage.clientWidth,H=stage.clientHeight; if(!W) return;
+    const mobile=W<700;
+    const d=mobile?138:Math.min(214,W*.27), pd=mobile?104:140;
+    const cx=W*.5, cy=mobile?H*.27:H*.47;
+    const kx=mobile?Math.min(1,(W/2-pd/2-8)/112):Math.min(1,(W/2-pd/2-14)/345);
+    const others=[0,1,2].filter(j=>j!==open);
+    hubs.forEach((h,i)=>{
+      let x,y,s=1,dim=false;
+      if(open<0){
+        if(mobile){x=W*.5;y=H*[.17,.5,.83][i];}
+        else{x=W*[.2,.5,.8][i];y=H*[.47,.54,.47][i];}
+      } else if(i===open){ x=cx;y=cy;s=mobile?1.12:1.18; }
+      else { dim=true;s=.42;const pos=others.indexOf(i);
+        x=mobile?(pos?W*.85:W*.15):(pos?W*.9:W*.1); y=H*(mobile?.93:.9); }
+      h.style.width=h.style.height=d+'px';
+      h.style.left=x+'px'; h.style.top=y+'px'; h.style.setProperty('--s',s);
+      h.classList.toggle('dim',dim); h.classList.toggle('active',i===open);
+      h.setAttribute('aria-expanded',i===open?'true':'false');
+    });
+    projs.forEach((p,k)=>{
+      const on=open===p.cat;
+      const off=offsets(p.n,mobile,kx)[p.idx];
+      const dl=on?(0.3+p.idx*0.14)+'s':'0s';
+      p.el.style.width=p.el.style.height=pd+'px';
+      p.el.style.left=(on?cx+off[0]:cx)+'px'; p.el.style.top=(on?cy+off[1]:cy)+'px';
+      p.el.style.setProperty('--dl',dl);
+      p.el.classList.toggle('show',on);
+      p.el.tabIndex=(on&&!p.el.classList.contains('locked'))?0:-1;
+      const l=links[k], len=Math.hypot(off[0],off[1]);
+      l.style.left=cx+'px'; l.style.top=cy+'px'; l.style.width=len+'px';
+      l.style.setProperty('--a',Math.atan2(off[1],off[0])+'rad'); l.style.setProperty('--dl',dl);
+      l.classList.toggle('show',on);
+    });
+    home.dataset.open=open<0?'':cats[open].id;
+    caption.textContent=open<0?'Elige por dónde quieres empezar':cats[open].name+' · '+cats[open].sub+' — elige un proyecto';
+    back.hidden=open<0;
+  }
+  function setOpen(i){ open=i; layout(); }
+  back.addEventListener('click',()=>setOpen(-1));
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&open>=0&&document.getElementById('page-inicio').classList.contains('active')) setOpen(-1); });
+  window.addEventListener('resize',layout);
+  document.querySelector('.tab[data-page="page-inicio"]').addEventListener('click',()=>setTimeout(()=>{open=-1;layout();},60));
+
+  function goTo(page,name,color,el){
+    const tab=document.querySelector('.tab[data-page="'+page+'"]');
+    if(!tab||busy) return;
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){ tab.click(); window.scrollTo({top:0,left:0,behavior:'instant'}); return; }
+    busy=true;
+    const r=el.getBoundingClientRect();
+    warp.style.setProperty('--x',(r.left+r.width/2)+'px'); warp.style.setProperty('--y',(r.top+r.height/2)+'px');
+    warp.style.setProperty('--wc',color); warpName.textContent=name;
+    warp.classList.remove('out'); warp.classList.add('go');
+    setTimeout(()=>{ tab.click(); window.scrollTo({top:0,left:0,behavior:'instant'}); warp.classList.add('out'); },950);
+    setTimeout(()=>{
+      warp.style.transition='none'; warp.classList.remove('go','out'); void warp.offsetWidth; warp.style.transition='';
+      busy=false;
+    },1600);
+  }
+  requestAnimationFrame(()=>requestAnimationFrame(layout));
+  setTimeout(layout,250); // respaldo si la pestaña carga en segundo plano (rAF en pausa)
+})();
+</script>
 <script>
 window.addEventListener('load', function(){
 const NAVY='#0A1F5C',ROYAL='#1D4ED8',GREEN='#00A830',GOLD='#F0A800',RED='#D62828',PENDING='#94A3B8';
