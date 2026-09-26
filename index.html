@@ -619,7 +619,7 @@ body.on-home{touch-action:pan-y pinch-zoom}
     <button class="tab locked" data-cat="vias" title="Carrera Quinta Fase I · por incluir en el tablero"><svg class="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg> Cra 5 · Fase I</button>
     <button class="tab" data-cat="vias" data-page="page-cra5"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 3h7L20 21H4z"/><path d="M12 6.5v3M12 12v3M12 17.5v2"/></svg> Cra 5 · Fase II <span class="badge">Terminado</span></button>
     <button class="tab" data-cat="vias" data-page="page-ambala"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 3h7L20 21H4z"/><path d="M12 6.5v3M12 12v3M12 17.5v2"/></svg> Av. Ambalá · Fase III <span class="badge">En obra</span></button>
-    <button class="tab" data-cat="semaforos" data-page="page-semaforos"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="20" rx="3"/><circle cx="12" cy="7" r="1.2" fill="currentColor"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/><circle cx="12" cy="17" r="1.2" fill="currentColor"/></svg> Semaforización · Fase I <span class="badge">En obra</span></button>
+    <button class="tab" data-cat="semaforos" data-page="page-semaforos"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="20" rx="3"/><circle cx="12" cy="7" r="1.2" fill="currentColor"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/><circle cx="12" cy="17" r="1.2" fill="currentColor"/></svg> Semaforización · Fase I <span class="badge">Finalizado</span></button>
     <button class="tab locked" data-cat="semaforos" title="Semaforización Fase II · por incluir en el tablero"><svg class="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg> Fase II</button>
     <button class="tab locked" data-cat="semaforos" title="Semaforización Fase III · por incluir en el tablero"><svg class="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg> Fase III</button>
     <button class="tab locked" data-cat="paraderos" title="Paraderos Tipo I · por incluir en el tablero"><svg class="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg> Tipo I</button>
@@ -1579,7 +1579,7 @@ body.on-home{touch-action:pan-y pinch-zoom}
     <div class="hero-left">
       <div class="eyebrow">
         <span class="chip code">Contrato de Obra N° 117 · 2024</span>
-        <span class="chip obra">● En ejecución</span>
+        <span class="chip" style="background:rgba(0,168,48,.12); color:var(--green)">● Finalizado</span>
       </div>
       <h2>Modernización de la Red Semafórica de Ibagué — Fase I</h2>
       <p class="desc">Suministro, obra e instalación para la puesta en funcionamiento de la Fase I de la red semafórica del municipio de Ibagué, la cual incluye obras civiles de subterranización.</p>
@@ -1612,10 +1612,10 @@ body.on-home{touch-action:pan-y pinch-zoom}
         <div style="text-align:center">
           <div class="gauge-wrap" style="width:100px;height:100px">
             <canvas id="gaugeSemaforosFisico"></canvas>
-            <div class="gauge-center"><div class="pct" style="font-size:18px;color:var(--green)">93,0%</div></div>
+            <div class="gauge-center"><div class="pct" style="font-size:18px;color:var(--green)">100%</div></div>
           </div>
           <div style="font-size:12px;font-weight:800;color:var(--ink);margin-top:8px">Físico</div>
-          <div style="font-size:10.5px;color:var(--muted)">En obra</div>
+          <div style="font-size:10.5px;color:var(--muted)">Completado</div>
         </div>
         <div style="text-align:center">
           <div class="gauge-wrap" style="width:100px;height:100px">
@@ -1664,7 +1664,7 @@ body.on-home{touch-action:pan-y pinch-zoom}
         <div class="progress-row"><div class="top"><span class="name">Controladores instalados</span><span class="figs"><b>100%</b> · 28/28</span></div><div class="bar gold"><span style="width:100%"></span></div></div>
         <div class="progress-row"><div class="top"><span class="name">Postes instalados</span><span class="figs"><b>100%</b> · 254/254</span></div><div class="bar blue"><span style="width:100%"></span></div></div>
         <div class="progress-row"><div class="top"><span class="name">Push button (pulsadores)</span><span class="figs" style="color:var(--red)"><b>Meta en revisión</b></span></div></div>
-        <p class="map-note" style="border-left-color:var(--red)">⚠ <b style="color:var(--red)">En revisión:</b> por indicación de la dirección del SETP (26 de septiembre de 2026), el dispositivo sonoro (sonorizadores) se reemplazó por la meta de push button. La cantidad de push button y el avance físico acumulado (92,97% en la presentación de gerencia del 21 de septiembre de 2026, calculado con sonorizadores) deben recalcularse con la nueva meta. El avance financiero (pagos radicados) se mantiene en 0% según esa misma presentación.</p>
+        <p class="map-note" style="border-left-color:var(--red)">Proyecto finalizado según la dirección del SETP (26 de septiembre de 2026): todos los componentes están al 100% y el avance físico queda en 100% (92,97% en la presentación de gerencia del 21 de septiembre de 2026, cuando aún contaba sonorizadores). El dispositivo sonoro se reemplazó por la meta de push button. ⚠ <b style="color:var(--red)">En revisión:</b> falta confirmar la cantidad de push button. El avance financiero (pagos radicados) se mantiene en 0% según la presentación del 21 de septiembre.</p>
         <div style="margin-top:auto;padding-top:18px;display:flex;align-items:center;gap:18px;flex-wrap:wrap">
           <svg viewBox="0 0 100 140" style="width:60px;height:auto;flex:0 0 auto">
             <rect x="46" y="40" width="8" height="90" fill="#C9CDD3"/>
@@ -2307,6 +2307,7 @@ body.on-home{touch-action:pan-y pinch-zoom}
   };
   const ST={ /* ícono por estado del proyecto */
     'Terminado':svgA+'<circle cx="32" cy="32" r="24"/><path d="M20 33l8 8 17-19"/></svg>',
+    'Finalizado':svgA+'<circle cx="32" cy="32" r="24"/><path d="M20 33l8 8 17-19"/></svg>',
     'En obra':svgA+'<path d="M32 8l15 46H17z"/><path d="M26 27h12M22 40h20M10 56h44"/></svg>',
     'En liquidación':svgA+'<rect x="15" y="7" width="34" height="50" rx="5"/><path d="M23 20h18M23 30h18M23 40h9"/></svg>',
     'Por incluir':svgA+'<rect x="14" y="28" width="36" height="28" rx="6"/><path d="M22 28v-7a10 10 0 0 1 20 0v7"/></svg>'
@@ -2319,7 +2320,7 @@ body.on-home{touch-action:pan-y pinch-zoom}
       {page:'page-cra5',name:'Carrera Quinta',phase:'Fase II · Cl 10 a Cl 58',badge:'Terminado'},
       {page:'page-ambala',name:'Av. Ambalá',phase:'Fase III',badge:'En obra'}]},
     semaforos:{name:'Semáforos',sub:'Modernización de la red semafórica',pc:'#00913A',side:'right',cam:{tx:-1000,ty:-470,k:2},projects:[
-      {page:'page-semaforos',name:'Semaforización',phase:'Fase I',badge:'En obra'},
+      {page:'page-semaforos',name:'Semaforización',phase:'Fase I',badge:'Finalizado'},
       {page:null,name:'Semaforización',phase:'Fase II',badge:'Por incluir'},
       {page:null,name:'Semaforización',phase:'Fase III',badge:'Por incluir'}]},
     paraderos:{name:'Paraderos',sub:'Suministro e instalación de paraderos',pc:'#D98F00',side:'right',cam:{tx:-210,ty:-524,k:2.1},projects:[
@@ -2660,7 +2661,7 @@ if (document.getElementById('tramoMapCra5')) {
 if (document.getElementById('gaugeSemaforosFisico')) {
   new Chart(document.getElementById('gaugeSemaforosFisico'),{
     type:'doughnut',
-    data:{datasets:[{data:[92.97,7.03],backgroundColor:[GREEN,'#EAEEF7'],borderWidth:0}]},
+    data:{datasets:[{data:[100,0],backgroundColor:[GREEN,'#EAEEF7'],borderWidth:0}]},
     options:{cutout:'78%',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false}}}
   });
 }
