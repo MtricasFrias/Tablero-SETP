@@ -1587,7 +1587,7 @@ body.on-home{touch-action:pan-y pinch-zoom}
         <div class="m"><div class="lbl">Cobertura de la red semafórica</div><div class="val">36%</div></div>
         <div class="m"><div class="lbl">Intersecciones</div><div class="val">34</div></div>
         <div class="m"><div class="lbl">Acta de inicio</div><div class="val">20-feb-2025</div></div>
-        <div class="m"><div class="lbl">Finalización estimada</div><div class="val">29-sep-2026</div></div>
+        <div class="m"><div class="lbl">Finalización</div><div class="val">29-sep-2026</div></div>
         <div class="m"><div class="lbl">Ejecución financiera</div><div class="val" style="color:var(--pending)">$0 (0%)</div></div>
       </div>
       <div class="hero-meta" style="margin-top:14px;align-items:center">
@@ -1705,6 +1705,33 @@ body.on-home{touch-action:pan-y pinch-zoom}
       <div class="card kpi"><div class="accent" style="background:var(--red)"></div><h4>Canalización dirigida</h4><div class="big" style="font-size:22px">3.442<span class="unit"> m</span></div><div class="foot" style="color:var(--red)">PVC TDP 3" · en revisión</div></div>
       <div class="card kpi"><div class="accent" style="background:var(--red)"></div><h4>Cajas de inspección</h4><div class="big" style="font-size:22px">295<span class="unit"> und</span></div><div class="foot" style="color:var(--red)">90x90x80 cm · en revisión</div></div>
       <div class="card kpi"><div class="accent" style="background:var(--red)"></div><h4>Andén reconstruido</h4><div class="big" style="font-size:22px">2.478<span class="unit"> m²</span></div><div class="foot" style="color:var(--red)">Concreto 3000 PSI · en revisión</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BLOQUE: LOCALIZACIÓN DE LAS INTERSECCIONES ============ -->
+<section class="block">
+  <div class="wrap">
+    <div class="block-head">
+      <div class="block-num"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M9 20l-6-3V4l6 3 6-3 6 3v13l-6-3-6 3z"/><path d="M9 4v13M15 7v13"/></svg></div>
+      <div><h3>Localización de las intersecciones</h3><div class="tag">KMZ oficiales · Fase I finalizada y Fase II proyectada</div></div>
+      <div class="spacer"></div>
+    </div>
+
+    <div class="cards g3" style="margin-bottom:20px">
+      <div class="card kpi"><div class="accent" style="background:var(--green)"></div><h4>Fase I · Finalizada</h4><div class="big" style="font-size:24px">34<span class="unit"> intersecciones</span></div><div class="foot">Contrato de obra N.° 117 de 2024 · obra $8.946,6 M + interventoría $832,1 M</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--pending)"></div><h4>Fase II · En estructuración</h4><div class="big" style="font-size:24px">40<span class="unit"> intersecciones</span></div><div class="foot">Obra $11.525,1 M · interventoría $990,2 M · ubicación en el KMZ «Semáforos 2026.08»</div></div>
+      <div class="card kpi"><div class="accent" style="background:var(--pending)"></div><h4>Fase III · Presupuestada</h4><div class="big" style="font-size:24px">Sin ubicación</div><div class="foot">Obra $8.509,9 M · interventoría $851,0 M · ejecución prevista en 2027</div></div>
+    </div>
+
+    <div class="card">
+      <div class="map-legend">
+        <label style="cursor:pointer"><input type="checkbox" data-sem="I" checked> <i style="background:var(--green)"></i> Fase I · finalizada (33 georreferenciadas)</label>
+        <label style="cursor:pointer"><input type="checkbox" data-sem="II" checked> <i style="background:var(--pending)"></i> Fase II · proyectada (40)</label>
+      </div>
+      <div id="mapaSemaforos" style="position:relative;z-index:0;height:460px;border-radius:14px;overflow:hidden;margin-top:8px"></div>
+      <p class="map-note">Mapa satelital interactivo (desplazable y con zoom) con la ubicación de las intersecciones según los KMZ oficiales. Activa o desactiva cada fase con las casillas de arriba y haz clic en un punto para ver su número y su nombre. La Fase III todavía no tiene ubicación.</p>
+      <p class="map-note" style="border-left-color:var(--red)">⚠ <b style="color:var(--red)">En revisión:</b> el KMZ de la Fase I trae 33 puntos y la presentación del 4 de septiembre de 2026 lista 34 intersecciones, así que falta georreferenciar 1. Además, los nombres no coinciden: el KMZ usa «Carrera 8 con Cl 25 y 29» y «Carrera 9 con Cl 44 y 64» donde la presentación dice «Av. Guabinal» (Cl 29, 44, 60 y 64), y «Av. Ambalá con Cl 64» donde la presentación dice «Cl 67». Se necesita el KMZ corregido con las 34. Las cifras de la Fase II y la Fase III vienen de la Presentación de proyectos; en esa página la interventoría de la Fase I ($631,8 M) estaba desactualizada frente al contrato vigente ($832,1 M), por lo que conviene validarlas.</p>
     </div>
   </div>
 </section>
@@ -2655,6 +2682,110 @@ if (document.getElementById('tramoMapCra5')) {
   tramoMapCra5._boundsToFit = grupoCra5.getBounds();
   tramoMapCra5.fitBounds(tramoMapCra5._boundsToFit, {padding:[20,20]});
   leafletMaps.push(tramoMapCra5);
+}
+
+/* ==== Semaforización: mapa de intersecciones (KMZ oficiales) ==== */
+if (document.getElementById('mapaSemaforos')) {
+  /* Fuente: KMZ oficial «Intersecciones Semáforos Fase I» (33 puntos) y «Ubicación Semáforos 2026.08» (40 puntos). Formato: [N.° de lista, nombre, lat, lon, referencia]. */
+  const semFaseI = [
+    ["29","Carrera 4 con Calle 25",4.437179,-75.228861],
+    ["33","Carrera 4 con calle 42",4.430755,-75.213996],
+    ["39","Carrera 5 con Calle 21",4.441289,-75.231341],
+    ["40","Carrera 5 con Calle 23",4.440645,-75.229253],
+    ["41","Carrera 5 con calle 25",4.440243,-75.227429],
+    ["42","Carrera 5 con Calle 29",4.439875,-75.223419],
+    ["43","Carrera 5 con Calle 37",4.438224,-75.217437],
+    ["44","Carrera 5 con calle 42",4.435527,-75.212331],
+    ["46","Carrera 5 con calle 64",4.436365,-75.200344],
+    ["47","Carrera 5 con calle 71",4.437646,-75.195139],
+    ["48","Carrera 5 con calle 77",4.438624,-75.191453],
+    ["49","Carrera 5 con calle 88",4.440982,-75.182006],
+    ["50","Carrera 5 con calle 96",4.442153,-75.177416],
+    ["51","Carrera 5 con calle 100",4.442897,-75.174455],
+    ["53","Carrera 6 con calle 25",4.441840,-75.226780],
+    ["54","Carrera 6 con calle 29",4.440701,-75.223233],
+    ["55","Carrera 6 con calle 37",4.439241,-75.217017],
+    ["56","Carrera 6 con calle 42",4.436352,-75.211889],
+    ["66","Carrera 8 con calle 25",4.442699,-75.225998],
+    ["67","Carrera 8 con calle 29",4.442165,-75.222920],
+    ["71","Carrera 9 con calle 44",4.441295,-75.210134],
+    ["72","Carrera 9 con calle 64",4.441692,-75.202099],
+    ["80","Av. Ferrocarril con calle 23",4.436986,-75.231520],
+    ["81","Av. Ferrocarril con calle 25",4.436822,-75.229055],
+    ["82","Av. Ferrocarril con 4 estadio",4.436811,-75.228341],
+    ["83","Av. Ferrocarril con calle 27",4.436763,-75.226568],
+    ["84","Av. Ferrocarril con calle 31",4.436607,-75.223086],
+    ["85","Av. Ferrocarril con calle 37",4.434868,-75.217609],
+    ["86","Av. Ferrocarril con calle 42",4.434000,-75.213272],
+    ["87","Av. Ambalá con calle 29",4.443715,-75.223052],
+    ["88","Avenida Ambalá con calle 37",4.446411,-75.214345],
+    ["89","Avenida Ambalá con calle 64",4.447816,-75.201118],
+    ["92","Avenida Ambalá con calle 96",4.447413,-75.178300]
+  ];
+  const semFaseII = [
+    ["1","Cra 11A sur Calle 20",4.432845,-75.243572,"Mercacentro Ricaurte"],
+    ["2","Cra 4 SUR X Cll 13",4.438051,-75.242793,"Ingreso Yuldaima"],
+    ["3","Cra 2 sur Cll 12",4.440290,-75.242989,"Puente Combeima"],
+    ["4","Cra 2 sur Cll 25",4.432087,-75.232270,"Ferias"],
+    ["8","Cra 1 Cll 24",4.434388,-75.232125],
+    ["9","Cra 1 Cll 25",4.433826,-75.231071],
+    ["10","Cra 2 - Calle 10",4.444042,-75.242929],
+    ["15","Cra 2 Cll 60",4.433278,-75.200908],
+    ["17","Cra 3 - Calle 10",4.444762,-75.242422],
+    ["23","Cra 3 Cll 19",4.439700,-75.234862],
+    ["25","Cra 4 - Calle 10",4.445589,-75.241802],
+    ["26","Cra 4 - Calle 11",4.445086,-75.240973],
+    ["28","Cra 4 Cll 19",4.441157,-75.234105],
+    ["30","Cra 4 Estadio Cll 28",4.435381,-75.226305],
+    ["31","Cra 4 Estadio Cll 31",4.434153,-75.224547],
+    ["32","Cra 4 estadio Cll 35",4.431578,-75.220887],
+    ["34","Cra 4 Tamaná Cll 30",4.434951,-75.223865],
+    ["35","Cra 4C Cll 37",4.436695,-75.217528],
+    ["36","Cra 5 - Calle 10",4.446099,-75.241376],
+    ["37","Cra 5 - Calle 11",4.445662,-75.240562],
+    ["45","Cra 5 Cll 60",4.435800,-75.202897],
+    ["52","Cra 6 Cll 19",4.442694,-75.233171],
+    ["57","Cra 6 Cll 44",4.435879,-75.210166],
+    ["58","Cra 6 Cll 60",4.436681,-75.203181],
+    ["60","Cra 7 - Calle 10",4.447485,-75.241001],
+    ["63","Cra 7 Cll 64",4.438215,-75.200950],
+    ["65","Cra 8 Cll 19",4.445404,-75.232266],
+    ["68","Carrera 8 con calle 60",4.439485,-75.203884],
+    ["69","Cra 8 Cll 114",4.446140,-75.166687],
+    ["73","Cra 9 Cll 69",4.442259,-75.198018],
+    ["74","Cra 9 Cll 77",4.442076,-75.191963],
+    ["75","Av. Mirolindo Cll 46",4.428993,-75.206965,"Fiscalía"],
+    ["76","Av. Mirolindo Cll 60",4.427795,-75.199566],
+    ["77","Av. Mirolindo calle 103",4.414733,-75.174114],
+    ["78","Av. Mirolindo calle 117",4.407300,-75.166093],
+    ["79","Av. Mirolindo calle 124",4.404410,-75.160278],
+    ["90","Glorieta Mirolindo",4.421508,-75.185468],
+    ["N1","Av. Ambalá Cll 110A",4.446750,-75.166721,"Surtiplaza"],
+    ["N2","Cra 5 calle 123",4.446037,-75.159734,"Colegio Comfatolima"],
+    ["N3","Cra 20 Cll 64",4.447925,-75.201164,"Holandesa"]
+  ];
+  const mapaSemaforos = L.map('mapaSemaforos', {scrollWheelZoom:false});
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    attribution:'Tiles © Esri', maxZoom:19
+  }).addTo(mapaSemaforos);
+  const capaSem = (datos, color, radio, estado) => {
+    const g = L.layerGroup();
+    datos.forEach(([n,nom,lat,lon,ref])=>
+      L.circleMarker([lat,lon], {radius:radio, color:'#fff', weight:2, fillColor:color, fillOpacity:.95})
+        .addTo(g).bindPopup('<b>N.° '+n+' · '+nom+'</b>'+(ref?'<br>'+ref:'')+'<br>'+estado));
+    return g;
+  };
+  const gSemI = capaSem(semFaseI, GREEN, 7, 'Fase I · finalizada');
+  const gSemII = capaSem(semFaseII, PENDING, 5, 'Fase II · proyectada');
+  gSemII.addTo(mapaSemaforos); gSemI.addTo(mapaSemaforos); // Fase I encima
+  document.querySelectorAll('input[data-sem]').forEach(chk=>chk.addEventListener('change',()=>{
+    const g = chk.dataset.sem==='I' ? gSemI : gSemII;
+    chk.checked ? g.addTo(mapaSemaforos) : mapaSemaforos.removeLayer(g);
+    gSemI.eachLayer(l=>l.bringToFront());
+  }));
+  mapaSemaforos._boundsToFit = semFaseI.concat(semFaseII).map(p=>[p[2],p[3]]);
+  mapaSemaforos.fitBounds(mapaSemaforos._boundsToFit, {padding:[20,20]});
+  leafletMaps.push(mapaSemaforos);
 }
 
 /* ==== Semaforización Fase I ==== */
