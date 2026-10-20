@@ -620,7 +620,7 @@ body.on-home{touch-action:pan-y pinch-zoom}
     <button class="tab" data-cat="vias" data-page="page-cra5"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 3h7L20 21H4z"/><path d="M12 6.5v3M12 12v3M12 17.5v2"/></svg> Cra 5 · Fase II <span class="badge">Terminado</span></button>
     <button class="tab" data-cat="vias" data-page="page-ambala"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 3h7L20 21H4z"/><path d="M12 6.5v3M12 12v3M12 17.5v2"/></svg> Av. Ambalá · Fase III <span class="badge">En obra</span></button>
     <button class="tab" data-cat="semaforos" data-page="page-semaforos"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="20" rx="3"/><circle cx="12" cy="7" r="1.2" fill="currentColor"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/><circle cx="12" cy="17" r="1.2" fill="currentColor"/></svg> Semaforización · Fase I <span class="badge">Finalizado</span></button>
-    <button class="tab locked" data-cat="semaforos" title="Semaforización Fase II · por incluir en el tablero"><svg class="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg> Fase II</button>
+    <button class="tab" data-cat="semaforos" data-page="page-semaforos2"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="20" rx="3"/><circle cx="12" cy="7" r="1.2" fill="currentColor"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/><circle cx="12" cy="17" r="1.2" fill="currentColor"/></svg> Semaforización · Fase II <span class="badge">En estructuración</span></button>
     <button class="tab locked" data-cat="semaforos" title="Semaforización Fase III · por incluir en el tablero"><svg class="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg> Fase III</button>
     <button class="tab locked" data-cat="paraderos" title="Paraderos Tipo I · por incluir en el tablero"><svg class="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg> Tipo I</button>
     <button class="tab locked" data-cat="paraderos" title="Paraderos Tipo II · por incluir en el tablero"><svg class="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg> Tipo II</button>
@@ -1714,7 +1714,7 @@ body.on-home{touch-action:pan-y pinch-zoom}
   <div class="wrap">
     <div class="block-head">
       <div class="block-num"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M9 20l-6-3V4l6 3 6-3 6 3v13l-6-3-6 3z"/><path d="M9 4v13M15 7v13"/></svg></div>
-      <div><h3>Localización de las intersecciones</h3><div class="tag">KMZ oficiales · Fase I finalizada y Fase II proyectada</div></div>
+      <div><h3>Localización de las intersecciones</h3><div class="tag">KMZ oficiales · Fase I finalizada y Fase II en estructuración</div></div>
       <div class="spacer"></div>
     </div>
 
@@ -1726,8 +1726,8 @@ body.on-home{touch-action:pan-y pinch-zoom}
 
     <div class="card">
       <div class="map-legend">
-        <label style="cursor:pointer"><input type="checkbox" data-sem="I" checked> <i style="background:var(--green)"></i> Fase I · finalizada (33 georreferenciadas)</label>
-        <label style="cursor:pointer"><input type="checkbox" data-sem="II" checked> <i style="background:var(--pending)"></i> Fase II · proyectada (40)</label>
+        <label style="cursor:pointer"><input type="checkbox" data-sem="m1" data-fase="I" checked> <i style="background:var(--green)"></i> Fase I · finalizada (33 georreferenciadas)</label>
+        <label style="cursor:pointer"><input type="checkbox" data-sem="m1" data-fase="II" checked> <i style="background:var(--gold)"></i> Fase II · en estructuración (40)</label>
       </div>
       <div id="mapaSemaforos" style="position:relative;z-index:0;height:460px;border-radius:14px;overflow:hidden;margin-top:8px"></div>
       <p class="map-note">Mapa satelital interactivo (desplazable y con zoom) con la ubicación de las intersecciones según los KMZ oficiales. Activa o desactiva cada fase con las casillas de arriba y haz clic en un punto para ver su número y su nombre. La Fase III todavía no tiene ubicación.</p>
@@ -1854,6 +1854,128 @@ body.on-home{touch-action:pan-y pinch-zoom}
 
 </div>
 <!-- ============ FIN PÁGINA SEMAFORIZACIÓN FASE I ============ -->
+
+<!-- ============ PÁGINA: SEMAFORIZACIÓN FASE II ============ -->
+<div id="page-semaforos2" class="page">
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-left">
+      <div class="eyebrow">
+        <span class="chip code" style="background:var(--red)">Contrato de obra · por asignar</span>
+        <span class="chip" style="background:rgba(240,168,0,.16); color:#8A5A00">● En estructuración</span>
+      </div>
+      <h2>Modernización de la Red Semafórica de Ibagué — Fase II</h2>
+      <p class="desc">Segunda fase de la modernización de la red semafórica del municipio de Ibagué: 40 intersecciones, distintas de las 34 de la Fase I, ubicadas en el KMZ oficial «Semáforos 2026.08».</p>
+      <div class="hero-meta">
+        <div class="m"><div class="lbl">Intersecciones</div><div class="val">40</div></div>
+        <div class="m"><div class="lbl">Acta de inicio</div><div class="val" style="color:var(--red)">Por definir</div></div>
+        <div class="m"><div class="lbl">Finalización</div><div class="val" style="color:var(--red)">Por definir</div></div>
+        <div class="m"><div class="lbl">Ejecución financiera</div><div class="val" style="color:var(--pending)">Sin iniciar</div></div>
+      </div>
+      <div class="hero-meta" style="margin-top:14px;align-items:center">
+        <div class="m"><div class="lbl">Presupuesto de obra</div><div class="val">$11.525,1 M</div></div>
+        <div style="font-size:22px;font-weight:800;color:var(--muted);align-self:center">+</div>
+        <div class="m"><div class="lbl">Presupuesto de interventoría</div><div class="val">$990,2 M</div></div>
+        <div style="font-size:22px;font-weight:800;color:var(--muted);align-self:center">=</div>
+        <div class="m"><div class="lbl">Valor estimado</div><div class="val" style="color:var(--navy)">$12.515,3 M</div></div>
+      </div>
+      <p class="map-note" style="max-width:640px;border-left-color:var(--red)">⚠ <b style="color:var(--red)">En revisión:</b> el contrato, el contratista, la interventoría, las fechas y el alcance técnico de la Fase II todavía no se han cargado. Los presupuestos vienen de la Presentación de proyectos del SETP y deben validarse antes de presentarlos como definitivos.</p>
+    </div>
+    <div class="gauge-card">
+      <div style="display:flex;gap:16px;justify-content:center">
+        <div style="text-align:center">
+          <div class="gauge-wrap" style="width:100px;height:100px">
+            <canvas id="gaugeSemaforos2EyD"></canvas>
+            <div class="gauge-center"><div class="pct" style="font-size:15px;color:var(--red)">N/D</div></div>
+          </div>
+          <div style="font-size:12px;font-weight:800;color:var(--ink);margin-top:8px">EyD</div>
+          <div style="font-size:10.5px;color:var(--red)">Por confirmar</div>
+        </div>
+        <div style="text-align:center">
+          <div class="gauge-wrap" style="width:100px;height:100px">
+            <canvas id="gaugeSemaforos2Fisico"></canvas>
+            <div class="gauge-center"><div class="pct" style="font-size:18px;color:var(--pending)">0%</div></div>
+          </div>
+          <div style="font-size:12px;font-weight:800;color:var(--ink);margin-top:8px">Físico</div>
+          <div style="font-size:10.5px;color:var(--muted)">No iniciado</div>
+        </div>
+        <div style="text-align:center">
+          <div class="gauge-wrap" style="width:100px;height:100px">
+            <canvas id="gaugeSemaforos2Financiero"></canvas>
+            <div class="gauge-center"><div class="pct" style="font-size:18px;color:var(--pending)">0%</div></div>
+          </div>
+          <div style="font-size:12px;font-weight:800;color:var(--ink);margin-top:8px">Financiero</div>
+          <div style="font-size:10.5px;color:var(--muted)">Sin pagos radicados</div>
+        </div>
+      </div>
+      <div class="gauge-legend" style="margin-top:16px">
+        <span><i style="background:var(--green)"></i> Ejecutado</span>
+        <span><i style="background:var(--pending)"></i> Pendiente</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BLOQUE 1: DATOS DEL CONTRATO ============ -->
+<section class="block">
+  <div class="wrap">
+    <div class="block-head">
+      <div class="block-num"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6M9 13h8M9 17h8"/></svg></div>
+      <div><h3>Datos del contrato</h3><div class="tag">Partes · fechas · presupuesto</div></div>
+      <div class="spacer"></div>
+    </div>
+    <div class="cards g2">
+      <div class="card">
+        <h4>Datos del contrato</h4>
+        <div class="progress-row"><div class="top"><span class="name">Estado</span><span class="figs">En estructuración · corte 29 de septiembre de 2026</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Entidad contratante</span><span class="figs">SETP Ibagué S.A.S.</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Contrato de obra</span><span class="figs" style="color:var(--red)">Por definir</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Contratista</span><span class="figs" style="color:var(--red)">Por definir</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Representante legal</span><span class="figs" style="color:var(--red)">Por definir</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Interventor</span><span class="figs" style="color:var(--red)">Por definir</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Supervisor</span><span class="figs" style="color:var(--red)">Por definir</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Acta de inicio</span><span class="figs" style="color:var(--red)">Por definir</span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Finalización</span><span class="figs" style="color:var(--red)">Por definir</span></div></div>
+      </div>
+      <div class="card">
+        <h4>Recursos financieros</h4>
+        <div class="progress-row"><div class="top"><span class="name">Presupuesto de obra</span><span class="figs"><b>$11.525,1 M</b></span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Presupuesto de interventoría</span><span class="figs"><b>$990,2 M</b></span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Valor estimado del proyecto</span><span class="figs"><b>$12.515,3 M</b></span></div></div>
+        <div class="progress-row"><div class="top"><span class="name">Pagos radicados</span><span class="figs"><b>$0</b> · 0%</span></div></div>
+        <p class="map-note">Fuente: Presentación de proyectos del SETP. Son presupuestos, no valores contratados: la Fase II aún no tiene contrato de obra.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BLOQUE 2: LOCALIZACIÓN ============ -->
+<section class="block" style="border-bottom:none">
+  <div class="wrap">
+    <div class="block-head">
+      <div class="block-num"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M9 20l-6-3V4l6 3 6-3 6 3v13l-6-3-6 3z"/><path d="M9 4v13M15 7v13"/></svg></div>
+      <div><h3>Localización de las 40 intersecciones</h3><div class="tag">KMZ oficial «Semáforos 2026.08»</div></div>
+      <div class="spacer"></div>
+    </div>
+    <div class="card">
+      <div class="map-legend">
+        <label style="cursor:pointer"><input type="checkbox" data-sem="m2" data-fase="II" checked> <i style="background:var(--gold)"></i> Fase II · en estructuración (40)</label>
+        <label style="cursor:pointer"><input type="checkbox" data-sem="m2" data-fase="I" checked> <i style="background:var(--green)"></i> Fase I · finalizada (33 georreferenciadas, de referencia)</label>
+      </div>
+      <div id="mapaSemaforosII" style="position:relative;z-index:0;height:460px;border-radius:14px;overflow:hidden;margin-top:8px"></div>
+      <p class="map-note">Mapa satelital interactivo (desplazable y con zoom). Haz clic en un punto para ver su número y su nombre; los sitios de referencia (Mercacentro Ricaurte, Fiscalía, Surtiplaza, entre otros) aparecen en el popup.</p>
+      <details style="margin-top:14px">
+        <summary style="cursor:pointer;font-weight:800;color:var(--navy)">Ver el listado de las 40 intersecciones</summary>
+        <div id="listaSemII" style="margin-top:10px"></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+</div>
+<!-- ============ FIN PÁGINA SEMAFORIZACIÓN FASE II ============ -->
 
 <!-- ============ PÁGINA: PARADEROS TIPO III ============ -->
 <div id="page-paraderos" class="page">
@@ -2337,6 +2459,7 @@ body.on-home{touch-action:pan-y pinch-zoom}
     'Finalizado':svgA+'<circle cx="32" cy="32" r="24"/><path d="M20 33l8 8 17-19"/></svg>',
     'En obra':svgA+'<path d="M32 8l15 46H17z"/><path d="M26 27h12M22 40h20M10 56h44"/></svg>',
     'En liquidación':svgA+'<rect x="15" y="7" width="34" height="50" rx="5"/><path d="M23 20h18M23 30h18M23 40h9"/></svg>',
+    'En estructuración':svgA+'<path d="M12 52l4-14 30-30 10 10-30 30z"/><path d="M40 14l10 10"/></svg>',
     'Por incluir':svgA+'<rect x="14" y="28" width="36" height="28" rx="6"/><path d="M22 28v-7a10 10 0 0 1 20 0v7"/></svg>'
   };
   /* Cámara: cada categoría enfoca su elemento de la escena. Valores en unidades del dibujo (1440×730); page:null = proyecto "apagado" */
@@ -2348,7 +2471,7 @@ body.on-home{touch-action:pan-y pinch-zoom}
       {page:'page-ambala',name:'Av. Ambalá',phase:'Fase III',badge:'En obra'}]},
     semaforos:{name:'Semáforos',sub:'Modernización de la red semafórica',pc:'#00913A',side:'right',cam:{tx:-1000,ty:-470,k:2},projects:[
       {page:'page-semaforos',name:'Semaforización',phase:'Fase I',badge:'Finalizado'},
-      {page:null,name:'Semaforización',phase:'Fase II',badge:'Por incluir'},
+      {page:'page-semaforos2',name:'Semaforización',phase:'Fase II',badge:'En estructuración'},
       {page:null,name:'Semaforización',phase:'Fase III',badge:'Por incluir'}]},
     paraderos:{name:'Paraderos',sub:'Suministro e instalación de paraderos',pc:'#D98F00',side:'right',cam:{tx:-210,ty:-524,k:2.1},projects:[
       {page:null,name:'Paraderos Tipo I',phase:'Cubierto, con informador electrónico',badge:'Por incluir'},
@@ -2684,8 +2807,7 @@ if (document.getElementById('tramoMapCra5')) {
   leafletMaps.push(tramoMapCra5);
 }
 
-/* ==== Semaforización: mapa de intersecciones (KMZ oficiales) ==== */
-if (document.getElementById('mapaSemaforos')) {
+/* ==== Semaforización: puntos de los KMZ oficiales y mapas de Fase I y Fase II ==== */
   /* Fuente: KMZ oficial «Intersecciones Semáforos Fase I» (33 puntos) y «Ubicación Semáforos 2026.08» (40 puntos). Formato: [N.° de lista, nombre, lat, lon, referencia]. */
   const semFaseI = [
     ["29","Carrera 4 con Calle 25",4.437179,-75.228861],
@@ -2764,29 +2886,47 @@ if (document.getElementById('mapaSemaforos')) {
     ["N2","Cra 5 calle 123",4.446037,-75.159734,"Colegio Comfatolima"],
     ["N3","Cra 20 Cll 64",4.447925,-75.201164,"Holandesa"]
   ];
-  const mapaSemaforos = L.map('mapaSemaforos', {scrollWheelZoom:false});
-  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-    attribution:'Tiles © Esri', maxZoom:19
-  }).addTo(mapaSemaforos);
-  const capaSem = (datos, color, radio, estado) => {
-    const g = L.layerGroup();
-    datos.forEach(([n,nom,lat,lon,ref])=>
-      L.circleMarker([lat,lon], {radius:radio, color:'#fff', weight:2, fillColor:color, fillOpacity:.95})
-        .addTo(g).bindPopup('<b>N.° '+n+' · '+nom+'</b>'+(ref?'<br>'+ref:'')+'<br>'+estado));
-    return g;
+  /* Mapa satelital: la fase de la página va resaltada y encima; la otra queda como referencia. Casillas data-sem="<mapa>" data-fase="I|II". */
+  const crearMapaSem = (id, sel, activa) => {
+    if (!document.getElementById(id)) return;
+    const mapa = L.map(id, {scrollWheelZoom:false});
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+      attribution:'Tiles © Esri', maxZoom:19
+    }).addTo(mapa);
+    const capa = (datos, color, radio, estado) => {
+      const g = L.layerGroup();
+      datos.forEach(([n,nom,lat,lon,ref]) =>
+        L.circleMarker([lat,lon], {radius:radio, color:'#fff', weight:2, fillColor:color, fillOpacity:.95})
+          .addTo(g).bindPopup('<b>N.° '+n+' · '+nom+'</b>'+(ref?'<br>'+ref:'')+'<br>'+estado));
+      return g;
+    };
+    const g = {
+      I:  capa(semFaseI,  GREEN, activa==='I'  ? 7 : 4, 'Fase I · finalizada'),
+      II: capa(semFaseII, GOLD,  activa==='II' ? 7 : 4, 'Fase II · en estructuración')
+    };
+    g[activa==='I' ? 'II' : 'I'].addTo(mapa); g[activa].addTo(mapa);
+    document.querySelectorAll('input[data-sem="'+sel+'"]').forEach(chk=>chk.addEventListener('change',()=>{
+      const fase = chk.dataset.fase;
+      chk.checked ? g[fase].addTo(mapa) : mapa.removeLayer(g[fase]);
+      g[activa].eachLayer(l=>l.bringToFront());
+    }));
+    mapa._boundsToFit = (activa==='I' ? semFaseI.concat(semFaseII) : semFaseII).map(p=>[p[2],p[3]]);
+    mapa.fitBounds(mapa._boundsToFit, {padding:[20,20]});
+    leafletMaps.push(mapa);
   };
-  const gSemI = capaSem(semFaseI, GREEN, 7, 'Fase I · finalizada');
-  const gSemII = capaSem(semFaseII, PENDING, 5, 'Fase II · proyectada');
-  gSemII.addTo(mapaSemaforos); gSemI.addTo(mapaSemaforos); // Fase I encima
-  document.querySelectorAll('input[data-sem]').forEach(chk=>chk.addEventListener('change',()=>{
-    const g = chk.dataset.sem==='I' ? gSemI : gSemII;
-    chk.checked ? g.addTo(mapaSemaforos) : mapaSemaforos.removeLayer(g);
-    gSemI.eachLayer(l=>l.bringToFront());
-  }));
-  mapaSemaforos._boundsToFit = semFaseI.concat(semFaseII).map(p=>[p[2],p[3]]);
-  mapaSemaforos.fitBounds(mapaSemaforos._boundsToFit, {padding:[20,20]});
-  leafletMaps.push(mapaSemaforos);
-}
+  crearMapaSem('mapaSemaforos', 'm1', 'I');
+  crearMapaSem('mapaSemaforosII', 'm2', 'II');
+
+  /* Fase II: listado de las 40 intersecciones y gauges (aún sin avance) */
+  const listaII = document.getElementById('listaSemII');
+  if (listaII) listaII.innerHTML = semFaseII.map(([n,nom,,,ref]) =>
+    '<div class="progress-row"><div class="top"><span class="name">N.° '+n+' · '+nom+'</span><span class="figs">'+(ref||'')+'</span></div></div>').join('');
+  ['gaugeSemaforos2EyD','gaugeSemaforos2Fisico','gaugeSemaforos2Financiero'].forEach(id=>{
+    const el = document.getElementById(id);
+    if (el) new Chart(el,{type:'doughnut',data:{datasets:[{data:[0,100],backgroundColor:[GREEN,PENDING],borderWidth:0}]},
+      options:{cutout:'78%',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false}}}});
+  });
+
 
 /* ==== Semaforización Fase I ==== */
 if (document.getElementById('gaugeSemaforosFisico')) {
