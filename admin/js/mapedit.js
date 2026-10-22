@@ -70,10 +70,10 @@
     function pintarCapas() {
       capaBar.innerHTML = ''; capaBar.appendChild(h('span', { class: 'me-lbl', text: 'Capas del mapa:' }));
       block.capas.forEach(function (c, i) { capaBar.appendChild(h('button', { type: 'button', class: 'chipbtn' + (i === st.capa ? ' on' : ''), on: { click: function () { st.capa = i; st.sel = -1; st.pag = 0; st.q = ''; st.modo = ''; st.vertices = []; pintarTodo(); } } }, h('i', { style: { background: HEX[c.color] || HEX.azul } }), (c.nombre || 'Capa ' + (i + 1)) + ' (' + (c.elementos || []).length + ')')); });
-      capaBar.appendChild(h('button', { type: 'button', class: 'btn small', text: '＋ Nueva capa', on: { click: function () { block.capas.push({ nombre: 'Nueva capa', tipo: 'puntos', color: 'azul', elementos: [] }); st.capa = block.capas.length - 1; st.sel = -1; change(); pintarTodo(); } } }));
+      capaBar.appendChild(h('button', { type: 'button', class: 'btn small', 'data-ico': 'mas', text: 'Nueva capa', on: { click: function () { block.capas.push({ nombre: 'Nueva capa', tipo: 'puntos', color: 'azul', elementos: [] }); st.capa = block.capas.length - 1; st.sel = -1; change(); pintarTodo(); } } }));
     }
     function pintarAjustes() {
-      ajustes.innerHTML = ''; var c = cur(); if (!c) { ajustes.appendChild(h('p', { class: 'muted', text: 'Este mapa aún no tiene capas. Pulsa «＋ Nueva capa» para empezar.' })); return; }
+      ajustes.innerHTML = ''; var c = cur(); if (!c) { ajustes.appendChild(h('p', { class: 'muted', text: 'Este mapa aún no tiene capas. Pulsa «Nueva capa» para empezar.' })); return; }
       var nombre = h('input', { type: 'text', value: c.nombre || '', maxlength: 120, 'aria-label': 'Nombre de la capa', on: { input: function () { c.nombre = this.value; change(); } } });
       nombre.addEventListener('change', pintarCapas);
       var tipo = h('select', { 'aria-label': 'Tipo de capa', disabled: (c.elementos || []).length > 0, title: (c.elementos || []).length ? 'Para cambiar el tipo, la capa debe estar vacía' : '', on: { change: function () { c.tipo = this.value; change(); pintarTodo(); } } }, h('option', { value: 'puntos', text: 'Puntos (paraderos, semáforos…)', selected: c.tipo !== 'lineas' }), h('option', { value: 'lineas', text: 'Tramos (recorridos de vía)', selected: c.tipo === 'lineas' }));
@@ -84,12 +84,12 @@
     }
     function pintarTools() {
       tools.innerHTML = ''; var c = cur(); if (!c) return; var pts = c.tipo !== 'lineas';
-      var b = function (t, cls, fn, on) { return h('button', { type: 'button', class: 'btn ' + (cls || '') + (on ? ' on' : ''), text: t, on: { click: fn } }); };
-      if (pts) tools.appendChild(b('📍 Agregar un punto (clic en el mapa)', 'pri', function () { modo('punto'); }, st.modo === 'punto'));
-      else { tools.appendChild(b('✏️ Dibujar un tramo', 'pri', function () { modo('linea'); }, st.modo === 'linea')); if (st.modo === 'linea') { tools.appendChild(b('✔ Terminar tramo', 'ok', terminarLinea)); tools.appendChild(b('Deshacer último punto', '', function () { st.vertices.pop(); dibujarTemp(); pintarAyuda(); })); } }
-      tools.appendChild(b('📂 Subir archivos (Excel, KMZ, GPX, CSV…)', '', subirArchivo)); tools.appendChild(b('📋 Pegar coordenadas', '', pegar));
-      tools.appendChild(b(st.base === 'sat' ? '🛣️ Ver calles' : '🛰️ Ver satélite', '', function () { setBase(st.base === 'sat' ? 'calles' : 'sat'); pintarTools(); }));
-      tools.appendChild(b('Centrar', '', function () { drawAll(true); }));
+      var b = function (t, cls, fn, on, ico) { var x = h('button', { type: 'button', class: 'btn ' + (cls || '') + (on ? ' on' : ''), on: { click: fn } }); if (ico) x.appendChild(Ico.el(ico)); x.appendChild(document.createTextNode(t)); return x; };
+      if (pts) tools.appendChild(b('Agregar un punto (clic en el mapa)', 'pri', function () { modo('punto'); }, st.modo === 'punto', 'pin'));
+      else { tools.appendChild(b('Dibujar un tramo', 'pri', function () { modo('linea'); }, st.modo === 'linea', 'ruta')); if (st.modo === 'linea') { tools.appendChild(b('Terminar tramo', 'oro', terminarLinea, false, 'check')); tools.appendChild(b('Deshacer último punto', 'ghost', function () { st.vertices.pop(); dibujarTemp(); pintarAyuda(); }, false, 'deshacer')); } }
+      tools.appendChild(b('Subir archivos (Excel, KMZ, GPX, CSV…)', 'ghost', subirArchivo, false, 'publicar')); tools.appendChild(b('Pegar coordenadas', 'ghost', pegar, false, 'portapapeles'));
+      tools.appendChild(b(st.base === 'sat' ? 'Ver calles' : 'Ver satélite', 'ghost', function () { setBase(st.base === 'sat' ? 'calles' : 'sat'); pintarTools(); }, false, 'mapa'));
+      tools.appendChild(b('Centrar', 'ghost', function () { drawAll(true); }, false, 'centrar'));
     }
     function pintarAyuda() {
       var c = cur(); var t = '';
@@ -110,7 +110,7 @@
       if (pts) { row.appendChild(inp('Latitud', 'lat', 'number', { step: 'any' })); row.appendChild(inp('Longitud', 'lon', 'number', { step: 'any' })); }
       else row.appendChild(h('label', {}, h('span', { text: 'Estado del tramo' }), h('select', { on: { change: function () { e.estado = this.value; change(); drawAll(false); pintarLista(); } } }, [['pendiente', 'Pendiente (gris)'], ['en curso', 'En curso (azul)'], ['ejecutado', 'Ejecutado (verde)']].map(function (o) { return h('option', { value: o[0], text: o[1], selected: e.estado === o[0] }); }))));
       panelSel.appendChild(row);
-      if (pts && e.lat !== null && !inIbague(e.lat, e.lon)) panelSel.appendChild(h('p', { class: 'warn', text: '⚠ Este punto queda fuera de Ibagué. Revisa que latitud y longitud no estén al revés (en Ibagué la latitud es ≈ 4,4 y la longitud ≈ -75,2).' }));
+      if (pts && e.lat !== null && !inIbague(e.lat, e.lon)) panelSel.appendChild(h('p', { class: 'warn', text: 'Atención: este punto queda fuera de Ibagué. Revisa que latitud y longitud no estén al revés (en Ibagué la latitud es ≈ 4,4 y la longitud ≈ -75,2).' }));
       if (!pts) panelSel.appendChild(h('p', { class: 'muted', text: 'Longitud del trazo: ≈ ' + Math.round(largoM(e.coords || [])).toLocaleString('es-CO') + ' m · ' + (e.coords || []).length + ' vértices.' }));
       var acts = h('div', { class: 'me-sel-acts' });
       if (pts) acts.appendChild(h('button', { type: 'button', class: 'btn small', text: 'Mover en el mapa', on: { click: function () { modo('mover'); } } }));
@@ -165,10 +165,10 @@
       var unico = r.informe.length === 1 ? r.informe[0].archivo.replace(/\.[^.]+$/, '') : '';
       var dP = np ? destino('puntos', np, unico || 'Puntos importados') : null, dL = nl ? destino('lineas', nl, unico || 'Tramos importados') : null;
       var lista = h('ul', { class: 'imp-informe' }, r.informe.map(function (i) {
-        return h('li', { class: i.error ? 'err' : 'ok' }, h('b', { text: (i.error ? '⚠ ' : '✔ ') + i.archivo }), i.error ? ' — ' + i.error : ' — ' + i.puntos.toLocaleString('es-CO') + ' punto(s), ' + i.lineas.toLocaleString('es-CO') + ' tramo(s)', (i.aviso || []).map(function (a) { return h('div', { class: 'muted', text: 'ℹ ' + a }); }));
+        return h('li', { class: i.error ? 'err' : 'ok' }, h('b', { text: (i.error ? 'No se pudo: ' : 'Leído: ') + i.archivo }), i.error ? ' — ' + i.error : ' — ' + i.puntos.toLocaleString('es-CO') + ' punto(s), ' + i.lineas.toLocaleString('es-CO') + ' tramo(s)', (i.aviso || []).map(function (a) { return h('div', { class: 'muted', text: a }); }));
       }));
       var cuerpo = h('div', {}, h('p', { class: 'imp-resumen', text: 'Encontré ' + np.toLocaleString('es-CO') + ' punto(s) y ' + nl.toLocaleString('es-CO') + ' tramo(s).' }), lista,
-        fuera ? h('p', { class: 'warn', text: '⚠ ' + fuera.toLocaleString('es-CO') + ' elemento(s) quedan fuera de Ibagué. Si no es lo esperado, revisa que el archivo sea del lugar correcto.' }) : null,
+        fuera ? h('p', { class: 'warn', text: 'Atención: ' + fuera.toLocaleString('es-CO') + ' elemento(s) quedan fuera de Ibagué. Si no es lo esperado, revisa que el archivo sea del lugar correcto.' }) : null,
         dP ? dP.fila : null, dL ? dL.fila : null,
         h('p', { class: 'muted', text: 'Después podrás corregir nombres, mover puntos o borrar los que no sirvan.' }));
       UI.modal({ titulo: 'Agregar al mapa', ancho: 'wide', cuerpo: cuerpo, acciones: [{ texto: 'Cancelar' }, { texto: 'Agregar ' + (np + nl).toLocaleString('es-CO') + ' elemento(s)', clase: 'pri', onClick: function () {
@@ -184,11 +184,11 @@
       async function leer(files) {
         if (!files || !files.length) return; out.innerHTML = ''; out.appendChild(h('p', { class: 'muted', text: 'Leyendo los archivos…' }));
         var r = await G.parseFiles(files);
-        if (!r.res.puntos.length && !r.res.lineas.length) { out.innerHTML = ''; r.informe.forEach(function (i) { out.appendChild(h('p', { class: 'warn', text: '⚠ «' + i.archivo + '»: ' + (i.error || 'no encontré puntos ni tramos.') })); }); return; }
+        if (!r.res.puntos.length && !r.res.lineas.length) { out.innerHTML = ''; r.informe.forEach(function (i) { out.appendChild(h('p', { class: 'warn', text: 'Atención: «' + i.archivo + '»: ' + (i.error || 'no encontré puntos ni tramos.') })); }); return; }
         m.close(); recibir(r);
       }
       var inp = h('input', { type: 'file', multiple: true, accept: '.kmz,.kml,.gpx,.geojson,.json,.zip,.shp,.dbf,.prj,.xlsx,.xlsm,.ods,.csv,.tsv,.txt', 'aria-label': 'Archivos con ubicaciones', on: { change: function () { leer(Array.prototype.slice.call(this.files)); this.value = ''; } } });
-      var zona = h('label', { class: 'dropzone' }, h('b', { text: '📂 Arrastra aquí tus archivos' }), h('span', { text: 'o haz clic para elegirlos (puedes elegir varios a la vez)' }), inp);
+      var zona = h('label', { class: 'dropzone' }, Ico.el('publicar'), h('b', { text: 'Arrastra aquí tus archivos' }), h('span', { text: 'o haz clic para elegirlos (puedes elegir varios a la vez)' }), inp);
       ['dragenter', 'dragover'].forEach(function (ev) { zona.addEventListener(ev, function (e) { e.preventDefault(); zona.classList.add('over'); }); });
       ['dragleave', 'drop'].forEach(function (ev) { zona.addEventListener(ev, function (e) { e.preventDefault(); zona.classList.remove('over'); }); });
       zona.addEventListener('drop', function (e) { leer(Array.prototype.slice.call(e.dataTransfer.files)); });

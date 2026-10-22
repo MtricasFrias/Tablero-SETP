@@ -105,7 +105,7 @@ proyectos.push({
       ['Plazo inicial', '255 días calendario', '2025-04-10', '2025-12-21', 'hecho'], ['Prórroga N.° 1', '60 días calendario', '2025-12-21', '2026-02-18', 'hecho']],
       'Acta de inicio: 10-abr-2025. Acta de Terminación de Obra: 18-feb-2026 (315 días calendario en total, incluida la prórroga). Ejecución física y de recursos: 100%. Estado actual: en proceso de liquidación, con el Acta de Recibo Final pendiente.'),
     B.cifras('Componente social', 'Impacto en la comunidad · vinculación de personal', [
-      { valor: '529.637', etiqueta: 'Habitantes de Ibagué beneficiados', imagen: img('img/monumento-bandera-ibague.jpg', 'Monumento a la Bandera de Ibagué') },
+      { valor: '529.637', etiqueta: 'Habitantes de Ibagué beneficiados', imagen: img('img/panoramica-ibague.jpg', 'Vista panorámica de Ibagué desde el oriente, con cafetales en primer plano', { credito: 'Duvanlopupa, Wikimedia Commons', licencia: 'CC BY-SA 4.0', enlace: 'https://commons.wikimedia.org/wiki/File:Panorama_Ibague.JPG' }) },
       { valor: '5%', etiqueta: 'Mujeres cabeza de familia / víctimas del conflicto (mín.)', imagen: img('img/ilustracion-mujeres.svg', 'Ilustración: mujer trabajadora con casco y chaleco') },
       { valor: '100%', etiqueta: 'Obligaciones sociales cumplidas', imagen: img('img/ilustracion-inclusion.svg', 'Ilustración: comunidad diversa y unida') }]),
     B.datos('Gestión con la comunidad', '', [card('Gestión con la comunidad', [['Promoción de empleo local', 'Obligación contractual del contratista'], ['Trabajo nocturno programado', 'Para reducir el impacto en la movilidad diurna'], ['Reciclaje de materiales de la vía existente', 'Reduce escombros y reutiliza recursos'],],
@@ -165,7 +165,7 @@ proyectos.push({
     B.cron('Cronograma', 'Fases del contrato · línea de tiempo · hitos', [
       ['Fase I — Estudios y diseños', '90 días calendario', '2026-04-15', '2026-07-14', 'hecho'], ['Fase II — Ejecución de obra', '135 días · por tramos', '2026-07-14', '2026-11-26', 'en curso']], 'Tiempo pactado: 225 días calendario.'),
     B.cifras('Componente social', 'Empleo local · inclusión · comunidad', [
-      { valor: '10%', etiqueta: 'Mano de obra regional (mín.)', imagen: img('img/ilustracion-mano-obra.svg', 'Ilustración: trabajador de la región con casco y chaleco') },
+      { valor: '10%', etiqueta: 'Mano de obra regional (mín.)', imagen: img('img/obra-via-colombia.jpg', 'Trabajador abriendo concreto con martillo demoledor en una obra de andén en Colombia', { pie: 'Imagen ilustrativa', credito: 'Hk6rsf, Wikimedia Commons', licencia: 'Dominio público', enlace: 'https://commons.wikimedia.org/wiki/File:Colombia_Jackhammer_01.jpg' }) },
       { valor: '5%', etiqueta: 'Mujeres (de mano de obra)', imagen: img('img/ilustracion-mujeres.svg', 'Ilustración: mujer trabajadora con casco y chaleco') },
       { valor: '5%', etiqueta: 'Población especial protección', imagen: img('img/ilustracion-inclusion.svg', 'Ilustración: comunidad diversa y unida') },
       { valor: '8%', etiqueta: 'Jóvenes 18–28 años', imagen: img('img/ilustracion-jovenes.svg', 'Ilustración: joven trabajador con casco y chaleco') }], 'Obligaciones contractuales de vinculación de personal. Vinculación de personal, meta vs. reportado: mano de obra no calificada de la región, mujeres y sujetos de especial protección — personal aún sin vincular.'),

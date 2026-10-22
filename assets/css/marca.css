@@ -1,0 +1,53 @@
+/* Marca SETP compartida por el panel de administración y las páginas legales: misma paleta, barra superior con pentagrama, pestañas con subrayado dorado y botones del tablero público. */
+:root{
+  --navy:#0A1F5C; --navy-deep:#001233; --royal:#1D4ED8; --green:#00A830; --green-d:#007A22; --gold:#F0A800; --red:#D62828;
+  --ink:#0B1220; --paper:#F4F6FB; --card:#fff; --muted:#566383; --line:#E3E8F2; --line-2:#CBD5E7; --tint:#EEF2FB; --pending:#94A3B8;
+  --c-vias:#1D4ED8; --c-semaforos:#00913A; --c-paraderos:#D98F00;
+  --shadow:0 10px 30px rgba(10,31,92,.10); --shadow-lg:0 24px 60px rgba(10,31,92,.28);
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scrollbar-color:#9FB0D8 transparent}
+body{font-family:'Segoe UI',system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;caret-color:var(--navy);accent-color:var(--navy)}
+h1,h2,h3,h4{line-height:1.15;letter-spacing:-.01em;color:var(--navy);text-wrap:balance}
+p,li{text-wrap:pretty}
+a{color:var(--royal);text-underline-offset:3px}
+::selection{background:var(--gold);color:var(--navy-deep)}
+::-webkit-scrollbar{width:11px;height:11px}::-webkit-scrollbar-thumb{background:#B7C3E3;border-radius:99px;border:3px solid transparent;background-clip:content-box}::-webkit-scrollbar-thumb:hover{background:#8EA0CE;background-clip:content-box;border:3px solid transparent}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px;border-radius:6px}
+[hidden]{display:none!important}
+.sr-only{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:-999px;top:8px;background:#fff;color:var(--navy);padding:9px 14px;border-radius:10px;font-weight:700;z-index:999}.skip:focus{left:10px}
+.tnum{font-variant-numeric:tabular-nums}
+
+/* barra superior: igual que la del tablero público (azul marino, pentagrama y logos sobre placa blanca) */
+.topbar{background:linear-gradient(120deg,var(--navy) 0%,var(--navy-deep) 100%);color:#fff;position:relative;overflow:hidden}
+.topbar::after{content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent 0 22px,rgba(255,255,255,.05) 22px 23px);opacity:.5;pointer-events:none}
+.topbar-in{display:flex;align-items:center;gap:20px;padding:14px 20px;position:relative;z-index:2;max-width:1360px;margin:0 auto}
+.logo{height:56px;width:auto;background:#fff;border-radius:12px;padding:5px;box-shadow:0 6px 18px rgba(0,0,0,.25);display:block}
+.brand{flex:1;min-width:0}
+.brand .kicker{font-size:11px;text-transform:uppercase;letter-spacing:.2em;color:var(--gold);font-weight:700}
+.brand b{display:block;font-size:20px;font-weight:800;margin-top:2px;letter-spacing:-.01em}
+.brand span.sub{display:block;font-size:13px;color:#B9C4E6;margin-top:1px}
+/* pestañas: texto claro y subrayado dorado en la activa */
+.tabs{background:var(--navy-deep);border-top:1px solid rgba(255,255,255,.08);position:sticky;top:0;z-index:50}
+.tabs-in{display:flex;align-items:center;gap:4px;padding:0 20px;max-width:1360px;margin:0 auto;overflow-x:auto}
+.tab{flex:0 0 auto;display:flex;align-items:center;gap:9px;padding:14px 16px;color:#9AA8CE;font-weight:600;font-size:14px;text-decoration:none;border-bottom:3px solid transparent;white-space:nowrap;transition:color .2s var(--ease)}
+.tab:hover{color:#fff}.tab[aria-current=page]{color:#fff;border-bottom-color:var(--gold)}
+.tab svg{width:19px;height:19px;flex:none}
+
+/* botones */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;padding:8px 18px;border:1.5px solid transparent;background:var(--tint);color:var(--navy);border-radius:12px;font:inherit;font-weight:700;font-size:14.5px;cursor:pointer;text-decoration:none;line-height:1.2;transition:background .18s var(--ease),border-color .18s var(--ease),transform .18s var(--ease)}
+.btn:hover{background:#E1E8F8;border-color:#C5D1EC}.btn:active{transform:translateY(1px)}
+.btn svg,.icon-btn svg{width:18px;height:18px;flex:none}
+.btn.pri{background:var(--navy);color:#fff}.btn.pri:hover{background:#13307f;border-color:transparent}
+.btn.oro{background:var(--gold);color:var(--navy-deep)}.btn.oro:hover{background:#FFB91F;border-color:transparent}
+.btn.ghost{background:transparent;border-color:var(--line-2)}.btn.ghost:hover{background:var(--tint)}
+.btn.danger{background:#FDECEC;color:#A61B1B}.btn.danger:hover{background:#FBD9D9;border-color:#F0B4B4}
+.btn.small{min-height:36px;padding:5px 13px;font-size:13.5px;border-radius:10px}
+.btn.big{min-height:52px;padding:10px 26px;font-size:16px;border-radius:14px}
+.btn.on{background:var(--gold);color:var(--navy-deep)}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.icon-btn{display:inline-grid;place-items:center;min-width:38px;min-height:38px;border:0;background:transparent;color:var(--navy);border-radius:10px;cursor:pointer;transition:background .18s var(--ease)}
+.icon-btn:hover:not(:disabled){background:var(--tint)}.icon-btn:disabled{opacity:.3;cursor:default}.icon-btn.danger{color:#A61B1B}.icon-btn.danger:hover{background:#FDECEC}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}

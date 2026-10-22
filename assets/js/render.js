@@ -170,7 +170,8 @@
       var u = imgUrl(c.imagen);
       return '<div class="social-tile">' + (u ? '<div class="ico photo"><img src="' + esc(u) + '" alt="' + esc((c.imagen && c.imagen.alt) || '') + '" loading="lazy"></div>' :
         '<div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#00A830" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></div>') +
-        '<div class="n">' + esc(c.valor) + '</div><div class="l">' + esc(c.etiqueta || '') + '</div></div>';
+        '<div class="n">' + esc(c.valor) + '</div><div class="l">' + esc(c.etiqueta || '') + '</div>' +
+        (c.imagen && (c.imagen.credito || c.imagen.licencia) ? '<div class="l">' + (c.imagen.pie ? esc(c.imagen.pie) + ' · ' : '') + credito(c.imagen) + '</div>' : '') + '</div>';
     }).join('') + '</div>' + note(b.nota);
   };
   R.texto = function (b) {

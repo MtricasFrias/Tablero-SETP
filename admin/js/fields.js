@@ -47,14 +47,14 @@
       box.innerHTML = ''; var tiene = im && (im.id || im.src);
       var prev = h('div', { class: 'imgw-prev' }, tiene ? h('img', { src: urlAdmin(im), alt: im.alt || 'Vista previa de la foto' }) : h('span', { class: 'muted', text: 'Sin foto' }));
       var file = h('input', { type: 'file', accept: 'image/jpeg,image/png,image/webp', class: 'sr-only', 'aria-label': 'Elegir foto' });
-      var btn = h('button', { type: 'button', class: 'btn small pri', text: tiene ? '🔄 Cambiar foto' : '📷 Subir foto', on: { click: function () { file.click(); } } });
+      var btn = h('button', { type: 'button', class: 'btn small pri', on: { click: function () { file.click(); } } }, Ico.el('camara'), tiene ? 'Cambiar foto' : 'Subir foto');
       file.addEventListener('change', async function () {
         var f = this.files[0]; if (!f) return; btn.disabled = true; btn.textContent = 'Subiendo…';
         try { var id = await subirFoto(f); im = im || {}; im.id = id; delete im.src; if (whole) { /* el objeto es la foto misma */ } else set(im); im.confirmado = false; change(); UI.toast('Foto subida. Completa el autor y confirma el permiso de uso.', 'ok'); }
         catch (e) { UI.toast(e.message || 'No se pudo subir la foto.', 'err'); }
         draw();
       });
-      var acts = h('div', { class: 'btnrow' }, btn, file, tiene && !whole ? h('button', { type: 'button', class: 'btn small', text: 'Quitar foto', on: { click: function () { im = null; set(null); change(); draw(); } } }) : null);
+      var acts = h('div', { class: 'btnrow' }, btn, file, tiene && !whole ? h('button', { type: 'button', class: 'btn small danger', on: { click: function () { im = null; set(null); change(); draw(); } } }, Ico.el('papelera'), 'Quitar foto') : null);
       box.appendChild(h('div', { class: 'imgw-top' }, prev, h('div', {}, acts, h('small', { class: 'ayuda', text: 'JPG, PNG o WEBP. Se reduce sola y se le borran los datos de ubicación de la cámara.' }))));
       if (!tiene) return;
       var t = function (k, label, o) { o = o || {}; return h('label', { class: 'campo' }, h('span', { class: 'lbl' }, label, o.req ? h('b', { class: 'req', text: ' *' }) : null), h('input', { type: 'text', value: im[k] || '', maxlength: o.max || 200, placeholder: o.ph || '', list: o.list, on: { input: function () { im[k] = this.value; change(); } } }), o.ayuda ? h('small', { class: 'ayuda', text: o.ayuda }) : null); };
@@ -86,14 +86,14 @@
     }
     if (t === 'cat') {
       var cg = h('div', { class: 'cats', role: 'radiogroup', 'aria-label': fd.label });
-      SCHEMAS.CATEGORIAS.forEach(function (c) { var b = h('button', { type: 'button', class: 'cat' + (obj[k] === c.id ? ' on' : ''), role: 'radio', 'aria-checked': obj[k] === c.id ? 'true' : 'false', on: { click: function () { obj[k] = c.id; Array.prototype.forEach.call(cg.children, function (x) { x.classList.remove('on'); x.setAttribute('aria-checked', 'false'); }); b.classList.add('on'); b.setAttribute('aria-checked', 'true'); change(); } } }, h('span', { class: 'cat-ico', text: c.icono }), h('b', { text: c.nombre }), h('small', { text: c.ayuda })); cg.appendChild(b); });
+      SCHEMAS.CATEGORIAS.forEach(function (c) { var b = h('button', { type: 'button', class: 'cat' + (obj[k] === c.id ? ' on' : ''), role: 'radio', 'aria-checked': obj[k] === c.id ? 'true' : 'false', on: { click: function () { obj[k] = c.id; Array.prototype.forEach.call(cg.children, function (x) { x.classList.remove('on'); x.setAttribute('aria-checked', 'false'); }); b.classList.add('on'); b.setAttribute('aria-checked', 'true'); change(); } } }, (function () { var cc = h('span', { class: 'cc', style: { background: 'var(--c-' + c.id + ')' } }); cc.appendChild(Ico.el(c.id)); return cc; })(), h('b', { text: c.nombre }), h('small', { text: c.ayuda })); cg.appendChild(b); });
       return h('div', { class: 'campo' }, etiqueta(fd), cg, ayuda(fd));
     }
     if (t === 'textos') {
       var cont = h('div', { class: 'campo' }); (function draw() {
         cont.innerHTML = ''; var arr = obj[k] = obj[k] || []; cont.appendChild(etiqueta(fd));
-        arr.forEach(function (v, i) { cont.appendChild(h('div', { class: 'fila' }, h('input', { type: 'text', value: v, maxlength: 80, placeholder: ph, 'aria-label': fd.label + ' ' + (i + 1), on: { input: function () { arr[i] = this.value; change(); } } }), h('button', { type: 'button', class: 'icon-btn', 'aria-label': 'Quitar', text: '🗑', on: { click: function () { arr.splice(i, 1); change(); draw(); } } }))); });
-        if (arr.length < (fd.max || 8)) cont.appendChild(h('button', { type: 'button', class: 'btn small', text: '＋ Agregar', on: { click: function () { arr.push(''); change(); draw(); } } }));
+        arr.forEach(function (v, i) { cont.appendChild(h('div', { class: 'fila' }, h('input', { type: 'text', value: v, maxlength: 80, placeholder: ph, 'aria-label': fd.label + ' ' + (i + 1), on: { input: function () { arr[i] = this.value; change(); } } }), h('button', { type: 'button', class: 'icon-btn danger', 'aria-label': 'Quitar', on: { click: function () { arr.splice(i, 1); change(); draw(); } } }, Ico.el('papelera')))); });
+        if (arr.length < (fd.max || 8)) cont.appendChild(h('button', { type: 'button', class: 'btn small', on: { click: function () { arr.push(''); change(); draw(); } } }, Ico.el('mas'), 'Agregar'));
       })(); return cont;
     }
     if (t === 'imagen') {
@@ -120,7 +120,7 @@
   /* ----- listas con elementos que se agregan, ordenan y quitan ----- */
   function lista(fd, obj, change, ctx) {
     var arr = obj[fd.k] = obj[fd.k] || [], abiertos = new Set(), box = h('div', { class: 'lista' + (fd.compacta ? ' compacta' : '') }), suma;
-    function pintarSuma() { if (!fd.suma || !suma) return; var s = arr.reduce(function (a, x) { return a + (Number(x.valor) || 0); }, 0); s = Math.round(s * 10) / 10; suma.textContent = 'Las partes suman ' + String(s).replace('.', ',') + '%' + (Math.abs(s - 100) > 0.5 ? ' (deberían sumar 100)' : ' ✔'); suma.className = 'suma' + (Math.abs(s - 100) > 0.5 ? ' aviso' : ''); }
+    function pintarSuma() { if (!fd.suma || !suma) return; var s = arr.reduce(function (a, x) { return a + (Number(x.valor) || 0); }, 0); s = Math.round(s * 10) / 10; suma.textContent = 'Las partes suman ' + String(s).replace('.', ',') + '%' + (Math.abs(s - 100) > 0.5 ? ' (deberían sumar 100)' : ''); suma.className = 'suma' + (Math.abs(s - 100) > 0.5 ? ' aviso' : ''); }
     function mover(i, d) { var j = i + d; if (j < 0 || j >= arr.length) return; var x = arr[i]; arr[i] = arr[j]; arr[j] = x; change(); draw(); }
     function agregar(extra) { var it = clone(fd.vacia); if (extra) Object.assign(it, extra); arr.push(it); abiertos.add(it); change(); draw(); var n = box.querySelector('.item:last-of-type input,.item:last-of-type textarea'); if (n && !fd.compacta) n.focus(); }
     function draw() {
@@ -131,11 +131,11 @@
       arr.forEach(function (it, i) {
         var res = h('span', { class: 'res', text: fd.resumen ? fd.resumen(it) : fd.item + ' ' + (i + 1) });
         var onItem = function () { res.textContent = fd.resumen ? fd.resumen(it) : fd.item + ' ' + (i + 1); pintarSuma(); change(); };
-        var tools = h('span', { class: 'tools' }, h('button', { type: 'button', class: 'icon-btn', 'aria-label': 'Subir', title: 'Subir', text: '▲', disabled: i === 0, on: { click: function () { mover(i, -1); } } }), h('button', { type: 'button', class: 'icon-btn', 'aria-label': 'Bajar', title: 'Bajar', text: '▼', disabled: i === arr.length - 1, on: { click: function () { mover(i, 1); } } }),
-          h('button', { type: 'button', class: 'icon-btn danger', 'aria-label': 'Quitar ' + fd.item.toLowerCase(), title: 'Quitar', text: '🗑', on: { click: async function () { if (await UI.confirmar('¿Quitar «' + (fd.resumen ? fd.resumen(it) : fd.item) + '»?', { titulo: 'Quitar ' + fd.item.toLowerCase(), si: 'Sí, quitar', peligro: true })) { arr.splice(i, 1); change(); draw(); } } } }));
+        var tools = h('span', { class: 'tools' }, h('button', { type: 'button', class: 'icon-btn', 'aria-label': 'Subir', title: 'Subir', disabled: i === 0, on: { click: function () { mover(i, -1); } } }, Ico.el('arriba')), h('button', { type: 'button', class: 'icon-btn', 'aria-label': 'Bajar', title: 'Bajar', disabled: i === arr.length - 1, on: { click: function () { mover(i, 1); } } }, Ico.el('abajo')),
+          h('button', { type: 'button', class: 'icon-btn danger', 'aria-label': 'Quitar ' + fd.item.toLowerCase(), title: 'Quitar', on: { click: async function () { if (await UI.confirmar('¿Quitar «' + (fd.resumen ? fd.resumen(it) : fd.item) + '»?', { titulo: 'Quitar ' + fd.item.toLowerCase(), si: 'Sí, quitar', peligro: true })) { arr.splice(i, 1); change(); draw(); } } } }, Ico.el('papelera')));
         if (fd.compacta) { box.appendChild(h('div', { class: 'item fila-c' }, form(fd.fields, it, onItem, ctx), tools)); return; }
         var cuerpo = h('div', { class: 'item-body' }); cuerpo.hidden = !abiertos.has(it); var lleno = false;
-        var cab = h('button', { type: 'button', class: 'item-head', 'aria-expanded': abiertos.has(it) ? 'true' : 'false', on: { click: function () { var o = cuerpo.hidden; cuerpo.hidden = !o; cab.setAttribute('aria-expanded', o ? 'true' : 'false'); if (o) abiertos.add(it); else abiertos.delete(it); if (o && !lleno) llenar(); } } }, h('span', { class: 'chev', text: '▸' }), h('span', { class: 'n', text: String(i + 1) }), res);
+        var cab = h('button', { type: 'button', class: 'item-head', 'aria-expanded': abiertos.has(it) ? 'true' : 'false', on: { click: function () { var o = cuerpo.hidden; cuerpo.hidden = !o; cab.setAttribute('aria-expanded', o ? 'true' : 'false'); if (o) abiertos.add(it); else abiertos.delete(it); if (o && !lleno) llenar(); } } }, h('span', { class: 'chev' }, Ico.el('chevron')), h('span', { class: 'n', text: String(i + 1) }), res);
         function llenar() { lleno = true; cuerpo.appendChild(form(fd.fields, it, onItem, ctx)); }
         if (abiertos.has(it)) llenar();
         box.appendChild(h('div', { class: 'item' }, h('div', { class: 'item-bar' }, cab, tools), cuerpo));
@@ -147,8 +147,8 @@
           var ok = 0; for (var i = 0; i < fs.length; i++) { try { var id = await subirFoto(fs[i]); var it = clone(fd.vacia); it.id = id; arr.push(it); abiertos.add(it); ok++; } catch (e) { UI.toast(fs[i].name + ': ' + (e.message || 'no se pudo subir.'), 'err'); } }
           if (ok) { change(); draw(); UI.toast(ok + ' foto(s) subida(s). Completa el autor y confirma el permiso de cada una.', 'ok'); }
         } } });
-        box.appendChild(h('div', { class: 'btnrow' }, h('button', { type: 'button', class: 'btn pri small', text: '📷 Subir fotos (puedes elegir varias)', disabled: arr.length >= (fd.max || 30), on: { click: function () { multi.click(); } } }), multi));
-      } else box.appendChild(h('button', { type: 'button', class: 'btn small add', text: '＋ Agregar ' + fd.item.toLowerCase(), disabled: fd.max && arr.length >= fd.max, on: { click: function () { agregar(); } } }));
+        box.appendChild(h('div', { class: 'btnrow' }, h('button', { type: 'button', class: 'btn pri small', disabled: arr.length >= (fd.max || 30), on: { click: function () { multi.click(); } } }, Ico.el('camara'), 'Subir fotos (puedes elegir varias)'), multi));
+      } else box.appendChild(h('button', { type: 'button', class: 'btn small add', disabled: fd.max && arr.length >= fd.max, on: { click: function () { agregar(); } } }, Ico.el('mas'), 'Agregar ' + fd.item.toLowerCase()));
     }
     draw(); return box;
   }

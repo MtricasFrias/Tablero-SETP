@@ -18,16 +18,23 @@
     var t = h('div', { class: 'toast ' + (tipo || 'ok'), text: msg }); toastBox.appendChild(t);
     setTimeout(function () { t.classList.add('out'); setTimeout(function () { t.remove(); }, 400); }, tipo === 'err' ? 7000 : 3800);
   }
-  var stack = [];
+  var stack = [], uid = 0;
   function modal(o) {
-    var back = h('div', { class: 'modal-back' }), box = h('div', { class: 'modal ' + (o.ancho || ''), role: 'dialog', 'aria-modal': 'true', 'aria-label': o.titulo });
-    var head = h('div', { class: 'modal-head' }, h('h2', { text: o.titulo }), o.sinCerrar ? null : h('button', { class: 'icon-btn', 'aria-label': 'Cerrar', text: '✕', on: { click: close } }));
+    var back = h('div', { class: 'modal-back' }), tid = 'mt' + (++uid), previo = document.activeElement, box = h('div', { class: 'modal ' + (o.ancho || ''), role: 'dialog', 'aria-modal': 'true', 'aria-labelledby': tid });
+    var head = h('div', { class: 'modal-head' }, h('h2', { id: tid, text: o.titulo }), o.sinCerrar ? null : h('button', { class: 'icon-btn', type: 'button', 'aria-label': 'Cerrar', on: { click: close } }, window.Ico ? Ico.el('cerrar') : '✕'));
     var acts = h('div', { class: 'modal-acts' });
     (o.acciones || []).forEach(function (a) { acts.appendChild(h('button', { class: 'btn ' + (a.clase || ''), type: 'button', text: a.texto, on: { click: function () { var r = a.onClick ? a.onClick(close) : null; if (a.cerrar !== false && r !== false) close(); } } })); });
     box.appendChild(head); box.appendChild(h('div', { class: 'modal-body' }, o.cuerpo)); if ((o.acciones || []).length) box.appendChild(acts);
     back.appendChild(box); document.body.appendChild(back); document.body.classList.add('modal-open'); stack.push(back);
-    function close() { back.remove(); stack = stack.filter(function (x) { return x !== back; }); if (!stack.length) document.body.classList.remove('modal-open'); if (o.onClose) o.onClose(); }
-    back.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !o.sinCerrar) close(); });
+    function close() { back.remove(); stack = stack.filter(function (x) { return x !== back; }); if (!stack.length) document.body.classList.remove('modal-open'); if (previo && previo.focus && document.contains(previo)) { try { previo.focus(); } catch (e) {} } if (o.onClose) o.onClose(); }
+    back.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !o.sinCerrar) { e.stopPropagation(); close(); return; }
+      if (e.key !== 'Tab') return; /* el foco no sale de la ventana */
+      var f = [].slice.call(box.querySelectorAll('a[href],button:not([disabled]),input:not([disabled]):not([type=hidden]),select:not([disabled]),textarea:not([disabled]),summary,[tabindex]:not([tabindex="-1"])')).filter(function (x) { return x.offsetParent !== null; });
+      if (!f.length) return; var a = f[0], z = f[f.length - 1];
+      if (e.shiftKey && (document.activeElement === a || !box.contains(document.activeElement))) { e.preventDefault(); z.focus(); }
+      else if (!e.shiftKey && (document.activeElement === z || !box.contains(document.activeElement))) { e.preventDefault(); a.focus(); }
+    });
     back.addEventListener('mousedown', function (e) { if (e.target === back && !o.sinCerrar) close(); });
     var f = box.querySelector('input,textarea,select,button.pri,button'); if (f) setTimeout(function () { f.focus(); }, 30);
     return { close: close, box: box };

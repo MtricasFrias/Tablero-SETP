@@ -1,29 +1,52 @@
-/* Páginas legales: términos, privacidad y cookies. Lectura cómoda, buen contraste, imprimible. */
-:root{--navy:#0A1F5C;--ink:#1B2540;--muted:#4b5876;--line:#d6dcea;--bg:#f4f6fb;--card:#fff;--soft:#eef2fb;--green:#00A830}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
-.skip{position:absolute;left:-999px;top:8px;background:#fff;padding:8px 12px;border-radius:8px;z-index:999}.skip:focus{left:8px}
-a{color:#1D4ED8}:focus-visible{outline:3px solid #F0A800;outline-offset:2px}
-.l-top{background:linear-gradient(120deg,#0A1F5C,#001233);color:#fff}
-.l-top-in{max-width:880px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-.l-top img{height:46px;background:#fff;border-radius:10px;padding:4px 8px}
-.l-top a.volver{margin-left:auto;color:#fff;font-weight:700;text-decoration:none;border:1.5px solid rgba(255,255,255,.5);border-radius:10px;padding:8px 14px}
-.l-top a.volver:hover{background:rgba(255,255,255,.15)}
-main{max-width:880px;margin:0 auto;padding:28px 20px 60px}
-h1{font-size:2rem;line-height:1.2;color:var(--navy);margin:0 0 6px}
-h2{font-size:1.3rem;color:var(--navy);margin:2em 0 .5em;line-height:1.25}
-h3{font-size:1.05rem;color:var(--navy);margin:1.4em 0 .3em}
-.meta{color:var(--muted);margin:0 0 20px;font-size:.95rem}
-.resumen{background:var(--soft);border:1px solid #cfd9f2;border-radius:14px;padding:14px 18px;margin:18px 0}
-.resumen b{color:var(--navy)}
-nav.toc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 20px;margin:18px 0}
-nav.toc ol{margin:6px 0;padding-left:22px;columns:2;column-gap:28px}nav.toc li{break-inside:avoid;margin:3px 0}
-.tabla{overflow:auto;border:1px solid var(--line);border-radius:12px;background:var(--card);margin:12px 0}
-table{border-collapse:collapse;width:100%;font-size:.93rem}th,td{padding:9px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{background:var(--soft);color:var(--navy)}
-ul,ol{padding-left:22px}li{margin:4px 0}
-.contacto{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px}
-.contacto p{margin:4px 0}
-footer{max-width:880px;margin:0 auto;padding:0 20px 40px;color:var(--muted);font-size:.9rem;display:flex;flex-wrap:wrap;gap:6px 18px}
-footer button{background:none;border:0;color:#1D4ED8;text-decoration:underline;font:inherit;cursor:pointer;padding:0}
-@media (max-width:640px){body{font-size:16px}nav.toc ol{columns:1}h1{font-size:1.6rem}}
-@media print{.l-top a.volver,footer,nav.toc{display:none}body{background:#fff;font-size:12pt}.l-top{background:none;color:#000}}
+/* Páginas legales (Términos, Privacidad, Cookies): mismos colores y barra del tablero público; lectura cómoda con índice lateral que sigue la lectura. */
+.topbar .logo.alc{height:56px}
+.tabs-in .sp{flex:1}
+
+/* portada del documento: azul marino con pentagrama y la calle del SETP a la derecha */
+.doc-hero{position:relative;background:linear-gradient(120deg,var(--navy) 0%,var(--navy-deep) 100%);color:#fff;overflow:hidden}
+.doc-hero::before{content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent 0 22px,rgba(255,255,255,.05) 22px 23px);z-index:1;pointer-events:none}
+.doc-hero img{position:absolute;right:0;bottom:0;height:100%;width:62%;object-fit:cover;object-position:left bottom;opacity:.9;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 38%);mask-image:linear-gradient(90deg,transparent 0,#000 38%)}
+.doc-hero-in{position:relative;z-index:2;max-width:1120px;margin:0 auto;padding:46px 20px 54px}
+.doc-hero h1{color:#fff;font-size:clamp(28px,4.4vw,42px);font-weight:800;max-width:20ch;letter-spacing:-.02em}
+.doc-hero p{margin-top:12px;color:#C9D3F0;font-size:15px}
+
+.doc{max-width:1120px;margin:-26px auto 0;padding:0 20px 56px;display:grid;grid-template-columns:250px minmax(0,1fr);gap:26px;align-items:start;position:relative;z-index:3}
+.doc-toc{position:sticky;top:64px;background:var(--card);border-radius:18px;padding:18px 14px 14px;box-shadow:var(--shadow);margin-top:26px;max-height:calc(100vh - 90px);overflow:auto}
+.doc-toc summary{display:block;font-size:13px;color:var(--muted);padding:0 10px 8px;font-weight:700;list-style:none;cursor:default}.doc-toc summary::-webkit-details-marker{display:none}
+.doc-toc ol{list-style:none}
+.doc-toc a{display:block;padding:8px 10px;border-radius:10px;color:#2C3A66;text-decoration:none;font-size:14px;line-height:1.35;transition:background .18s var(--ease),color .18s var(--ease)}
+.doc-toc a:hover{background:var(--tint);color:var(--navy)}
+.doc-toc a[aria-current=true]{background:var(--navy);color:#fff;font-weight:700}
+
+.doc-main{background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:44px clamp(22px,5vw,60px) 52px;outline:none}
+.doc-main>*{max-width:74ch}.doc-main .tabla{max-width:none}
+.doc-main h2{font-size:23px;font-weight:800;margin:44px 0 12px;padding-top:6px;scroll-margin-top:76px}
+.doc-main h3{font-size:17px;font-weight:800;margin:26px 0 6px}
+.doc-main p{font-size:17px;line-height:1.72;color:#1B2540;margin:0 0 14px}
+.doc-main ul,.doc-main ol{margin:0 0 16px;padding-left:24px;font-size:17px;line-height:1.7;color:#1B2540}.doc-main li{margin:6px 0}
+.doc-main li::marker{color:var(--navy);font-weight:700}
+.doc-main strong,.doc-main b{color:var(--navy)}
+.doc-main .resumen{background:var(--tint);border-radius:16px;padding:20px 24px;margin:0 0 6px;font-size:17px;line-height:1.65}
+.doc-main .resumen b:first-child{display:block;font-size:18px;margin-bottom:4px}
+.doc-main .contacto{background:var(--paper);border-radius:16px;padding:18px 22px;margin:0 0 14px}.doc-main .contacto p{font-size:16px;margin:4px 0}
+.doc-main .tabla{overflow:auto;border-radius:14px;box-shadow:0 0 0 1px var(--line);margin:14px 0 20px}
+.doc-main table{border-collapse:collapse;width:100%;font-size:15px;line-height:1.5}
+.doc-main th,.doc-main td{padding:11px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.doc-main tr:last-child td{border-bottom:0}.doc-main th{background:var(--tint);color:var(--navy);font-size:13.5px}
+.doc-main code{background:var(--tint);padding:1px 7px;border-radius:6px;font-size:.9em;color:var(--navy)}
+.doc-main a{color:var(--royal);font-weight:600}
+
+.doc-pie{background:var(--navy-deep);color:#B9C4E6;position:relative}
+.doc-pie::before{content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent 0 22px,rgba(255,255,255,.04) 22px 23px);pointer-events:none}
+.doc-pie-in{position:relative;max-width:1120px;margin:0 auto;padding:32px 20px;display:flex;gap:26px 40px;flex-wrap:wrap;align-items:center;font-size:14px;line-height:1.6}
+.doc-pie .logos{display:flex;gap:14px}.doc-pie .logos img{height:52px;background:#fff;border-radius:11px;padding:5px}
+.doc-pie p{flex:1;min-width:240px}.doc-pie b{color:#fff}.doc-pie a{color:#C9D3F0}
+.doc-pie nav{display:flex;gap:6px 18px;flex-wrap:wrap}.doc-pie nav a,.doc-pie nav button{color:#C9D3F0;background:none;border:0;font:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:2px 0}
+.doc-pie nav a:hover,.doc-pie nav button:hover{color:#fff}
+
+@media (max-width:900px){
+  .doc{grid-template-columns:1fr;margin-top:-18px}.doc-toc{position:static;margin-top:0;max-height:none}.doc-toc summary{cursor:pointer;font-size:15px;color:var(--navy);padding:2px 10px 2px;display:flex;justify-content:space-between}.doc-toc summary::after{content:'';width:9px;height:9px;border-right:2.5px solid var(--navy);border-bottom:2.5px solid var(--navy);transform:rotate(45deg);margin-top:5px;transition:transform .2s var(--ease)}.doc-toc details[open] summary::after{transform:rotate(-135deg);margin-top:9px}.doc-toc details[open] summary{margin-bottom:8px}.doc-toc ol{columns:2;column-gap:10px}
+  .doc-hero img{width:100%;opacity:.35}
+}
+@media (max-width:560px){.doc-toc ol{columns:1}.topbar-in{flex-wrap:wrap;gap:10px 14px;padding:12px 14px}.brand .kicker{font-size:11px;letter-spacing:.1em}.brand b{font-size:17px}.logo{height:44px}.topbar .logo.alc{display:none}.doc{padding:0 12px 40px}.doc-main{padding:26px 16px 34px}.doc-main .resumen{padding:16px 16px}.doc-hero-in{padding:34px 16px 44px}.doc-main p,.doc-main ul,.doc-main ol{font-size:16px}}
+@media print{.topbar,.tabs,.doc-hero img,.doc-toc,.doc-pie{display:none}.doc-hero{background:none;color:#000}.doc-hero h1,.doc-hero p{color:#000}.doc{display:block;margin:0}.doc-main{box-shadow:none;padding:0}body{background:#fff}}

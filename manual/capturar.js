@@ -30,7 +30,7 @@ async function marcas(lista) {
 const sinMarcas = () => ev(`document.querySelectorAll('.mk').forEach(e=>e.remove())`);
 async function shot(name, o) {
   o = o || {}; let clip;
-  await ev(`(()=>{const t=document.querySelector('.toasts'); if(t) t.style.display='none'; const b=document.querySelector('.barra'); if(b) b.style.position=${JSON.stringify(o.sel ? 'static' : '')};})()`);
+  await ev(`(()=>{const t=document.querySelector('.toasts'); if(t) t.style.display='none'; const b=document.querySelector('.tabs'); if(b) b.style.position=${JSON.stringify(o.sel ? 'static' : '')};})()`);
   if (o.sel) { const r = await ev(`(()=>{const e=document.querySelector(${JSON.stringify(o.sel)}); if(!e) return null; e.scrollIntoView({block:${JSON.stringify(o.align || 'start')}}); const b=e.getBoundingClientRect(); return {x:b.left+scrollX,y:b.top+scrollY,w:b.width,h:b.height};})()`); if (!r) throw new Error('sin ' + o.sel); await sleep(300); const p = o.pad === undefined ? 14 : o.pad; clip = { x: Math.max(0, r.x - p), y: Math.max(0, r.y - p), width: r.w + 2 * p, height: Math.min(r.h, o.max || 1400) + 2 * p, scale: 1 }; }
   const r = await cdp('Page.captureScreenshot', Object.assign({ format: 'jpeg', quality: 86, captureBeyondViewport: !!clip }, clip ? { clip } : {}));
   fs.writeFileSync(path.join(out, name + '.jpg'), Buffer.from(r.data, 'base64')); console.log('  ✓', name);
@@ -69,16 +69,16 @@ const scrollTo = async sel => { await ev(`document.querySelector(${JSON.stringif
     await marcas([['#lg-usuario', 1, 'tl'], ['#lg-clave', 2, 'tl'], ['.consent', 3, 'tl'], ['.login-card .btn.pri', 4, 'tl']]);
     await shot('a01-ingreso', { sel: '.login-card', pad: 26 }); await sinMarcas();
     await fill('#lg-usuario', USER); await fill('#lg-clave', PASS); await click('#lg-t'); await click('#lg-p'); await click('.login-card .btn.pri'); await waitFor('.acciones', 8000); await sleep(800);
-    await marcas([['.nav', 1, 'tl'], ['.barra-btn .btn.pri', 2, 'tl'], ['.acciones', 3, 'tl']]); await shot('a02-inicio'); await sinMarcas();
+    await marcas([['.tabs-in', 1, 'tl'], ['.tabs-in .btn.oro', 2, 'tl'], ['.grid2', 3, 'tl']]); await shot('a02-inicio'); await sinMarcas();
 
     await go(BASE + '/admin/#/proyectos', 1800);
-    await marcas([['.proy .sw', 1, 'tl'], ['.proy .btn.pri', 2, 'tl'], ['.proy .btn:not(.pri)', 3, 'tl'], ['.vh + p .btn', 4, 'tl']]); await shot('a03-proyectos'); await sinMarcas();
+    await marcas([['.proy .sw', 1, 'tl'], ['.proy .btn.pri', 2, 'tl'], ['.proy .btn:not(.pri)', 3, 'tl'], ['.pagehead .btn', 4, 'tl']]); await shot('a03-proyectos'); await sinMarcas();
 
     /* asistente */
     await go(BASE + '/admin/#/nuevo', 1000);
     await fill('.asist input[type=text]', 'Proyecto de ejemplo');
     await ev(`(()=>{const t=document.querySelectorAll('.asist input[type=text]'); t[1].value='Fase I'; t[1].dispatchEvent(new Event('input',{bubbles:true}));})()`);
-    await click('.asist .cat'); await marcas([['.asist input[type=text]', 1, 'tl'], ['.asist .cats', 2, 'tl'], ['.btnrow .btn.pri', 3, 'tl']]); await shot('a04-nuevo-paso1', { sel: '.asist' }); await sinMarcas();
+    await click('.asist .cat'); await marcas([['.asist input[type=text]', 1, 'tl'], ['.asist .cats', 2, 'tl'], ['.fin .btn.pri', 3, 'tl']]); await shot('a04-nuevo-paso1', { sel: '.asist' }); await sinMarcas();
     await clickText('button', 'Siguiente');
     await ev(`(()=>{const c=[...document.querySelectorAll('.compra input')]; [0,1,4].forEach(i=>c[i].click());})()`); await sleep(400);
     await marcas([['.compra', 1, 'tl'], ['.compra.on', 2, 'tr']]); await shot('a05-nuevo-paso2', { sel: '.asist', max: 1100 }); await sinMarcas();
@@ -122,14 +122,14 @@ const scrollTo = async sel => { await ev(`document.querySelector(${JSON.stringif
 
     /* publicar */
     await ev(`document.getElementById('nopv').remove()`);
-    await ev('window.scrollTo(0,0)'); await sleep(300); await click('.barra-btn .btn.pri'); await sleep(1500);
-    await marcas([['.difs', 1, 'tl'], ['.modal .campo', 2, 'tl'], ['.modal-acts .btn.pri', 3, 'tl']]); await shot('a16-publicar'); await sinMarcas();
+    await ev('window.scrollTo(0,0)'); await sleep(300); await click('.tabs-in .btn.oro'); await sleep(1500);
+    await marcas([['.difs', 1, 'tl'], ['.modal .campo', 2, 'tl'], ['.modal-acts .btn.oro', 3, 'tl']]); await shot('a16-publicar'); await sinMarcas();
     await ev(`(()=>{const m=document.querySelector('.modal .campo input'); m.value='Agregué el proyecto de ejemplo'; m.dispatchEvent(new Event('input',{bubbles:true}));})()`);
-    await ev(`document.querySelector('.modal-acts .btn.pri') && document.querySelector('.modal-acts .btn.pri').click()`); await sleep(2500);
+    await ev(`document.querySelector('.modal-acts .btn.oro') && document.querySelector('.modal-acts .btn.oro').click()`); await sleep(2500);
     await go(BASE + '/admin/#/historial', 2000); await marcas([['.proy .btn', 1, 'tl']]); await shot('a17-versiones', { sel: '#vista', pad: 10, max: 800 }); await sinMarcas();
     await go(BASE + '/admin/#/proyectos', 2200); await shot('a18-proyectos-despues');
     await go(BASE + '/admin/#/ayuda', 1000); await shot('a19-ayuda', { sel: '#vista', pad: 10, max: 900 });
-    await click('.top-u .btn:not(:last-child)'); await sleep(700); await shot('a20-cambiar-clave');
+    await click('.cuenta .btn'); await sleep(700); await shot('a20-cambiar-clave');
 
     /* vista previa del borrador en el sitio público */
     await ev(`document.querySelector('.modal-head .icon-btn').click()`);
