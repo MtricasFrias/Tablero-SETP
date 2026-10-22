@@ -1,0 +1,123 @@
+/* ===== Estilos adicionales del rework (se cargan después de app.css) ===== */
+
+/* ---------- Accesibilidad (Resolución 1519 de 2020, WCAG 2.1 AA) ---------- */
+.skip{position:absolute; left:12px; top:-60px; z-index:1000; background:var(--navy); color:#fff; padding:10px 16px; border-radius:10px; font-weight:700; text-decoration:none; transition:top .15s}
+.skip:focus{top:10px}
+:focus-visible{outline:3px solid #1D4ED8; outline-offset:3px; border-radius:6px}
+.sr-only{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
+a{color:var(--royal)}
+.topbar .brand h1{font-size:22px}
+.block-head h3{font-size:21px; font-weight:800; color:var(--navy)}
+.card h4{color:#4A5878}                       /* contraste AA sobre fondo blanco */
+.kpi .foot,.progress-row .figs,.map-note,.map-legend span,.block-head .tag,.hero-meta .m .lbl{color:#4A5878}
+
+/* ---------- Portada del proyecto ---------- */
+.hero h2{font-size:34px; font-weight:900; color:var(--navy); letter-spacing:-.02em}
+.hero .desc + .desc{margin-top:8px}
+.hero-eq{align-items:center; margin-top:14px}
+.hero-eq .op{font-size:22px; font-weight:800; color:var(--muted); align-self:center}
+.chip.t-verde{background:rgba(0,168,48,.12); color:#007A22}
+.chip.t-ambar{background:rgba(240,168,0,.18); color:#7A5200}
+.chip.t-gris{background:#EEF2F9; color:#4A5878}
+.gauge-card .g-row{display:flex; gap:16px; justify-content:center; flex-wrap:wrap}
+.g-item{text-align:center; min-width:96px}
+.g-name{font-size:12px; font-weight:800; color:var(--ink); margin-top:8px}
+.g-cap{font-size:10.5px; color:#4A5878}
+@property --p{syntax:'<number>'; inherits:false; initial-value:0}
+.gauge-sm{width:100px; height:100px; margin:0 auto}
+.ring{position:absolute; inset:0; border-radius:50%; background:conic-gradient(var(--c,var(--green)) calc(var(--p)*1%), #EAEEF7 0);
+  -webkit-mask:radial-gradient(farthest-side,transparent 77%,#000 78%); mask:radial-gradient(farthest-side,transparent 77%,#000 78%); transition:--p 1s cubic-bezier(.2,.8,.2,1)}
+
+/* ---------- Bloques ---------- */
+.kpi .big{overflow-wrap:anywhere}
+.donut-row{display:flex; gap:26px; align-items:center; flex-wrap:wrap}
+.donut{width:190px; height:190px; border-radius:50%; flex:0 0 190px;
+  -webkit-mask:radial-gradient(farthest-side,transparent 54%,#000 55%); mask:radial-gradient(farthest-side,transparent 54%,#000 55%)}
+.donut-leg{list-style:none; flex:1; min-width:220px; display:grid; gap:8px}
+.donut-leg li{display:flex; align-items:center; gap:10px; font-size:13.5px; color:var(--ink)}
+.donut-leg i{width:12px; height:12px; border-radius:3px; flex:0 0 12px}
+.donut-leg span{flex:1}
+.donut-leg b{color:var(--navy)}
+.gantt-fill.gf-hecho{background:linear-gradient(90deg,var(--green),#3ED16A); color:#053}
+.gantt-fill.gf-curso{background:linear-gradient(90deg,var(--navy),var(--royal))}
+.gantt-fill.gf-pend{background:linear-gradient(90deg,#94A3B8,#B8C3D4); color:#1B2540}
+.txt-cols{display:flex; gap:24px; flex-wrap:wrap}
+.txt-cols p{flex:1; min-width:260px; font-size:14.5px; line-height:1.7; color:var(--ink)}
+.fig{margin:0}
+.fig img{width:100%; height:auto; display:block; border-radius:14px; background:#EEF2F9}
+.fig-wide img{max-height:360px; object-fit:cover; margin-bottom:18px}
+.fig figcaption{font-size:12px; color:#4A5878; margin-top:6px}
+.fig-wide figcaption{margin:-8px 0 16px}
+.img-credit a{color:inherit; text-decoration:underline}
+.gal{display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:16px}
+.fig-gal img{aspect-ratio:4/3; object-fit:cover}
+.docs{list-style:none; display:grid; gap:10px}
+.docs a{display:flex; flex-direction:column; gap:2px; padding:12px 14px; border:1px solid var(--line); border-radius:12px; text-decoration:none; color:var(--navy); transition:box-shadow .2s, transform .2s}
+.docs a:hover{box-shadow:0 8px 20px rgba(10,31,92,.12); transform:translateY(-2px)}
+.doc-n{font-weight:800}
+.docs small{color:#4A5878}
+.map-el{height:460px; border-radius:14px; overflow:hidden; position:relative; z-index:0; margin-top:8px}
+.lay{display:inline-flex; align-items:center; gap:7px; cursor:pointer; font-weight:600; color:#4A5878}
+.lay i{width:14px; height:14px; border-radius:4px; display:inline-block}
+.lay .cnt{font-weight:500}
+.page.proyecto{animation:pageIn .35s ease both}
+@keyframes pageIn{from{opacity:0; transform:translateY(8px)}to{opacity:1; transform:none}}
+
+/* ---------- Pie con enlaces legales ---------- */
+.foot-legal{width:100%; display:flex; gap:6px 18px; flex-wrap:wrap; justify-content:center; padding-top:16px; margin-top:6px; border-top:1px solid rgba(255,255,255,.12); font-size:12.5px}
+.foot-legal a,.foot-legal button{color:#C9D3F0; background:none; border:0; font:inherit; cursor:pointer; text-decoration:underline; text-underline-offset:3px; padding:2px 0}
+.foot-legal a:hover,.foot-legal button:hover{color:#fff}
+.foot-legal .sep{display:none}
+body.on-home.night .foot-legal{border-top-color:rgba(255,255,255,.14)}
+body.on-home:not(.night) .foot-legal{border-top-color:rgba(10,31,92,.12)}
+body.on-home:not(.night) .foot-legal a,body.on-home:not(.night) .foot-legal button{color:#2C3A66}
+body.on-home:not(.night) .foot-legal a:hover,body.on-home:not(.night) .foot-legal button:hover{color:var(--navy)}
+
+/* ---------- Aviso de cookies / almacenamiento ---------- */
+.ck{position:fixed; z-index:9000; left:16px; right:16px; bottom:16px; max-width:760px; margin:0 auto; background:#fff; color:var(--ink); border:1px solid var(--line); border-radius:18px; box-shadow:0 24px 60px rgba(10,31,92,.28); padding:18px 20px; font-size:13.5px; line-height:1.55}
+.ck h2{font-size:16px; font-weight:800; color:var(--navy); margin-bottom:6px}
+.ck p{color:#33415F}
+.ck-acts{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+.ck button,.btn{font:inherit; font-weight:800; padding:10px 18px; border-radius:12px; border:2px solid var(--navy); cursor:pointer; background:#fff; color:var(--navy)}
+.ck button.pri,.btn.pri{background:var(--navy); color:#fff}
+.ck button:hover,.btn:hover{filter:brightness(.96)}
+.ck-opts{display:grid; gap:10px; margin-top:12px}
+.ck-opt{display:flex; gap:10px; align-items:flex-start; padding:10px 12px; border:1px solid var(--line); border-radius:12px; background:#F8FAFD}
+.ck-opt input{width:20px; height:20px; margin-top:2px; accent-color:var(--navy); flex:0 0 20px}
+.ck-opt b{display:block; color:var(--navy)}
+.ck-opt small{color:#4A5878}
+
+/* ---------- Casillas de consentimiento (cada una por separado) ---------- */
+.consent{display:grid; gap:10px; margin:14px 0}
+.consent label{display:flex; gap:10px; align-items:flex-start; font-size:13.5px; line-height:1.45; color:#1B2540; cursor:pointer}
+.consent input{width:22px; height:22px; flex:0 0 22px; margin-top:1px; accent-color:var(--navy)}
+.consent a{font-weight:700}
+
+/* ===== Rendimiento de la entrada animada (medido con Edge: tirones de 170–480 ms al empezar el zoom) ===== */
+/* La cámara se queda como capa propia de GPU: el zoom solo escala una textura ya pintada, sin volver a rasterizar el SVG en cada cuadro */
+.cam{will-change:transform; transition:transform .6s cubic-bezier(.4,0,.2,1)}
+.scene-copy{transition:opacity .35s, transform .5s}
+.spot{transition:opacity .3s}
+.pane-cap{transition:opacity .3s .1s, transform .4s .1s}
+.sign{transition:transform .42s cubic-bezier(.22,1.2,.36,1) var(--dl,0s), opacity .25s var(--dl,0s), box-shadow .25s}
+/* Velo de transición: un círculo que crece con transform (compuesto por GPU) en lugar de animar clip-path (repinta toda la pantalla) */
+.warp{background:none; clip-path:none; opacity:1; transition:opacity .3s ease; overflow:hidden}
+.warp::before{content:""; position:absolute; left:var(--x,50%); top:var(--y,50%); width:100px; height:100px; margin:-50px 0 0 -50px; border-radius:50%;
+  background:radial-gradient(circle,var(--wc,#1D4ED8) 0%,#001233 85%); transform:scale(0); will-change:transform; transition:transform .42s cubic-bezier(.4,0,.2,1)}
+.warp.go{clip-path:none}
+.warp.go::before{transform:scale(var(--ws,40))}
+.warp.go.out{opacity:0}
+.warp .w-k,.warp .w-n{position:relative}
+.warp .w-k{transition:opacity .2s .15s}
+.warp .w-n{transition:opacity .2s .18s, transform .3s .18s}
+
+@media (prefers-reduced-motion:reduce){
+  .cam,.warp::before,.sign,.page.proyecto,.np-item{transition:none!important; animation:none!important}
+  html{scroll-behavior:auto}
+}
+@media print{.tabs,.topbar,.ck,.skip,.foot-legal,.rotate-lock{display:none!important}}
+
+/* Aviso de vista previa (borrador) */
+.preview-bar{position:sticky; top:0; z-index:200; background:#FFF3CD; color:#5C4300; text-align:center; font-size:13px; font-weight:700; padding:8px 12px; border-bottom:1px solid #F0D58A}
+.preview-bar a{color:#5C4300}
+.pane-empty{background:#fff; border-radius:14px; padding:14px 18px; font-weight:700; color:var(--navy)}
