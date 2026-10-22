@@ -106,8 +106,8 @@ proyectos.push({
       'Acta de inicio: 10-abr-2025. Acta de Terminación de Obra: 18-feb-2026 (315 días calendario en total, incluida la prórroga). Ejecución física y de recursos: 100%. Estado actual: en proceso de liquidación, con el Acta de Recibo Final pendiente.'),
     B.cifras('Componente social', 'Impacto en la comunidad · vinculación de personal', [
       { valor: '529.637', etiqueta: 'Habitantes de Ibagué beneficiados', imagen: img('img/monumento-bandera-ibague.jpg', 'Monumento a la Bandera de Ibagué') },
-      { valor: '5%', etiqueta: 'Mujeres cabeza de familia / víctimas del conflicto (mín.)', imagen: img('img/mujeres-mano-de-obra.jpg', 'Mujeres cabeza de familia') },
-      { valor: '100%', etiqueta: 'Obligaciones sociales cumplidas', imagen: img('img/poblacion-especial.png', 'Comunidad de Ibagué') }]),
+      { valor: '5%', etiqueta: 'Mujeres cabeza de familia / víctimas del conflicto (mín.)', imagen: img('img/ilustracion-mujeres.svg', 'Ilustración: mujer trabajadora con casco y chaleco') },
+      { valor: '100%', etiqueta: 'Obligaciones sociales cumplidas', imagen: img('img/ilustracion-inclusion.svg', 'Ilustración: comunidad diversa y unida') }]),
     B.datos('Gestión con la comunidad', '', [card('Gestión con la comunidad', [['Promoción de empleo local', 'Obligación contractual del contratista'], ['Trabajo nocturno programado', 'Para reducir el impacto en la movilidad diurna'], ['Reciclaje de materiales de la vía existente', 'Reduce escombros y reutiliza recursos'],],
       'El contratista informó de manera anticipada a la comunidad sobre los frentes de trabajo y los horarios nocturnos de algunas actividades, y empleó maquinaria que recicla el material de la vía existente para reducir residuos de construcción.')]),
     B.texto('Importancia del corredor', 'Historia · identidad · movilidad de Ibagué',
@@ -165,10 +165,10 @@ proyectos.push({
     B.cron('Cronograma', 'Fases del contrato · línea de tiempo · hitos', [
       ['Fase I — Estudios y diseños', '90 días calendario', '2026-04-15', '2026-07-14', 'hecho'], ['Fase II — Ejecución de obra', '135 días · por tramos', '2026-07-14', '2026-11-26', 'en curso']], 'Tiempo pactado: 225 días calendario.'),
     B.cifras('Componente social', 'Empleo local · inclusión · comunidad', [
-      { valor: '10%', etiqueta: 'Mano de obra regional (mín.)', imagen: img('img/mano-obra-regional.jpg', 'Mano de obra regional') },
-      { valor: '5%', etiqueta: 'Mujeres (de mano de obra)', imagen: img('img/mujeres-mano-de-obra.jpg', 'Mujeres en la obra') },
-      { valor: '5%', etiqueta: 'Población especial protección', imagen: img('img/poblacion-especial.png', 'Población con especial protección') },
-      { valor: '8%', etiqueta: 'Jóvenes 18–28 años', imagen: img('img/jovenes.png', 'Jóvenes de Ibagué') }], 'Obligaciones contractuales de vinculación de personal. Vinculación de personal, meta vs. reportado: mano de obra no calificada de la región, mujeres y sujetos de especial protección — personal aún sin vincular.'),
+      { valor: '10%', etiqueta: 'Mano de obra regional (mín.)', imagen: img('img/ilustracion-mano-obra.svg', 'Ilustración: trabajador de la región con casco y chaleco') },
+      { valor: '5%', etiqueta: 'Mujeres (de mano de obra)', imagen: img('img/ilustracion-mujeres.svg', 'Ilustración: mujer trabajadora con casco y chaleco') },
+      { valor: '5%', etiqueta: 'Población especial protección', imagen: img('img/ilustracion-inclusion.svg', 'Ilustración: comunidad diversa y unida') },
+      { valor: '8%', etiqueta: 'Jóvenes 18–28 años', imagen: img('img/ilustracion-jovenes.svg', 'Ilustración: joven trabajador con casco y chaleco') }], 'Obligaciones contractuales de vinculación de personal. Vinculación de personal, meta vs. reportado: mano de obra no calificada de la región, mujeres y sujetos de especial protección — personal aún sin vincular.'),
     B.texto('Importancia del corredor', 'Movilidad · conectividad de Ibagué',
       'El Sistema Estratégico de Transporte Público (SETP) de Ibagué se apoya en los corredores viales más importantes de la ciudad para conectar barrios y sectores con el centro. La Avenida Ambalá es uno de esos corredores estructurantes: conecta barrios del norte y el sector de El Salado con el centro de la ciudad, articulando zonas residenciales, comerciales e institucionales a lo largo de su trazado.\n\nSu ampliación en 1991, entre el puente de Progal y San Carlos, redujo el tiempo de viaje entre El Salado y el centro de 16 a cerca de 10–12 minutos. Hoy, rehabilitar su infraestructura y redes para el SETP busca modernizar ese mismo corredor y sostener la movilidad de la ciudad en las próximas décadas.',
       img('img/glorieta-ambala.jpg', 'Glorieta de la Avenida Ambalá, Ibagué'))

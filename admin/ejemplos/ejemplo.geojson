@@ -1,0 +1,93 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "nombre": "Punto de ejemplo 1",
+    "descripcion": "Parque Murillo Toro"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.2322,
+     4.4389
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "nombre": "Punto de ejemplo 2",
+    "descripcion": "Carrera 5 con Calle 10"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.2301,
+     4.4412
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "nombre": "Punto de ejemplo 3",
+    "descripcion": "Calle 60 con Carrera 5"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.2214,
+     4.4501
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "nombre": "Punto de ejemplo 4",
+    "descripcion": "Avenida Ambalá"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.2105,
+     4.4287
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "nombre": "Tramo de ejemplo 1",
+    "estado": "ejecutado"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -75.23,
+      4.4401
+     ],
+     [
+      -75.2311,
+      4.4408
+     ],
+     [
+      -75.2322,
+      4.4415
+     ],
+     [
+      -75.233,
+      4.4422
+     ],
+     [
+      -75.2339,
+      4.443
+     ]
+    ]
+   }
+  }
+ ]
+}

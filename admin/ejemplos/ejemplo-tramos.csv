@@ -1,0 +1,9 @@
+﻿tramo;orden;lat;lon;estado
+Tramo de ejemplo 1;1;4,4401;-75,23;ejecutado
+Tramo de ejemplo 1;2;4,4408;-75,2311;ejecutado
+Tramo de ejemplo 1;3;4,4415;-75,2322;ejecutado
+Tramo de ejemplo 1;4;4,4422;-75,233;ejecutado
+Tramo de ejemplo 1;5;4,443;-75,2339;ejecutado
+Tramo de ejemplo 2;1;4,443;-75,2339;en curso
+Tramo de ejemplo 2;2;4,4441;-75,2351;en curso
+Tramo de ejemplo 2;3;4,4452;-75,2362;en curso

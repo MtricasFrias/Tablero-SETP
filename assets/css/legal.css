@@ -1,0 +1,29 @@
+/* Páginas legales: términos, privacidad y cookies. Lectura cómoda, buen contraste, imprimible. */
+:root{--navy:#0A1F5C;--ink:#1B2540;--muted:#4b5876;--line:#d6dcea;--bg:#f4f6fb;--card:#fff;--soft:#eef2fb;--green:#00A830}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+.skip{position:absolute;left:-999px;top:8px;background:#fff;padding:8px 12px;border-radius:8px;z-index:999}.skip:focus{left:8px}
+a{color:#1D4ED8}:focus-visible{outline:3px solid #F0A800;outline-offset:2px}
+.l-top{background:linear-gradient(120deg,#0A1F5C,#001233);color:#fff}
+.l-top-in{max-width:880px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.l-top img{height:46px;background:#fff;border-radius:10px;padding:4px 8px}
+.l-top a.volver{margin-left:auto;color:#fff;font-weight:700;text-decoration:none;border:1.5px solid rgba(255,255,255,.5);border-radius:10px;padding:8px 14px}
+.l-top a.volver:hover{background:rgba(255,255,255,.15)}
+main{max-width:880px;margin:0 auto;padding:28px 20px 60px}
+h1{font-size:2rem;line-height:1.2;color:var(--navy);margin:0 0 6px}
+h2{font-size:1.3rem;color:var(--navy);margin:2em 0 .5em;line-height:1.25}
+h3{font-size:1.05rem;color:var(--navy);margin:1.4em 0 .3em}
+.meta{color:var(--muted);margin:0 0 20px;font-size:.95rem}
+.resumen{background:var(--soft);border:1px solid #cfd9f2;border-radius:14px;padding:14px 18px;margin:18px 0}
+.resumen b{color:var(--navy)}
+nav.toc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 20px;margin:18px 0}
+nav.toc ol{margin:6px 0;padding-left:22px;columns:2;column-gap:28px}nav.toc li{break-inside:avoid;margin:3px 0}
+.tabla{overflow:auto;border:1px solid var(--line);border-radius:12px;background:var(--card);margin:12px 0}
+table{border-collapse:collapse;width:100%;font-size:.93rem}th,td{padding:9px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{background:var(--soft);color:var(--navy)}
+ul,ol{padding-left:22px}li{margin:4px 0}
+.contacto{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px}
+.contacto p{margin:4px 0}
+footer{max-width:880px;margin:0 auto;padding:0 20px 40px;color:var(--muted);font-size:.9rem;display:flex;flex-wrap:wrap;gap:6px 18px}
+footer button{background:none;border:0;color:#1D4ED8;text-decoration:underline;font:inherit;cursor:pointer;padding:0}
+@media (max-width:640px){body{font-size:16px}nav.toc ol{columns:1}h1{font-size:1.6rem}}
+@media print{.l-top a.volver,footer,nav.toc{display:none}body{background:#fff;font-size:12pt}.l-top{background:none;color:#000}}

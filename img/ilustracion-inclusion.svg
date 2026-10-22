@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="30 60 280 280" role="img" aria-label="Ilustración: comunidad diversa y unida">
+<title>Ilustración: comunidad diversa y unida</title>
+<defs><linearGradient id="cieloi" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7FB8F0"/><stop offset="1" stop-color="#EAF5FF"/></linearGradient></defs>
+<rect width="340" height="340" fill="url(#cieloi)"/>
+<circle cx="272" cy="72" r="28" fill="#FFD76A"/>
+<path d="M0 196 C40 150 84 158 130 182 S230 140 340 188 V340 H0Z" fill="#8CC29A"/>
+<path d="M0 236 C70 190 140 226 200 212 S300 186 340 230 V340 H0Z" fill="#4E9A62"/>
+<circle cx="96" cy="200" r="22" fill="#A9683B"/><path d="M60 300 C60 248 78 228 96 228 S132 248 132 300Z" fill="#2D6CDF"/><circle cx="244" cy="200" r="22" fill="#E0AC82"/><path d="M208 300 C208 248 226 228 244 228 S280 248 280 300Z" fill="#00A830"/><circle cx="170" cy="200" r="22" fill="#C68B59"/><path d="M134 300 C134 248 152 228 170 228 S206 248 206 300Z" fill="#F0A800"/>
+<path d="M170 148 C150 128 126 112 126 90 C126 70 156 64 170 84 C184 64 214 70 214 90 C214 112 190 128 170 148Z" fill="#CE1126"/>
+</svg>

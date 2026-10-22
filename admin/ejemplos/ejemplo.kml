@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2"><Document><name>Ejemplo SETP</name>
+<Placemark><name>Punto de ejemplo 1</name><description>Parque Murillo Toro</description><Point><coordinates>-75.2322,4.4389,0</coordinates></Point></Placemark>
+<Placemark><name>Punto de ejemplo 2</name><description>Carrera 5 con Calle 10</description><Point><coordinates>-75.2301,4.4412,0</coordinates></Point></Placemark>
+<Placemark><name>Punto de ejemplo 3</name><description>Calle 60 con Carrera 5</description><Point><coordinates>-75.2214,4.4501,0</coordinates></Point></Placemark>
+<Placemark><name>Punto de ejemplo 4</name><description>Avenida Ambalá</description><Point><coordinates>-75.2105,4.4287,0</coordinates></Point></Placemark>
+<Placemark><name>Tramo de ejemplo 1</name><description>Recorrido de ejemplo</description><LineString><coordinates>-75.23,4.4401,0 -75.2311,4.4408,0 -75.2322,4.4415,0 -75.233,4.4422,0 -75.2339,4.443,0</coordinates></LineString></Placemark></Document></kml>

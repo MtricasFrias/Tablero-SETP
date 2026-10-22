@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="SETP" xmlns="http://www.topografix.com/GPX/1/1">
+<wpt lat="4.4389" lon="-75.2322"><name>Punto de ejemplo 1</name><desc>Parque Murillo Toro</desc></wpt>
+<wpt lat="4.4412" lon="-75.2301"><name>Punto de ejemplo 2</name><desc>Carrera 5 con Calle 10</desc></wpt>
+<wpt lat="4.4501" lon="-75.2214"><name>Punto de ejemplo 3</name><desc>Calle 60 con Carrera 5</desc></wpt>
+<wpt lat="4.4287" lon="-75.2105"><name>Punto de ejemplo 4</name><desc>Avenida Ambalá</desc></wpt>
+<trk><name>Tramo de ejemplo 1</name><trkseg><trkpt lat="4.4401" lon="-75.23"/><trkpt lat="4.4408" lon="-75.2311"/><trkpt lat="4.4415" lon="-75.2322"/><trkpt lat="4.4422" lon="-75.233"/><trkpt lat="4.443" lon="-75.2339"/></trkseg></trk></gpx>

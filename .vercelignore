@@ -1,0 +1,5 @@
+tools
+tests
+perf-home.html
+*.log
+.claude
