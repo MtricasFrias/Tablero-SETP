@@ -64,14 +64,13 @@ a{color:var(--royal)}
 @keyframes pageIn{from{opacity:0; transform:translateY(8px)}to{opacity:1; transform:none}}
 
 /* ---------- Pie con enlaces legales ---------- */
-.foot-legal{width:100%; display:flex; gap:6px 18px; flex-wrap:wrap; justify-content:center; padding-top:16px; margin-top:6px; border-top:1px solid rgba(255,255,255,.12); font-size:12.5px}
-.foot-legal a,.foot-legal button{color:#C9D3F0; background:none; border:0; font:inherit; cursor:pointer; text-decoration:underline; text-underline-offset:3px; padding:2px 0}
-.foot-legal a:hover,.foot-legal button:hover{color:#fff}
+.foot-legal{width:100%; display:flex; gap:6px 18px; flex-wrap:wrap; justify-content:center; padding-top:16px; margin-top:6px; border-top:1px solid rgba(10,31,92,.12); font-size:12.5px}
+.foot-legal a,.foot-legal button{color:#2C3A66; background:none; border:0; font:inherit; cursor:pointer; text-decoration:underline; text-underline-offset:3px; padding:2px 0}
+.foot-legal a:hover,.foot-legal button:hover{color:var(--navy)}
 .foot-legal .sep{display:none}
 body.on-home.night .foot-legal{border-top-color:rgba(255,255,255,.14)}
-body.on-home:not(.night) .foot-legal{border-top-color:rgba(10,31,92,.12)}
-body.on-home:not(.night) .foot-legal a,body.on-home:not(.night) .foot-legal button{color:#2C3A66}
-body.on-home:not(.night) .foot-legal a:hover,body.on-home:not(.night) .foot-legal button:hover{color:var(--navy)}
+body.on-home.night .foot-legal a,body.on-home.night .foot-legal button{color:#C9D3F0}
+body.on-home.night .foot-legal a:hover,body.on-home.night .foot-legal button:hover{color:#fff}
 
 /* ---------- Aviso de cookies / almacenamiento ---------- */
 .ck{position:fixed; z-index:9000; left:16px; right:16px; bottom:16px; max-width:760px; margin:0 auto; background:#fff; color:var(--ink); border:1px solid var(--line); border-radius:18px; box-shadow:0 24px 60px rgba(10,31,92,.28); padding:18px 20px; font-size:13.5px; line-height:1.55}

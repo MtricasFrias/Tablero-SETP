@@ -3,3 +3,4 @@ tests
 perf-home.html
 *.log
 .claude
+manual

@@ -161,6 +161,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--royal);outline:3px so
 .me-tabla tr.sel{background:#fff6dd}.me-tabla.fmt th[scope=row]{background:#fff;position:static;white-space:nowrap}
 .me-pag{display:flex;gap:12px;align-items:center;justify-content:center}
 .dropzone{display:flex;flex-direction:column;align-items:center;gap:4px;padding:26px 16px;border:2.5px dashed #9fb0d8;border-radius:14px;background:#f6f8fe;text-align:center;cursor:pointer;color:var(--navy)}
+.dropzone{position:relative}.dropzone input[type=file]{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;min-height:0}.dropzone:focus-within{outline:3px solid var(--amber);outline-offset:2px}
 .dropzone.over,.dropzone:hover{background:#e8efff;border-color:var(--royal)}.dropzone b{font-size:1.1rem}
 .imp-out{margin:10px 0}.imp details{margin:12px 0;border:1px solid var(--line);border-radius:10px;padding:10px 14px}.imp summary{cursor:pointer;font-weight:700;color:var(--navy)}
 .imp-informe{list-style:none;padding:0}.imp-informe li{padding:8px 12px;border-radius:8px;margin:6px 0;background:#f1fbf4}.imp-informe li.err{background:#fdecea}

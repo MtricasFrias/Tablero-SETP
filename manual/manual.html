@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Manual de usuario — Tablero de seguimiento SETP Ibagué</title>
+<style>
+@page{size:A4;margin:16mm 15mm 18mm}
+*{box-sizing:border-box}
+body{margin:0;font:10.5pt/1.5 "Segoe UI",system-ui,Arial,sans-serif;color:#1B2540}
+h1,h2,h3{color:#0A1F5C;line-height:1.2;margin:0;break-after:avoid}
+h1{font-size:21pt;margin:0 0 4mm}
+h2{font-size:14pt;margin:7mm 0 2.5mm}
+h3{font-size:11.5pt;margin:5mm 0 1.5mm}
+p{margin:0 0 2.5mm}
+ul,ol{margin:0 0 3mm;padding-left:5.5mm}li{margin:0 0 1mm}
+.cap{break-before:page}
+.cap>h1{display:flex;align-items:center;gap:3mm;border-bottom:2.5px solid #00A830;padding-bottom:2mm}
+.cap>h1 .n{background:#0A1F5C;color:#fff;border-radius:2mm;padding:0 3mm;font-size:15pt;line-height:9mm}
+.parte{break-before:page;display:flex;flex-direction:column;justify-content:center;min-height:240mm;text-align:center}
+.parte h1{font-size:30pt;border:0;justify-content:center}.parte p{font-size:13pt;color:#4b5876}
+.portada{display:flex;flex-direction:column;justify-content:center;min-height:255mm;text-align:center;gap:3mm}
+.portada img{height:34mm;margin:0 auto 8mm}
+.portada h1{font-size:30pt;margin:0}.portada .sub{font-size:15pt;color:#0A1F5C;font-weight:600}
+.portada .meta{margin-top:14mm;color:#4b5876;font-size:10.5pt}
+.portada .franja{height:4px;width:60mm;background:linear-gradient(90deg,#0A1F5C,#00A830,#F0A800);margin:6mm auto}
+figure{margin:3mm 0 4mm;break-inside:avoid}
+figure img{width:100%;border:1px solid #cfd6e6;border-radius:2mm;display:block}
+figure.med img{width:78%;margin:0 auto}figure.peq img{width:56%;margin:0 auto}
+figcaption{font-size:8.8pt;color:#4b5876;margin-top:1.5mm;text-align:center}
+.mk{display:inline-block;width:5.2mm;height:5.2mm;line-height:5.2mm;border-radius:50%;background:#E11D48;color:#fff;font-weight:800;font-size:8.5pt;text-align:center;margin-right:1.5mm;flex:none}
+.leyenda{list-style:none;padding:0;margin:0 0 3mm}.leyenda li{display:flex;gap:1.5mm;align-items:flex-start;margin-bottom:1.3mm}
+.paso{display:flex;gap:3mm;margin:0 0 2.5mm;break-inside:avoid}
+.paso .num{flex:none;width:7mm;height:7mm;border-radius:50%;background:#0A1F5C;color:#fff;font-weight:700;text-align:center;line-height:7mm;font-size:10pt}
+.paso div{flex:1}
+.caja{border-radius:2.5mm;padding:2.5mm 4mm;margin:3mm 0;break-inside:avoid;border:1px solid}
+.caja.tip{background:#eaf7ee;border-color:#9fd6af}.caja.cuidado{background:#fff4dc;border-color:#f0cf7f}.caja.info{background:#eef2fb;border-color:#c5d1ee}
+.caja b:first-child{color:#0A1F5C}
+table{border-collapse:collapse;width:100%;font-size:9.3pt;margin:2mm 0 4mm;break-inside:auto}
+th,td{border:1px solid #cfd6e6;padding:1.6mm 2.4mm;text-align:left;vertical-align:top}th{background:#eef2fb;color:#0A1F5C}
+tr{break-inside:avoid}
+.dos{display:grid;grid-template-columns:1fr 1fr;gap:5mm;align-items:start}
+.toc{columns:2;column-gap:10mm;font-size:10.5pt}.toc div{break-inside:avoid;margin-bottom:2mm}.toc b{color:#0A1F5C}
+.toc .p{margin:7mm 0 2mm;font-weight:700;color:#00A830;text-transform:uppercase;font-size:9pt;letter-spacing:.06em;column-span:all}
+code{background:#eef2fb;padding:0 1.2mm;border-radius:1mm;font-size:.92em}
+</style>
+</head>
+<body>
+
+<!-- ============ PORTADA ============ -->
+<section class="portada">
+  <img src="../img/setp-logo-color.png" alt="TransMusical SETP">
+  <div class="sub">Sistema Estratégico de Transporte Público · Ibagué</div>
+  <h1>Manual de usuario</h1>
+  <div class="franja"></div>
+  <div class="sub">Tablero de seguimiento de proyectos</div>
+  <p>Cómo administrar el contenido, y cómo consultar y presentar el tablero</p>
+  <div class="meta">Versión 1.0 · 22 de octubre de 2026<br>Las capturas usan datos de ejemplo.</div>
+</section>
+
+<!-- ============ CONTENIDO ============ -->
+<section class="cap">
+  <h1>Contenido</h1>
+  <div class="toc">
+    <div class="p">Parte 1 · Para quien administra el tablero</div>
+    <div><b>1.</b> Lo esencial en un minuto</div>
+    <div><b>2.</b> Entrar al panel</div>
+    <div><b>3.</b> La pantalla de inicio</div>
+    <div><b>4.</b> Mostrar u ocultar un proyecto</div>
+    <div><b>5.</b> Agregar un proyecto nuevo</div>
+    <div><b>6.</b> Editar un proyecto</div>
+    <div><b>7.</b> Subir puntos y tramos al mapa</div>
+    <div><b>8.</b> Fotos y derechos de autor</div>
+    <div><b>9.</b> Publicar y volver atrás</div>
+    <div><b>10.</b> Seguridad y problemas frecuentes</div>
+    <div class="p">Parte 2 · Para quien consulta o presenta el tablero</div>
+    <div><b>11.</b> Cómo acceder</div>
+    <div><b>12.</b> La portada: paraderos, semáforos y vías</div>
+    <div><b>13.</b> Dentro de un proyecto</div>
+    <div><b>14.</b> En el celular, accesibilidad y privacidad</div>
+    <div><b>15.</b> Guion para una presentación de 10 minutos</div>
+    <div class="p">Anexos</div>
+    <div><b>A.</b> Archivos que acepta el mapa</div>
+    <div><b>B.</b> Glosario</div>
+    <div><b>C.</b> Contacto y documentos legales</div>
+  </div>
+  <h2>Cómo leer este manual</h2>
+  <ul>
+    <li>Cada capítulo es corto y se puede leer por separado.</li>
+    <li>En las capturas, los círculos rojos <span class="mk">1</span> señalan lo que se explica en la lista de al lado.</li>
+    <li>Los recuadros verdes son consejos; los amarillos, cosas que cuidar.</li>
+    <li>Todo lo que aparece es de <b>ejemplo</b>: un «Proyecto de ejemplo» creado solo para el manual.</li>
+  </ul>
+</section>
+
+<section class="parte"><h1>Parte 1</h1><p>Para quien administra el tablero<br>(editar, agregar y publicar información)</p></section>
+
+<!-- ============ 1 ============ -->
+<section class="cap">
+  <h1><span class="n">1</span> Lo esencial en un minuto</h1>
+  <p>Existen <b>dos páginas</b> distintas. Lo que cambies en el panel no se ve en el sitio público hasta que lo publiques.</p>
+  <table>
+    <tr><th style="width:30%">Página</th><th>Para qué sirve</th><th style="width:28%">Quién entra</th></tr>
+    <tr><td><b>Sitio público</b><br><code>tablero-setp.vercel.app</code></td><td>Lo que ve la ciudadanía: proyectos, avance, mapas, recursos y documentos.</td><td>Cualquier persona, sin registro.</td></tr>
+    <tr><td><b>Panel de administración</b><br><code>…/admin/</code></td><td>Donde se edita, se agrega y se publica la información. No está enlazado desde el sitio público.</td><td>Solo personal autorizado, con usuario y contraseña.</td></tr>
+  </table>
+  <h3>Tres pasos para cualquier cambio</h3>
+  <div class="paso"><span class="num">1</span><div><b>Edita.</b> Todo se guarda solo, como <b>borrador</b>. Nadie más lo ve.</div></div>
+  <div class="paso"><span class="num">2</span><div><b>Revisa.</b> En el editor, el panel de la derecha muestra cómo queda la página tal como la verá el público.</div></div>
+  <div class="paso"><span class="num">3</span><div><b>Publica.</b> Con el botón <b>«Publicar cambios»</b>, el público ve la nueva versión. Si algo sale mal, se puede volver a una versión anterior.</div></div>
+  <div class="caja info"><b>Una excepción.</b> El interruptor <b>«Visible / Oculto»</b> de cada proyecto actúa <b>al instante</b>, sin publicar. Sirve para quitar de la vista pública un proyecto con información dudosa.</div>
+  <h3>Palabras que verás</h3>
+  <table>
+    <tr><th style="width:22%">Palabra</th><th>Qué significa</th></tr>
+    <tr><td>Borrador</td><td>La versión que estás editando. Se guarda sola.</td></tr>
+    <tr><td>Publicar</td><td>Enviar el borrador al sitio público.</td></tr>
+    <tr><td>Sección</td><td>Un bloque de la página de un proyecto: cifras, mapa, fotos, documentos…</td></tr>
+    <tr><td>Capa, punto y tramo</td><td>En un mapa: un <b>punto</b> es un lugar (paradero, semáforo); un <b>tramo</b> es un recorrido de vía; una <b>capa</b> agrupa varios de lo mismo.</td></tr>
+    <tr><td>Versión</td><td>Una copia de lo que se publicó en un momento. Se guardan las últimas 15.</td></tr>
+  </table>
+</section>
+
+<!-- ============ 2 ============ -->
+<section class="cap">
+  <h1><span class="n">2</span> Entrar al panel</h1>
+  <div class="dos">
+    <div>
+      <div class="paso"><span class="num">1</span><div>Abre la dirección del sitio y agrega <code>/admin/</code> al final.</div></div>
+      <div class="paso"><span class="num">2</span><div>Escribe el <b>usuario</b> y la <b>contraseña</b> que te entregó quien administra el proyecto en Vercel.</div></div>
+      <div class="paso"><span class="num">3</span><div>Marca las <b>dos casillas</b>, cada una por separado: Términos y Condiciones, y Política de Privacidad. Cada una tiene su enlace para leerla.</div></div>
+      <div class="paso"><span class="num">4</span><div>Pulsa <b>Ingresar</b>.</div></div>
+    </div>
+    <figure><img src="capturas/a01-ingreso.jpg" alt=""><figcaption>Pantalla de ingreso.</figcaption></figure>
+  </div>
+  <div class="caja cuidado"><b>Primer ingreso:</b> cambia la contraseña inicial. Arriba a la derecha, <b>«Cambiar contraseña»</b>: mínimo 10 caracteres con mayúscula, minúscula y número. Al cambiarla se cierran las demás sesiones.</div>
+  <figure class="peq"><img src="capturas/a20-cambiar-clave.jpg" alt=""><figcaption>Ventana para cambiar la contraseña.</figcaption></figure>
+  <ul>
+    <li>La sesión dura <b>8 horas</b>. Si termina mientras trabajas, el panel te pide ingresar de nuevo y tus cambios no se pierden.</li>
+    <li>Tras 8 intentos fallidos, el acceso se bloquea 15 minutos.</li>
+    <li>Cuando termines, pulsa <b>«Salir»</b>, sobre todo en computadores compartidos.</li>
+    <li>Si olvidas la contraseña, quien administra Vercel puede definir una nueva (variables <code>ADMIN_USER</code> y <code>ADMIN_PASSWORD</code>).</li>
+  </ul>
+</section>
+
+<!-- ============ 3 ============ -->
+<section class="cap">
+  <h1><span class="n">3</span> La pantalla de inicio</h1>
+  <figure><img src="capturas/a02-inicio.jpg" alt=""><figcaption>Inicio del panel: «¿Qué quieres hacer?».</figcaption></figure>
+  <ul class="leyenda">
+    <li><span class="mk">1</span><div><b>Menú superior.</b> Inicio · Proyectos · Agregar proyecto · Versiones · Ayuda. Siempre visible.</div></li>
+    <li><span class="mk">2</span><div><b>Barra de estado.</b> Dice si tus cambios están guardados y si hay cosas que el público aún no ve. Desde aquí se abre <b>«Publicar cambios»</b>.</div></li>
+    <li><span class="mk">3</span><div><b>Seis opciones grandes</b> con las tareas más comunes: actualizar, agregar, mostrar u ocultar, publicar, versiones y ayuda.</div></li>
+  </ul>
+  <div class="caja tip"><b>Consejo.</b> El panel se guarda solo. El mensaje <b>«✔ Guardado»</b> confirma que tu último cambio ya quedó en el borrador.</div>
+</section>
+
+<!-- ============ 4 ============ -->
+<section class="cap">
+  <h1><span class="n">4</span> Mostrar u ocultar un proyecto</h1>
+  <p>Úsalo cuando un proyecto tenga información incorrecta o incompleta que aún no debe verse.</p>
+  <figure><img src="capturas/a03-proyectos.jpg" alt=""><figcaption>Lista de proyectos, agrupados por tipo.</figcaption></figure>
+  <ul class="leyenda">
+    <li><span class="mk">1</span><div><b>Interruptor.</b> Verde = visible para el público; gris = oculto. El cambio es inmediato.</div></li>
+    <li><span class="mk">2</span><div><b>Editar:</b> abre el proyecto.</div></li>
+    <li><span class="mk">3</span><div><b>Ver:</b> abre el sitio con el borrador, en otra pestaña.</div></li>
+    <li><span class="mk">4</span><div><b>Agregar un proyecto nuevo</b> (capítulo 5).</div></li>
+  </ul>
+  <div class="paso"><span class="num">1</span><div>Busca el proyecto y pulsa su interruptor.</div></div>
+  <div class="paso"><span class="num">2</span><div>Si lo vas a <b>mostrar</b>, el panel te pide confirmar que la información es correcta.</div></div>
+  <div class="paso"><span class="num">3</span><div>Listo: el público lo ve (o deja de verlo) de inmediato.</div></div>
+  <div class="caja info">Las etiquetas amarillas <b>«Cambios sin publicar»</b> o <b>«Nuevo, sin publicar»</b> indican proyectos con trabajo pendiente de publicar. Un proyecto nuevo nace <b>oculto</b>.</div>
+</section>
+
+<!-- ============ 5 ============ -->
+<section class="cap">
+  <h1><span class="n">5</span> Agregar un proyecto nuevo</h1>
+  <p>Un asistente de <b>3 pasos</b> hace las preguntas. No necesitas tener todo: lo que falte se agrega después.</p>
+  <h3>Paso 1 · ¿Qué proyecto es?</h3>
+  <div class="dos">
+    <ul class="leyenda">
+      <li><span class="mk">1</span><div><b>Nombre</b> (obligatorio) y <b>fase</b> (opcional). Ej.: «Carrera Quinta» y «Fase II».</div></li>
+      <li><span class="mk">2</span><div><b>Tipo:</b> Vías, Semáforos o Paraderos. Define dónde aparece en la portada.</div></li>
+      <li><span class="mk">3</span><div><b>Siguiente.</b></div></li>
+    </ul>
+    <figure><img src="capturas/a04-nuevo-paso1.jpg" alt=""></figure>
+  </div>
+  <h3>Paso 2 · ¿Qué información tienes hoy? (la «lista de compras»)</h3>
+  <p>Marca las casillas de lo que ya tienes. Cada una trae la pregunta y <b>lo que vas a necesitar</b> (documentos, de dónde sacarlo).</p>
+  <figure class="med"><img src="capturas/a05-nuevo-paso2.jpg" alt=""><figcaption><span class="mk">1</span>Cada tarjeta es una sección posible · <span class="mk">2</span>marcada = se creará.</figcaption></figure>
+</section>
+<section>
+  <h3>Paso 3 · Revisa y crea</h3>
+  <div class="dos">
+    <div>
+      <p>Verás un resumen. Pulsa <b>«Crear proyecto y empezar a llenarlo»</b>. El panel abre el editor del proyecto.</p>
+      <div class="caja cuidado"><b>Ojo:</b> el proyecto se crea <b>oculto</b>. Llena la información, revísala en la vista previa y, cuando esté lista, actívalo con el interruptor y publica.</div>
+    </div>
+    <figure><img src="capturas/a06-nuevo-paso3.jpg" alt=""></figure>
+  </div>
+</section>
+
+<!-- ============ 6 ============ -->
+<section class="cap">
+  <h1><span class="n">6</span> Editar un proyecto</h1>
+  <figure><img src="capturas/a07-editor.jpg" alt=""><figcaption>Editor: formularios a la izquierda y vista previa a la derecha.</figcaption></figure>
+  <ul class="leyenda">
+    <li><span class="mk">1</span><div><b>Interruptor</b> de visible/oculto y botón para abrir el borrador en el sitio.</div></li>
+    <li><span class="mk">2</span><div><b>Formularios</b> en tres bloques: <b>1 · Datos</b> del proyecto, <b>2 · Portada</b> (título, descripción, cifras y círculos de avance) y <b>3 · Secciones</b>.</div></li>
+    <li><span class="mk">3</span><div><b>Vista previa</b> en vivo: se actualiza al escribir. En pantallas pequeñas se abre con «👁 Ver cómo queda».</div></li>
+  </ul>
+  <h3>Cómo se llena una sección</h3>
+  <figure><img src="capturas/a08-seccion-abierta.jpg" alt=""><figcaption>Sección abierta («Recursos financieros»).</figcaption></figure>
+  <ul class="leyenda">
+    <li><span class="mk">1</span><div><b>«¿Qué es esta sección y qué necesito?»</b>: explica para qué sirve, qué datos pide y un ejemplo.</div></li>
+    <li><span class="mk">2</span><div>Campos con ejemplo en gris («Ej.: 78.020»). El asterisco rojo * es obligatorio.</div></li>
+    <li><span class="mk">3</span><div><b>＋ Agregar</b> suma otro elemento a la lista; con ▲ ▼ se reordenan y con 🗑 se quitan.</div></li>
+  </ul>
+</section>
+<section>
+  <h3>Agregar más secciones</h3>
+  <p>Al final, <b>«＋ Agregar una sección»</b> abre la lista de compras: arriba, secciones sugeridas ya preparadas; abajo, tipos en blanco.</p>
+  <figure class="med"><img src="capturas/a09-agregar-seccion.jpg" alt=""><figcaption>Ventana «Agregar una sección».</figcaption></figure>
+  <table>
+    <tr><th style="width:24%">Tipo de sección</th><th>Úsala para…</th></tr>
+    <tr><td>🔢 Cifras destacadas</td><td>Tarjetas con un número grande (cantidades, valores).</td></tr>
+    <tr><td>📊 Avance por componentes</td><td>Barras de avance de 0 a 100 %.</td></tr>
+    <tr><td>📄 Tabla de datos</td><td>Contrato, garantías, forma de pago.</td></tr>
+    <tr><td>🗺️ Mapa</td><td>Puntos (paraderos, semáforos) o tramos de vía.</td></tr>
+    <tr><td>🥧 Gráfico de distribución</td><td>Porcentajes del presupuesto.</td></tr>
+    <tr><td>📅 Cronograma</td><td>Fases y plazos con fechas.</td></tr>
+    <tr><td>👥 Cifras sociales</td><td>Empleo local, mujeres, jóvenes, con ilustración o foto.</td></tr>
+    <tr><td>📝 Texto con foto</td><td>Importancia del proyecto o contexto.</td></tr>
+    <tr><td>🗂️ Lista de tarjetas</td><td>Ítems especiales, programas, hitos.</td></tr>
+    <tr><td>⭐ Recuadro destacado</td><td>Un logro o innovación.</td></tr>
+    <tr><td>🖼️ Galería de fotos</td><td>Registro fotográfico.</td></tr>
+    <tr><td>🔗 Documentos y enlaces</td><td>Actas, contratos y SECOP II (enlaces <code>https://</code>).</td></tr>
+  </table>
+</section>
+
+<!-- ============ 7 ============ -->
+<section class="cap">
+  <h1><span class="n">7</span> Subir puntos y tramos al mapa</h1>
+  <p>Hay <b>cuatro maneras</b>; usa la que te quede más cómoda. Se pueden combinar en el mismo mapa.</p>
+  <table>
+    <tr><th style="width:27%">Manera</th><th>Cuándo conviene</th></tr>
+    <tr><td>📍 Clic en el mapa</td><td>Pocos puntos, o ajustar uno.</td></tr>
+    <tr><td>✏️ Dibujar un tramo</td><td>Marcar un recorrido de vía a mano.</td></tr>
+    <tr><td>📂 Subir archivos</td><td>Muchos puntos o tramos (Excel, KMZ, GPX, Shapefile, CSV…).</td></tr>
+    <tr><td>📋 Pegar coordenadas</td><td>Tienes unas pocas coordenadas en un correo o documento.</td></tr>
+  </table>
+  <h3>7.1 Un punto con clic</h3>
+  <figure><img src="capturas/a11-mapa-punto.jpg" alt=""><figcaption>Punto agregado y su recuadro de edición.</figcaption></figure>
+  <ul class="leyenda">
+    <li><span class="mk">1</span><div>Pulsa <b>«📍 Agregar un punto»</b> y haz clic en el mapa, en el lugar exacto. Puedes acercarte con la rueda del ratón o los botones ＋ −.</div></li>
+    <li><span class="mk">2</span><div>Abajo aparece el <b>«Punto seleccionado»</b>: escribe el nombre y, si quieres, un detalle. Con <b>Mover en el mapa</b> lo reubicas y con <b>Eliminar</b> lo borras.</div></li>
+  </ul>
+  <div class="caja tip"><b>Consejo.</b> Cambia a <b>«🛣️ Ver calles»</b> cuando necesites ubicar una esquina; vuelve a satélite con el mismo botón.</div>
+</section>
+<section>
+  <h3>7.2 Un tramo dibujando</h3>
+  <p>En una capa de <b>tramos</b>: pulsa <b>«✏️ Dibujar un tramo»</b>, haz clic punto por punto siguiendo la vía y termina con <b>«✔ Terminar tramo»</b> (o doble clic). Escribe el nombre y elige el <b>estado</b>: <i>ejecutado</i> (verde), <i>en curso</i> (azul) o <i>pendiente</i> (gris). Si te equivocas, <b>«Deshacer último punto»</b>.</p>
+  <h3>7.3 Subir archivos (Excel, KMZ, GPX, Shapefile, CSV…)</h3>
+  <p>No hace falta convertir nada: el panel reconoce el formato <b>solo</b>. Pulsa <b>«📂 Subir archivos»</b> y arrastra uno o <b>varios</b> a la vez.</p>
+  <figure><img src="capturas/a12-importar.jpg" alt=""><figcaption><span class="mk">1</span>Zona para arrastrar · <span class="mk">2</span>tabla de formatos aceptados y cómo preparar cada uno.</figcaption></figure>
+  <p>Antes de agregar, el panel muestra lo que encontró y deja elegir si va a una capa existente o a una nueva:</p>
+  <figure class="med"><img src="capturas/a13-importar-resultado.jpg" alt=""><figcaption>Resultado de leer dos archivos de Excel: 4 puntos y 2 tramos.</figcaption></figure>
+</section>
+<section>
+  <figure><img src="capturas/a14-mapa-importado.jpg" alt=""><figcaption>Mapa después de importar: capas, tramos en colores por estado y lista editable.</figcaption></figure>
+  <h3>Lo que el panel hace por ti</h3>
+  <ul>
+    <li><b>Convierte coordenadas:</b> si vienen en metros (MAGNA-SIRGAS Bogotá, Oeste, Este Central, Origen Nacional/CTM12 o UTM 18N) las pasa a grados solas y te avisa.</li>
+    <li><b>Corrige</b> latitud y longitud invertidas, comas decimales (4,4389) y grados-minutos-segundos.</li>
+    <li><b>Simplifica</b> trazos con miles de vértices sin cambiar su forma, para que la página cargue rápido.</li>
+    <li><b>Avisa</b> si hay elementos fuera de Ibagué y si un archivo no se pudo leer (sin frenar a los demás).</li>
+  </ul>
+  <h3>Cómo armar tu tabla en Excel o CSV</h3>
+  <table>
+    <tr><th>Para PUNTOS: columnas</th><td><code>nombre</code> · <code>detalle</code> · <code>lat</code> · <code>lon</code> (solo <code>lat</code> y <code>lon</code> son obligatorias; el orden no importa).</td></tr>
+    <tr><th>Para TRAMOS: columnas</th><td><code>tramo</code> · <code>orden</code> · <code>lat</code> · <code>lon</code> · <code>estado</code>. Una fila por vértice: las filas con el mismo <code>tramo</code> forman una línea, en el orden de <code>orden</code>.</td></tr>
+  </table>
+  <div class="caja tip"><b>Ayuda lista.</b> En la misma ventana hay <b>plantillas descargables</b> y <b>archivos de ejemplo</b> de cada formato (Excel, LibreOffice, CSV, KMZ, KML, GPX, GeoJSON) para usarlos de molde.</div>
+  <h3>7.4 Pegar coordenadas</h3>
+  <p><b>«📋 Pegar coordenadas»</b> acepta, una por línea: <code>Nombre; lat; lon</code>, o solo <code>4.4389, -75.2322</code> (como las copia Google Maps), grados-minutos-segundos (<code>4°26'20"N 75°13'56"W</code>), WKT de QGIS (<code>POINT(-75.23 4.44)</code>) o el contenido completo de un archivo GeoJSON, KML, GPX o CSV.</p>
+  <div class="caja cuidado"><b>Límites:</b> una capa admite hasta 5.000 puntos o tramos, y un mapa hasta 8 capas. Para ubicaciones masivas (como los 1.063 paraderos) usa un archivo, no clics.</div>
+</section>
+
+<!-- ============ 8 ============ -->
+<section class="cap">
+  <h1><span class="n">8</span> Fotos y derechos de autor</h1>
+  <p>El sitio es público: cada foto debe poder publicarse. El panel lo hace obligatorio.</p>
+  <figure class="peq"><img src="capturas/a15-fotos.jpg" alt=""><figcaption>Una foto subida y los datos que se piden.</figcaption></figure>
+  <ul class="leyenda">
+    <li><span class="mk">1</span><div><b>Subir foto</b> (JPG, PNG o WEBP). Se reduce sola (máx. 1.600 px) y se le borran los datos de ubicación de la cámara. En la galería se pueden elegir varias a la vez.</div></li>
+    <li><span class="mk">2</span><div><b>Confirmación de permiso:</b> sin esta casilla, más descripción, autor y licencia, el panel <b>no deja publicar</b>.</div></li>
+  </ul>
+  <h3>Qué poner en cada campo</h3>
+  <table>
+    <tr><th style="width:25%">Campo</th><th>Qué escribir</th></tr>
+    <tr><td>Qué se ve en la foto</td><td>Una frase corta, para personas que usan lector de pantalla.</td></tr>
+    <tr><td>Autor o fuente</td><td>Quién la tomó. Ej.: «Registro fotográfico del SETP Ibagué».</td></tr>
+    <tr><td>Licencia o permiso</td><td>Ej.: «Foto propia del SETP», «Autorizada por su autor», «CC BY 4.0», «CC BY-SA 4.0», «CC0 / dominio público».</td></tr>
+    <tr><td>Enlace a la fuente</td><td>Si viene de Wikimedia Commons u otro sitio, la dirección de la ficha de la foto.</td></tr>
+  </table>
+  <div class="caja cuidado"><b>No publiques:</b> fotos bajadas de internet sin licencia libre; imágenes generadas con inteligencia artificial presentadas como fotos reales de la obra; ni personas que se puedan identificar sin su autorización por escrito (Ley 1581 de 2012). Si hay una persona en la foto, recórtala o difumínala.</div>
+  <div class="caja tip">Para ilustrar sin fotos, el tablero ya incluye <b>ilustraciones propias</b> (sin derechos de terceros) en el componente social.</div>
+</section>
+
+<!-- ============ 9 ============ -->
+<section class="cap">
+  <h1><span class="n">9</span> Publicar y volver atrás</h1>
+  <h3>Publicar</h3>
+  <div class="paso"><span class="num">1</span><div>Pulsa <b>«🚀 Publicar cambios»</b>, arriba (siempre visible).</div></div>
+  <div class="paso"><span class="num">2</span><div>Revisa <b>qué va a cambiar</b>: lista de proyectos nuevos, modificados o quitados.</div></div>
+  <div class="paso"><span class="num">3</span><div>Si hace falta, corrige lo que el panel marque. Escribe una nota opcional y pulsa <b>«Publicar ahora»</b>.</div></div>
+  <figure class="med"><img src="capturas/a16-publicar.jpg" alt=""><figcaption><span class="mk">1</span>Qué cambia · <span class="mk">2</span>nota para el historial · <span class="mk">3</span>publicar.</figcaption></figure>
+  <div class="caja info">El panel <b>bloquea</b> la publicación si un proyecto visible tiene fotos sin permiso confirmado, y <b>avisa</b> de campos obligatorios vacíos (lo incompleto no se muestra). El sitio público puede tardar hasta un minuto en actualizarse.</div>
+  <h3>Versiones y respaldo</h3>
+  <figure class="med"><img src="capturas/a17-versiones.jpg" alt=""><figcaption>Cada publicación queda guardada (las últimas 15).</figcaption></figure>
+  <ul>
+    <li><b>Cargar en el borrador:</b> recupera una versión anterior; luego revisa y publica si todo está bien.</li>
+    <li><b>Descargar respaldo (JSON):</b> copia de todo el contenido, para guardarla.</li>
+    <li><b>Descartar cambios sin publicar:</b> el borrador vuelve a lo que ve el público.</li>
+  </ul>
+</section>
+
+<!-- ============ 10 ============ -->
+<section class="cap">
+  <h1><span class="n">10</span> Seguridad y problemas frecuentes</h1>
+  <h3>Buenas prácticas</h3>
+  <ul>
+    <li>La contraseña es personal: no la compartas ni la pegues en chats o correos.</li>
+    <li>No subas datos personales de la ciudadanía (nombres, cédulas, teléfonos, rostros).</li>
+    <li>Publica solo información verificada; ante la duda, <b>oculta</b> el proyecto.</li>
+    <li>Cierra sesión en computadores compartidos.</li>
+    <li>El sistema registra qué usuario publicó cada cambio y cuándo.</li>
+  </ul>
+  <h3>Si algo no sale bien</h3>
+  <table>
+    <tr><th style="width:34%">Qué pasa</th><th>Qué hacer</th></tr>
+    <tr><td>«Alguien más guardó cambios»</td><td>Dos personas editaron a la vez. Pulsa «Recargar el panel» y repite tu cambio.</td></tr>
+    <tr><td>«Tu sesión terminó»</td><td>Ingresa de nuevo; lo que escribiste sigue en pantalla y se guarda al volver.</td></tr>
+    <tr><td>No me deja publicar</td><td>Lee el recuadro rojo «Antes de publicar corrige»: suele ser una foto sin permiso confirmado.</td></tr>
+    <tr><td>Un archivo del mapa no se lee</td><td>Mira el mensaje: dice qué falta (columnas «lat» y «lon», formato no soportado…). Prueba con la plantilla o un archivo de ejemplo.</td></tr>
+    <tr><td>Los puntos salen en otro lugar</td><td>Revisa que latitud y longitud no estén al revés y que el archivo sea de Ibagué; el panel avisa cuando quedan fuera.</td></tr>
+    <tr><td>Borré algo por error</td><td>Versiones → «Cargar en el borrador» una versión anterior. Si no se había publicado, usa Ctrl+Z en el campo o vuelve a escribirlo.</td></tr>
+    <tr><td>Aparece «Falta terminar la instalación»</td><td>Falta conectar el almacenamiento o definir usuario y contraseña en Vercel. Lo hace quien administra el proyecto.</td></tr>
+  </table>
+  <p class="muted">La ayuda rápida también está en el panel, en el menú <b>Ayuda</b>.</p>
+  <figure class="med"><img src="capturas/a19-ayuda.jpg" alt=""><figcaption>Sección «Ayuda y guía rápida» del panel.</figcaption></figure>
+</section>
+
+<section class="parte"><h1>Parte 2</h1><p>Para quien consulta o presenta el tablero<br>(cómo acceder y cómo se ve todo)</p></section>
+
+<!-- ============ 11 ============ -->
+<section class="cap">
+  <h1><span class="n">11</span> Cómo acceder</h1>
+  <div class="paso"><span class="num">1</span><div>Abre en el navegador la dirección del tablero: <b><code>https://tablero-setp.vercel.app</code></b> (o la que el SETP defina, por ejemplo un enlace desde <b>transmusical.gov.co</b>).</div></div>
+  <div class="paso"><span class="num">2</span><div>No hay registro ni contraseña: <b>es público</b>. Funciona en computador, tableta y celular.</div></div>
+  <div class="paso"><span class="num">3</span><div>La primera vez aparece un aviso de privacidad y cookies. Pulsa <b>«Entendido»</b>; puedes revisarlo luego en «Preferencias de cookies», al final de la página.</div></div>
+  <figure><img src="capturas/p01-portada-aviso-cookies.jpg" alt=""><figcaption>Primera visita: portada con el aviso de privacidad.</figcaption></figure>
+  <div class="caja tip"><b>Navegadores:</b> Chrome, Edge, Firefox o Safari actualizados. Se recomienda conexión a internet (los mapas se descargan al verlos).</div>
+  <div class="caja info"><b>Para compartir un proyecto:</b> abre el proyecto y copia la dirección del navegador; termina en <code>#/p/nombre-del-proyecto</code> y lleva directo a esa página.</div>
+</section>
+
+<!-- ============ 12 ============ -->
+<section class="cap">
+  <h1><span class="n">12</span> La portada: paraderos, semáforos y vías</h1>
+  <figure><img src="capturas/p02-portada.jpg" alt=""><figcaption>Portada animada: una calle de Ibagué con los tres tipos de proyecto.</figcaption></figure>
+  <ul>
+    <li><b>Toca</b> el paradero, el semáforo o la vía: la cámara se acerca y se abre la lista de proyectos de ese tipo. Cada etiqueta indica cuántos proyectos hay.</li>
+    <li>El interruptor ☀️ / 🌙 (arriba a la derecha) cambia entre <b>día y noche</b>; el sitio recuerda tu elección.</li>
+    <li>Abajo, <b>«Ir a»</b> salta directo a Vías, Semáforos o Paraderos.</li>
+    <li>La barra superior permite pasar de un proyecto a otro y volver a <b>Inicio</b> en cualquier momento.</li>
+  </ul>
+</section>
+
+<!-- ============ 13 ============ -->
+<section class="cap">
+  <h1><span class="n">13</span> Dentro de un proyecto</h1>
+  <figure><img src="capturas/p03-proyecto-inicio.jpg" alt=""><figcaption>Carátula del proyecto: estado, datos clave, valor y círculos de avance.</figcaption></figure>
+  <ul class="leyenda">
+    <li><span class="mk" style="background:#0A1F5C">•</span><div><b>Etiquetas</b> sobre el título: contrato, estado de la obra.</div></li>
+    <li><span class="mk" style="background:#0A1F5C">•</span><div><b>Datos clave</b>: longitud, fechas, ejecución financiera.</div></li>
+    <li><span class="mk" style="background:#0A1F5C">•</span><div><b>Círculos de avance</b>: EyD (estudios y diseños), Físico y Financiero. <b>Verde</b> = ejecutado; <b>gris</b> = pendiente.</div></li>
+  </ul>
+  <p>Más abajo, el proyecto se organiza en secciones. Estas son las que más se consultan:</p>
+</section>
+<section>
+  <figure class="med"><img src="capturas/p04-proyecto-mapa.jpg" alt=""><figcaption>Mapa: toca un tramo o punto para ver su nombre y estado.</figcaption></figure>
+  <figure class="med"><img src="capturas/p05-proyecto-recursos.jpg" alt=""><figcaption>Recursos: cifras y valores del contrato.</figcaption></figure>
+  <figure class="med"><img src="capturas/p06-proyecto-cronograma.jpg" alt=""><figcaption>Cronograma: plazos, prórrogas y su estado.</figcaption></figure>
+  <table>
+    <tr><th style="width:26%">Sección</th><th>Cómo leerla</th></tr>
+    <tr><td>Mapa</td><td>Capas con casillas para prenderlas o apagarlas. Tramos: verde ejecutado, azul en curso, gris pendiente. Ventana con nombre al tocar.</td></tr>
+    <tr><td>Avance por componente</td><td>Barras de 0 a 100 %: cuánto va de cada componente de la obra.</td></tr>
+    <tr><td>Recursos financieros</td><td>Valor del contrato de obra, de interventoría y del proyecto, en millones de pesos.</td></tr>
+    <tr><td>Cronograma</td><td>Barras en el tiempo: plazo inicial, prórrogas y fecha estimada de terminación.</td></tr>
+    <tr><td>Componente social</td><td>Compromisos de vinculación de personal local, mujeres, jóvenes y población protegida.</td></tr>
+    <tr><td>Documentos</td><td>Enlaces a contratos y actas en el SECOP II y otras fuentes oficiales.</td></tr>
+  </table>
+  <div class="caja info">Las cifras son informativas y se actualizan cuando el SETP publica una nueva versión; en caso de diferencia, prevalecen los documentos oficiales.</div>
+</section>
+
+<!-- ============ 14 ============ -->
+<section class="cap">
+  <h1><span class="n">14</span> En el celular, accesibilidad y privacidad</h1>
+  <div class="dos">
+    <div>
+      <h3>En el celular</h3>
+      <p>El tablero se adapta a pantallas pequeñas: las secciones se apilan y los mapas se manejan con los dedos (pellizcar para acercar, arrastrar para mover). Es ideal para consultarlo en campo o compartir el enlace por mensaje.</p>
+      <h3>Accesibilidad</h3>
+      <ul>
+        <li>Se puede recorrer solo con teclado (Tab, Enter) y tiene enlace «Saltar al contenido».</li>
+        <li>Las fotos e ilustraciones tienen descripción para lectores de pantalla.</li>
+        <li>Respeta la opción «reducir movimiento» del sistema.</li>
+      </ul>
+    </div>
+    <figure class="peq"><img src="capturas/p08-celular.jpg" alt=""><figcaption>Vista en celular.</figcaption></figure>
+  </div>
+  <h3>Privacidad y cookies</h3>
+  <ul>
+    <li>El sitio <b>no pide datos</b> a quien lo visita: no hay formularios ni cuentas.</li>
+    <li><b>No usa</b> cookies de publicidad, seguimiento ni analítica. Solo recuerda en tu navegador el modo día/noche y tu decisión sobre el aviso.</li>
+    <li>Las imágenes satelitales las entrega un tercero (Esri), que recibe tu dirección IP.</li>
+    <li>Al pie de la página están los enlaces a <b>Términos y condiciones</b>, <b>Política de privacidad</b> y <b>Política de cookies</b>.</li>
+  </ul>
+  <figure><img src="capturas/p07-pie-legal.jpg" alt=""><figcaption>Pie de página con los enlaces legales y «Preferencias de cookies».</figcaption></figure>
+</section>
+
+<!-- ============ 15 ============ -->
+<section class="cap">
+  <h1><span class="n">15</span> Guion para una presentación de 10 minutos</h1>
+  <p>Una propuesta para explicar el tablero a directivos, concejales o la comunidad.</p>
+  <table>
+    <tr><th style="width:12%">Minutos</th><th style="width:26%">Qué mostrar</th><th>Qué decir</th></tr>
+    <tr><td>0–1</td><td>Portada (capítulo 12)</td><td>«Este es el tablero público de seguimiento de los proyectos del SETP. Cualquier persona lo consulta sin registrarse.»</td></tr>
+    <tr><td>1–2</td><td>Tocar un tipo (vías, semáforos o paraderos)</td><td>«Los proyectos se agrupan en tres tipos y cada uno tiene su página.»</td></tr>
+    <tr><td>2–4</td><td>Carátula de un proyecto</td><td>Explicar etiquetas, datos clave y los tres círculos de avance (EyD, Físico, Financiero).</td></tr>
+    <tr><td>4–6</td><td>Mapa del proyecto</td><td>Mostrar tramos o puntos; tocar uno; apagar y prender capas.</td></tr>
+    <tr><td>6–7</td><td>Recursos y cronograma</td><td>Valor del contrato, ejecución y plazos.</td></tr>
+    <tr><td>7–8</td><td>Componente social y documentos</td><td>Empleo local y enlaces al SECOP II para verificar las fuentes.</td></tr>
+    <tr><td>8–9</td><td>Celular</td><td>Abrir el enlace en un teléfono para mostrar que funciona en campo.</td></tr>
+    <tr><td>9–10</td><td>Cierre</td><td>La información la actualiza el propio SETP, se publica solo tras revisión y se puede ocultar un proyecto mientras se verifica un dato.</td></tr>
+  </table>
+  <h3>Consejos para presentar</h3>
+  <ul>
+    <li>Pantalla completa con <b>F11</b>; acerca o aleja con <b>Ctrl +</b> / <b>Ctrl −</b>.</li>
+    <li>En salas oscuras, usa el <b>modo noche</b> de la portada.</li>
+    <li>Abre los proyectos que vas a mostrar antes de empezar, para que los mapas ya estén cargados.</li>
+    <li>Para ensayar con cambios que aún no están publicados, quien administra puede abrir el sitio con <code>?vista=borrador</code> (requiere haber iniciado sesión en el panel).</li>
+  </ul>
+  <figure class="med"><img src="capturas/p09-vista-borrador.jpg" alt=""><figcaption>Vista del borrador: el sitio público con una barra que recuerda que es una vista previa.</figcaption></figure>
+</section>
+
+<!-- ============ ANEXOS ============ -->
+<section class="cap">
+  <h1><span class="n">A</span> Archivos que acepta el mapa</h1>
+  <table>
+    <tr><th style="width:21%">Formato</th><th style="width:21%">De dónde sale</th><th>Notas</th></tr>
+    <tr><td><b>KMZ · KML</b></td><td>Google Earth, Google My Maps, QGIS</td><td>Puntos y recorridos. En Google Earth: «Guardar lugar como…» → KMZ.</td></tr>
+    <tr><td><b>GPX</b></td><td>GPS de mano y aplicaciones</td><td>Puntos (waypoints), rutas y trazas.</td></tr>
+    <tr><td><b>GeoJSON · JSON</b></td><td>QGIS, ArcGIS, geojson.io</td><td>También una lista de objetos con <code>lat</code> y <code>lon</code>.</td></tr>
+    <tr><td><b>Shapefile</b></td><td>ArcGIS, QGIS, IGAC</td><td>Un <code>.zip</code> con todos sus archivos, o el <code>.shp</code> junto al <code>.dbf</code>. Toma los nombres de la tabla de atributos.</td></tr>
+    <tr><td><b>Excel</b> (.xlsx, .xlsm) · <b>LibreOffice</b> (.ods)</td><td>Tu propia tabla</td><td>Columnas <code>nombre</code>, <code>lat</code>, <code>lon</code> (y <code>tramo</code>, <code>orden</code>, <code>estado</code> para recorridos). Se lee la primera hoja con datos.</td></tr>
+    <tr><td><b>CSV · TXT · TSV</b></td><td>Excel guardado como CSV, bloc de notas</td><td>Separador <code>;</code> <code>,</code> o tabulador; acepta comas decimales.</td></tr>
+    <tr><td><b>Texto pegado</b></td><td>Cualquier documento</td><td>«lat, lon», grados-minutos-segundos, WKT, o el contenido de un archivo.</td></tr>
+    <tr><td><b>.zip</b> con varios archivos</td><td>—</td><td>Se leen los que reconoce (shapefile, KML, CSV, Excel…).</td></tr>
+  </table>
+  <p><b>Sistemas de coordenadas que se convierten solos:</b> grados (WGS84), MAGNA-SIRGAS Colombia Bogotá, Oeste y Este Central, MAGNA-SIRGAS Origen Nacional (CTM12) y UTM zona 18 Norte.</p>
+  <p><b>No se pueden leer:</b> Excel antiguo (<code>.xls</code>: guárdalo como <code>.xlsx</code>), AutoCAD (<code>.dwg</code>/<code>.dxf</code>: exporta a KML o GeoJSON), PDF e imágenes (no traen coordenadas). Tamaño máximo por archivo: 40 MB.</p>
+  <p><b>Archivos de ejemplo</b> (en la ventana «Subir archivos»): <code>ejemplo-puntos.xlsx</code>, <code>ejemplo-tramos.xlsx</code>, <code>ejemplo-puntos.ods</code>, <code>ejemplo-puntos.csv</code>, <code>ejemplo-tramos.csv</code>, <code>ejemplo.kmz</code>, <code>ejemplo.kml</code>, <code>ejemplo.gpx</code> y <code>ejemplo.geojson</code>.</p>
+
+  <h1 style="margin-top:10mm"><span class="n">B</span> Glosario</h1>
+  <table>
+    <tr><td style="width:24%"><b>EyD</b></td><td>Estudios y diseños.</td></tr>
+    <tr><td><b>SECOP II</b></td><td>Plataforma de contratación pública de Colombia, donde están los contratos y procesos.</td></tr>
+    <tr><td><b>Interventoría</b></td><td>Contrato que vigila la ejecución técnica, administrativa y financiera de la obra.</td></tr>
+    <tr><td><b>WGS84 · grados</b></td><td>Forma estándar de dar coordenadas (la de Google Earth y los GPS).</td></tr>
+    <tr><td><b>KMZ / KML</b></td><td>Archivos de Google Earth con lugares y recorridos (el KMZ es el KML comprimido).</td></tr>
+    <tr><td><b>Borrador / publicado</b></td><td>Versión en edición (privada) / versión que ve el público.</td></tr>
+  </table>
+
+  <h1 style="margin-top:10mm"><span class="n">C</span> Contacto y documentos legales</h1>
+  <div class="caja info">
+    <b>SETP Ibagué S.A.S.</b> · Calle 60 #8-37, C.C. Acqua, Oficinas 1201 y 1208, Ibagué (Tolima) · ventanillaunica@transmusical.gov.co · WhatsApp +57 314 436 4606 · PQRS: transmusical.gov.co/formulario-pqrs · Línea anticorrupción 018000189801.<br>
+    Horario: lunes a jueves 7:30–12:00 y 14:00–17:00; viernes 7:00–15:00.
+  </div>
+  <p>El sitio publica sus <b>Términos y condiciones</b>, <b>Política de privacidad</b> y <b>Política de cookies</b> (enlaces al pie de la página). Se apoyan en la Ley 1581 de 2012 y el Decreto 1377 de 2013 (datos personales), la Ley 1712 de 2014 (transparencia), la Resolución 1519 de 2020 de MinTIC (accesibilidad) y las normas de derechos de autor (Ley 23 de 1982 y Decisión Andina 351 de 1993).</p>
+</section>
+</body>
+</html>
