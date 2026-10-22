@@ -67,8 +67,8 @@ const scrollTo = async sel => { await ev(`document.querySelector(${JSON.stringif
     console.log('Panel de administración');
     await size(1366, 860); await go(BASE + '/admin/', 1200);
     await marcas([['#lg-usuario', 1, 'tl'], ['#lg-clave', 2, 'tl'], ['.consent', 3, 'tl'], ['.login-card .btn.pri', 4, 'tl']]);
-    await shot('a01-ingreso', { sel: '.login-card', pad: 26 }); await sinMarcas();
-    await fill('#lg-usuario', USER); await fill('#lg-clave', PASS); await click('#lg-t'); await click('#lg-p'); await click('.login-card .btn.pri'); await waitFor('.acciones', 8000); await sleep(800);
+    await shot('a01-ingreso'); await sinMarcas();
+    await fill('#lg-usuario', USER); await fill('#lg-clave', PASS); await click('#lg-t'); await click('#lg-p'); await click('.login-card .btn.pri'); await waitFor('.grid2', 8000); await sleep(800);
     await marcas([['.tabs-in', 1, 'tl'], ['.tabs-in .btn.oro', 2, 'tl'], ['.grid2', 3, 'tl']]); await shot('a02-inicio'); await sinMarcas();
 
     await go(BASE + '/admin/#/proyectos', 1800);
