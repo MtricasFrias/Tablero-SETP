@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 360" preserveAspectRatio="xMidYMax slice" role="img" aria-label="Calle de Ibagué con paradero, semáforo y bus del SETP">
 <title>Calle de Ibagué con paradero, semáforo y bus del SETP</title>
+<style>.bus{animation:pasa 26s linear -12s infinite}@keyframes pasa{from{transform:translateX(-780px)}to{transform:translateX(520px)}}@media (prefers-reduced-motion:reduce){.bus{animation:none}}</style>
 <defs>
 <linearGradient id="cielo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0A1F5C"/><stop offset="1" stop-color="#1D3F9E"/></linearGradient>
 <pattern id="pent" width="800" height="23" patternUnits="userSpaceOnUse"><rect width="800" height="1" y="22" fill="#fff" fill-opacity=".06"/></pattern>
@@ -20,7 +21,7 @@
 <rect x="384" y="112" width="10" height="144" rx="4" fill="#7C8AB1"/>
 <rect x="368" y="76" width="42" height="96" rx="12" fill="#101A3D"/><circle cx="389" cy="102" r="10" fill="#4A1010"/><circle cx="389" cy="124" r="10" fill="#4A3A08"/><circle cx="389" cy="146" r="10" fill="#00E060"/>
 <!-- bus -->
-<g transform="translate(460 238)"><rect width="250" height="86" rx="16" fill="#00A830"/><rect y="52" width="250" height="14" fill="#fff"/><rect y="66" width="250" height="20" rx="0" fill="#007A22"/>
+<g transform="translate(460 238)"><g class="bus"><rect width="250" height="86" rx="16" fill="#F26A1B"/><rect y="52" width="250" height="14" fill="#fff"/><rect y="66" width="250" height="20" rx="0" fill="#D9540F"/>
 <rect x="16" y="14" width="44" height="34" rx="6" fill="#0A1F5C"/><rect x="68" y="14" width="44" height="34" rx="6" fill="#0A1F5C"/><rect x="120" y="14" width="44" height="34" rx="6" fill="#0A1F5C"/><rect x="172" y="14" width="26" height="62" rx="5" fill="#0A1F5C"/><rect x="206" y="14" width="30" height="34" rx="6" fill="#0A1F5C"/>
-<circle cx="56" cy="88" r="20" fill="#1A2140"/><circle cx="56" cy="88" r="9" fill="#9AA8CE"/><circle cx="196" cy="88" r="20" fill="#1A2140"/><circle cx="196" cy="88" r="9" fill="#9AA8CE"/></g>
+<circle cx="56" cy="88" r="20" fill="#1A2140"/><circle cx="56" cy="88" r="9" fill="#9AA8CE"/><circle cx="196" cy="88" r="20" fill="#1A2140"/><circle cx="196" cy="88" r="9" fill="#9AA8CE"/></g></g>
 </svg>
