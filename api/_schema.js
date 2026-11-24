@@ -4,6 +4,7 @@
 const CATEGORIAS = ['vias', 'semaforos', 'paraderos'];
 const TIPOS = ['kpis', 'progreso', 'datos', 'mapa', 'torta', 'cronograma', 'cifras', 'texto', 'tarjetas', 'destacado', 'galeria', 'documentos'];
 const COLORES = ['marino', 'azul', 'ambar', 'verde', 'pino', 'gris'];
+const PLANTILLAS = ['alcance', 'avance', 'destacado', 'especial', 'mapa', 'ambiental', 'recursos', 'torta', 'contrato', 'cronograma', 'social', 'fotos', 'docs', 'texto'];
 const MAX_JSON = 900000;      /* el almacenamiento admite ~1 MB por valor */
 const MAX_NODOS = 250000;
 
@@ -44,6 +45,7 @@ const rowsOf = (a, k1, k2) => (Array.isArray(a) ? a : []).map(r => ({ [k1]: s(r 
 function cleanBlock(b, i) {
   if (!b || typeof b !== 'object' || !TIPOS.includes(b.tipo)) throw new Err('Una sección tiene un tipo no válido.');
   const o = { id: re.bid.test(String(b.id || '')) ? String(b.id) : 'b' + (i + 1) + Math.random().toString(36).slice(2, 5), tipo: b.tipo, titulo: s(b.titulo, 160), subtitulo: s(b.subtitulo, 220), nota: s(b.nota, 2500) };
+  if (PLANTILLAS.includes(b.plantilla)) o.plantilla = b.plantilla; /* lugar de la sección en la estructura estándar */
   switch (b.tipo) {
     case 'kpis': o.tarjetas = (b.tarjetas || []).slice(0, 40).map(c => ({ titulo: s(c.titulo, 120), valor: s(c.valor, 60), unidad: s(c.unidad, 30), nota: s(c.nota, 400), color: COLORES.includes(c.color) ? c.color : 'marino' })).filter(c => c.titulo); break;
     case 'progreso': o.filas = (b.filas || []).slice(0, 60).map(r => ({ nombre: s(r.nombre, 200), porcentaje: nz(r.porcentaje) === null ? null : Math.max(0, Math.min(100, nz(r.porcentaje))), texto: s(r.texto, 120) })).filter(r => r.nombre); break;

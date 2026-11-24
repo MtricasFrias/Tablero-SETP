@@ -114,8 +114,9 @@
   var note = function (t) { return t ? '<p class="map-note">' + esc(t) + '</p>' : ''; };
 
   var R = {};
+  /* Las tarjetas sin cifra no se muestran: así una sección de la estructura estándar recién agregada (vacía) no aparece a medias */
   R.kpis = function (b) {
-    var t = (b.tarjetas || []).filter(function (c) { return c && c.titulo; });
+    var t = (b.tarjetas || []).filter(function (c) { return c && c.titulo && has(String(c.valor == null ? '' : c.valor).trim()); });
     if (!t.length) return '';
     var cols = t.length <= 3 ? 'g3' : t.length === 4 ? 'g4' : t.length === 5 ? 'g5' : (t.length % 4 === 0 ? 'g4' : 'g3');
     return '<div class="cards ' + cols + '">' + t.map(function (c) {
@@ -136,7 +137,7 @@
     }).join('') + note(b.nota) + '</div>';
   };
   R.datos = function (b) {
-    var t = (b.tarjetas || []).filter(function (c) { return c && ((c.filas || []).length || c.titulo); });
+    var t = (b.tarjetas || []).filter(function (c) { return c && ((c.filas || []).some(function (r) { return r && r.etiqueta && has(String(r.valor == null ? '' : r.valor).trim()); }) || c.nota); });
     if (!t.length) return '';
     var cols = t.length === 1 ? '' : t.length === 3 ? ' g3' : ' g2';
     return '<div class="cards' + cols + '">' + t.map(function (c) {

@@ -58,7 +58,7 @@
     { id: 'contrato', tipo: 'datos', nombre: 'Datos del contrato', pregunta: '¿Tienes los datos del contrato (contratista, interventor, fechas)?', necesitas: ['Minuta del contrato y acta de inicio', 'Nombre del contratista y su NIT', 'Nombre del interventor y del supervisor', 'Número del proceso en SECOP II'],
       plantilla: { titulo: 'Datos del contrato', subtitulo: 'Partes · fechas · presupuesto', tarjetas: [{ titulo: 'Datos del contrato', filas: F(['Contratista', 'Representante legal', 'Interventor', 'Supervisor', 'Entidad contratante', 'Fecha del contrato', 'Acta de inicio', 'Proceso SECOP II']), nota: '' }, { titulo: 'Garantías', filas: F(['Cumplimiento', 'Responsabilidad civil extracontractual']), nota: '' }], nota: '' } },
     { id: 'recursos', tipo: 'kpis', nombre: 'Recursos financieros', pregunta: '¿Tienes los valores del contrato y del pago?', necesitas: ['Valor del contrato de obra y de interventoría', 'Lo pagado hasta hoy', 'Fuente: contrato y reporte financiero'],
-      plantilla: { titulo: 'Recursos financieros', subtitulo: 'Inversión · ejecución', tarjetas: [{ titulo: 'Contrato de obra', valor: '', unidad: 'M', nota: '', color: 'marino' }, { titulo: 'Contrato de interventoría', valor: '', unidad: 'M', nota: '', color: 'azul' }, { titulo: 'Valor del proyecto', valor: '', unidad: 'M', nota: 'Obra + interventoría', color: 'marino' }, { titulo: 'Ejecución financiera', valor: '', unidad: '%', nota: '', color: 'verde' }], nota: '' } },
+      plantilla: { titulo: 'Recursos financieros', subtitulo: 'Inversión · ejecución', tarjetas: [{ titulo: 'Presupuesto oficial estimado', valor: '', unidad: 'M', nota: 'Techo del proceso, antes de la oferta', color: 'gris' }, { titulo: 'Contrato de obra', valor: '', unidad: 'M', nota: '', color: 'marino' }, { titulo: 'Contrato de interventoría', valor: '', unidad: 'M', nota: '', color: 'azul' }, { titulo: 'Valor del proyecto', valor: '', unidad: 'M', nota: 'Obra + interventoría', color: 'marino' }, { titulo: 'Ejecución financiera', valor: '', unidad: '%', nota: '', color: 'verde' }], nota: '' } },
     { id: 'alcance', tipo: 'kpis', nombre: 'Alcance técnico (cantidades)', pregunta: '¿Tienes las cantidades de obra o de elementos instalados?', necesitas: ['Cantidades contratadas o ejecutadas', 'Unidad de cada una', 'Fuente: Formulario 1 del presupuesto oficial'],
       plantilla: { titulo: 'Alcance técnico', subtitulo: 'Cantidades principales', tarjetas: [{ titulo: '', valor: '', unidad: '', nota: '', color: 'marino' }, { titulo: '', valor: '', unidad: '', nota: '', color: 'azul' }, { titulo: '', valor: '', unidad: '', nota: '', color: 'ambar' }], nota: '' } },
     { id: 'avance', tipo: 'progreso', nombre: 'Avance por componente', pregunta: '¿Tienes el avance de cada componente de la obra?', necesitas: ['Lista de componentes (ej. pavimentación, andenes)', 'Porcentaje de avance de cada uno', 'Fuente: informe de la interventoría'],
@@ -84,9 +84,32 @@
     { id: 'docs', tipo: 'documentos', nombre: 'Documentos y enlaces', pregunta: '¿Tienes enlaces a documentos públicos (SECOP II, actas)?', necesitas: ['Enlaces https:// a los documentos', 'Nombre de cada uno'],
       plantilla: { titulo: 'Documentos del proyecto', subtitulo: '', items: [{ nombre: '', url: '', detalle: '' }] } }
   ];
-  /* Estructura estándar de TODOS los proyectos, en este orden (igual que Av. Ambalá y Cra 5 Fase II) */
+  /* Estructura estándar de TODOS los proyectos, en este orden (igual que Av. Ambalá y Cra 5 Fase II).
+     ORDEN incluye además las secciones opcionales, en su lugar natural. Cada sección guarda su lugar en «plantilla»;
+     las antiguas (sin etiqueta) se reconocen por su tipo y su título. */
   var ESTANDAR = ['alcance', 'avance', 'mapa', 'ambiental', 'recursos', 'torta', 'contrato', 'cronograma', 'social', 'texto'];
-  PRESETS.sort(function (a, b) { var i = ESTANDAR.indexOf(a.id), j = ESTANDAR.indexOf(b.id); return (i < 0 ? 99 : i) - (j < 0 ? 99 : j); });
+  var ORDEN = ['alcance', 'avance', 'destacado', 'especial', 'mapa', 'ambiental', 'recursos', 'torta', 'contrato', 'cronograma', 'social', 'fotos', 'docs', 'texto'];
+  PRESETS.sort(function (a, b) { return ORDEN.indexOf(a.id) - ORDEN.indexOf(b.id); });
+  var plantillaDe = function (b) {
+    if (b.plantilla && ORDEN.indexOf(b.plantilla) >= 0) return b.plantilla;
+    var t = b.titulo || '';
+    switch (b.tipo) {
+      case 'mapa': return 'mapa'; case 'torta': return 'torta'; case 'cronograma': return 'cronograma'; case 'cifras': return 'social';
+      case 'progreso': return 'avance'; case 'galeria': return 'fotos'; case 'documentos': return 'docs'; case 'destacado': return 'destacado'; case 'tarjetas': return 'especial';
+      case 'kpis': return /recursos|financ|inversi/i.test(t) ? 'recursos' : /ambiental|manejo/i.test(t) ? 'ambiental' : /mantenim|garant/i.test(t) ? 'contrato' : 'alcance';
+      case 'datos': return /comunidad|social/i.test(t) ? 'social' : /contrat|pago|garant|proceso|presupuest/i.test(t) ? 'contrato' : 'alcance';
+    }
+    return 'texto';
+  };
+  var lugar = function (b) { return ORDEN.indexOf(plantillaDe(b)); };
+  /* dónde insertar una sección nueva para que quede en su lugar del orden estándar */
+  var posicion = function (bloques, b) { var k = lugar(b), i = bloques.length; while (i > 0 && lugar(bloques[i - 1]) > k) i--; return i; };
+  /* ordena las secciones como los demás proyectos (estable: las de un mismo lugar conservan su orden) */
+  var ordenar = function (bloques) { return bloques.map(function (b, i) { return { b: b, i: i, k: lugar(b) }; }).sort(function (x, y) { return x.k - y.k || x.i - y.i; }).map(function (x) { return x.b; }); };
+  /* secciones de la estructura estándar que aún no tiene el proyecto */
+  var faltan = function (bloques) { var hay = {}; (bloques || []).forEach(function (b) { hay[plantillaDe(b)] = true; }); return PRESETS.filter(function (ps) { return ESTANDAR.indexOf(ps.id) >= 0 && !hay[ps.id]; }); };
+  /* una sección nueva a partir de la lista de compras, ya etiquetada con su lugar */
+  var desdePreset = function (ps, nid) { var b = JSON.parse(JSON.stringify(ps.plantilla)); b.id = nid(); b.tipo = ps.tipo; b.plantilla = ps.id; return b; };
 
   var PROYECTO = [
     T('nombre', 'Nombre del proyecto', { req: true, max: 120, ej: 'Carrera Quinta', ayuda: 'Como quieres que aparezca en el sitio.' }),
@@ -109,6 +132,6 @@
     var by = {}; (l || []).forEach(function (i) { if (i && i.nombre) by[i.nombre.toLowerCase()] = i; });
     return ['EyD', 'Físico', 'Financiero'].map(function (n) { var i = by[n.toLowerCase()] || {}; return { nombre: n, valor: i.valor === undefined ? null : i.valor, texto: i.texto || '' }; });
   };
-  window.SCHEMAS = { TIPOS: TIPOS, PRESETS: PRESETS, PROYECTO: PROYECTO, PORTADA: PORTADA, ESTADOS: ESTADOS, indicadoresStd: indicadoresStd, ESTANDAR: ESTANDAR,
+  window.SCHEMAS = { TIPOS: TIPOS, PRESETS: PRESETS, PROYECTO: PROYECTO, PORTADA: PORTADA, ESTADOS: ESTADOS, indicadoresStd: indicadoresStd, ESTANDAR: ESTANDAR, ORDEN: ORDEN, plantillaDe: plantillaDe, posicion: posicion, ordenar: ordenar, faltan: faltan, desdePreset: desdePreset,
     CATEGORIAS: [{ id: 'vias', nombre: 'Vías', icono: '🛣️', ayuda: 'Rehabilitación de la malla vial' }, { id: 'semaforos', nombre: 'Semáforos', icono: '🚦', ayuda: 'Modernización de la red semafórica' }, { id: 'paraderos', nombre: 'Paraderos', icono: '🚏', ayuda: 'Suministro e instalación de paraderos' }] };
 })();

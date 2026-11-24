@@ -101,6 +101,7 @@ select:disabled,input:disabled{background:#F1F3F9;color:#7C88A6}
 .dos{display:grid;grid-template-columns:1fr 1fr;gap:14px}.tres{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:12px 0}
 .help-box{background:var(--tint);border-radius:12px;padding:12px 16px;margin:0 0 16px}
 .help-box summary{cursor:pointer;font-weight:700;color:var(--navy)}.help-box ul{margin:6px 0;padding-left:20px}.help-box p{margin:6px 0}
+.estd .help-box>b{color:var(--navy)}.estd .chips{margin:8px 0 2px}.estd .btnrow{margin:12px 0 0}
 .warn{color:#8A4A00}.warn-box{background:#FDECEC;border-radius:12px;padding:12px 16px;margin:14px 0;color:#7A1414}.warn-box.suave{background:#FFF6DC;color:#5C4000}.warn-box ul{margin:6px 0 0;padding-left:20px}
 .err{color:#B3261E;font-weight:700}
 .vacio{padding:22px;border:1.5px dashed var(--line-2);border-radius:14px;color:var(--muted);text-align:center}

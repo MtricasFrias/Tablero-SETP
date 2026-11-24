@@ -252,7 +252,7 @@
               chips: [{ texto: 'Contrato de Obra N° ___ · ____', tono: 'oscuro' }, { texto: '● ' + (w.d.estado || 'Por incluir'), tono: 'ambar' }],
               datos: ['Longitud intervenida', 'Acta de inicio', 'Fecha de finalización', 'Ejecución financiera'].map(function (x) { return { etiqueta: x, valor: '' }; }),
               valores: { obra: null, interventoria: null, nota: '', etiquetas: {} }, indicadores: SCHEMAS.indicadoresStd([]) },
-            bloques: elegidas.map(function (ps) { var b = clone(ps.plantilla); b.id = nid(); b.tipo = ps.tipo; return b; }) };
+            bloques: elegidas.map(function (ps) { return SCHEMAS.desdePreset(ps, nid); }) };
           S.datos.proyectos.push(p); marcar(); if (!(await guardar())) { S.datos.proyectos.pop(); return; } toast('Proyecto creado. Ahora llena la información.', 'ok'); location.hash = '#/p/' + id; })));
       }
     }
@@ -261,10 +261,10 @@
 
   /* ================== editor de proyecto ================== */
   var abiertoB = new Set(), nuevosB = new Set();
-  function elegirSeccion(cb) {
-    var m;
+  function elegirSeccion(cb, bloques) {
+    var m, tiene = {}; (bloques || []).forEach(function (b) { tiene[SCHEMAS.plantillaDe(b)] = true; });
     var listo = function (fn) { return function () { m.close(); fn(); }; };
-    var tarjetaP = function (ps) { return h('div', { class: 'opc' }, h('span', { class: 'ib' }, I(ps.tipo)), h('div', {}, h('b', { text: ps.nombre }), h('p', { class: 'muted', text: ps.pregunta }), h('small', { class: 'muted', text: 'Vas a necesitar: ' + ps.necesitas.join(' · ') })), btn('mas', 'Agregar', 'pri small', listo(function () { var b = clone(ps.plantilla); b.id = nid(); b.tipo = ps.tipo; cb(b); }))); };
+    var tarjetaP = function (ps) { var ya = tiene[ps.id]; return h('div', { class: 'opc' }, h('span', { class: 'ib' }, I(ps.tipo)), h('div', {}, h('b', {}, ps.nombre, ya ? h('span', { class: 'chip ok', style: { marginLeft: '8px' }, text: 'Ya la tiene' }) : null), h('p', { class: 'muted', text: ps.pregunta }), h('small', { class: 'muted', text: 'Vas a necesitar: ' + ps.necesitas.join(' · ') })), btn('mas', ya ? 'Agregar otra' : 'Agregar', ya ? 'small' : 'pri small', listo(function () { cb(SCHEMAS.desdePreset(ps, nid)); }))); };
     var tarjetaT = function (k) { var T = SCHEMAS.TIPOS[k]; return h('div', { class: 'opc' }, h('span', { class: 'ib' }, I(k)), h('div', {}, h('b', { text: T.nombre }), h('p', { class: 'muted', text: T.desc }), h('small', { class: 'muted', text: 'Ejemplo: ' + T.ejemplo })), btn('mas', 'En blanco', 'small', listo(function () { cb(bloqueVacio(k)); }))); };
     m = UI.modal({ titulo: 'Agregar una sección', ancho: 'wide', cuerpo: h('div', { class: 'opciones' },
       h('h3', { text: 'Sugeridas: la lista de compras' }), h('p', { class: 'muted', text: 'Ya vienen con los títulos y datos que se han usado en otros proyectos. Solo llena los valores.' }), SCHEMAS.PRESETS.map(tarjetaP),
@@ -311,11 +311,30 @@
     p.portada = p.portada || {}; p.portada.indicadores = SCHEMAS.indicadoresStd(p.portada.indicadores);
     s2.appendChild(Fields.form(SCHEMAS.PORTADA, p.portada, cambio, { mapHosts: [] })); col.appendChild(s2);
     var s3 = h('section', { class: 'card', id: 's-secciones' }, cardH('kpis', 'Secciones', 'Cada una es un bloque de la página; ábrela para llenarla y reordénalas con las flechas'));
-    var lista = h('div', { class: 'bloques' }); s3.appendChild(lista);
-    s3.appendChild(h('div', { class: 'btnrow' }, btn('mas', 'Agregar una sección', 'pri', function () { elegirSeccion(function (b) { p.bloques.push(b); abiertoB.add(b.id); nuevosB.add(b.id); cambio(); pintarBloques(); var u = lista.lastElementChild; if (u) u.scrollIntoView({ behavior: 'smooth', block: 'center' }); }); })));
+    var estd = h('div', { class: 'estd' }), lista = h('div', { class: 'bloques' }); s3.appendChild(estd); s3.appendChild(lista);
+    /* una sección nueva entra en su lugar del orden estándar (no al final), para que todos los proyectos queden iguales */
+    var meter = function (b) { p.bloques.splice(SCHEMAS.posicion(p.bloques, b), 0, b); abiertoB.add(b.id); nuevosB.add(b.id); };
+    var irA = function (b) { var u = document.getElementById('bl-' + b.id); if (u) u.scrollIntoView({ behavior: 'smooth', block: 'center' }); };
+    s3.appendChild(h('div', { class: 'btnrow' }, btn('mas', 'Agregar una sección', 'pri', function () { elegirSeccion(function (b) { meter(b); cambio(); pintarBloques(); irA(b); }, p.bloques); })));
     col.appendChild(s3); p.bloques = p.bloques || [];
 
+    /* «Estructura estándar»: las 10 secciones que tienen todos los proyectos, en el mismo orden */
+    function pintarEstructura() {
+      estd.innerHTML = '';
+      var faltan = SCHEMAS.faltan(p.bloques), hay = {}; p.bloques.forEach(function (b) { hay[SCHEMAS.plantillaDe(b)] = true; });
+      var orden = SCHEMAS.ordenar(p.bloques), enOrden = orden.every(function (b, i) { return b === p.bloques[i]; });
+      var chips = SCHEMAS.PRESETS.filter(function (ps) { return SCHEMAS.ESTANDAR.indexOf(ps.id) >= 0; }).map(function (ps) { return h('span', { class: 'chip ' + (hay[ps.id] ? 'ok' : 'gris'), title: hay[ps.id] ? 'Ya está' : 'Falta' }, (hay[ps.id] ? '✓ ' : '○ ') + ps.nombre); });
+      estd.appendChild(h('div', { class: 'help-box' },
+        h('b', { text: 'Estructura estándar · ' + (SCHEMAS.ESTANDAR.length - faltan.length) + ' de ' + SCHEMAS.ESTANDAR.length + ' secciones' }),
+        h('p', { class: 'muted', text: 'Todos los proyectos usan las mismas secciones en el mismo orden. Las que estén vacías no se muestran al público, así que puedes agregarlas aunque todavía no tengas los datos.' }),
+        h('div', { class: 'chips' }, chips),
+        (faltan.length || !enOrden) ? h('div', { class: 'btnrow', style: { marginBottom: '0' } },
+          faltan.length ? btn('mas', 'Agregar las que faltan (' + faltan.length + ')', 'pri small', function () { faltan.forEach(function (ps) { meter(SCHEMAS.desdePreset(ps, nid)); }); cambio(); pintarBloques(); toast('Se agregaron ' + faltan.length + (faltan.length === 1 ? ' sección' : ' secciones') + ' en su lugar. Llénalas cuando tengas los datos.', 'ok'); }) : null,
+          !enOrden ? btn('kpis', 'Ordenar como los demás proyectos', 'small', function () { p.bloques = SCHEMAS.ordenar(p.bloques); cambio(); pintarBloques(); toast('Secciones ordenadas como el resto de proyectos.', 'ok'); }) : null) : null));
+    }
+
     function pintarBloques() {
+      pintarEstructura();
       mapas.forEach(function (m) { try { m.destroy(); } catch (e) {} }); mapas = []; lista.innerHTML = '';
       if (!p.bloques.length) lista.appendChild(h('p', { class: 'vacio', text: 'Este proyecto no tiene secciones todavía. Pulsa «Agregar una sección» para empezar con la lista de compras.' }));
       p.bloques.forEach(function (b, i) {
