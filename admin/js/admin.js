@@ -216,7 +216,7 @@
   /* ================== asistente: proyecto nuevo ================== */
   function slugUnico(nombre) { var b = UI.slug(nombre) || 'proyecto', id = b, i = 2; while (S.datos.proyectos.some(function (p) { return p.id === id; }) || id.length < 2) id = b.slice(0, 54) + '-' + (i++); return id; }
   function vistaNuevo() {
-    var w = { paso: 1, d: { nombre: '', fase: '', categoria: '', estado: 'Por incluir' }, sel: {} };
+    var w = { paso: 1, d: { nombre: '', fase: '', categoria: '', estado: 'Por incluir' }, sel: SCHEMAS.ESTANDAR.reduce(function (o, k) { o[k] = true; return o; }, {}) };
     S.main.appendChild(pagehead('Agregar un proyecto nuevo', 'Te hacemos unas preguntas y armamos la página con lo que tengas. Se crea oculto: el público no lo ve hasta que tú lo actives.'));
     var cont = h('div', { class: 'asist' }); S.main.appendChild(cont);
     function pasos() { return h('ol', { class: 'stepper', 'aria-label': 'Pasos' }, ['Datos básicos', '¿Qué información tienes?', 'Revisar y crear'].map(function (t, i) { return h('li', { class: i + 1 === w.paso ? 'on' : (i + 1 < w.paso ? 'hecho' : ''), 'aria-current': i + 1 === w.paso ? 'step' : null }, h('i', { text: String(i + 1) }), t); })); }
@@ -248,7 +248,10 @@
         card.appendChild(h('p', { class: 'aviso', style: { marginTop: '16px' }, text: 'El proyecto se crea OCULTO. Llena la información, míralo en la vista previa y, cuando esté listo, actívalo con «Visible» y publica.' }));
         card.appendChild(h('div', { class: 'fin' }, btn('', 'Atrás', 'ghost', function () { w.paso = 2; pintar(); }), btn('check', 'Crear proyecto y empezar a llenarlo', 'pri big', async function () {
           var id = slugUnico(w.d.nombre), p = { id: id, visible: false, categoria: w.d.categoria, nombre: w.d.nombre.trim(), fase: (w.d.fase || '').trim(), pestana: '', estado: w.d.estado || 'Por incluir', proximo: false,
-            portada: { titulo: w.d.nombre.trim() + (w.d.fase ? ' — ' + w.d.fase.trim() : ''), descripcion: '', chips: [], datos: [], valores: { obra: null, interventoria: null, nota: '', etiquetas: {} }, indicadores: [] },
+            portada: { titulo: w.d.nombre.trim() + (w.d.fase ? ' — ' + w.d.fase.trim() : ''), descripcion: '',
+              chips: [{ texto: 'Contrato de Obra N° ___ · ____', tono: 'oscuro' }, { texto: '● ' + (w.d.estado || 'Por incluir'), tono: 'ambar' }],
+              datos: ['Longitud intervenida', 'Acta de inicio', 'Fecha de finalización', 'Ejecución financiera'].map(function (x) { return { etiqueta: x, valor: '' }; }),
+              valores: { obra: null, interventoria: null, nota: '', etiquetas: {} }, indicadores: SCHEMAS.indicadoresStd([]) },
             bloques: elegidas.map(function (ps) { var b = clone(ps.plantilla); b.id = nid(); b.tipo = ps.tipo; return b; }) };
           S.datos.proyectos.push(p); marcar(); if (!(await guardar())) { S.datos.proyectos.pop(); return; } toast('Proyecto creado. Ahora llena la información.', 'ok'); location.hash = '#/p/' + id; })));
       }
@@ -305,7 +308,8 @@
     s1.appendChild(h('label', { class: 'check', style: { marginTop: '16px' } }, h('input', { type: 'checkbox', checked: !!p.proximo, on: { change: function () { p.proximo = this.checked; cambio(); } } }), h('span', { text: 'Este proyecto aún no tiene información: mostrarlo como «próximamente» (no se puede abrir). Mientras esté marcado, las secciones no se publican.' })));
     col.appendChild(s1);
     var s2 = h('section', { class: 'card', id: 's-portada' }, cardH('texto', 'Portada de la página', 'Título, descripción, datos clave y círculos de avance'));
-    s2.appendChild(Fields.form(SCHEMAS.PORTADA, p.portada = p.portada || {}, cambio, { mapHosts: [] })); col.appendChild(s2);
+    p.portada = p.portada || {}; p.portada.indicadores = SCHEMAS.indicadoresStd(p.portada.indicadores);
+    s2.appendChild(Fields.form(SCHEMAS.PORTADA, p.portada, cambio, { mapHosts: [] })); col.appendChild(s2);
     var s3 = h('section', { class: 'card', id: 's-secciones' }, cardH('kpis', 'Secciones', 'Cada una es un bloque de la página; ábrela para llenarla y reordénalas con las flechas'));
     var lista = h('div', { class: 'bloques' }); s3.appendChild(lista);
     s3.appendChild(h('div', { class: 'btnrow' }, btn('mas', 'Agregar una sección', 'pri', function () { elegirSeccion(function (b) { p.bloques.push(b); abiertoB.add(b.id); nuevosB.add(b.id); cambio(); pintarBloques(); var u = lista.lastElementChild; if (u) u.scrollIntoView({ behavior: 'smooth', block: 'center' }); }); })));

@@ -58,8 +58,16 @@
   }
 
   /* ---------- portada del proyecto ---------- */
+  /* Todos los proyectos muestran los mismos 3 círculos, en el mismo orden */
+  var INDICADORES = ['EyD', 'Físico', 'Financiero'];
+  function indicadores(lista) {
+    var by = {}; (lista || []).forEach(function (i) { if (i && i.nombre) by[i.nombre.toLowerCase()] = i; });
+    return INDICADORES.map(function (n) { return by[n.toLowerCase()] || { nombre: n, valor: null, texto: 'Sin dato' }; });
+  }
   function gauge(i, idx) {
-    var v = num(i.valor); if (v === null) return '';
+    var v = num(i.valor);
+    if (v === null) return '<div class="g-item"><div class="gauge-wrap gauge-sm" aria-label="' + esc(i.nombre) + ': sin dato"><div class="ring" style="--p:0;--c:var(--pending)"></div>' +
+      '<div class="gauge-center"><div class="pct" style="font-size:18px;color:var(--pending)">—</div></div></div><div class="g-name">' + esc(i.nombre) + '</div><div class="g-cap">' + esc(i.texto || 'Sin dato') + '</div></div>';
     v = Math.max(0, Math.min(100, v));
     var col = v > 0 ? 'var(--green)' : 'var(--pending)';
     return '<div class="g-item"><div class="gauge-wrap gauge-sm" aria-label="' + esc(i.nombre) + ': ' + v + '%">' +
@@ -87,7 +95,7 @@
       }
       eq = '<div class="hero-meta hero-eq">' + parts.join('') + '</div>' + (v.nota ? '<p class="map-note" style="max-width:640px">' + esc(v.nota) + '</p>' : '');
     }
-    var ind = (h.indicadores || []).map(gauge).join('');
+    var ind = indicadores(h.indicadores).map(gauge).join('');
     var side = ind ? '<div class="gauge-card"><div class="g-row">' + ind + '</div>' +
       '<div class="gauge-legend"><span><i style="background:var(--green)"></i> Ejecutado</span><span><i style="background:var(--pending)"></i> Pendiente</span></div></div>' : '';
     var desc = paras(h.descripcion).map(function (t) { return '<p class="desc">' + esc(t) + '</p>'; }).join('');
@@ -166,12 +174,12 @@
   R.cifras = function (b) {
     var t = (b.tarjetas || []).filter(function (c) { return c && has(c.valor); });
     if (!t.length) return '';
+    /* Misma ilustración para el mismo tema en todos los proyectos (no se usan fotos aquí) */
+    var ilus = function (e) { e = String(e || '').toLowerCase();
+      return /mujer|madre/.test(e) ? 'mujeres' : /j[oó]ven/.test(e) ? 'jovenes' : /mano de obra|personal|trabajador|empleo|contrataci/.test(e) ? 'mano-obra' : 'inclusion'; };
     return '<div class="social-grid" style="grid-template-columns:repeat(auto-fit,minmax(170px,1fr))">' + t.map(function (c) {
-      var u = imgUrl(c.imagen);
-      return '<div class="social-tile">' + (u ? '<div class="ico photo"><img src="' + esc(u) + '" alt="' + esc((c.imagen && c.imagen.alt) || '') + '" loading="lazy"></div>' :
-        '<div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#00A830" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></div>') +
-        '<div class="n">' + esc(c.valor) + '</div><div class="l">' + esc(c.etiqueta || '') + '</div>' +
-        (c.imagen && (c.imagen.credito || c.imagen.licencia) ? '<div class="l">' + (c.imagen.pie ? esc(c.imagen.pie) + ' · ' : '') + credito(c.imagen) + '</div>' : '') + '</div>';
+      return '<div class="social-tile"><div class="ico photo"><img src="img/ilustracion-' + ilus(c.etiqueta) + '.svg" alt="" loading="lazy"></div>' +
+        '<div class="n">' + esc(c.valor) + '</div><div class="l">' + esc(c.etiqueta || '') + '</div></div>';
     }).join('') + '</div>' + note(b.nota);
   };
   R.texto = function (b) {
@@ -215,7 +223,7 @@
     if (!capas.length) return '';
     var leg = capas.map(function (c, i) {
       var sw = c.tipo === 'lineas' ? Object.keys(ESTADO_LINEA).map(function (k) { return '<i title="' + k + '" style="background:' + ESTADO_LINEA[k] + '"></i>'; }).join('') : '<i style="background:' + (HEX[c.color] || HEX.azul) + '"></i>';
-      return '<label class="lay"><input type="checkbox" data-capa="' + i + '" checked> ' + sw + ' ' + esc(c.nombre || 'Capa') + ' <span class="cnt">(' + c.elementos.length.toLocaleString('es-CO') + ')</span></label>';
+      return '<label class="lay"><input type="checkbox" data-capa="' + i + '"' + (c.apagada ? '' : ' checked') + '> ' + sw + ' ' + esc(c.nombre || 'Capa') + ' <span class="cnt">(' + c.elementos.length.toLocaleString('es-CO') + ')</span></label>';
     }).join('');
     return '<div class="card"><div class="map-legend">' + leg + '</div><div class="map-el" role="region" aria-label="' + esc(b.titulo || 'Mapa') + '"></div>' +
       note(b.nota || 'Mapa interactivo: se puede desplazar y acercar. Toca un elemento para ver su nombre y detalle.') + '</div>';
@@ -242,9 +250,9 @@
     var L = root.L; if (!L || el._built) return; el._built = true;
     var map = L.map(el, { scrollWheelZoom: false, preferCanvas: true });
     L.tileLayer(TILES, { attribution: 'Imágenes © Esri', maxZoom: 19 }).addTo(map);
-    var groups = [], all = [];
+    var groups = [], all = [], todo = [];
     (b.capas || []).filter(function (c) { return c && (c.elementos || []).length; }).forEach(function (c) {
-      var g = L.layerGroup(), col = HEX[c.color] || HEX.azul;
+      var g = L.layerGroup(), col = HEX[c.color] || HEX.azul, all = c.apagada ? [] : todo;
       c.elementos.forEach(function (e) {
         var pop = '<b>' + esc(e.nombre || '') + '</b>' + (e.detalle ? '<br>' + esc(e.detalle) : '') + (c.tipo === 'lineas' && e.estado ? '<br>' + esc(e.estado.charAt(0).toUpperCase() + e.estado.slice(1)) : '');
         if (c.tipo === 'lineas') {
@@ -255,8 +263,9 @@
           L.circleMarker([la, lo], { radius: c.elementos.length > 300 ? 4 : 7, color: '#fff', weight: c.elementos.length > 300 ? 1 : 2, fillColor: col, fillOpacity: .95 }).bindPopup(pop).addTo(g); all.push([la, lo]);
         }
       });
-      g.addTo(map); groups.push(g);
+      if (!c.apagada) g.addTo(map); groups.push(g);
     });
+    all = todo;
     var capas = (b.capas || []).filter(function (c) { return c && (c.elementos || []).length; });
     var card = el.closest('.card');
     if (card) Array.prototype.forEach.call(card.querySelectorAll('input[data-capa]'), function (chk) {

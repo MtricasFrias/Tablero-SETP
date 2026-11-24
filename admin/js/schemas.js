@@ -32,9 +32,9 @@
     cronograma: { nombre: 'Cronograma', icono: '📅', corto: 'Línea de tiempo', desc: 'Barras en el tiempo con las fases, plazos y prórrogas del contrato.',
       necesitas: ['Nombre de cada fase o plazo (ej. Plazo inicial)', 'Fecha de inicio y de fin de cada una', 'Su estado: hecho, en curso o pendiente'], ejemplo: 'Plazo inicial — 10/04/2025 a 21/12/2025 — hecho',
       fields: [TITULO, SUBT, LISTA('fases', 'Fases', 'Fase', [T('nombre', 'Nombre de la fase', { req: true, max: 120, ej: 'Plazo inicial' }), T('detalle', 'Detalle', { max: 160, ej: '255 días calendario' }), { k: 'inicio', t: 'fecha', label: 'Inicio', req: true }, { k: 'fin', t: 'fecha', label: 'Fin', req: true }, { k: 'estado', t: 'sel', label: 'Estado', opts: [['hecho', 'Hecho'], ['en curso', 'En curso'], ['pendiente', 'Pendiente']] }], { resumen: function (x) { return (x.nombre || 'Fase') + (x.inicio ? ' · ' + x.inicio + ' → ' + (x.fin || '?') : ''); }, vacia: { nombre: '', detalle: '', inicio: '', fin: '', estado: 'pendiente' }, max: 40 }), NOTA] },
-    cifras: { nombre: 'Cifras sociales con foto', icono: '👥', corto: 'Empleo, inclusión, comunidad', desc: 'Tarjetas con un porcentaje o cantidad y una foto circular opcional. Pensadas para el componente social (mano de obra local, mujeres, jóvenes…).',
-      necesitas: ['La cifra (ej. 10%)', 'Lo que significa (ej. Mano de obra regional)', 'Una foto opcional (con permiso de uso)'], ejemplo: '10% — Mano de obra regional (mínimo)',
-      fields: [TITULO, SUBT, LISTA('tarjetas', 'Cifras', 'Cifra', [T('valor', 'Cifra', { req: true, max: 40, ej: '10%' }), T('etiqueta', 'Qué significa', { max: 200, ej: 'Mano de obra regional (mín.)' }), { k: 'imagen', t: 'imagen', label: 'Foto (opcional)' }], { resumen: function (x) { return (x.valor || '—') + ' · ' + (x.etiqueta || ''); }, vacia: { valor: '', etiqueta: '', imagen: null }, max: 24 }), NOTA] },
+    cifras: { nombre: 'Cifras sociales', icono: '👥', corto: 'Empleo, inclusión, comunidad', desc: 'Tarjetas con un porcentaje o cantidad. El muñequito sale solo según el texto (mano de obra, mujeres, jóvenes o comunidad), igual en todos los proyectos.',
+      necesitas: ['La cifra (ej. 10%)', 'Lo que significa (ej. Mano de obra regional)'], ejemplo: '10% — Mano de obra regional (mínimo)',
+      fields: [TITULO, SUBT, LISTA('tarjetas', 'Cifras', 'Cifra', [T('valor', 'Cifra', { req: true, max: 40, ej: '10%' }), T('etiqueta', 'Qué significa', { max: 200, ej: 'Mano de obra regional (mín.)' })], { resumen: function (x) { return (x.valor || '—') + ' · ' + (x.etiqueta || ''); }, vacia: { valor: '', etiqueta: '', imagen: null }, max: 24 }), NOTA] },
     texto: { nombre: 'Texto con foto', icono: '📝', corto: 'Contexto o importancia', desc: 'Párrafos de texto, con una foto opcional arriba. Sirve para explicar la importancia del proyecto o su contexto.',
       necesitas: ['El texto (separa los párrafos con una línea en blanco)', 'Una foto opcional, con su autor/fuente y permiso'], ejemplo: 'Importancia del corredor',
       fields: [TITULO, SUBT, AREA('texto', 'Texto', { rows: 9, max: 12000, ayuda: 'Deja una línea en blanco entre párrafos. No uses formato especial: se muestra tal cual.' }), { k: 'imagen', t: 'imagen', label: 'Foto (opcional)' }, NOTA] },
@@ -84,6 +84,9 @@
     { id: 'docs', tipo: 'documentos', nombre: 'Documentos y enlaces', pregunta: '¿Tienes enlaces a documentos públicos (SECOP II, actas)?', necesitas: ['Enlaces https:// a los documentos', 'Nombre de cada uno'],
       plantilla: { titulo: 'Documentos del proyecto', subtitulo: '', items: [{ nombre: '', url: '', detalle: '' }] } }
   ];
+  /* Estructura estándar de TODOS los proyectos, en este orden (igual que Av. Ambalá y Cra 5 Fase II) */
+  var ESTANDAR = ['alcance', 'avance', 'mapa', 'ambiental', 'recursos', 'torta', 'contrato', 'cronograma', 'social', 'texto'];
+  PRESETS.sort(function (a, b) { var i = ESTANDAR.indexOf(a.id), j = ESTANDAR.indexOf(b.id); return (i < 0 ? 99 : i) - (j < 0 ? 99 : j); });
 
   var PROYECTO = [
     T('nombre', 'Nombre del proyecto', { req: true, max: 120, ej: 'Carrera Quinta', ayuda: 'Como quieres que aparezca en el sitio.' }),
@@ -98,9 +101,14 @@
     LISTA('chips', 'Etiquetas de estado (arriba del título)', 'Etiqueta', [T('texto', 'Texto', { req: true, max: 80, ej: 'Contrato de Obra N° 046 · 2025' }), { k: 'tono', t: 'sel', label: 'Color', opts: [['oscuro', 'Azul oscuro (para el contrato)'], ['azul', 'Azul'], ['verde', 'Verde (terminado)'], ['ambar', 'Ámbar (en proceso)'], ['gris', 'Gris']] }], { resumen: function (x) { return x.texto || 'Etiqueta'; }, vacia: { texto: '', tono: 'oscuro' }, max: 5 }),
     LISTA('datos', 'Datos clave (debajo de la descripción)', 'Dato', [T('etiqueta', 'Dato', { req: true, max: 160, ej: 'Acta de inicio' }), T('valor', 'Valor', { max: 600, ej: '10-abr-2025' })], { resumen: function (x) { return (x.etiqueta || 'Dato') + ': ' + (x.valor || ''); }, vacia: { etiqueta: '', valor: '' }, max: 8, ayuda: 'Hasta 8. Ejemplos: Longitud intervenida, Acta de inicio, Fecha de finalización, Ejecución financiera.' }),
     { k: 'valores', t: 'valores', label: 'Valor del proyecto' },
-    LISTA('indicadores', 'Indicadores circulares (hasta 3)', 'Indicador', [T('nombre', 'Nombre', { req: true, max: 40, ej: 'Físico', ayuda: 'Lo habitual: EyD (estudios y diseños), Físico y Financiero.' }), NUM('valor', 'Avance (%)', { min: 0, max: 100, step: 0.1, ayuda: 'De 0 a 100. Si no lo sabes, no agregues el indicador.' }), T('texto', 'Texto bajo el círculo', { max: 60, ej: 'Completado' })], { resumen: function (x) { return (x.nombre || 'Indicador') + (x.valor !== null && x.valor !== undefined && x.valor !== '' ? ' · ' + x.valor + '%' : ''); }, vacia: { nombre: '', valor: null, texto: '' }, max: 3 })
+    LISTA('indicadores', 'Círculos de avance (fijos: EyD, Físico, Financiero)', 'Indicador', [T('nombre', 'Nombre', { req: true, max: 40, ej: 'Físico', ayuda: 'No lo cambies: todos los proyectos usan EyD, Físico y Financiero.' }), NUM('valor', 'Avance (%)', { min: 0, max: 100, step: 0.1, ayuda: 'De 0 a 100. Si no lo sabes, déjalo vacío: se muestra «—».' }), T('texto', 'Texto bajo el círculo', { max: 60, ej: 'Completado' })], { resumen: function (x) { return (x.nombre || 'Indicador') + (x.valor !== null && x.valor !== undefined && x.valor !== '' ? ' · ' + x.valor + '%' : ''); }, vacia: { nombre: '', valor: null, texto: '' }, max: 3 })
   ];
 
-  window.SCHEMAS = { TIPOS: TIPOS, PRESETS: PRESETS, PROYECTO: PROYECTO, PORTADA: PORTADA, ESTADOS: ESTADOS,
+  /* Los 3 círculos de avance son fijos en todos los proyectos (mismo orden y nombres): solo cambian los datos */
+  var indicadoresStd = function (l) {
+    var by = {}; (l || []).forEach(function (i) { if (i && i.nombre) by[i.nombre.toLowerCase()] = i; });
+    return ['EyD', 'Físico', 'Financiero'].map(function (n) { var i = by[n.toLowerCase()] || {}; return { nombre: n, valor: i.valor === undefined ? null : i.valor, texto: i.texto || '' }; });
+  };
+  window.SCHEMAS = { TIPOS: TIPOS, PRESETS: PRESETS, PROYECTO: PROYECTO, PORTADA: PORTADA, ESTADOS: ESTADOS, indicadoresStd: indicadoresStd, ESTANDAR: ESTANDAR,
     CATEGORIAS: [{ id: 'vias', nombre: 'Vías', icono: '🛣️', ayuda: 'Rehabilitación de la malla vial' }, { id: 'semaforos', nombre: 'Semáforos', icono: '🚦', ayuda: 'Modernización de la red semafórica' }, { id: 'paraderos', nombre: 'Paraderos', icono: '🚏', ayuda: 'Suministro e instalación de paraderos' }] };
 })();

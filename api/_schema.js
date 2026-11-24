@@ -61,6 +61,7 @@ function cleanBlock(b, i) {
     case 'mapa': o.capas = (b.capas || []).slice(0, 8).map(c => {
       const tipo = c.tipo === 'lineas' ? 'lineas' : 'puntos';
       const capa = { nombre: s(c.nombre, 120), tipo, color: COLORES.includes(c.color) ? c.color : 'azul', elementos: [] };
+      if (c.apagada) capa.apagada = true;
       (Array.isArray(c.elementos) ? c.elementos : []).slice(0, 5000).forEach(e => {
         if (!e) return;
         const base = { nombre: s(e.nombre, 160), detalle: s(e.detalle, 300) };
