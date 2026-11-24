@@ -147,7 +147,7 @@ select:disabled,input:disabled{background:#F1F3F9;color:#7C88A6}
 .me-capas,.me-tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.me-lbl{font-weight:700;color:var(--navy)}
 .chipbtn{display:inline-flex;align-items:center;gap:8px;min-height:38px;padding:5px 14px;border:1.5px solid var(--line-2);border-radius:999px;background:#fff;font:inherit;font-weight:700;cursor:pointer;color:var(--ink);transition:border-color .18s var(--ease)}
 .chipbtn i{width:12px;height:12px;border-radius:50%;display:inline-block}.chipbtn.on{border-color:var(--navy);background:var(--tint)}
-.me-ajustes{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end}.me-ajustes label{display:flex;flex-direction:column;gap:4px;min-width:190px;flex:1}.me-ajustes label span{font-weight:700;font-size:13.5px;color:var(--navy)}
+.me-ajustes{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end}.me-ajustes label.check{flex-direction:row;align-items:center;gap:10px}.me-ajustes label.check span{font-weight:600}.me-ajustes label{display:flex;flex-direction:column;gap:4px;min-width:190px;flex:1}.me-ajustes label span{font-weight:700;font-size:13.5px;color:var(--navy)}
 .me-ayuda{background:#FFF6DC;border-radius:12px;padding:10px 14px;font-weight:600;color:#5C4000}
 .me-map{height:470px;border-radius:14px;overflow:hidden;z-index:0;box-shadow:0 0 0 1px var(--line)}
 .me-sel{background:var(--tint);border-radius:14px;padding:14px}.me-sel:empty{display:none}.me-sel h4{margin-bottom:8px}

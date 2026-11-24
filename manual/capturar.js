@@ -80,7 +80,8 @@ const scrollTo = async sel => { await ev(`document.querySelector(${JSON.stringif
     await ev(`(()=>{const t=document.querySelectorAll('.asist input[type=text]'); t[1].value='Fase I'; t[1].dispatchEvent(new Event('input',{bubbles:true}));})()`);
     await click('.asist .cat'); await marcas([['.asist input[type=text]', 1, 'tl'], ['.asist .cats', 2, 'tl'], ['.fin .btn.pri', 3, 'tl']]); await shot('a04-nuevo-paso1', { sel: '.asist' }); await sinMarcas();
     await clickText('button', 'Siguiente');
-    await ev(`(()=>{const c=[...document.querySelectorAll('.compra input')]; [0,1,4].forEach(i=>c[i].click());})()`); await sleep(400);
+    /* la estructura estándar ya viene marcada; se desmarcan dos para que el manual muestre secciones «faltantes» */
+    await ev(`(()=>{[...document.querySelectorAll('.compra')].filter(x=>/Cronograma|Componente social/.test(x.textContent)).forEach(x=>{const i=x.querySelector('input'); if(i.checked) i.click();});})()`); await sleep(400);
     await marcas([['.compra', 1, 'tl'], ['.compra.on', 2, 'tr']]); await shot('a05-nuevo-paso2', { sel: '.asist', max: 1100 }); await sinMarcas();
     await clickText('button', 'Siguiente'); await sleep(500); await shot('a06-nuevo-paso3', { sel: '.asist' });
     await clickText('button', 'Crear proyecto'); await waitFor('.ed-bar', 8000); await sleep(3500);
@@ -91,7 +92,7 @@ const scrollTo = async sel => { await ev(`document.querySelector(${JSON.stringif
     await scrollTo('#s-secciones'); await sleep(500);
     await ev(`(()=>{const h=[...document.querySelectorAll('.bloque .item-head')].find(x=>x.textContent.includes('Recursos financieros')); h.click();})()`); await sleep(900);
     await marcas([['.bloque .help-box', 1, 'tl'], ['.bloque-body .form', 2, 'tl'], ['.bloque .lista .add', 3, 'tl']]); await shot('a08-seccion-abierta'); await sinMarcas();
-    await click('#s-secciones .btnrow .btn.pri'); await sleep(600); await shot('a09-agregar-seccion'); await ev(`document.querySelector('.modal-head .icon-btn').click()`); await sleep(400);
+    await click('#s-secciones > .btnrow .btn.pri'); await sleep(600); await shot('a09-agregar-seccion'); await ev(`document.querySelector('.modal-head .icon-btn').click()`); await sleep(400);
 
     /* mapa (sin el panel de vista previa, para que se vea más ancho) */
     await ev(`(()=>{const s=document.createElement('style'); s.id='nopv'; s.textContent='.prev{display:none!important}.ed{grid-template-columns:minmax(0,1fr)!important}'; document.head.appendChild(s);})()`);
@@ -111,14 +112,20 @@ const scrollTo = async sel => { await ev(`document.querySelector(${JSON.stringif
     await shot('a13-importar-resultado');
     await clickText('.modal-acts button', 'Agregar'); await sleep(1800);
     await ev('window.scrollBy(0,0)'); await shot('a14-mapa-importado', { sel: '.mapedit', max: 1200 });
+    await marcas([['.me-ajustes label.check span', 1, 'tr']]); await shot('a22-capa-al-abrir', { sel: '.me-ajustes', pad: 16 }); await sinMarcas();
+
+    /* estructura estándar (con el mapa ya lleno: ✓ mapa, ◐ vacías, ○ las dos desmarcadas en el asistente) */
+    await scrollTo('#s-secciones'); await sleep(500);
+    await marcas([['.estd .chips', 1, 'tl'], ['.estd .btnrow', 2, 'tl']]); await shot('a21-estructura', { sel: '.estd', pad: 10 }); await sinMarcas();
 
     /* fotos */
-    await ev(`document.querySelector('#s-secciones').scrollIntoView()`); await click('#s-secciones .btnrow .btn.pri'); await sleep(500);
+    await ev(`document.querySelector('#s-secciones').scrollIntoView()`); await click('#s-secciones > .btnrow .btn.pri'); await sleep(500);
     await ev(`(()=>{const o=[...document.querySelectorAll('.opc')].find(x=>x.textContent.includes('Fotos del proyecto')); o.querySelector('.btn').click();})()`); await sleep(1200);
-    await ev(`(()=>{const b=[...document.querySelectorAll('.bloque')].pop(); b.scrollIntoView({block:'start'});})()`); await sleep(500);
-    await setFiles('.bloque:last-of-type input[type=file]', [path.join(__dirname, '..', 'img', 'glorieta-ambala.jpg').replace(/\//g, '\\')]); await sleep(2500);
-    await ev(`(()=>{const b=[...document.querySelectorAll('.bloque')].pop(); const x=b.querySelector('.imgw'); if(x) x.scrollIntoView({block:'center'});})()`); await sleep(600);
-    await marcas([['.bloque:last-of-type .imgw-top', 1, 'tl'], ['.bloque:last-of-type .check.rights', 2, 'tl']]); await shot('a15-fotos', { sel: '.bloque:last-of-type .item-body, .bloque:last-of-type .bloque-body', max: 1300 }); await sinMarcas();
+    /* la sección nueva entra en su lugar del orden estándar (no al final): se ubica por su título */
+    const gal = '#' + await ev(`(()=>{const b=[...document.querySelectorAll('.bloque')].find(x=>x.querySelector('.item-head').textContent.includes('Registro fotográfico')); b.scrollIntoView({block:'start'}); return b.id;})()`); await sleep(500);
+    await setFiles(gal + ' input[type=file]', [path.join(__dirname, '..', 'img', 'glorieta-ambala.jpg').replace(/\//g, '\\')]); await sleep(2500);
+    await ev(`(()=>{const x=document.querySelector(${JSON.stringify(gal + ' .imgw')}); if(x) x.scrollIntoView({block:'center'});})()`); await sleep(600);
+    await marcas([[gal + ' .imgw-top', 1, 'tl'], [gal + ' .check.rights', 2, 'tl']]); await shot('a15-fotos', { sel: gal + ' .bloque-body', max: 1300 }); await sinMarcas();
 
     /* publicar */
     await ev(`document.getElementById('nopv').remove()`);

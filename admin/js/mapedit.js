@@ -80,7 +80,7 @@
       var color = h('select', { 'aria-label': 'Color de los puntos', on: { change: function () { c.color = this.value; change(); pintarCapas(); drawAll(false); } } }, COLORS.map(function (x) { return h('option', { value: x[0], text: x[1], selected: c.color === x[0] }); }));
       ajustes.appendChild(h('label', {}, h('span', { text: 'Nombre de la capa' }), nombre)); ajustes.appendChild(h('label', {}, h('span', { text: 'Qué se marca' }), tipo));
       if (c.tipo !== 'lineas') ajustes.appendChild(h('label', {}, h('span', { text: 'Color' }), color));
-      ajustes.appendChild(h('label', {}, h('input', { type: 'checkbox', checked: !c.apagada, on: { change: function () { if (this.checked) delete c.apagada; else c.apagada = true; change(); } } }), h('span', { text: ' Mostrar esta capa al abrir el mapa (si la desmarcas, el público la puede encender con su casilla)' })));
+      ajustes.appendChild(h('label', { class: 'check' }, h('input', { type: 'checkbox', checked: !c.apagada, on: { change: function () { if (this.checked) delete c.apagada; else c.apagada = true; change(); } } }), h('span', { text: 'Mostrar esta capa al abrir el mapa (si la desmarcas, el público la puede encender con su casilla)' })));
       ajustes.appendChild(h('button', { type: 'button', class: 'btn small danger', text: 'Quitar esta capa', on: { click: async function () { if (await UI.confirmar('Se borrará la capa «' + (c.nombre || '') + '» con sus ' + (c.elementos || []).length + ' elementos. Podrás volver atrás descartando los cambios sin guardar.', { titulo: '¿Quitar la capa?', si: 'Sí, quitar', peligro: true })) { block.capas.splice(st.capa, 1); st.capa = Math.max(0, st.capa - 1); st.sel = -1; change(); pintarTodo(); } } } }));
     }
     function pintarTools() {

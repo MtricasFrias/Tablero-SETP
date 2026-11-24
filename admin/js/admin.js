@@ -282,7 +282,8 @@
     if (!p) { S.main.appendChild(pagehead('Proyecto no encontrado', 'Puede que se haya eliminado.', lnk('', 'Volver a Proyectos', '#/proyectos', 'pri'))); return; }
     S.main.className = 'ancho'; var mapas = [], frame, listoPrev = false, tPrev;
     function enviarPrev() { if (!frame || !listoPrev) return; try { frame.contentWindow.postMessage({ tipo: 'proyecto', p: p }, location.origin); } catch (e) {} }
-    function cambio() { marcar(); clearTimeout(tPrev); tPrev = setTimeout(enviarPrev, 450); }
+    var tEst; /* el recuadro «Estructura estándar» se refresca al editar (p. ej., al llenar un mapa deja de estar «vacía») */
+    function cambio() { marcar(); clearTimeout(tPrev); tPrev = setTimeout(enviarPrev, 450); clearTimeout(tEst); tEst = setTimeout(function () { if (document.body.contains(estd)) pintarEstructura(); }, 600); }
     var onMsg = function (e) { if (e.origin !== location.origin) return; if (e.data && e.data.tipo === 'listo') { listoPrev = true; enviarPrev(); } };
     window.addEventListener('message', onMsg);
     editorActual = { destroy: function () { window.removeEventListener('message', onMsg); clearTimeout(tPrev); mapas.forEach(function (m) { try { m.destroy(); } catch (e) {} }); } };
