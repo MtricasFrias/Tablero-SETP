@@ -289,5 +289,8 @@
     }); });
   }
 
-  root.SETPRender = { esc: esc, num: num, fmtM: fmtM, fmtFecha: fmtFecha, safeUrl: safeUrl, imgUrl: imgUrl, page: page, hero: hero, hydrate: hydrate, buildMap: buildMap, ACENTOS: ACENTOS, HEX: HEX, ESTADO_LINEA: ESTADO_LINEA, icon: icon, MESES: MESES };
+  /* ¿La sección tiene algo que mostrar? (las vacías no se publican) */
+  var conContenido = function (b) { var f = b && R[b.tipo]; return !!(f && f(b)); };
+
+  root.SETPRender = { esc: esc, num: num, fmtM: fmtM, fmtFecha: fmtFecha, safeUrl: safeUrl, imgUrl: imgUrl, page: page, hero: hero, hydrate: hydrate, conContenido: conContenido, buildMap: buildMap, ACENTOS: ACENTOS, HEX: HEX, ESTADO_LINEA: ESTADO_LINEA, icon: icon, MESES: MESES };
 })(window);

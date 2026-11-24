@@ -321,12 +321,17 @@
     /* «Estructura estándar»: las 10 secciones que tienen todos los proyectos, en el mismo orden */
     function pintarEstructura() {
       estd.innerHTML = '';
-      var faltan = SCHEMAS.faltan(p.bloques), hay = {}; p.bloques.forEach(function (b) { hay[SCHEMAS.plantillaDe(b)] = true; });
+      var faltan = SCHEMAS.faltan(p.bloques), hay = {}, llena = {};
+      var R = window.SETPRender, conDatos = function (b) { return !R || !R.conContenido || R.conContenido(b); };
+      p.bloques.forEach(function (b) { var k = SCHEMAS.plantillaDe(b); hay[k] = true; if (conDatos(b)) llena[k] = true; });
       var orden = SCHEMAS.ordenar(p.bloques), enOrden = orden.every(function (b, i) { return b === p.bloques[i]; });
-      var chips = SCHEMAS.PRESETS.filter(function (ps) { return SCHEMAS.ESTANDAR.indexOf(ps.id) >= 0; }).map(function (ps) { return h('span', { class: 'chip ' + (hay[ps.id] ? 'ok' : 'gris'), title: hay[ps.id] ? 'Ya está' : 'Falta' }, (hay[ps.id] ? '✓ ' : '○ ') + ps.nombre); });
+      var chips = SCHEMAS.PRESETS.filter(function (ps) { return SCHEMAS.ESTANDAR.indexOf(ps.id) >= 0; }).map(function (ps) {
+        var e = llena[ps.id] ? ['ok', '✓ ', 'Con datos: se ve en el sitio'] : hay[ps.id] ? ['oro', '◐ ', 'Agregada pero vacía: no se ve en el sitio hasta que la llenes'] : ['gris', '○ ', 'Falta: agrégala con el botón de abajo'];
+        return h('span', { class: 'chip ' + e[0], title: e[2] }, e[1] + ps.nombre); });
+      var nLlenas = SCHEMAS.ESTANDAR.filter(function (k) { return llena[k]; }).length;
       estd.appendChild(h('div', { class: 'help-box' },
-        h('b', { text: 'Estructura estándar · ' + (SCHEMAS.ESTANDAR.length - faltan.length) + ' de ' + SCHEMAS.ESTANDAR.length + ' secciones' }),
-        h('p', { class: 'muted', text: 'Todos los proyectos usan las mismas secciones en el mismo orden. Las que estén vacías no se muestran al público, así que puedes agregarlas aunque todavía no tengas los datos.' }),
+        h('b', { text: 'Estructura estándar · ' + nLlenas + ' de ' + SCHEMAS.ESTANDAR.length + ' secciones con datos' }),
+        h('p', { class: 'muted', text: 'Todos los proyectos usan las mismas secciones en el mismo orden. ✓ con datos · ◐ agregada pero vacía (no se muestra al público) · ○ falta. Puedes agregar las que faltan aunque todavía no tengas los datos.' }),
         h('div', { class: 'chips' }, chips),
         (faltan.length || !enOrden) ? h('div', { class: 'btnrow', style: { marginBottom: '0' } },
           faltan.length ? btn('mas', 'Agregar las que faltan (' + faltan.length + ')', 'pri small', function () { faltan.forEach(function (ps) { meter(SCHEMAS.desdePreset(ps, nid)); }); cambio(); pintarBloques(); toast('Se agregaron ' + faltan.length + (faltan.length === 1 ? ' sección' : ' secciones') + ' en su lugar. Llénalas cuando tengas los datos.', 'ok'); }) : null,
